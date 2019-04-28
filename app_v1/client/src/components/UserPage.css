@@ -1,0 +1,92 @@
+.main_UserP {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #EEEEEE;
+}
+
+.userP_container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%;
+}
+
+.userP_label {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(73, 73, 73);
+}
+
+.userP_box {
+    border-top: 0.5px solid rgb(182, 145, 119) ;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.userP_page_label {
+    font-size: 1.5rem;
+}
+
+.userP_current_study_label {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.7rem;
+}
+
+.current_study_item1 {
+    background-color: #D3B8A5;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.current_study_item2 {
+    background-color: rgb(223, 173, 173);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.communityMenu :hover {
+    text-decoration: underline !important;
+    text-decoration-color: white !important; 
+}
+
+@media(max-width: 500px) {
+    
+    .userP_container{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 90%;
+    }
+
+    .userP_current_study_label{
+        font-size: 0.9rem;
+    }
+
+    .main_UserP {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    .userP_box {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1.3rem;
+    }
+
+    .current_study_item1 {
+        margin-bottom: 1.5rem;
+    }
+}

@@ -1,0 +1,156 @@
+.Top_logo {
+    background-color: #D3B8A5;
+    height: 12rem;
+}
+  
+.Membership {
+  text-align: right;
+  float: right;
+  margin-top:0.7%;
+}
+  
+img {
+  position: relative;
+  left:43%; 
+  top:0;
+}
+
+.main_logo {
+  margin-top: 1rem;
+}
+  
+.top_btn {
+  text-decoration: none;
+  color: white;
+  margin-right: 2rem;
+  font-weight: bold; 
+}
+
+.top_btn:hover {
+  color: white;
+  text-decoration: underline;
+}
+  
+.menubar_wrapper {
+  height: 2.5rem;
+  text-align: center;
+  background-color: white;
+}
+
+.nav {
+  list-style: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+} 
+
+.nav li {
+  height: 100%;
+  text-transform: uppercase;
+  float: left;
+  width: 48%;
+  text-align: center;
+  position: relative;
+  left:2%;
+}
+
+.nav li .nav-link { 
+  text-decoration: none;
+  color: #D3B8A5;
+  font-weight: bold;
+  font-size: 1rem; 
+} 
+
+.nav li:after{
+  clear: both;
+}
+
+.nav li .nav-link:hover{
+  text-decoration: underline;
+}
+
+.menu_line{
+  display: none;
+}
+
+@media(max-width: 900px){
+  img {
+    position: relative;
+    left:42%;  
+  }
+}
+  
+@media(max-width: 800px){
+  .main_logo {
+    position: relative;
+    left:40%;  
+  }
+}
+  
+@media(max-width: 700px){
+  .main_logo {
+    position: relative;
+    left:35%;  
+  }
+}
+  
+@media(max-width: 600px){
+  .main_logo {
+    position: relative;
+    left:30%;
+  }
+}
+  
+@media(max-width: 500px){
+  .main_logo {
+    left: 0;
+    margin-top: 0%;
+    margin-left: 25%;
+  }  
+  .Membership {
+    margin-top:3%;
+  }
+    
+  .top_btn {
+    text-decoration: none;
+    color: white;
+    margin-right: 1rem;
+    font-weight: bold; 
+  }
+
+  .menubar_wrapper {
+    height: 5rem;
+    text-align: center;
+  }
+
+  .nav {
+    list-style: none;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .nav li {
+    height: 100%;
+    text-transform: uppercase;
+    width: 100%;
+    letter-spacing: 0.2rem;
+    text-align: center;
+  }
+
+  .menu_line{
+    display: block;
+    background-color: #D3B8A5;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menubar_wrapper {
+    height: 4.5rem;
+    text-align: center;
+    background-color: white;
+  }
+}
+  

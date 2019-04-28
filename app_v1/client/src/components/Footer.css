@@ -1,0 +1,13 @@
+.producer {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media(max-width: 500px){
+    .producer{
+        font-size: 0.7rem;
+    }
+}

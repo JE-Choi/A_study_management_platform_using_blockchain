@@ -1,0 +1,2796 @@
+{
+  "contractName": "StudyGroup",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMemberIndexInfo",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_index",
+          "type": "uint256"
+        },
+        {
+          "name": "_memberAddress",
+          "type": "address"
+        },
+        {
+          "name": "_person_id",
+          "type": "bytes32"
+        },
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_numOfCoins",
+          "type": "uint256"
+        }
+      ],
+      "name": "createIndexTheStudy",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "transferCoin",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506103a6806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063563070961461005c5780636dab6f83146100925780638c2beb3d14610101575b600080fd5b610090600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061018b565b005b34801561009e57600080fd5b506100ff60048036038101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560001916906020019092919080359060200190929190803590602001909291905050506101d5565b005b34801561010d57600080fd5b5061012c600480360381019080803590602001909291905050506102a9565b604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001846000191660001916815260200183815260200182815260200194505050505060405180910390f35b8073ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156101d1573d6000803e3d6000fd5b5050565b6080604051908101604052808573ffffffffffffffffffffffffffffffffffffffff1681526020018460001916815260200183815260200182815250600080808152602001908152602001600020600087815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001019060001916905560408201518160020155606082015181600301559050505050505050565b600080600080600080808152602001908152602001600020600086815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600080808152602001908152602001600020600087815260200190815260200160002060010154600080808152602001908152602001600020600088815260200190815260200160002060020154600080808152602001908152602001600020600089815260200190815260200160002060030154935093509350935091935091935600a165627a7a723058208b4eec0e105be28809a1a32b58ee30cea1caa068c99c7587baa8d6c1f53a029b0029",
+  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063563070961461005c5780636dab6f83146100925780638c2beb3d14610101575b600080fd5b610090600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061018b565b005b34801561009e57600080fd5b506100ff60048036038101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560001916906020019092919080359060200190929190803590602001909291905050506101d5565b005b34801561010d57600080fd5b5061012c600480360381019080803590602001909291905050506102a9565b604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001846000191660001916815260200183815260200182815260200194505050505060405180910390f35b8073ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156101d1573d6000803e3d6000fd5b5050565b6080604051908101604052808573ffffffffffffffffffffffffffffffffffffffff1681526020018460001916815260200183815260200182815250600080808152602001908152602001600020600087815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001019060001916905560408201518160020155606082015181600301559050505050505050565b600080600080600080808152602001908152602001600020600086815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600080808152602001908152602001600020600087815260200190815260200160002060010154600080808152602001908152602001600020600088815260200190815260200160002060020154600080808152602001908152602001600020600089815260200190815260200160002060030154935093509350935091935091935600a165627a7a723058208b4eec0e105be28809a1a32b58ee30cea1caa068c99c7587baa8d6c1f53a029b0029",
+  "sourceMap": "28:4175:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;28:4175:2;;;;;;;",
+  "deployedSourceMap": "28:4175:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1432:100;;;;;;;;;;;;;;;;;;;;;;;;;;;;1082:327;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1082:327:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;817:253;;8:9:-1;5:2;;;30:1;27;20:12;5:2;817:253:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1432:100;1497:7;:16;;:27;1514:9;1497:27;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1497:27:2;1432:100;:::o;1082:327::-;1338:63;;;;;;;;;1350:14;1338:63;;;;;;1366:10;1338:63;;;;;;;1378:9;1338:63;;;;1389:11;1338:63;;;1314:10;:13;1325:1;1314:13;;;;;;;;;;;:21;1328:6;1314:21;;;;;;;;;;;:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1082:327;;;;;:::o;817:253::-;879:7;888;897:4;903;930:10;:13;941:1;930:13;;;;;;;;;;;:20;944:5;930:20;;;;;;;;;;;:34;;;;;;;;;;;;966:10;:13;977:1;966:13;;;;;;;;;;;:20;980:5;966:20;;;;;;;;;;;:30;;;998:10;:13;1009:1;998:13;;;;;;;;;;;:20;1012:5;998:20;;;;;;;;;;;:29;;;1030:10;:13;1041:1;1030:13;;;;;;;;;;;:20;1044:5;1030:20;;;;;;;;;;;:31;;;922:140;;;;;;;;817:253;;;;;:::o",
+  "source": "pragma solidity ^0.4.25;\r\n\r\ncontract StudyGroup {\r\n\r\n    // 스터디원 구조체\r\n    struct studyMember {\r\n        address memberAddress; // 계좌번호\r\n        bytes32 person_id; // solidity는 string에 최적화되어 있지 않고, bytes32에 최적화\r\n        uint study_id;// 가입할 study_id\r\n        // uint leader; // 1이면 리더\r\n        // uint study_period; // 스터디 기간\r\n        // 스터디 시작일자\r\n        // 스터디 종료일자\r\n        uint numOfCoins; // 해당 스터디 안에서 자신만의 코인\r\n    }\r\n\r\n    // 스터디 구조체\r\n    struct eachStudy {\r\n        uint study_id;\r\n        studyMember[] members;\r\n    }\r\n\r\n    // 생성자 필요할까? 고민 중.\r\n\r\n    // 스터디원 배열\r\n    mapping(uint => mapping(uint => studyMember)) memberInfo;\r\n\r\n    function getMemberIndexInfo(uint index) view external returns(address, bytes32, uint, uint) {\r\n          return (memberInfo[0][index].memberAddress, memberInfo[0][index].person_id, memberInfo[0][index].study_id , memberInfo[0][index].numOfCoins);\r\n    }\r\n    \r\n    function createIndexTheStudy(uint _index,address _memberAddress,bytes32 _person_id,uint _study_id, uint _numOfCoins) public {\r\n        //memberInfo[_index] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins);\r\n        memberInfo[0][_index] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins);\r\n    }\r\n\r\n    // 송금\r\n    function transferCoin(address _sender) public payable {\r\n        _sender.transfer(msg.value);\r\n    }\r\n\r\n   \r\n    // 아래 소스 지우면 안됨. 그대로는 안쓰더라도 틀로 이용 예정임.\r\n    // study 최초 생성자가 호출하는 메소드\r\n    // function createTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external {\r\n        \r\n    //     //studies.push(_study_id, studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));\r\n    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고\r\n    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기\r\n\r\n        \r\n    // }\r\n\r\n\r\n    // // study 최초 생성자가 호출하는 메소드\r\n    // function createTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external payable {\r\n        \r\n    //     studies.push(_study_id, studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));\r\n    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고\r\n    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기\r\n\r\n        \r\n    //     }\r\n    // }\r\n\r\n    // // study에 가입하는 메소드\r\n    // function joinTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external payable {\r\n    //     // http://blog.naver.com/PostView.nhn?blogId=blokorea&logNo=221309181242&redirect=Dlog&widgetTypeCall=true&directAccess=false\r\n    //     int index = 0;\r\n    //     while(_study_id < studies.length){\r\n    //         if(_study_id == studies[index].study_id){\r\n    //             studies[index].members.push(studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));\r\n    //             index++;\r\n    //         }\r\n    //     }\r\n\r\n    //     //members.push(studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));\r\n    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고\r\n    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기\r\n\r\n        \r\n    //     }\r\n    // }\r\n\r\n    // // study 기간이 끝날 때 코인을 환급받는 메소드\r\n    // // js에서 타이머처럼 시간 검사해서 일정시간되면 실행되는 메소드\r\n    // // 여기에 매개변수가 있다는 건 js에서 이 함수 실행할 때 매개변수를 넘긴다는 의미.\r\n    // function endTheStudy() external payable {\r\n    \r\n\r\n    // }\r\n\r\n    // // 자신의 코인을 확인하는 메소드\r\n    // function getNumOfCoins(uint _study_id, bytes32 _person_id) external view returns(uint) {\r\n    //     return numOfCoins;\r\n    // }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\skskj\\project\\git\\p04\\p26\\p2\\app_v1\\contracts\\StudyGroup.sol",
+  "ast": {
+    "absolutePath": "/C/Users/skskj/project/git/p04/p26/p2/app_v1/contracts/StudyGroup.sol",
+    "exportedSymbols": {
+      "StudyGroup": [
+        219
+      ]
+    },
+    "id": 220,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 117,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 219,
+        "linearizedBaseContracts": [
+          219
+        ],
+        "name": "StudyGroup",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "StudyGroup.studyMember",
+            "id": 126,
+            "members": [
+              {
+                "constant": false,
+                "id": 119,
+                "name": "memberAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "118:21:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 118,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "118:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 121,
+                "name": "person_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "166:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 120,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "166:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 123,
+                "name": "study_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "271:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 122,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "271:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 125,
+                "name": "numOfCoins",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "480:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 124,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "480:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyMember",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "88:465:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "StudyGroup.eachStudy",
+            "id": 132,
+            "members": [
+              {
+                "constant": false,
+                "id": 128,
+                "name": "study_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 132,
+                "src": "617:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 127,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "617:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 131,
+                "name": "members",
+                "nodeType": "VariableDeclaration",
+                "scope": 132,
+                "src": "641:21:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyMember_$126_storage_$dyn_storage_ptr",
+                  "typeString": "struct StudyGroup.studyMember[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 129,
+                    "name": "studyMember",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 126,
+                    "src": "641:11:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyMember_$126_storage_ptr",
+                      "typeString": "struct StudyGroup.studyMember"
+                    }
+                  },
+                  "id": 130,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "641:13:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyMember_$126_storage_$dyn_storage_ptr",
+                    "typeString": "struct StudyGroup.studyMember[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "eachStudy",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "589:81:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 138,
+            "name": "memberInfo",
+            "nodeType": "VariableDeclaration",
+            "scope": 219,
+            "src": "752:56:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+              "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember))"
+            },
+            "typeName": {
+              "id": 137,
+              "keyType": {
+                "id": 133,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "760:4:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "752:45:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember))"
+              },
+              "valueType": {
+                "id": 136,
+                "keyType": {
+                  "id": 134,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "776:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "768:28:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                  "typeString": "mapping(uint256 => struct StudyGroup.studyMember)"
+                },
+                "valueType": {
+                  "contractScope": null,
+                  "id": 135,
+                  "name": "studyMember",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 126,
+                  "src": "784:11:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyMember_$126_storage_ptr",
+                    "typeString": "struct StudyGroup.studyMember"
+                  }
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 177,
+              "nodeType": "Block",
+              "src": "909:161:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 151,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "930:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 153,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 152,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "941:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "930:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 155,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 154,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "944:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "930:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 156,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "memberAddress",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 119,
+                        "src": "930:34:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 157,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "966:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 159,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 158,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "977:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "966:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 161,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 160,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "980:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "966:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 162,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "person_id",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 121,
+                        "src": "966:30:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 163,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "998:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 165,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 164,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1009:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "998:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 167,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 166,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "1012:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "998:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 168,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "study_id",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 123,
+                        "src": "998:29:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 169,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "1030:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 171,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 170,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1041:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1030:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 173,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 172,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "1044:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1030:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 174,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "numOfCoins",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 125,
+                        "src": "1030:31:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 175,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "929:133:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_address_$_t_bytes32_$_t_uint256_$_t_uint256_$",
+                      "typeString": "tuple(address,bytes32,uint256,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 150,
+                  "id": 176,
+                  "nodeType": "Return",
+                  "src": "922:140:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 178,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getMemberIndexInfo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 141,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 140,
+                  "name": "index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "845:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 139,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "845:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "844:12:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 150,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 143,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "879:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 142,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "879:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 145,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "888:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 144,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "897:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 146,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "897:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 149,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "903:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 148,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "903:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "878:30:2"
+            },
+            "scope": 219,
+            "src": "817:253:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 204,
+              "nodeType": "Block",
+              "src": "1206:203:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 202,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 191,
+                          "name": "memberInfo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 138,
+                          "src": "1314:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                            "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                          }
+                        },
+                        "id": 194,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 192,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1325:1:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1314:13:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                          "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                        }
+                      },
+                      "id": 195,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 193,
+                        "name": "_index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 180,
+                        "src": "1328:6:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1314:21:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                        "typeString": "struct StudyGroup.studyMember storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 197,
+                          "name": "_memberAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 182,
+                          "src": "1350:14:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 198,
+                          "name": "_person_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 184,
+                          "src": "1366:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 199,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 186,
+                          "src": "1378:9:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 200,
+                          "name": "_numOfCoins",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 188,
+                          "src": "1389:11:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 196,
+                        "name": "studyMember",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 126,
+                        "src": "1338:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_studyMember_$126_storage_ptr_$",
+                          "typeString": "type(struct StudyGroup.studyMember storage pointer)"
+                        }
+                      },
+                      "id": 201,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1338:63:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyMember_$126_memory",
+                        "typeString": "struct StudyGroup.studyMember memory"
+                      }
+                    },
+                    "src": "1314:87:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                      "typeString": "struct StudyGroup.studyMember storage ref"
+                    }
+                  },
+                  "id": 203,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1314:87:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 205,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "createIndexTheStudy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 189,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 180,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1111:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 179,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1111:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 182,
+                  "name": "_memberAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1123:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 181,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1123:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 184,
+                  "name": "_person_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1146:18:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 183,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1146:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 186,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1165:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 185,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1165:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 188,
+                  "name": "_numOfCoins",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1181:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 187,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1181:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1110:88:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 190,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1206:0:2"
+            },
+            "scope": 219,
+            "src": "1082:327:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 217,
+              "nodeType": "Block",
+              "src": "1486:46:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 213,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 234,
+                          "src": "1514:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 214,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1514:9:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 210,
+                        "name": "_sender",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 207,
+                        "src": "1497:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 212,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1497:16:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 215,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1497:27:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 216,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1497:27:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 218,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "transferCoin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 208,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 207,
+                  "name": "_sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 218,
+                  "src": "1454:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 206,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1454:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1453:17:2"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 209,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1486:0:2"
+            },
+            "scope": 219,
+            "src": "1432:100:2",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 220,
+        "src": "28:4175:2"
+      }
+    ],
+    "src": "0:4205:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/skskj/project/git/p04/p26/p2/app_v1/contracts/StudyGroup.sol",
+    "exportedSymbols": {
+      "StudyGroup": [
+        219
+      ]
+    },
+    "id": 220,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 117,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 219,
+        "linearizedBaseContracts": [
+          219
+        ],
+        "name": "StudyGroup",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "StudyGroup.studyMember",
+            "id": 126,
+            "members": [
+              {
+                "constant": false,
+                "id": 119,
+                "name": "memberAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "118:21:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 118,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "118:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 121,
+                "name": "person_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "166:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 120,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "166:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 123,
+                "name": "study_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "271:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 122,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "271:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 125,
+                "name": "numOfCoins",
+                "nodeType": "VariableDeclaration",
+                "scope": 126,
+                "src": "480:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 124,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "480:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyMember",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "88:465:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "StudyGroup.eachStudy",
+            "id": 132,
+            "members": [
+              {
+                "constant": false,
+                "id": 128,
+                "name": "study_id",
+                "nodeType": "VariableDeclaration",
+                "scope": 132,
+                "src": "617:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 127,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "617:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 131,
+                "name": "members",
+                "nodeType": "VariableDeclaration",
+                "scope": 132,
+                "src": "641:21:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyMember_$126_storage_$dyn_storage_ptr",
+                  "typeString": "struct StudyGroup.studyMember[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 129,
+                    "name": "studyMember",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 126,
+                    "src": "641:11:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyMember_$126_storage_ptr",
+                      "typeString": "struct StudyGroup.studyMember"
+                    }
+                  },
+                  "id": 130,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "641:13:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyMember_$126_storage_$dyn_storage_ptr",
+                    "typeString": "struct StudyGroup.studyMember[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "eachStudy",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "589:81:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 138,
+            "name": "memberInfo",
+            "nodeType": "VariableDeclaration",
+            "scope": 219,
+            "src": "752:56:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+              "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember))"
+            },
+            "typeName": {
+              "id": 137,
+              "keyType": {
+                "id": 133,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "760:4:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "752:45:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember))"
+              },
+              "valueType": {
+                "id": 136,
+                "keyType": {
+                  "id": 134,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "776:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "768:28:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                  "typeString": "mapping(uint256 => struct StudyGroup.studyMember)"
+                },
+                "valueType": {
+                  "contractScope": null,
+                  "id": 135,
+                  "name": "studyMember",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 126,
+                  "src": "784:11:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyMember_$126_storage_ptr",
+                    "typeString": "struct StudyGroup.studyMember"
+                  }
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 177,
+              "nodeType": "Block",
+              "src": "909:161:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 151,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "930:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 153,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 152,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "941:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "930:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 155,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 154,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "944:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "930:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 156,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "memberAddress",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 119,
+                        "src": "930:34:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 157,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "966:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 159,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 158,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "977:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "966:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 161,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 160,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "980:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "966:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 162,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "person_id",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 121,
+                        "src": "966:30:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 163,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "998:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 165,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 164,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1009:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "998:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 167,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 166,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "1012:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "998:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 168,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "study_id",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 123,
+                        "src": "998:29:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 169,
+                              "name": "memberInfo",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 138,
+                              "src": "1030:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                                "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                              }
+                            },
+                            "id": 171,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 170,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1041:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1030:13:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                              "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                            }
+                          },
+                          "id": 173,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 172,
+                            "name": "index",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 140,
+                            "src": "1044:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1030:20:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                            "typeString": "struct StudyGroup.studyMember storage ref"
+                          }
+                        },
+                        "id": 174,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "numOfCoins",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 125,
+                        "src": "1030:31:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 175,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "929:133:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_address_$_t_bytes32_$_t_uint256_$_t_uint256_$",
+                      "typeString": "tuple(address,bytes32,uint256,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 150,
+                  "id": 176,
+                  "nodeType": "Return",
+                  "src": "922:140:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 178,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getMemberIndexInfo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 141,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 140,
+                  "name": "index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "845:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 139,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "845:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "844:12:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 150,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 143,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "879:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 142,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "879:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 145,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "888:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 144,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "897:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 146,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "897:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 149,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 178,
+                  "src": "903:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 148,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "903:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "878:30:2"
+            },
+            "scope": 219,
+            "src": "817:253:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 204,
+              "nodeType": "Block",
+              "src": "1206:203:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 202,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 191,
+                          "name": "memberInfo",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 138,
+                          "src": "1314:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$_$",
+                            "typeString": "mapping(uint256 => mapping(uint256 => struct StudyGroup.studyMember storage ref))"
+                          }
+                        },
+                        "id": 194,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 192,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1325:1:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1314:13:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_studyMember_$126_storage_$",
+                          "typeString": "mapping(uint256 => struct StudyGroup.studyMember storage ref)"
+                        }
+                      },
+                      "id": 195,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 193,
+                        "name": "_index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 180,
+                        "src": "1328:6:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1314:21:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                        "typeString": "struct StudyGroup.studyMember storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 197,
+                          "name": "_memberAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 182,
+                          "src": "1350:14:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 198,
+                          "name": "_person_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 184,
+                          "src": "1366:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 199,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 186,
+                          "src": "1378:9:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 200,
+                          "name": "_numOfCoins",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 188,
+                          "src": "1389:11:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 196,
+                        "name": "studyMember",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 126,
+                        "src": "1338:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_studyMember_$126_storage_ptr_$",
+                          "typeString": "type(struct StudyGroup.studyMember storage pointer)"
+                        }
+                      },
+                      "id": 201,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1338:63:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyMember_$126_memory",
+                        "typeString": "struct StudyGroup.studyMember memory"
+                      }
+                    },
+                    "src": "1314:87:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyMember_$126_storage",
+                      "typeString": "struct StudyGroup.studyMember storage ref"
+                    }
+                  },
+                  "id": 203,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1314:87:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 205,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "createIndexTheStudy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 189,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 180,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1111:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 179,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1111:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 182,
+                  "name": "_memberAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1123:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 181,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1123:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 184,
+                  "name": "_person_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1146:18:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 183,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1146:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 186,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1165:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 185,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1165:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 188,
+                  "name": "_numOfCoins",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 205,
+                  "src": "1181:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 187,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1181:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1110:88:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 190,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1206:0:2"
+            },
+            "scope": 219,
+            "src": "1082:327:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 217,
+              "nodeType": "Block",
+              "src": "1486:46:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 213,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 234,
+                          "src": "1514:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 214,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1514:9:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 210,
+                        "name": "_sender",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 207,
+                        "src": "1497:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 212,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1497:16:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 215,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1497:27:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 216,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1497:27:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 218,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "transferCoin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 208,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 207,
+                  "name": "_sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 218,
+                  "src": "1454:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 206,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1454:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1453:17:2"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 209,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1486:0:2"
+            },
+            "scope": 219,
+            "src": "1432:100:2",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 220,
+        "src": "28:4175:2"
+      }
+    ],
+    "src": "0:4205:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x4220cf05f64dddba74cff0a5db4a08e5e14d012d",
+      "transactionHash": "0xc871c3227a0f310f75ab02af9b7a07e2fbe57240af11a670aca5a1a3405711ae"
+    },
+    "5779": {
+      "events": {},
+      "links": {},
+      "address": "0x4220cf05f64dddba74cff0a5db4a08e5e14d012d",
+      "transactionHash": "0x763823dd956759e4dca7b917795764b112a5596f98949de3956c1e68ad3f0f08"
+    }
+  },
+  "schemaVersion": "2.0.2",
+  "updatedAt": "2019-04-26T10:17:28.166Z"
+}

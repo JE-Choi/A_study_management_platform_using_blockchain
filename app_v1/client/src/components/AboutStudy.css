@@ -1,0 +1,201 @@
+.out_study_make_frame {
+    width: 100%;
+    height: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-content: center;
+    background-color: #EEEEEE;
+}
+
+.study_make_screen {
+    width: 100%;
+    height: 100%;
+    padding-left: 30%;
+    padding-right: 30%; 
+}
+
+.study_make_header{
+    text-align: center;
+}
+
+.study_make_form {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    border-top: 1px solid rgb(182, 145, 119);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-top: 1rem;
+}
+
+.study_make_form_group {
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#study_make_name{
+    width: 48% !important;
+}
+
+#study_make_total_number{
+    width: 48% !important;
+}
+
+#study_make_subject{
+    width: 48% !important;
+}
+
+#study_make_period{
+    width: 48% !important;
+}
+
+#study_make_coin {
+    width: 48% !important;
+}
+
+#study_make_long_desc{
+    width: 100% !important;
+}
+
+#re_study_make_name{
+    width: 48% !important;
+}
+
+#re_study_make_total_number{
+    width: 48% !important;
+}
+
+#re_study_make_subject{
+    width: 48% !important;
+}
+
+#re_study_make_period{
+    width: 48% !important;
+}
+
+#re_study_make_coin {
+    width: 48% !important;
+}
+
+#re_study_make_long_desc{
+    width: 100% !important;
+}
+
+.study_make_label{
+    width: 50% !important;
+}
+
+#btn_study_make {
+    border-color: rgb(182, 145, 119);
+    color: rgb(182, 145, 119);
+    font-weight:bold;
+    margin-top: 12rem;
+}
+
+#btn_study_make:hover{
+    background-color: #D3B8A5;
+    color: white;
+}
+
+#re_btn_study_make {
+    border-color: rgb(182, 145, 119);
+    color: rgb(182, 145, 119);
+    font-weight:bold;
+    margin-top: 12rem;
+}
+
+#re_btn_study_make:hover{
+    background-color: #D3B8A5;
+    color: white;
+}
+
+#study_make_title{
+    font-size: 1.8rem;
+    font-weight:bold;
+}
+
+#study_make_desc{
+    font-size: 1rem;
+}
+
+@media(max-width: 600px) { 
+
+    .out_study_make_frame {
+        padding-bottom: 0rem;
+    }
+
+    .study_make_screen {
+        padding-left: 10%;
+        padding-right: 10%; 
+    }
+
+    .study_make_label{
+        font-size: 0.9rem;
+    }
+
+    #study_make_name{
+        font-size: 0.7rem;
+    }
+
+    #study_make_total_number{
+        font-size: 0.7rem;
+    }
+
+    #study_make_subject{
+        font-size: 0.7rem;
+    }
+
+    #study_make_period{
+        font-size: 0.7rem;
+    }
+
+    #study_make_coin {
+        font-size: 0.7rem;
+    }
+
+    #study_make_long_desc{
+        width: 100% !important;
+        height: 7rem !important;
+    }
+
+    #re_study_make_name{
+        font-size: 0.7rem;
+    }
+    
+    #re_study_make_total_number{
+        font-size: 0.7rem;
+    }
+    
+    #re_study_make_subject{
+        font-size: 0.7rem;
+    }
+    
+    #re_study_make_period{
+        font-size: 0.7rem;
+    }
+    
+    #re_study_make_coin {
+        font-size: 0.7rem;
+    }
+
+    #btn_study_make {
+        font-size: 0.9rem;
+        margin-top: 8rem;
+    }
+
+    #study_make_title{
+        font-size: 1.4rem;
+    }
+    
+    #study_make_desc{
+        font-size: 0.8rem;
+    }
+
+    .study_make_form_group {
+        font-size: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.7rem;
+    }
+}

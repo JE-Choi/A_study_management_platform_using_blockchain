@@ -1,0 +1,93 @@
+.main_Login{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #EEEEEE;
+}
+
+.Login_label{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: rgb(73, 73, 73);
+}
+
+.login_container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%;
+}
+
+.login_box{
+    border-top: 0.5px solid rgb(182, 145, 119) ;
+    border-bottom: 0.5px solid rgb(182, 145, 119) ;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.react-confirm-alert-body {
+    border: 1.5px solid rgb(182, 145, 119);
+    text-align: center !important;
+}
+
+.react-confirm-alert-body h1 {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.react-confirm-alert-button-group {
+    color: white !important;
+    display: inherit !important;
+}
+
+.react-confirm-alert-button-group button {
+    background-color: rgb(182, 145, 119) !important;
+    color: white !important;
+    width: 6rem !important;
+}
+
+@media(max-width: 500px){
+
+    .login_container{
+        width: 80% !important;
+    }
+
+    .form-control{
+        height: 90%;
+    }
+
+    .input_text{
+        font-size: 0.7rem;
+    }
+
+    .form-group{
+        height: 2.5rem;
+    }
+
+    .out_frame_login {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    } 
+
+    .login_box{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .login_label{
+        font-size: 1.5rem;
+    }
+
+    .react-confirm-alert-body {
+        width:100% !important;
+        font-size: 0.9rem;
+    }
+
+    .react-confirm-alert-body h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,91 @@
+.communityMenuBar_nav li{
+    display: inline;
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+
+.communityMenuBar_nav{
+    clear : both;
+    height: 4rem;
+    background-color:rgb(224, 184, 183);
+    text-align:center;
+    padding-top: 1.2rem;
+    border: 1px solid #CCC;
+}
+
+.communityMenuBar_nav li .community_nav_link{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.communityMenuBar_switch{
+    clear : both;
+    background-color:#FFFFF2;
+    text-align:center;
+    border:1px solid #CCC;
+}
+
+.main_communityMenu{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #EEEEEE;
+}
+
+.communityMenu_container{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
+
+/* 반응형 */
+@media(max-width: 500px) { 
+
+    .main_communityMenu{
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    .communityMenuBar_nav li{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .communityMenuBar_nav{
+        height: 8rem;
+        padding-top: 1.2rem;
+    }
+
+    .communityMenu_container{
+        padding-right: 1rem;
+        padding-left: 1rem;
+        margin-right: auto;
+        margin-left: auto;
+        width: 80%;
+    }
+
+    .communityMenuBar_nav li{
+        display: block;
+        margin-bottom: 1.5%;
+        background-color:rgb(224, 184, 183);;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+
+    .communityMenuBar_nav{
+        text-align:center;
+        padding-top: 0.5rem;
+        padding-left: 0rem;
+        background-color: #EEEEEE;
+        border: none;
+    }
+    
+    .clear{
+        clear: both;
+        height: 2.4rem;
+    }
+}
+
