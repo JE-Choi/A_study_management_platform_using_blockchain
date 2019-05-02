@@ -5,6 +5,11 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+// 블록체인
+import getWeb3 from "../utils/getWeb3";
+import StudyGroup from "../contracts/StudyGroup.json"; 
+
+
 class StudyInfo extends Component {
 
     constructor(props) {
@@ -26,18 +31,122 @@ class StudyInfo extends Component {
             current_num_people: '',
             study_coin: '',
             study_period: '',
-            study_desc: ''
+            study_desc: '',
+
+            // 블록체인
+            studyGroupInstance:null,
+            myAccount: null,
+            web3: null,
+            account_pw:''
         }
     }
 
-    // handleFormSubmit = (e) => {
-    //     // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
-    //     e.preventDefault(); 
+    createAccount(){
+        const { shopInstance, myAccount, web3} = this.state; 
+       
+        // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
+        
+        // 계정 생성 
+        //var account_pw = this.state.account_pw;
+        let account_pw = prompt("코인지갑 비밀번호를 입력해주세요.");
+        web3.eth.personal.newAccount(account_pw);
+        console.log('사용된 패스워드: ' + account_pw);
     
-    //     this.callJoinApi().then((response) => {
-    //         console.log(response.data);
-    //     });
-    // }
+        // (예정) 생성된 계좌의 잔액은 0Ether이다. 충전하는 부분 만들어야 한다.
+        // 있는 계정들 모두 출력
+
+        // 마지막에 생성된 계정 index구하기
+            var account_id =  myAccount.length - 1;
+            console.log(account_id);
+    
+        // DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
+        var account_num = myAccount[account_id];
+        console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
+    
+        
+        // DB에 값 삽입
+        this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw).then((response) => {
+            //console.log(response.data);
+            console.log(this.state.person_id +' '+account_id+' '+account_num+' '+account_pw);
+        }).catch((error)=>{
+        console.log(error);
+        });
+
+        return account_id;
+        
+    
+        // this.createTheStudy(0,account_num, 'person', 1, 40);
+        
+    }
+
+    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw) => {
+        const url = '/api/createAccount';
+        return post(url,  {
+            person_id: _person_id,
+            account_id: _account_id,
+            account_num: _account_num,
+            account_pw: _account_pw
+        });
+    }
+
+    transferCoin(_account_id){
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+    
+        let study_make_coin = this.state.study_coin;
+        // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
+        studyGroupInstance.methods.transferCoin(myAccount[_account_id]).send(
+          {
+            from: myAccount[0], 
+            value: web3.utils.toWei(String(study_make_coin), 'ether'),
+            // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
+            gas: 0 
+          }
+        );
+        setTimeout(function(){
+            web3.eth.getBalance(myAccount[_account_id]).then(result=>{
+                console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
+            });
+            }, 1000);
+
+        
+
+    }
+
+    componentWillMount = async () => {
+        try {
+          // Get network provider and web3 instance.
+          const web3 = await getWeb3();
+         
+          // Use web3 to get the user's accounts.
+          const myAccount = await web3.eth.getAccounts();
+      
+          // Get the contract instance.
+          const networkId = await web3.eth.net.getId();
+          const deployedNetwork = StudyGroup.networks[networkId];
+          const instance = new web3.eth.Contract(
+            StudyGroup.abi,
+            deployedNetwork && deployedNetwork.address
+          );
+      
+      
+          // // 확인용 로그
+          // console.log(ShopContract.abi);
+          console.log(web3);
+          console.log(myAccount);
+          
+        //   Set web3, accounts, and contract to the state, and then proceed with an
+        //   example of interacting with the contract's methods.
+        this.setState({ web3, myAccount, studyGroupInstance: instance});
+      
+        } catch (error) {
+          alert(
+            `Failed to load web3, accounts, or contract. Check console for details.`,
+          );
+          console.error(error);
+        }
+
+        
+      };
 
     componentDidMount() {
         this.callApi()
@@ -101,12 +210,14 @@ class StudyInfo extends Component {
             leader: false,
             account_number: '11-22'
         }).then(()=>{
-            this.props.history.push('/mainPage');
-        })
+            let account_id = this.createAccount();
+            this.transferCoin(account_id);
+            this.props.history.push('/mainPage'); 
 
-        setTimeout(()=>{
-            this.studyOkJoinConfirm();
-        },100);
+            setTimeout(()=>{
+                this.studyOkJoinConfirm();
+            },100);
+        })
     }
 
     // 스터디 가입 확인창

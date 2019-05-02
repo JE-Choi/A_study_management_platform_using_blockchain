@@ -24,7 +24,6 @@ class StudyMake extends Component {
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
-            //myApples: 0,  // myApples 추가
             web3: null,
             account_pw:''
         }
@@ -210,7 +209,7 @@ class StudyMake extends Component {
           // console.log(ShopContract.abi);
           console.log(web3);
           console.log(myAccount);
-          console.log('instance: ' + instance);
+          
         //   Set web3, accounts, and contract to the state, and then proceed with an
         //   example of interacting with the contract's methods.
         this.setState({ web3, myAccount, studyGroupInstance: instance});

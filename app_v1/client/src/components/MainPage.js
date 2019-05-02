@@ -73,7 +73,7 @@ class MainPage extends Component {
               <ul className="all_list_study">
                 { this.state.customers ? this.state.customers.map(c => {
                   return (
-                    <Link to={'/studyInfo/' + c.s_id} className="list_studyInfo">
+                    <Link to={'/studyInfo/' + c.s_id} className="list_studyInfo" onClick={this.contractReloads}>
                       <StudyItem
                         stateRefresh={this.stateRefresh}
                         key={c.s_id}
