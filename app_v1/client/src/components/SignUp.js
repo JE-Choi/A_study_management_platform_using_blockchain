@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './SignUp.css';
 import { post } from 'axios';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class SignUp extends Component {
 
@@ -26,7 +28,7 @@ class SignUp extends Component {
                 personPw: '',
                 personPw2: ''
             })
-            alert("비밀번호가 일치하지 않습니다.");
+            this.MismatchPwConfirm();
         }
     }
 
@@ -62,8 +64,12 @@ class SignUp extends Component {
          if(check_id == 0) {
             this.callSignUpApi()
             .then((response) => {
-                alert("회원가입을 축하합니다.");
-                this.props.history.push('/mainPage');
+                this.SignUpConfirm();
+
+                setTimeout(()=>{
+                    this.props.history.push('/mainPage');
+                },3000);
+                // this.props.history.push('/mainPage');
             })
             // 실제 배포에서는 모든 고객 데이터를 다 새로고침하면 안 되지만 잠시 이렇게 코딩 
             this.setState ({
@@ -81,10 +87,46 @@ class SignUp extends Component {
                 personPw2: '',
                 personName: ''
             })
-            alert("중복된 아이디입니다. 회원가입을 진행할 수 없습니다.");
+            this.OverlapIdConfirm();
         }
-
       }).catch(err => console.log(err));
+    }
+
+    // 비밀번호 일치하지 않는다는 안내
+    MismatchPwConfirm = () => {
+        confirmAlert({
+            title: '비밀번호가 일치하지 않습니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
+    }
+
+    // 회원가입 축하 안내
+    SignUpConfirm = () => {
+        confirmAlert({
+            title: '회원가입을 축하합니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
+    }
+
+    // 중복된 아이디는 회원가입 할 수 없다는 안내
+    OverlapIdConfirm = () => {
+        confirmAlert({
+            title: '중복된 아이디입니다.',
+            message: '회원가입을 진행할 수 없습니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
     }
 
     render() {

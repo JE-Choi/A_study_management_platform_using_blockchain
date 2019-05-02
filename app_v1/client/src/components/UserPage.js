@@ -7,13 +7,64 @@ class UserPage extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            userName: ''
+            userName: '',
+            study_name: '' ,
+            study_type: '',
+            study_period: ''
         }
     }
 
     componentWillMount() {
         this.getUserNameSession();
     }
+
+    componentDidMount() {
+        this.getUserNameSession();
+
+        // this.callDBStudyInfo().then()
+    }
+
+    callDBStudyInfo = async () => {
+        // post로 하기. url, 개인 ID 전달하기
+
+        // 참고해서.
+        // callJoinApi = () => {
+        //     const url = '/api/customers/join/' + this.props.match.params.id;
+        //     post(url,  {
+        //         study_id: this.props.match.params.id,
+        //         person_id: this.state.person_id,
+        //         leader: false,
+        //         account_number: '11-22'
+        //     }).then(()=>{
+        //         this.props.history.push('/mainPage');
+        //     })
+
+        // const response = await fetch('/api/myPage/info/');
+        // const body = await response.json();
+        // return body;
+    }
+
+    // componentDidMount() {
+    //     this.callApi()
+    //       .then(res => {
+    //           //this.setState({study_item_info: res});
+    //           this.setState ({
+    //             study_name: res[0].study_name ,
+    //             study_type: res[0].study_type,
+    //             num_people: res[0].num_people,
+    //             current_num_people: res[0].current_num_people,
+    //             study_period: res[0].study_period,
+    //             study_coin: res[0].study_coin,
+    //             study_desc: res[0].study_desc
+    //         })
+    //     }).catch(err => console.log(err));
+    //     this.callLeaderApi().then(res => {
+    //         this.setState ({
+    //             leader_name: res[0].person_name
+    //         })
+    //     })
+    //     this.getSession();
+    // }
 
     // session 불러오기
     getUserNameSession = () => {

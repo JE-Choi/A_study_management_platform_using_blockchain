@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
+import $ from 'jquery';
+
+import { createBrowserHistory } from 'history';
 
 class RenameStudy extends Component {
     render() {
@@ -38,11 +41,17 @@ class FormComponent extends Component {
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
-    
-        this.callRenameApi().then((response) => {
-            console.log(response.data);
-            window.history.back();
-        });
+        const history = createBrowserHistory();
+        if(this.check() === true){
+            this.callRenameApi().then((response) => {
+                console.log(response.data);
+                history.push('/mainPage'); 
+                window.location.reload();
+            });
+        } else{
+            alert('모든 항목에 입력해주세요.');
+        }
+       
     }
 
     handleValueChange = (e) => {
@@ -54,6 +63,7 @@ class FormComponent extends Component {
     }
 
     componentDidMount() {
+        this.make_tag();
         this.callApi()
           .then(res => {
             //   this.setState({study_item_info: res});
@@ -88,6 +98,41 @@ class FormComponent extends Component {
             study_desc: this.state.study_desc
         });
     }
+
+    make_tag(){
+        let subjects = [' ','TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
+        for(let i = 0; i < subjects.length; i++){
+            $("#re_study_make_subject").append('<option>'+subjects[i]+'</option>');
+        }
+
+        for(let i = 0; i < 25; i++){
+            $("#re_study_make_period").append('<option>'+i+'</option>');
+        }
+        
+        for(let i = 2; i < 11; i++){
+            $("#re_study_make_total_number").append('<option>'+i+'</option>');
+        }
+        
+        for(let i = 1; i < 11; i++){
+            $("#re_study_make_coin").append('<option>'+i+'</option>');
+        }
+    }
+
+    // 입력 유무 판단
+    check(){            
+        let re_study_make_name = $('#re_study_make_name').val();
+        let re_study_make_subject = $('#re_study_make_subject').val();
+        let re_study_make_period = $('#re_study_make_period').val();
+        let re_study_make_total_number = $('#re_study_make_total_number').val();
+        let re_study_make_coin = $('#re_study_make_coin').val();
+        let re_study_make_long_desc = $('#re_study_make_long_desc').val();
+
+        if((re_study_make_name !== '')&&(re_study_make_subject !== '')&&(re_study_make_period !== '')&&(re_study_make_total_number !== '')&&(re_study_make_coin !== '')&&(re_study_make_long_desc !== '')){
+            return true;
+        } else{
+            return false;
+        }                                      
+    }
       
     render() {
         return(
@@ -101,14 +146,6 @@ class FormComponent extends Component {
                     <label className="study_make_label">종류 </label>
                     <span class="dotdot">:</span>
                     <select className="form-control" id="re_study_make_subject" name='study_type' value={this.state.study_type} onChange={this.handleValueChange}>
-                        <option>TOEIC</option>
-                        <option>TOFEL</option>
-                        <option>토익스피킹</option>
-                        <option>OPIC</option>
-                        <option>전산 관련 자격증</option>
-                        <option>GTQ</option>
-                        <option>한국사능력검정시험</option>
-                        <option>기타</option>
                     </select>
                 </div>
                 
@@ -116,39 +153,19 @@ class FormComponent extends Component {
                     <label className="study_make_label">Study 기간(주) </label>
                     <span class="dotdot">:</span>
                     <select className="form-control" id="re_study_make_period"  name='study_period' value={this.state.study_period}  onChange={this.handleValueChange}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        {/* 24주 정도까지 할 것. */}
                     </select>
                 </div>
                 <div className="study_make_form_group">
                     <label className="study_make_label">Study 모집 인원(명) </label>
                     <span class="dotdot">:</span>
-                    <select className="form-control" id="re_study_make_total_number"  name='num_people' value={this.state.num_people}  onChange={this.handleValueChange}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
+                    <select className="form-control" id="re_study_make_total_number"  name='num_people' value={this.state.num_people}  onChange={this.handleValueChange}>  
                     </select>
                 </div>
                 <div className="study_make_form_group">
                     <label className="study_make_label">스터디 가입 코인: </label>
                     <span id="dotdot">:</span>
-                    <input type="text" className="form-control" id="re_study_make_coin" name='study_coin' value={this.state.study_coin} onChange={this.handleValueChange} />
+                    <select className="form-control" id="re_study_make_coin"  name='study_coin' value={this.state.study_coin}  onChange={this.handleValueChange} disabled>  
+                    </select>
                 </div>
                 <div className="study_make_form_group">
                     <label className="study_make_label">설명 </label>

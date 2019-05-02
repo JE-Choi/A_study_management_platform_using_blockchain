@@ -31,8 +31,8 @@
 
 .study_make_form_group {
     font-size: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.7rem;
 }
 
 #study_make_name{
@@ -52,6 +52,10 @@
 }
 
 #study_make_coin {
+    width: 48% !important;
+}
+
+#study_make_pw{
     width: 48% !important;
 }
 
@@ -154,7 +158,9 @@
     #study_make_coin {
         font-size: 0.7rem;
     }
-
+    #study_make_pw{
+        font-size: 0.7rem;
+    }
     #study_make_long_desc{
         width: 100% !important;
         height: 7rem !important;
@@ -194,8 +200,8 @@
     }
 
     .study_make_form_group {
-        font-size: 1rem;
+        /* font-size: 1rem; */
         padding-top: 0.5rem;
-        padding-bottom: 0.7rem;
+        padding-bottom: 0.5rem;
     }
 }

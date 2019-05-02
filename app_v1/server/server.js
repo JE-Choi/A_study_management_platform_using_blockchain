@@ -21,12 +21,14 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.post('/api/createAccount', (req, res) => {
-    let sql = `INSERT INTO account_list VALUES (?,?,?);`;
+    let sql = `INSERT INTO account_list VALUES (?,?,?,?);`;
     
     let account_id = req.body.account_id;
     let account_num = req.body.account_num;
     let account_pw = req.body.account_pw;
-    let params = [account_id, account_num,account_pw];
+    let person_id = req.body.person_id;
+
+    let params = [account_id, account_num, account_pw, person_id];
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows);
@@ -224,7 +226,8 @@ app.post('/api/login/user_name', (req, res) => {
 });
 
 // 로그인 한 사용자는 스터디에 가입한 사람인지 판별
-app.post('/api/isjoin',(req,res)=>{
+// 로그인 한 사용자는 해당 스터디의 리더인지 판별
+app.post('/api/isCheckJoinAndLeader',(req,res)=>{
     let sql = `SELECT * FROM study_join WHERE PERSON_ID = ? AND STUDY_ID = ?`;
 
     let person_id = req.body.person_id;

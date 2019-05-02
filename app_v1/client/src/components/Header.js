@@ -65,7 +65,7 @@ class Top_logo extends Component{
           </div>
 
           <span>
-            <Link to={'/mainPage'} className="nav-link">
+            <Link to={'/mainPage'} className="nav-link" >
               <img className="main_logo" src= "http://34.85.53.30/%EB%A1%9C%EA%B3%A0.png" width="170rem" height="170rem" alt="Main Logo" />
             </Link>
           </span>

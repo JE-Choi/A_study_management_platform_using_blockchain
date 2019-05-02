@@ -13,12 +13,12 @@ import MyPage from './components/UserPage';
 import RenameStudy from './components/RenameStudy';
 import CommunityMenu from './components/CommunityMenu';
 
-import './App.css'; 
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-
 class App extends Component {
+
   render() {
     return (
       <div className="App">

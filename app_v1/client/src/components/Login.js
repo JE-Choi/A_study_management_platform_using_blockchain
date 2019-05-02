@@ -36,7 +36,7 @@ class Login extends Component {
                     this.props.history.push('/mainPage');
                     setTimeout(function() { 
                         window.location.reload();
-                    }, 100);
+                    }, 300);
                             
                     //window.history.back(); // 임시 이제 빼도 가능.
                     // 최종적으로 alert("로그인 성공"); 1학기 때 뺄 것.

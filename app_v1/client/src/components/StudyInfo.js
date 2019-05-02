@@ -51,7 +51,7 @@ class StudyInfo extends Component {
                 study_period: res[0].study_period,
                 study_coin: res[0].study_coin,
                 study_desc: res[0].study_desc
-            })
+            });
 
         }).catch(err => console.log(err));
 
@@ -70,7 +70,7 @@ class StudyInfo extends Component {
             }else{
                 this.joinStudy();
             }
-        }, 50);
+        }, 50);        
     }
 
     getSession = () => {
@@ -161,20 +161,51 @@ class StudyInfo extends Component {
 
     // 스터디 가입했는지 확인 쿼리
     joinStudy = () =>{
-        const url = '/api/isjoin';
+        const url = '/api/isCheckJoinAndLeader';
         post(url,  {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id
         }).then((result)=>{
             this.setState({joinStudy:result.data.length});
+            setTimeout(() => {
+
+                if(result.data.length === 1) {
+                    this.isStudyLeader(result.data[0].leader);
+                } else{
+                    this.isStudyLeader(0);
+                }
+            }, 100);
         });
     }
 
-    render() {
+    // 해당 study의 방장인지 확인 쿼리
+    isStudyLeader = (_leader) =>{
+        this.setState({leader:_leader});
+    }
 
+    // 방장이 study 삭제하는 메소드
+    deleteCustomer(_id) {
+        const url = '/api/customers/' + _id;
+        fetch(url, {
+            method: 'DELETE'
+        }).catch(err => console.log(err));
+    }
+
+    render() {
+        
         // 로그인, 스터디 가입 여부
         var isJoinBtnShow = {
             display: this.state.joinStudy == 1 ? "none" : "inline"
+        };
+
+        // 방장의 study 수정 버튼 가시화
+        var isModifyBtnShow = {
+            display: this.state.leader == 0 ? "none" : "inline"
+        };
+
+        // 방장의 study 삭제 버튼 가시화
+        var isDeleteBtnShow = {
+            display: this.state.leader == 0 ? "none" : "inline"
         };
 
         return (
@@ -207,10 +238,15 @@ class StudyInfo extends Component {
                                 <input type="button" value="뒤로가기" className="btn btn-danger" id="study_info_back"/>
                             </Link>
                             <input type="button" style = {isJoinBtnShow} value="가입하기" className="btn btn-danger" id="study_info_join" name='study_info_join' onClick={this.studyJoinConfirm} />
+                            <Link to={'/renameStudy/' + this.props.match.params.id}>
+                                <input type="button" style = {isModifyBtnShow} value="수정하기" className="btn btn-danger" id="study_info_modify"/>
+                            </Link>
+                            <Link to={'/mainPage'}>
+                                <input type="button" style = {isDeleteBtnShow} value="삭제하기" className="btn btn-danger" id="study_info_delete" onClick={(e) => {this.deleteCustomer(this.props.match.params.id)}}/>
+                            </Link>
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }

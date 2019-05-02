@@ -1,15 +1,15 @@
 import React, { Component } from "react";
+import './BlockChain.css';
+//import "./App.css";
+
+
 import ShopContract from "../contracts/Shop.json"; 
 import getWeb3 from "../utils/getWeb3";
-import { post } from 'axios';
-
-import './BlockChain.css';
-
-//import "./App.css";
 
 import StudyGroup from "../contracts/StudyGroup.json"; 
 // import {encode} from 'utf8';
 
+import { post } from 'axios';
 import $ from 'jquery';
 
 // $(document).ready(function(){
@@ -17,7 +17,6 @@ import $ from 'jquery';
 // });
 
 class BlockChain extends Component {
-
   
   constructor(props) {
     super(props);
@@ -31,8 +30,6 @@ class BlockChain extends Component {
 
       account_pw:''
     };
-
-    
   }
   
      componentWillMount = async () => {
@@ -80,8 +77,6 @@ class BlockChain extends Component {
     }
   };
 
-
-
   // runExample = async () => {
   //   const { accounts, contract } = this.state;
 
@@ -97,16 +92,16 @@ class BlockChain extends Component {
 
   // buyApple 돈 나감.
   buyApple() {
-     const { shopInstance, myAccount, web3} = this.state; 
-     shopInstance.methods.buyApple().send(
-      {  
-         from: myAccount[0],  // 돈 나가는 사람
-         gas: 3000000, 
-         value: web3.utils.toWei('0.1', 'ether')}
-     ).catch((err) => {
+    const { shopInstance, myAccount, web3} = this.state; 
+    shopInstance.methods.buyApple().send(
+    {  
+      from: myAccount[0],  // 돈 나가는 사람
+      gas: 3000000, 
+      value: web3.utils.toWei('0.1', 'ether')
+    }).catch((err) => {
       console.log(err);
-  });
-   }
+    });
+  }
    // sellApple 실행가능
   sellApple() {
     const { shopInstance, myAccount, web3} = this.state; 
@@ -118,20 +113,22 @@ class BlockChain extends Component {
       }
     );
   }
+
   // updateMyApples는 실행가능.
   updateMyApples() {
     const { shopInstance} = this.state; 
     shopInstance.methods.getMyApples().call().then(result=>{
       this.setState({ myApples: result });
     });
-    
   }
 
-    handleValueChange = (e) => {
+  handleValueChange = (e) => {
+
       let nextState = {};
       console.log(e.target.name + ': ' + e.target.value);
       nextState[e.target.name] = e.target.value;
       this.setState(nextState);
+
   }
 
   createAccount(){
@@ -146,17 +143,16 @@ class BlockChain extends Component {
 
     // (예정) 생성된 계좌의 잔액은 0Ether이다. 충전하는 부분 만들어야 한다.
     // 있는 계정들 모두 출력
-        for(var i = 0 ; i < myAccount.length; i++){
-          console.log(myAccount[i]);
-        }
+    for(var i = 0 ; i < myAccount.length; i++){
+      console.log(myAccount[i]);
+    }
     // 마지막에 생성된 계정 index구하기
-        var account_id =  myAccount.length - 1;
-        console.log(account_id);
+    var account_id =  myAccount.length - 1;
+    console.log(account_id);
 
     // (예정) DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
-      var account_num = myAccount[account_id];
-      console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
-   
+    var account_num = myAccount[account_id];
+    console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
      
     // DB에 값 삽입
     this.callCreateAccountApi(account_id ,account_num,account_pw).then((response) => {
@@ -165,17 +161,16 @@ class BlockChain extends Component {
     }).catch((error)=>{
       console.log(error);
     });
-
     this.createTheStudy(0,account_num, 'person', 1, 40);
   }
 
   callCreateAccountApi = (_account_id,_account_num,_account_pw) => {
-      const url = '/api/createAccount';
-      return post(url,  {
-          account_id: _account_id,
-          account_num: _account_num,
-          account_pw: _account_pw
-      });
+    const url = '/api/createAccount';
+    return post(url,  {
+        account_id: _account_id,
+        account_num: _account_num,
+        account_pw: _account_pw
+    });
   }
 
   createTheStudy(_index ,_memberAddress, _person_id, _study_id, _numOfCoins) {
@@ -191,11 +186,11 @@ class BlockChain extends Component {
       { from: myAccount[0],
         gas: 3000000 
       }
-      );
+    );
   }
 
   
-  getMemberIndexInfo(){
+  getMemberIndexInfo() {
     const { studyGroupInstance, myAccount, web3} = this.state; 
     studyGroupInstance.methods.getMemberIndexInfo(0).call().then(function(result) {
       var memberAddress =  result[0];
@@ -221,7 +216,6 @@ class BlockChain extends Component {
 
   transferCoin(){
     const { studyGroupInstance, myAccount, web3} = this.state; 
-
    
     //var deposit = $('#deposit').val(); // .val() : getText()
     //studyGroupInstance.transferCoin(myAccount[0], {from: owner, value: web3.toWei(Number(deposit), "ether")});
@@ -236,11 +230,11 @@ class BlockChain extends Component {
       }
     );
 
-    setTimeout(function(){
-      web3.eth.getBalance(myAccount[10]).then(result=>{
-        console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
-      });
-      }, 1000);
+  setTimeout(function(){
+    web3.eth.getBalance(myAccount[10]).then(result=>{
+      console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
+    });
+  }, 1000);
 
     //web3.utils.fromWei(web3.eth.getBalance(myAccount[10]),"ether").toNumber() ;
     //console.log('[10] receiver_balance: '+receiver_balance);
@@ -275,7 +269,6 @@ class BlockChain extends Component {
 
   render() {
     return (
-     
       <div className="blockChainContainer">
         <h1>사과의 가격: 10 ETH</h1>
         <button onClick={() => this.buyApple()}>구매하기</button>
@@ -284,18 +277,17 @@ class BlockChain extends Component {
           판매하기 (판매 가격: {10 * this.state.myApples})
         </button>
         {/* <!--J--> */}
-      <div id="createAccount_template">
-        <div>회원 가입할 계좌 이름: 
-          <input type = "text" id="createInput" name="account_pw" value={this.state.account_pw} onChange={this.handleValueChange}/>
-          <input type = "button" value = "계좌 생성" onClick={() => this.createAccount()}/>
-          <span id="createInfo"></span>
-        </div>  
-      </div>
-      <input type="button" value="계좌 정보 보기" onClick={() => this.getMemberIndexInfo()}/>
-      <br/>
-      <input type = "text" size="10" id = "NumOfCoins"/>
-      <input type = "button" value="코인 입금" onClick={() => this.transferCoin()}/>
-    
+        <div id="createAccount_template">
+          <div>회원 가입할 계좌 이름: 
+            <input type = "text" id="createInput" name="account_pw" value={this.state.account_pw} onChange={this.handleValueChange}/>
+            <input type = "button" value = "계좌 생성" onClick={() => this.createAccount()}/>
+            <span id="createInfo"></span>
+          </div>  
+        </div>
+        <input type="button" value="계좌 정보 보기" onClick={() => this.getMemberIndexInfo()}/>
+        <br/>
+        <input type = "text" size="10" id = "NumOfCoins"/>
+        <input type = "button" value="코인 입금" onClick={() => this.transferCoin()}/>
       </div>
     );
   }

@@ -47,5 +47,4 @@ class AboutCoin extends Component{
     }
 }
 
-
 export default CoinManagement;
