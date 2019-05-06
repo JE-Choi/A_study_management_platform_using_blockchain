@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { post } from 'axios';
 import dateFns from "date-fns";
 import './CommunitySchedule.css';
 // dateFns 사용법 - 달력 데이터
@@ -9,7 +10,7 @@ class CommunitySchedule extends React.Component {
         return (
           <div className="main_schedule">
               <div className="content_schedule">
-                <CalendarTop/>
+                <CalendarTop id = {this.props.match.params.id}/>
                 <div className="calendar">
                   <Calendar/>
                 </div>
@@ -19,21 +20,49 @@ class CommunitySchedule extends React.Component {
       }
   }
 
-  class CalendarTop extends Component{
-      render(){
-          return(
-            <div>
-                <div className = "calendarTop_div">
-                  <span className="calendarTop_name">Toeic 파이팅!</span>
-                  <span className="calendarTop_name"> - </span>
-                  <span className="calendarTop_name">Toeic</span>
-                  <br/>
-                  <span className="calendarTop_study_period">스터디 기간: 4월1일 ~ 6월30일</span>
-                </div>
-            </div>
-          );
-      }
+class CalendarTop extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      study_name: '' ,
+      study_type: '',
+      study_period: ''
+    }
   }
+
+  componentDidMount() {
+    
+    this.callLoadApi(this.props.id)
+      .then(res => {
+        this.setState ({
+          study_name: res[0].study_name,
+          study_type: res[0].study_type,
+          study_period: res[0].study_period
+        });
+    }).catch(err => console.log(err));
+  }
+
+  callLoadApi = async (id) => {
+    const response = await fetch('/api/studyItems/view/' + id);
+    const body = await response.json();
+    return body;
+  }
+
+  render(){
+    return(
+      <div>
+          <div className = "calendarTop_div">
+            <span className="calendarTop_name">{this.state.study_name}</span>
+            <span className="calendarTop_name"> - </span>
+            <span className="calendarTop_name">{this.state.study_type}</span>
+            <br/>
+            <span className="calendarTop_study_period">스터디 기간: {this.state.study_period}주</span>
+          </div>
+      </div>
+    );
+  }
+}
 
 class Calendar extends Component{
      // 기본적으로 오늘 날짜를 사용하므로 구성 요소에 추가

@@ -5,7 +5,7 @@ class Noticeboard extends Component {
     render() {
         return (
             <div className="">
-            {/* 채울 것 */}
+            
             </div>
         )
     }

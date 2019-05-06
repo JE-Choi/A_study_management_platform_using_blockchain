@@ -150,9 +150,7 @@ class StudyMake extends Component {
     }
     
     addCustomer = () => {
-        const url = '/api/customers';
-
-        
+        const url = '/api/studyItems';
 
         return post(url,  {
             study_name: this.state.study_name,
@@ -166,7 +164,7 @@ class StudyMake extends Component {
     }
 
     addleader = (studyId) => {
-        const url = '/api/customers/leader';
+        const url = '/api/studyItems/leader';
         console.log(studyId);
         return post(url,  {
             study_id: studyId,
@@ -209,7 +207,6 @@ class StudyMake extends Component {
           // console.log(ShopContract.abi);
           console.log(web3);
           console.log(myAccount);
-          
         //   Set web3, accounts, and contract to the state, and then proceed with an
         //   example of interacting with the contract's methods.
         this.setState({ web3, myAccount, studyGroupInstance: instance});

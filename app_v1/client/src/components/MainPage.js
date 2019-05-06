@@ -47,7 +47,7 @@ class MainPage extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/customers');
+    const response = await fetch('/api/studyItems');
     const body = await response.json();
     return body;
   }

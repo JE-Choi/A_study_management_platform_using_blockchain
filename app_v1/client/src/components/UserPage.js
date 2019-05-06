@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import './UserPage.css';
+import { post } from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import $ from 'jquery';
 
 class UserPage extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
+            person_id: '',
             userName: '',
             study_name: '' ,
             study_type: '',
-            study_period: ''
+            study_period: '',
+            joinStudyArray: '' // 한 사람이 가입한 study 배열
         }
     }
 
@@ -21,50 +25,27 @@ class UserPage extends Component{
     componentDidMount() {
         this.getUserNameSession();
 
-        // this.callDBStudyInfo().then()
+        this.callDBStudyInfo()
+        .then(res => {
+            this.setState ({
+                person_id: res[0].person_id,
+                userName: res[0].study_name,
+                study_name: res[0].study_name,
+                study_type: res[0].study_type,
+                study_period: res[0].study_period
+            });
+        }).catch(err => console.log(err));
     }
 
     callDBStudyInfo = async () => {
-        // post로 하기. url, 개인 ID 전달하기
+        const url = '/api/myPage/joinStudy';
 
-        // 참고해서.
-        // callJoinApi = () => {
-        //     const url = '/api/customers/join/' + this.props.match.params.id;
-        //     post(url,  {
-        //         study_id: this.props.match.params.id,
-        //         person_id: this.state.person_id,
-        //         leader: false,
-        //         account_number: '11-22'
-        //     }).then(()=>{
-        //         this.props.history.push('/mainPage');
-        //     })
-
-        // const response = await fetch('/api/myPage/info/');
-        // const body = await response.json();
-        // return body;
+        post(url,  {
+            person_id: sessionStorage.getItem("loginInfo")
+        }).then((res)=>{
+            this.setState({joinStudyArray: res.data});
+        })
     }
-
-    // componentDidMount() {
-    //     this.callApi()
-    //       .then(res => {
-    //           //this.setState({study_item_info: res});
-    //           this.setState ({
-    //             study_name: res[0].study_name ,
-    //             study_type: res[0].study_type,
-    //             num_people: res[0].num_people,
-    //             current_num_people: res[0].current_num_people,
-    //             study_period: res[0].study_period,
-    //             study_coin: res[0].study_coin,
-    //             study_desc: res[0].study_desc
-    //         })
-    //     }).catch(err => console.log(err));
-    //     this.callLeaderApi().then(res => {
-    //         this.setState ({
-    //             leader_name: res[0].person_name
-    //         })
-    //     })
-    //     this.getSession();
-    // }
 
     // session 불러오기
     getUserNameSession = () => {
@@ -75,7 +56,7 @@ class UserPage extends Component{
         }
     }
     
-    render(){
+    render() {
         return(
             <div className="main_UserP">
                 <div style={{marginTop: 10}} className = "userP_container">
@@ -86,22 +67,37 @@ class UserPage extends Component{
                         </div>
                     </div>
                     <div className="userP_box">
-                        <Link to={'/communityMenu'}  className="communityMenu">
-                            <div className="current_study_item1">
-                                <span>Toeic 파이팅</span>
-                                <br/>
-                                <span>(4월1일 ~ 6월30일)</span>
-                            </div>
-                        </Link>
-                        <div className="current_study_item2">
-                            <span>Toeic 파이팅</span>
-                            <br/>
-                            <span>(4월1일 ~ 6월30일)</span>
-                        </div>
+                        {this.state.joinStudyArray ? this.state.joinStudyArray.map(c => {
+                                return (
+                                    <Link to={'/community/' + c.s_id} className="communityMenu">
+                                        <JoinMyStudyInfo 
+                                            study_name={c.study_name}
+                                            study_type={c.study_type}
+                                            study_period={c.study_period}
+                                        />
+                                    </Link>
+                                )
+                            })
+                        : ""}
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+class JoinMyStudyInfo extends Component {
+    
+    render() {
+        return (
+            <div className="current_study_item">
+                <div>{this.props.study_name}</div>
+                - <span>{this.props.study_type}</span>
+                <br/>
+                <span>{this.props.study_period} 주</span>
+            </div>
+        )
+    }
+}
+
 export default UserPage;

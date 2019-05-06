@@ -30,11 +30,9 @@ class StudyItem extends React.Component {
 class CustomerDelete extends React.Component {
 
     deleteCustomer(id) {
-        // RESAPI에서 고객 데이터를 특정 id로 삭제할 때 이렇게 함.
-        // /api/customers/7이면 7인 고객을 삭제함.
-        const url = '/api/customers/' + id;
+        const url = '/api/studyItems/' + id;
+        
         fetch(url, {
-            // RESAPI에서 DELETE 방법이 가장 합리적.
             method: 'DELETE'
         }).catch(err => console.log(err));
        this.props.stateRefresh();
