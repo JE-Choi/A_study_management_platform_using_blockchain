@@ -28,16 +28,16 @@ class StudyInfo extends Component {
             study_name: '' ,
             study_type: '',
             num_people: '',
-            current_num_people: '',
+            current_num_people: 0,
             study_coin: '',
             study_period: '',
             study_desc: '',
 
             // 블록체인
-            studyGroupInstance:null,
+            studyGroupInstance: null,
             myAccount: null,
             web3: null,
-            account_pw:''
+            account_pw: ''
         }
     }
 
@@ -58,7 +58,6 @@ class StudyInfo extends Component {
                 study_name: res[0].study_name ,
                 study_type: res[0].study_type,
                 num_people: res[0].num_people,
-                current_num_people: res[0].current_num_people,
                 study_period: res[0].study_period,
                 study_coin: res[0].study_coin,
                 study_desc: res[0].study_desc
@@ -70,6 +69,12 @@ class StudyInfo extends Component {
             this.setState ({
                 leader_name: res[0].person_name
             })
+        })
+
+        this.callCurrentPeopleApi().then(res => {
+            this.setState ({
+                current_num_people: res.data.length
+            });
         })
 
         this.getSession();
@@ -112,14 +117,22 @@ class StudyInfo extends Component {
             leader: false,
             account_number: '11-22'
         }).then(()=>{
-            let account_id = this.createAccount();
-            this.transferCoin(account_id);
+            // let account_id = this.createAccount();
+            // this.transferCoin(account_id);
             this.props.history.push('/mainPage'); 
 
             setTimeout(()=>{
                 this.studyOkJoinConfirm();
             },100);
         })
+    }
+
+    callCurrentPeopleApi = () => {
+        const url = '/api/studyItems/view_currentPeople';
+
+        return post(url, {
+            study_id: this.props.match.params.id
+        });
     }
 
     // 스터디 가입 확인창
@@ -236,10 +249,7 @@ class StudyInfo extends Component {
         });
 
         return account_id;
-        
-    
         // this.createTheStudy(0,account_num, 'person', 1, 40);
-        
     }
 
     callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw) => {
@@ -258,21 +268,19 @@ class StudyInfo extends Component {
         let study_make_coin = this.state.study_coin;
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
         studyGroupInstance.methods.transferCoin(myAccount[_account_id]).send(
-          {
-            from: myAccount[0], 
-            value: web3.utils.toWei(String(study_make_coin), 'ether'),
-            // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
-            gas: 0 
-          }
+            {
+                from: myAccount[0], 
+                value: web3.utils.toWei(String(study_make_coin), 'ether'),
+                // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
+                gas: 0 
+            }
         );
+
         setTimeout(function(){
             web3.eth.getBalance(myAccount[_account_id]).then(result=>{
                 console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
             });
-            }, 1000);
-
-
-
+        }, 1000);
     }
 
     componentWillMount = async () => {
@@ -291,7 +299,6 @@ class StudyInfo extends Component {
             deployedNetwork && deployedNetwork.address
           );
 
-
           // // 확인용 로그
           // console.log(ShopContract.abi);
           console.log(web3);
@@ -307,9 +314,7 @@ class StudyInfo extends Component {
           );
           console.error(error);
         }
-
-
-      };
+    };
 
     render() {
         
@@ -346,8 +351,8 @@ class StudyInfo extends Component {
                                     <ul className="studyInfo_list">
                                         <li>방장 : {this.state.leader_name}</li>  
                                         <li>코인: {this.state.study_coin}</li>
-                                        <li>모집 인원 : {this.state.num_people}</li>
-                                        <li>현재 인원 : {this.state.current_num_people}</li>
+                                        <li>모집 인원 : {this.state.num_people} 명</li>
+                                        <li>현재 인원 : {this.state.current_num_people} 명</li>
                                         <li>Study 기간 : {this.state.study_period} 주</li>
                                     </ul>
                                 </div>

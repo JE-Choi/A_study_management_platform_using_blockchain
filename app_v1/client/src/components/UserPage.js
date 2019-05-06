@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './UserPage.css';
 import { post } from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import $ from 'jquery';
 
 class UserPage extends Component{
 

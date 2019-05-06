@@ -7,7 +7,6 @@ import $ from 'jquery';
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
 
-
 class StudyMake extends Component {
 
     constructor(props) {
@@ -78,10 +77,7 @@ class StudyMake extends Component {
         });
 
         return account_id;
-        
-    
         // this.createTheStudy(0,account_num, 'person', 1, 40);
-        
     }
 
     callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw) => {
@@ -111,11 +107,8 @@ class StudyMake extends Component {
             web3.eth.getBalance(myAccount[_account_id]).then(result=>{
                 console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
             });
-            }, 1000);
-
-        
-
-      }
+        }, 1000);
+    }
 
     componentDidMount() {
         this.make_tag();
@@ -125,22 +118,21 @@ class StudyMake extends Component {
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
-        if(this.check() === true){
+        // if(this.check() === true){
             this.addCustomer()
             .then((response) => {
                 console.log(response.data);
                 setTimeout(
                     this.addleader(response.data.insertId).then(() =>{
-                        let account_id = this.createAccount();
-                        this.transferCoin(account_id);
-                        this.props.history.push('/mainPage'); 
+                        // let account_id = this.createAccount();
+                        // this.transferCoin(account_id);
+                        // this.props.history.push('/mainPage'); 
                     })
                     , 100);
             })    
-        } else{
-            alert('모든 항목에 입력해주세요.');
-        }
-       
+        // } else{
+        //     alert('모든 항목에 입력해주세요.');
+        // }
     }
 
     handleValueChange = (e) => {
@@ -186,6 +178,7 @@ class StudyMake extends Component {
             console.log("Sorry, your browser does not support Web Storage...");
         }
     }
+
     componentWillMount = async () => {
         try {
           // Get network provider and web3 instance.
@@ -217,9 +210,7 @@ class StudyMake extends Component {
           );
           console.error(error);
         }
-
-        
-      };
+    };
 
     make_tag(){
         let subjects = ['TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];

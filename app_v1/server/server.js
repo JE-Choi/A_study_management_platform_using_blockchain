@@ -46,9 +46,37 @@ app.get('/api/studyItems', (req, res) => {
     );
 });
 
+// 스터디에 가입한 현재 인원수
+app.post('/api/studyItems/current_people', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
+
+    let id = req.body.index;
+
+    let params = [id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows);
+        }
+    );
+});
+
+// 스터디에 가입한 현재 인원수
+app.post('/api/studyItems/view_currentPeople', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
+
+    let id = req.body.study_id;
+
+    let params = [id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows);
+        }
+    );
+});
+
 // 사용자가 고객 추가 데이터 전송했을 때 처리하는 부분.
 app.post('/api/studyItems', parser, (req, res) => {
-    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)`;
+    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?)`;
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
@@ -56,7 +84,7 @@ app.post('/api/studyItems', parser, (req, res) => {
     let study_coin = req.body.study_coin;
     let study_desc = req.body.study_desc;
 
-    let params = [study_name, study_type, num_people, "0", study_period, study_coin, study_desc];
+    let params = [study_name, study_type, num_people, study_period, study_coin, study_desc];
     connection.query(sql, params, 
         (err, rows, fields) => {
             // 성공적 데이터 입력->클라이언트에게 출력
@@ -93,7 +121,6 @@ app.post('/api/studyItems/view/rename/', (req, res) => {
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
-
     let study_period = req.body.study_period;
     let study_coin = req.body.study_coin;
     let study_desc = req.body.study_desc;
