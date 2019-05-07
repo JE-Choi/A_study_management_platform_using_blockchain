@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
@@ -126,9 +128,17 @@ class StudyMake extends Component {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
         if(this.check() === true){
+            this.studyExchenageConfirm();
+              
+        } else{
+            alert('모든 항목에 입력해주세요.');
+        }
+       
+    }
+    handleFormOkSubmit(){
+        setTimeout(()=>{
             this.addCustomer()
             .then((response) => {
-                console.log(response.data);
                 setTimeout(
                     this.addleader(response.data.insertId).then(() =>{
                         let account_id = this.createAccount();
@@ -136,13 +146,11 @@ class StudyMake extends Component {
                         this.props.history.push('/mainPage'); 
                     })
                     , 100);
-            })    
-        } else{
-            alert('모든 항목에 입력해주세요.');
-        }
-       
-    }
+        })  
+        },100);
 
+        
+    }
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
@@ -242,6 +250,25 @@ class StudyMake extends Component {
             $("#study_make_coin").append('<option>'+i+'</option>');
         }
     }
+
+    studyExchenageConfirm = () => {
+        confirmAlert({
+          title: this.state.study_coin+'코인을 충전하시겠습니까?',
+          message: '1코인당 10000원으로 '+this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.',
+          buttons: [
+            {
+                label: '네',
+                onClick: () => this.handleFormOkSubmit()
+            },
+            {
+                label: '아니요',
+                onClick: () => alert('아니오')
+            }
+          ]
+        })
+    };
+
+
 
     render() {
         return (

@@ -5,6 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -203,6 +204,7 @@ class StudyInfo extends Component {
     }
 
     callJoinApi = () => {
+
         const url = '/api/customers/join/' + this.props.match.params.id;
         post(url,  {
             study_id: this.props.match.params.id,
@@ -228,7 +230,7 @@ class StudyInfo extends Component {
           buttons: [
             {
                 label: '네',
-                onClick: () => this.callJoinApi()
+                onClick: () => this.studyExchenageConfirm()
             },
             {
                 label: '아니요',
@@ -238,6 +240,31 @@ class StudyInfo extends Component {
         })
     };
 
+    // 코인 충전 확인 창
+    studyExchenageConfirm = () => {
+
+        setTimeout(()=>{
+            confirmAlert({
+                title: this.state.study_coin+'코인을 충전하시겠습니까?',
+                message: '1코인당 10000원으로 '+this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.',
+                buttons: [
+                  {
+                      label: '네',
+                      onClick: () => this.handleFormOkSubmit()
+                  },
+                  {
+                      label: '아니요',
+                      onClick: () => alert('아니오')
+                  }
+                ]
+              })
+        },100);
+        
+    };
+
+    handleFormOkSubmit(){
+        this.callJoinApi();
+    }
     // 스터디 가입 완료 확인창
     studyOkJoinConfirm = () => {
         confirmAlert({
