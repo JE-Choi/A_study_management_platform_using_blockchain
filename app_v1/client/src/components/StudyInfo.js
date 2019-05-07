@@ -111,20 +111,16 @@ class StudyInfo extends Component {
     }
 
     callJoinApi = () => {
-<<<<<<< HEAD
 
-        const url = '/api/customers/join/' + this.props.match.params.id;
-=======
         const url = '/api/studyItems/join/' + this.props.match.params.id;
->>>>>>> ce26da043afa7565c7789d47bcc45604950d5584
         post(url,  {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id,
             leader: false,
             account_number: '11-22'
         }).then(()=>{
-            // let account_id = this.createAccount();
-            // this.transferCoin(account_id);
+            let account_id = this.createAccount();
+            this.transferCoin(account_id);
             this.props.history.push('/mainPage'); 
 
             setTimeout(()=>{
@@ -164,8 +160,8 @@ class StudyInfo extends Component {
 
         setTimeout(()=>{
             confirmAlert({
-                title: this.state.study_coin+'코인을 충전하시겠습니까?',
-                message: '1코인당 10000원으로 '+this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.',
+                title: '[  코인을 충전하시겠습니까?  ]',
+                message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
                 buttons: [
                   {
                       label: '네',

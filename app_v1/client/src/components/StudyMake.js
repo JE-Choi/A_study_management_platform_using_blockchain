@@ -120,7 +120,6 @@ class StudyMake extends Component {
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
-<<<<<<< HEAD
         if(this.check() === true){
             this.studyExchenageConfirm();
               
@@ -131,28 +130,17 @@ class StudyMake extends Component {
     }
     handleFormOkSubmit(){
         setTimeout(()=>{
-=======
-        // if(this.check() === true){
->>>>>>> ce26da043afa7565c7789d47bcc45604950d5584
             this.addCustomer()
             .then((response) => {
                 setTimeout(
                     this.addleader(response.data.insertId).then(() =>{
-                        // let account_id = this.createAccount();
-                        // this.transferCoin(account_id);
-                        // this.props.history.push('/mainPage'); 
+                        let account_id = this.createAccount();
+                        this.transferCoin(account_id);
+                        this.props.history.push('/mainPage'); 
                     })
                     , 100);
-<<<<<<< HEAD
         })  
         },100);
-=======
-            })    
-        // } else{
-        //     alert('모든 항목에 입력해주세요.');
-        // }
-    }
->>>>>>> ce26da043afa7565c7789d47bcc45604950d5584
 
         
     }
@@ -254,9 +242,9 @@ class StudyMake extends Component {
 
     studyExchenageConfirm = () => {
         confirmAlert({
-          title: this.state.study_coin+'코인을 충전하시겠습니까?',
-          message: '1코인당 10000원으로 '+this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.',
-          buttons: [
+            title: '[  코인을 충전하시겠습니까?  ]',
+            message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
+            buttons: [
             {
                 label: '네',
                 onClick: () => this.handleFormOkSubmit()
