@@ -14,10 +14,36 @@ class CoinManagement extends Component {
 }
 
 class AboutCoin extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: ''
+        }
+    }
+
+    componentWillMount() {
+        this.getUserNameSession();
+    }
+
+    componentDidMount() {
+        this.getUserNameSession();
+    }
+
+    // session 불러오기
+    getUserNameSession = () => {
+        if (typeof(Storage) !== "undefined") {
+            this.setState({userName : sessionStorage.getItem("loginInfo_userName")});
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
+    }
+
     render(){
         return(
             <div className="div_coin_management">
-                <div className="coin_management_header">00 님의 계좌 번호</div>
+                {/* <div className="coin_management_header">00 님의 계좌 번호</div> */}
+                <div className="coin_management_header">{this.state.userName} 님의 계좌 번호</div>
                 <div className="div_account_number">
                     <input type="text" className="form-control account_number" />
                 </div>

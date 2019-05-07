@@ -80,13 +80,13 @@ class FormComponent extends Component {
     }
     
     callApi = async () => {
-        const response = await fetch('/api/customers/view/' + this.props.id);
+        const response = await fetch('/api/studyItems/view/' + this.props.id);
         const body = await response.json();
         return body;
     }
 
     callRenameApi = () => {
-        const url = '/api/customers/view/rename/';
+        const url = '/api/studyItems/view/rename/';
 
         return post(url,  {
             rename_index: this.props.id,
@@ -105,7 +105,7 @@ class FormComponent extends Component {
             $("#re_study_make_subject").append('<option>'+subjects[i]+'</option>');
         }
 
-        for(let i = 0; i < 25; i++){
+        for(let i = 1; i < 25; i++){
             $("#re_study_make_period").append('<option>'+i+'</option>');
         }
         

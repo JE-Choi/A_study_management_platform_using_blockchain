@@ -16,16 +16,16 @@ class CommunityMenu extends Component {
                         <nav className="communityMenuBar_wrapper">
                             <ul className="communityMenuBar_nav">
                                 <li>
-                                    <Link to={'/noticeboard'} className="community_nav_link">게시판</Link>
+                                    <Link to={'/community/'+this.props.match.params.id+'/noticeboard'} className="community_nav_link">게시판</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/communitySchedule'} className="community_nav_link">Schedule</Link>
+                                    <Link to={'/community/'+this.props.match.params.id+'/communitySchedule'} className="community_nav_link">Schedule</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/attendanceCheck'} className="community_nav_link">출석 체크</Link>
+                                    <Link to={'/community/'+this.props.match.params.id+'/attendanceCheck'} className="community_nav_link">출석 체크</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/coinManagement'} className="community_nav_link">코인 관리</Link>
+                                    <Link to={'/community/'+this.props.match.params.id+'/coinManagement'} className="community_nav_link">코인 관리</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -34,11 +34,11 @@ class CommunityMenu extends Component {
                     <div style={{marginTop: 10}} className = "communityMenu_container">
                         <div className = "communityMenuBar_switch">
                             <Switch>
-                                <Route exact path='/noticeboard' component = { Noticeboard } />
-                                <Route exact path='/communitySchedule' component = { CommunitySchedule } />
-                                <Route exact path='/attendanceCheck' component = { AttendanceCheck } />
-                                <Route exact path='/coinManagement' component = { CoinManagement } />
-                                <Route exact path='/communityMenu' component = { CommunitySchedule } />
+                                <Route exact path='/community/:id/noticeboard' component = { Noticeboard } />
+                                <Route exact path='/community/:id/communitySchedule' component = { CommunitySchedule } />
+                                <Route exact path='/community/:id/attendanceCheck' component = { AttendanceCheck } />
+                                <Route exact path='/community/:id/coinManagement' component = { CoinManagement } />
+                                <Route exact path='/community/:id' component = { CommunitySchedule } />
                             </Switch>
                         </div>
                     </div>

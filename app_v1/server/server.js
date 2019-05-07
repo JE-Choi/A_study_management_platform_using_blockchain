@@ -36,11 +36,7 @@ app.post('/api/createAccount', (req, res) => {
     );
 });
 
-// npm install --save multer 설치 이후 하기.
-// const multer = require('multer');
-// const upload = multer({dest: './upload'});
-
-app.get('/api/customers', (req, res) => {
+app.get('/api/studyItems', (req, res) => {
 
     connection.query(
         "SELECT * FROM studyitem",
@@ -50,39 +46,55 @@ app.get('/api/customers', (req, res) => {
     );
 });
 
-// multer 설치 이후 하기.
-// 사용자가 프로필 이미지 확인하기 위해서.
-// app.use('/image', express.static('./upload'));
+// 스터디에 가입한 현재 인원수
+app.post('/api/studyItems/current_people', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
 
-// 사용자가 고객 추가 데이터 전송했을 때 처리하는 부분.
-// app.post('/api/customers', upload.single('image'), (req, res) => {
-app.post('/api/customers', parser, (req, res) => {
-    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)`;
-    // DB에 이미지가 존재하는 이미지 경로
-    // 이미지 접근 가능.
-    // 즉, 사용자는 실제 프로필 이미지를 받아오고, 이미지 받아옴.
-    // filename은 multer 라이브러리가 자동으로 겹치지 않는 이름으로 할당.
-    // let image = '/image/' + req.file.filename;
-    let study_name = req.body.study_name;
-    let study_type = req.body.study_type;
-    let num_people = req.body.num_people;
-    // let current_num_people = req.body.current_num_people;
-    let study_period = req.body.study_period;
-    let study_coin = req.body.study_coin;
-    let study_desc = req.body.study_desc;
+    let id = req.body.index;
 
-    //let params = [personId, personPw, personPw2, name];
-    let params = [study_name, study_type, num_people, "0", study_period, study_coin, study_desc];
+    let params = [id];
     connection.query(sql, params, 
         (err, rows, fields) => {
-            res.send(rows); // 성공적 데이터 입력->클라이언트에게 출력
+            res.send(rows);
         }
     );
 });
 
-// RenameStudy에서 사용
-// stydy_info에서 사용
-app.get('/api/customers/view/:id', (req, res) => {
+// 스터디에 가입한 현재 인원수
+app.post('/api/studyItems/view_currentPeople', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
+
+    let id = req.body.study_id;
+
+    let params = [id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows);
+        }
+    );
+});
+
+// 사용자가 고객 추가 데이터 전송했을 때 처리하는 부분.
+app.post('/api/studyItems', parser, (req, res) => {
+    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?)`;
+    let study_name = req.body.study_name;
+    let study_type = req.body.study_type;
+    let num_people = req.body.num_people;
+    let study_period = req.body.study_period;
+    let study_coin = req.body.study_coin;
+    let study_desc = req.body.study_desc;
+
+    let params = [study_name, study_type, num_people, study_period, study_coin, study_desc];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            // 성공적 데이터 입력->클라이언트에게 출력
+            res.send(rows); 
+        }
+    );
+});
+
+// RenameStudy, stydy_info에서 사용
+app.get('/api/studyItems/view/:id', (req, res) => {
     let sql = `SELECT * FROM studyitem where s_id  = ?`;
     let params = [req.params.id];
     connection.query(sql, params, 
@@ -93,7 +105,7 @@ app.get('/api/customers/view/:id', (req, res) => {
 });
 
 // 방장 불러오는 부분
-app.get('/api/customers/view_leader/:id', (req, res) => {
+app.get('/api/studyItems/view_leader/:id', (req, res) => {
     let sql = `SELECT person_name FROM person_info WHERE person_id = (SELECT person_id from study_join where STUDY_JOIN.leader = 1 AND STUDY_JOIN.study_id = ?)`;
     let params = [req.params.id];
     connection.query(sql, params, 
@@ -103,13 +115,12 @@ app.get('/api/customers/view_leader/:id', (req, res) => {
     );
 });
 
-app.post('/api/customers/view/rename/', (req, res) => {
+app.post('/api/studyItems/view/rename/', (req, res) => {
     let sql = `UPDATE studyitem SET study_name = ?, study_type = ?, num_people = ?, study_period = ?, study_coin = ?, study_desc = ? WHERE s_id  = ?`;
    
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
-
     let study_period = req.body.study_period;
     let study_coin = req.body.study_coin;
     let study_desc = req.body.study_desc;
@@ -118,12 +129,12 @@ app.post('/api/customers/view/rename/', (req, res) => {
     let params = [study_name, study_type, num_people, study_period, study_coin, study_desc, id];
     connection.query(sql, params, 
         (err, rows, fields) => {
-            res.send(rows); // 성공적으로 데이터 입력->클라이언트에게 출력
+            res.send(rows);
         }
     );
 });
 
-app.delete('/api/customers/:id', (req, res) => {
+app.delete('/api/studyItems/:id', (req, res) => {
     let sql = 'DELETE FROM studyitem WHERE s_id = ?';
     let params = [req.params.id];
     connection.query(sql, params, 
@@ -135,7 +146,6 @@ app.delete('/api/customers/:id', (req, res) => {
 
 // 회원가입 중복확인 부분
 app.post('/api/signup_overlap', (req, res) => {
-    // let sql = `SELECT COUNT(person_id) FROM PERSON_INFO WHERE person_id=?`;
     let sql = "SELECT * FROM PERSON_INFO WHERE PERSON_ID = ?";
  
     let person_id = req.body.person_id;
@@ -149,7 +159,7 @@ app.post('/api/signup_overlap', (req, res) => {
 });
 
 // STUDY 가입자
-app.post('/api/customers/join/:id', (req, res) => {
+app.post('/api/studyItems/join/:id', (req, res) => {
     let sql = `INSERT INTO STUDY_JOIN VALUES (?, ?, ?, ?)`;
 
     let study_id = req.params.id;
@@ -166,7 +176,7 @@ app.post('/api/customers/join/:id', (req, res) => {
 });
 
 // STUDY 생성자
-app.post('/api/customers/leader', (req, res) => {
+app.post('/api/studyItems/leader', (req, res) => {
     let sql = `INSERT INTO STUDY_JOIN VALUES (?, ?, ?, ?)`;
 
     let study_id = req.body.study_id;
@@ -235,6 +245,19 @@ app.post('/api/isCheckJoinAndLeader',(req,res)=>{
 
     let params = [person_id,study_id];
     connection.query(sql,params,
+        (err, rows, fields) => {
+            res.send(rows);
+        }
+    );
+});
+
+// myPage에서 해당 사용자가 가입한 스터디 불러오기
+app.post('/api/myPage/joinStudy', (req, res) => {
+    let sql = `SELECT * from studyitem WHERE s_id in (SELECT study_id FROM study_join WHERE person_id = ?)`;
+    let person_id = req.body.person_id;
+    
+    let params = [person_id];
+    connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows);
         }
