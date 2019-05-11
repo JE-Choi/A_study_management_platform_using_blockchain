@@ -33,7 +33,9 @@ class UserPage extends Component{
                 study_type: res[0].study_type,
                 study_period: res[0].study_period
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            
+        });
     }
 
     callDBStudyInfo = async () => {

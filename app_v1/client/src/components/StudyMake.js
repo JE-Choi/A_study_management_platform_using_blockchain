@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
+import DateTimePicker from 'react-datetime-picker';
 
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
@@ -15,7 +16,6 @@ class StudyMake extends Component {
             study_name: '' ,
             study_type: 'TOEIC',
             num_people: '2',
-            study_period: '1',
             study_desc: '',
             study_coin: '1',
             person_id: '', 
@@ -24,21 +24,30 @@ class StudyMake extends Component {
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
-            account_pw:''
+            account_pw:'',
+
+            study_start_date: '',
+            study_end_date: new Date(),
+
+            dbStartDate:'',
+            dbEndDate: ''
         }
+    }
+
+    onEndDateChange = study_end_date => {
+        this.setState({ study_end_date });
     }
 
     // 입력 유무 판단
     check(){
         let study_name = $('#study_make_name').val();
         let study_type = $('#study_make_subject').val();
-        let study_period = $('#study_make_period').val();
         let num_people = $('#study_make_total_number').val();
         let study_coin = $('#study_make_coin').val();
         let study_make_pw = $('#study_make_pw').val();
-        let study_desc = $('#study_make_pw').val();
+        let study_desc = $('#study_make_long_desc').val();
 
-        if((study_name !== '')&&(study_type !== '')&&(study_period !== '')&&(num_people !== '')&&(study_coin !== '')&&(study_make_pw !== '')&&(study_desc !== '')){
+        if((study_name !== '')&&(study_type !== '')&&(this.state.study_end_date !== '')&&(num_people !== '')&&(study_coin !== '')&&(study_make_pw !== '')&&(study_desc !== '')){
             return true;
         } else{
             return false;
@@ -113,26 +122,60 @@ class StudyMake extends Component {
     componentDidMount() {
         this.make_tag();
         this.getSession();  
+
+        let stDate = new Date();
+        let formatted_stDate = '';
+        let db_formatted_stDate = '';
+        let amPm = '';
+        let hour = '';
+
+        if(stDate.getHours() >= 12){
+            amPm = '오후';
+            if(stDate.getHours() == 12){
+                hour = stDate.getHours();
+            } else{
+                hour = stDate.getHours() - 12;
+            }
+            formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+hour+":"+stDate.getMinutes();
+        
+        } else{
+            amPm = '오전';
+            formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+stDate.getHours()+":"+stDate.getMinutes();
+        }
+        db_formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" " + stDate.getHours()+":"+stDate.getMinutes();
+        this.setState({
+            study_start_date: formatted_stDate,
+            dbStartDate: db_formatted_stDate
+        });
     }
 
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
-        e.preventDefault(); 
-        // if(this.check() === true){
-            this.addCustomer()
-            .then((response) => {
+        e.preventDefault();
+
+        if(this.check() === true){
+            this.getStudyEndDate();
+            setTimeout(()=>{
+                console.log('dbStartDate: '+this.state.dbStartDate);
+                console.log('dbEndDate: '+this.state.dbEndDate);
+                this.addstudyItem()
+                .then((response) => {
                 console.log(response.data);
                 setTimeout(
                     this.addleader(response.data.insertId).then(() =>{
                         // let account_id = this.createAccount();
                         // this.transferCoin(account_id);
-                        // this.props.history.push('/mainPage'); 
+                        this.props.history.push('/mainPage'); 
                     })
                     , 100);
-            })    
-        // } else{
-        //     alert('모든 항목에 입력해주세요.');
-        // }
+                })    
+                }
+                , 100);
+           
+            
+        } else{
+            alert('모든 항목에 입력해주세요.');
+        }
     }
 
     handleValueChange = (e) => {
@@ -141,17 +184,17 @@ class StudyMake extends Component {
         this.setState(nextState);
     }
     
-    addCustomer = () => {
+    addstudyItem = () => {
         const url = '/api/studyItems';
-
+        
         return post(url,  {
             study_name: this.state.study_name,
             study_type: this.state.study_type,
-            num_people:this.state.num_people,
-            study_period:this.state.study_period,
+            num_people: this.state.num_people,
+            study_start_date: this.state.dbStartDate,
+            study_end_date: this.state.dbEndDate,
             study_desc: this.state.study_desc,
             study_coin: this.state.study_coin
-       
         });
     }
 
@@ -218,10 +261,6 @@ class StudyMake extends Component {
             $("#study_make_subject").append('<option>'+subjects[i]+'</option>');
         }
 
-        for(let i = 1; i < 25; i++){
-            $("#study_make_period").append('<option>'+i+'</option>');
-        }
-
         for(let i = 2; i < 11; i++){
             $("#study_make_total_number").append('<option>'+i+'</option>');
         }
@@ -230,6 +269,37 @@ class StudyMake extends Component {
             $("#study_make_coin").append('<option>'+i+'</option>');
         }
     }
+    
+    getStudyEndDate(){
+        let year = $('.react-datetime-picker__inputGroup__year').val();
+        let month = $('.react-datetime-picker__inputGroup__month').val();
+        let cur_day = $('.react-datetime-picker__inputGroup__day').val();
+        let amPm = $('.react-datetime-picker__inputGroup__amPm').val();
+        let hour = $('.react-datetime-picker__inputGroup__hour').val();
+        let minute = $('.react-datetime-picker__inputGroup__minute').val();
+
+        var datetime = '';
+        if(amPm === 'am'){
+            datetime = year + "-" + month + "-" + cur_day + " " +  hour+":" + minute;
+        } else if(amPm === 'pm'){
+            if(hour === 12){
+                datetime = year + "-" + month + "-" + cur_day + " " +  (hour) +":" + minute;
+            }else {
+                hour = String(Number(hour) + 12);
+                datetime = year + "-" + month + "-" + cur_day + " " + hour +":" + minute;
+            }
+        }
+        this.setState({
+            dbEndDate: datetime
+        });
+        // console.log(year + "년" + month + "월" + cur_day + "일" +  hour+"시" + minute + "분" + amPm);
+    }
+
+    // set_test(){
+    //     $('.react-datetime-picker__inputGroup__year').val('2019');
+    //     $('.react-datetime-picker__inputGroup__month').val('11');
+    //     $('.react-datetime-picker__inputGroup__day').val('25');
+    // }
 
     render() {
         return (
@@ -256,11 +326,22 @@ class StudyMake extends Component {
                             </select>
                         </div>
                         <div className="study_make_form_group">
-                            <label className="study_make_label">Study 기간(주) </label>
+                            <label className="study_make_label">Study 시작 날짜 </label>
                             <span id="dotdot">:</span>
-                            <select className="form-control" id="study_make_period"  name='study_period' value={this.state.study_period} onChange={this.handleValueChange}>                         
-                            </select>
+                            <input type="text" className="form-control" id="study_make_start_date" name='study_start_date' value={this.state.study_start_date} onChange={this.handleValueChange} disabled/>
                         </div>
+                        <div className="study_make_form_group">
+                            <label className="study_make_label">Study 종료 날짜 </label>
+                            <span id="dotdot">:</span>
+                            <span id="study_make_end_date" name='study_end_date'>
+                                <DateTimePicker
+                                    name = 'study_end_date'
+                                    onChange={this.onEndDateChange}
+                                    value={this.state.study_end_date}
+                                />
+                            </span>                             
+                        </div>
+
                         <div className="study_make_form_group">
                             <label className="study_make_label">Study 모집 인원(명) </label>
                             <span id="dotdot">:</span>

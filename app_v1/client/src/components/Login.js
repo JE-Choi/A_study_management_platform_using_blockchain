@@ -155,11 +155,11 @@ class Login extends Component {
                         <div className="login_box">
                             <div className="form-group">
                                 <label className="input_text">아이디 </label>
-                                <input type="text" className="form-control" name="userId" value={this.state.userId} onChange={this.handleValueChange}/>
+                                <input type="text" className="form-control" name="userId" placeholder="id" value={this.state.userId} onChange={this.handleValueChange}/>
                             </div>
                             <div className="form-group">
                                 <label className="input_text">비밀번호  </label>
-                                <input type="text" className="form-control" name="password" value={this.state.password} onChange={this.handleValueChange}/>
+                                <input type="password" className="form-control" name="password" placeholder="password" value={this.state.password} onChange={this.handleValueChange}/>
                             </div>
                         </div>
                         <div className="form-group">

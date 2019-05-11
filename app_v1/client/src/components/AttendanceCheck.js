@@ -29,8 +29,8 @@ class Attendance extends Component {
         });
 
         var tid = 0;
-        var stDate = new Date().getTime();
-        var edDate = new Date('2019-05-06 21:50:00').getTime(); // 종료날짜
+        var stDate = new Date().getTime(); // 시작날짜
+        var edDate = new Date('2019-05-09 14:20:00').getTime(); // 종료날짜
         var RemainDate = edDate - stDate;
          
         function msg_time() {

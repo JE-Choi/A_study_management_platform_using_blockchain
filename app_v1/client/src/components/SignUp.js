@@ -139,19 +139,19 @@ class SignUp extends Component {
                         <div className="sign_box">
                             <div className="form-group">
                                 <label className="input_text">아이디 </label>
-                                <input type="text" className="form-control" name="personId" value={this.state.personId} onChange={this.handleValueChange} />
+                                <input type="text" className="form-control" name="personId" placeholder="id" value={this.state.personId} onChange={this.handleValueChange} />
                             </div>
                             <div className="form-group">
                                 <label className="input_text">비밀번호  </label>
-                                <input type="text" className="form-control" name="personPw" value={this.state.personPw} onChange={this.handleValueChange} />
+                                <input type="password" className="form-control" name="personPw" placeholder="password" value={this.state.personPw} onChange={this.handleValueChange} />
                             </div>
                             <div className="form-group">
                                 <label className="input_text">비밀번호<br/>확인</label>
-                                <input type="text" className="form-control" name="personPw2" value={this.state.personPw2} onChange={this.handleValueChange} />
+                                <input type="password" className="form-control" name="personPw2" placeholder="password" value={this.state.personPw2} onChange={this.handleValueChange} />
                             </div>
                             <div className="form-group">
                                 <label className="input_text">이름 </label>
-                                <input type="text" className="form-control" name="personName" value={this.state.personName} onChange={this.handleValueChange} />
+                                <input type="text" className="form-control" name="personName" placeholder="name" value={this.state.personName} onChange={this.handleValueChange} />
                             </div>
                         </div>
                         <div className="form-group">

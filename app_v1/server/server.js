@@ -76,15 +76,16 @@ app.post('/api/studyItems/view_currentPeople', (req, res) => {
 
 // 사용자가 고객 추가 데이터 전송했을 때 처리하는 부분.
 app.post('/api/studyItems', parser, (req, res) => {
-    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?)`;
+    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)`;
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
-    let study_period = req.body.study_period;
+    let study_start_date = req.body.study_start_date;
+    let study_end_date = req.body.study_end_date;
     let study_coin = req.body.study_coin;
     let study_desc = req.body.study_desc;
 
-    let params = [study_name, study_type, num_people, study_period, study_coin, study_desc];
+    let params = [study_name, study_type, num_people, study_start_date, study_end_date, study_coin, study_desc];
     connection.query(sql, params, 
         (err, rows, fields) => {
             // 성공적 데이터 입력->클라이언트에게 출력
@@ -106,7 +107,8 @@ app.get('/api/studyItems/view/:id', (req, res) => {
 
 // 방장 불러오는 부분
 app.get('/api/studyItems/view_leader/:id', (req, res) => {
-    let sql = `SELECT person_name FROM person_info WHERE person_id = (SELECT person_id from study_join where STUDY_JOIN.leader = 1 AND STUDY_JOIN.study_id = ?)`;
+    let sql = `SELECT person_name FROM person_info WHERE person_id = (SELECT person_id from study_join where study_join.leader = 1 AND study_join.study_id = ?)`;
+    
     let params = [req.params.id];
     connection.query(sql, params, 
         (err, rows, fields) => {
@@ -116,17 +118,18 @@ app.get('/api/studyItems/view_leader/:id', (req, res) => {
 });
 
 app.post('/api/studyItems/view/rename/', (req, res) => {
-    let sql = `UPDATE studyitem SET study_name = ?, study_type = ?, num_people = ?, study_period = ?, study_coin = ?, study_desc = ? WHERE s_id  = ?`;
+    let sql = `UPDATE studyitem SET study_name = ?, study_type = ?, num_people = ?, start_date = ?, end_date = ?, study_coin = ?, study_desc = ? WHERE s_id  = ?`;
    
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
-    let study_period = req.body.study_period;
+    let study_start_date = req.body.study_start_date;
+    let study_end_date = req.body.study_end_date;
     let study_coin = req.body.study_coin;
     let study_desc = req.body.study_desc;
     let id = req.body.rename_index;
 
-    let params = [study_name, study_type, num_people, study_period, study_coin, study_desc, id];
+    let params = [study_name, study_type, num_people, study_start_date, study_end_date, study_coin, study_desc, id];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows);
@@ -146,7 +149,7 @@ app.delete('/api/studyItems/:id', (req, res) => {
 
 // 회원가입 중복확인 부분
 app.post('/api/signup_overlap', (req, res) => {
-    let sql = "SELECT * FROM PERSON_INFO WHERE PERSON_ID = ?";
+    let sql = "SELECT * FROM person_info WHERE PERSON_ID = ?";
  
     let person_id = req.body.person_id;
 
@@ -160,7 +163,7 @@ app.post('/api/signup_overlap', (req, res) => {
 
 // STUDY 가입자
 app.post('/api/studyItems/join/:id', (req, res) => {
-    let sql = `INSERT INTO STUDY_JOIN VALUES (?, ?, ?, ?)`;
+    let sql = `INSERT INTO study_join VALUES (?, ?, ?, ?)`;
 
     let study_id = req.params.id;
     let person_id = req.body.person_id;
@@ -177,7 +180,7 @@ app.post('/api/studyItems/join/:id', (req, res) => {
 
 // STUDY 생성자
 app.post('/api/studyItems/leader', (req, res) => {
-    let sql = `INSERT INTO STUDY_JOIN VALUES (?, ?, ?, ?)`;
+    let sql = `INSERT INTO study_join VALUES (?, ?, ?, ?)`;
 
     let study_id = req.body.study_id;
     let person_id = req.body.person_id;
@@ -194,7 +197,7 @@ app.post('/api/studyItems/leader', (req, res) => {
 
 // 회원가입 데이터 삽입
 app.post('/api/signup', parser, (req, res) => {
-    let sql =`INSERT INTO PERSON_INFO VALUES (?,?,?);`;
+    let sql =`INSERT INTO person_info VALUES (?,?,?);`;
     let personId  = req.body.personId;
     let personPw = req.body.personPw;
     let personName = req.body.personName;
@@ -209,7 +212,7 @@ app.post('/api/signup', parser, (req, res) => {
 
 // 로그인 판별
 app.post('/api/login', (req, res) => {
-    let sql = "SELECT * FROM PERSON_INFO WHERE PERSON_ID = ?";
+    let sql = "SELECT * FROM person_info WHERE PERSON_ID = ?";
 
     let userId = req.body.userId;
 
@@ -223,7 +226,7 @@ app.post('/api/login', (req, res) => {
 
 // 로그인한 사용자
 app.post('/api/login/user_name', (req, res) => {
-    let sql = "SELECT person_name FROM PERSON_INFO WHERE PERSON_ID = ?";
+    let sql = "SELECT person_name FROM person_info WHERE PERSON_ID = ?";
 
     let person_id = req.body.person_id;
 

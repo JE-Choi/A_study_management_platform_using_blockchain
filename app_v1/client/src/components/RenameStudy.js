@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
+import DateTimePicker from 'react-datetime-picker';
 
 import { createBrowserHistory } from 'history';
 
@@ -32,22 +33,34 @@ class FormComponent extends Component {
             study_name: '' ,
             study_type: '',
             num_people: '',
-            study_period: '',
             study_coin: '',
-            study_desc: ''
+            study_desc: '',
+
+            study_start_date: '',
+            study_end_date: '',
+
+            dbStartDate:'',
+            dbEndDate: ''
         }
     }
 
+    onEndDateChange = study_end_date => {
+        this.setState({ study_end_date });
+    }
+
     handleFormSubmit = (e) => {
-        // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
         const history = createBrowserHistory();
         if(this.check() === true){
-            this.callRenameApi().then((response) => {
-                console.log(response.data);
-                history.push('/mainPage'); 
-                window.location.reload();
-            });
+            this.getStudyEndDate();
+            setTimeout(()=>{
+                this.callRenameApi().then((response) => {
+                    console.log(response.data);
+                    history.push('/mainPage'); 
+                    window.location.reload();
+                })
+            }, 100);
+            
         } else{
             alert('모든 항목에 입력해주세요.');
         }
@@ -66,17 +79,35 @@ class FormComponent extends Component {
         this.make_tag();
         this.callApi()
           .then(res => {
-            //   this.setState({study_item_info: res});
-            this.setState({
-                completed: 0, 
-                study_name: res[0].study_name,
-                study_type: res[0].study_type,
-                num_people: res[0].num_people,
-                study_period: res[0].study_period,
-                study_coin: res[0].study_coin,
-                study_desc: res[0].study_desc
-            })
-        }).catch(err => console.log(err));
+                let start_date = new Date(res[0].start_date);
+                let end_date = new Date(res[0].end_date);
+              
+                let s_year = String(start_date.getFullYear());
+                let s_month = String(start_date.getMonth()+1);
+                let s_date = String(start_date.getDate());
+
+                let view_start_date = s_year+'-'+s_month+'-'+s_date;
+
+                let e_year = String(end_date.getFullYear());
+                let e_month = String(end_date.getMonth()+1);
+                let e_date = String(end_date.getDate());
+                let e_hour = String(end_date.getHours());
+                let e_minute = String(end_date.getMinutes());
+                let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
+                
+                this.setState({
+                    completed: 0, 
+                    study_name: res[0].study_name,
+                    study_type: res[0].study_type,
+                    num_people: res[0].num_people,
+                    study_start_date: view_start_date,
+                    study_end_date: end_date,
+                    study_coin: res[0].study_coin,
+                    study_desc: res[0].study_desc
+                })
+            }).catch(err => console.log(err));
+                // this.setState({study_item_info: res});
+                
     }
     
     callApi = async () => {
@@ -93,10 +124,36 @@ class FormComponent extends Component {
             study_name:  this.state.study_name,
             study_type: this.state.study_type,
             num_people: this.state.num_people,
-            study_period: this.state.study_period,
+            study_start_date: this.state.study_start_date,
+            study_end_date: this.state.dbEndDate,
             study_coin: this.state.study_coin,
             study_desc: this.state.study_desc
         });
+    }
+
+    getStudyEndDate(){
+        let year = $('.react-datetime-picker__inputGroup__year').val();
+        let month = $('.react-datetime-picker__inputGroup__month').val();
+        let cur_day = $('.react-datetime-picker__inputGroup__day').val();
+        let amPm = $('.react-datetime-picker__inputGroup__amPm').val();
+        let hour = $('.react-datetime-picker__inputGroup__hour').val();
+        let minute = $('.react-datetime-picker__inputGroup__minute').val();
+
+        var datetime = '';
+        if(amPm === 'am'){
+            datetime = year + "-" + month + "-" + cur_day + " " +  hour+":" + minute;
+        } else if(amPm === 'pm'){
+            if(hour === 12){
+                datetime = year + "-" + month + "-" + cur_day + " " +  (hour) +":" + minute;
+            }else {
+                hour = String(Number(hour) + 12);
+                datetime = year + "-" + month + "-" + cur_day + " " + hour +":" + minute;
+            }
+        }
+        this.setState({
+            dbEndDate: datetime
+        });
+        // console.log(year + "년" + month + "월" + cur_day + "일" +  hour+"시" + minute + "분" + amPm);
     }
 
     make_tag(){
@@ -105,9 +162,9 @@ class FormComponent extends Component {
             $("#re_study_make_subject").append('<option>'+subjects[i]+'</option>');
         }
 
-        for(let i = 1; i < 25; i++){
-            $("#re_study_make_period").append('<option>'+i+'</option>');
-        }
+        // for(let i = 1; i < 25; i++){
+        //     $("#re_study_make_period").append('<option>'+i+'</option>');
+        // }
         
         for(let i = 2; i < 11; i++){
             $("#re_study_make_total_number").append('<option>'+i+'</option>');
@@ -121,17 +178,17 @@ class FormComponent extends Component {
     // 입력 유무 판단
     check(){            
         let re_study_make_name = $('#re_study_make_name').val();
-        let re_study_make_subject = $('#re_study_make_subject').val();
-        let re_study_make_period = $('#re_study_make_period').val();
+        let re_study_make_type = $('#re_study_make_subject').val();
         let re_study_make_total_number = $('#re_study_make_total_number').val();
         let re_study_make_coin = $('#re_study_make_coin').val();
         let re_study_make_long_desc = $('#re_study_make_long_desc').val();
 
-        if((re_study_make_name !== '')&&(re_study_make_subject !== '')&&(re_study_make_period !== '')&&(re_study_make_total_number !== '')&&(re_study_make_coin !== '')&&(re_study_make_long_desc !== '')){
+        if((re_study_make_name !== '')&&(re_study_make_type !== '')&&(this.state.study_end_date !== '')&&(re_study_make_total_number !== '')&&(re_study_make_coin !== '')&&(re_study_make_long_desc !== '')){
             return true;
         } else{
             return false;
-        }                                      
+        }
+        
     }
       
     render() {
@@ -149,12 +206,29 @@ class FormComponent extends Component {
                     </select>
                 </div>
                 
-                <div className="study_make_form_group">
+                {/* 수정 */}
+                {/* <div className="study_make_form_group">
                     <label className="study_make_label">Study 기간(주) </label>
                     <span class="dotdot">:</span>
                     <select className="form-control" id="re_study_make_period"  name='study_period' value={this.state.study_period}  onChange={this.handleValueChange}>
                     </select>
+                </div> */}
+                <div className="study_make_form_group">
+                    <label className="study_make_label">Study 시작 날짜 </label>
+                    <span id="dotdot">:</span>
+                    <input type="text" className="form-control" id="re_study_make_start_date" name='study_start_date' value={this.state.study_start_date} onChange={this.handleValueChange} disabled/>
                 </div>
+                <div className="study_make_form_group">
+                    <label className="study_make_label">Study 종료 날짜 </label>
+                    <span id="dotdot">:</span>
+                    <span id="re_study_make_end_date" name='study_end_date'>
+                        <DateTimePicker
+                            name = 'study_end_date'
+                            onChange={this.onEndDateChange}
+                            value={this.state.study_end_date}
+                        />
+                    </span>                             
+                </div>               
                 <div className="study_make_form_group">
                     <label className="study_make_label">Study 모집 인원(명) </label>
                     <span class="dotdot">:</span>

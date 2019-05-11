@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
+import { YearView } from 'react-calendar';
 
 
 class StudyInfo extends Component {
@@ -30,7 +31,13 @@ class StudyInfo extends Component {
             num_people: '',
             current_num_people: 0,
             study_coin: '',
-            study_period: '',
+
+            study_start_date: '',
+            study_end_date: '',
+
+            dbStartDate:'',
+            dbEndDate: '',
+
             study_desc: '',
 
             // 블록체인
@@ -53,12 +60,30 @@ class StudyInfo extends Component {
     componentDidMount() {
         this.callApi()
           .then(res => {
-              //this.setState({study_item_info: res});
+                let start_date = new Date(res[0].start_date);
+                let end_date = new Date(res[0].end_date);
+              
+                let s_year = String(start_date.getFullYear());
+                let s_month = String(start_date.getMonth()+1);
+                let s_date = String(start_date.getDate());
+
+                let view_start_date = s_year+'-'+s_month+'-'+s_date;
+
+                let e_year = String(end_date.getFullYear());
+                let e_month = String(end_date.getMonth()+1);
+                let e_date = String(end_date.getDate());
+                let e_hour = String(end_date.getHours());
+                let e_minute = String(end_date.getMinutes());
+
+                let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
+
+              this.setState({study_item_info: res});
               this.setState ({
                 study_name: res[0].study_name ,
                 study_type: res[0].study_type,
                 num_people: res[0].num_people,
-                study_period: res[0].study_period,
+                study_start_date: view_start_date,
+                study_end_date: view_end_date,
                 study_coin: res[0].study_coin,
                 study_desc: res[0].study_desc
             });
@@ -353,7 +378,8 @@ class StudyInfo extends Component {
                                         <li>코인: {this.state.study_coin}</li>
                                         <li>모집 인원 : {this.state.num_people} 명</li>
                                         <li>현재 인원 : {this.state.current_num_people} 명</li>
-                                        <li>Study 기간 : {this.state.study_period} 주</li>
+                                        <li>Study 시작 날짜 : {this.state.study_start_date}</li>
+                                        <li>Study 종료 날짜 : {this.state.study_end_date}</li>
                                     </ul>
                                 </div>
                             </div>
