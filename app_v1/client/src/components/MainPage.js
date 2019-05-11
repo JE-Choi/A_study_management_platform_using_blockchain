@@ -81,7 +81,8 @@ class MainPage extends Component {
                         study_name={c.study_name}
                         study_type={c.study_type}
                         num_people={c.num_people}
-                        study_period={c.study_period}
+                        start_date={c.start_date}
+                        end_date={c.end_date}
                         study_coin = {c.study_coin}
                         study_desc = {c.study_desc}
                       />

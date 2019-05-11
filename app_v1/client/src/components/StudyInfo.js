@@ -449,7 +449,7 @@ class StudyInfo extends Component {
                             <ModalBody>
                                     <div>{this.state.study_coin}코인 충전 시 {5000 * this.state.study_coin}원 입니다. (1코인당 5000원)</div>
                                     <br/>
-                                    <input type="text" id="input_promptModal"/> 
+                                    <input type="password" id="input_promptModal"/> 
                                 </ModalBody>
                             <ModalFooter>
                                 <Button id="btn_promptModal" onClick={this.toggle}>확인</Button>{' '}

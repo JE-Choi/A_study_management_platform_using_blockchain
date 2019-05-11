@@ -165,8 +165,8 @@ class StudyMake extends Component {
                 console.log(response.data);
                 setTimeout(
                     this.addleader(response.data.insertId).then(() =>{
-                        // let account_id = this.createAccount();
-                        // this.transferCoin(account_id);
+                        let account_id = this.createAccount();
+                        this.transferCoin(account_id);
                         this.props.history.push('/mainPage'); 
                     })
                     , 100);
@@ -376,7 +376,7 @@ class StudyMake extends Component {
                         <div className="study_make_form_group">
                             <label className="study_make_label">코인지갑 비밀번호</label>
                             <span id="dotdot">:</span>
-                            <input type="text" className="form-control" id="study_make_pw"/>
+                            <input type="password" className="form-control" id="study_make_pw"/>
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">설명 </label>

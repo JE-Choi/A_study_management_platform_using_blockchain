@@ -12,7 +12,7 @@ class UserPage extends Component{
             userName: '',
             study_name: '' ,
             study_type: '',
-            study_period: '',
+            end_date: '',
             joinStudyArray: '' // 한 사람이 가입한 study 배열
         }
     }
@@ -31,7 +31,7 @@ class UserPage extends Component{
                 userName: res[0].study_name,
                 study_name: res[0].study_name,
                 study_type: res[0].study_type,
-                study_period: res[0].study_period
+                end_date: res[0].end_date
             });
         }).catch(err => {
             
@@ -74,7 +74,7 @@ class UserPage extends Component{
                                         <JoinMyStudyInfo 
                                             study_name={c.study_name}
                                             study_type={c.study_type}
-                                            study_period={c.study_period}
+                                            end_date={c.end_date}
                                         />
                                     </Link>
                                 )
@@ -88,14 +88,30 @@ class UserPage extends Component{
 }
 
 class JoinMyStudyInfo extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            end_date_view: ''
+        }
+    }
+    componentDidMount(){
+        let end_date = new Date(this.props.end_date);
+
+        let e_year = String(end_date.getFullYear());
+        let e_month = String(end_date.getMonth()+1);
+        let e_date = String(end_date.getDate());
+        let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
+        this.setState({
+            end_date_view: end_date_view
+        });
+    }
     render() {
         return (
             <div className="current_study_item">
                 <div>{this.props.study_name}</div>
                 - <span>{this.props.study_type}</span>
                 <br/>
-                <span>{this.props.study_period} 주</span>
+                <span>Study 종료 날짜: {this.state.end_date_view}</span>
             </div>
         )
     }
