@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
-<<<<<<< HEAD
+
 import DateTimePicker from 'react-datetime-picker';
-=======
 import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css'
->>>>>>> 170fc00a22a24bc1e65d666de3848f2ef13a7b37
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
 
 class StudyMake extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -153,10 +150,9 @@ class StudyMake extends Component {
             dbStartDate: db_formatted_stDate
         });
     }
-
+    
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
-<<<<<<< HEAD
         e.preventDefault();
 
         if(this.check() === true){
@@ -181,35 +177,9 @@ class StudyMake extends Component {
             
         } else{
             alert('모든 항목에 입력해주세요.');
-        }
+        }  
     }
-=======
-        e.preventDefault(); 
-        if(this.check() === true){
-            this.studyExchenageConfirm();
-              
-        } else{
-            alert('모든 항목에 입력해주세요.');
-        }
-       
-    }
-    handleFormOkSubmit(){
-        setTimeout(()=>{
-            this.addCustomer()
-            .then((response) => {
-                setTimeout(
-                    this.addleader(response.data.insertId).then(() =>{
-                        let account_id = this.createAccount();
-                        this.transferCoin(account_id);
-                        this.props.history.push('/mainPage'); 
-                    })
-                    , 100);
-        })  
-        },100);
->>>>>>> 170fc00a22a24bc1e65d666de3848f2ef13a7b37
-
-        
-    }
+    
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
@@ -287,7 +257,7 @@ class StudyMake extends Component {
         }
     };
 
-    make_tag(){
+    make_tag = () =>{
         let subjects = ['TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
         for(let i = 0; i < subjects.length; i++){
             $("#study_make_subject").append('<option>'+subjects[i]+'</option>');
@@ -302,7 +272,7 @@ class StudyMake extends Component {
         }
     }
     
-    getStudyEndDate(){
+    getStudyEndDate = () =>{
         let year = $('.react-datetime-picker__inputGroup__year').val();
         let month = $('.react-datetime-picker__inputGroup__month').val();
         let cur_day = $('.react-datetime-picker__inputGroup__day').val();
@@ -348,9 +318,7 @@ class StudyMake extends Component {
             }
           ]
         })
-    };
-
-
+    }
 
     render() {
         return (
@@ -421,5 +389,6 @@ class StudyMake extends Component {
         );
     }
 }
+
 
 export default StudyMake;
