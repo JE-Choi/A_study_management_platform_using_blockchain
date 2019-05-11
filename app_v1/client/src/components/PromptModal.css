@@ -1,0 +1,30 @@
+#btn_promptModal{
+    background-color: rgb(182, 145, 119);
+    border-color: rgb(182, 145, 119);
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#promptModal{
+    border:3px solid rgb(182, 145, 119);
+    border-radius: 2%;
+}
+#input_promptModal{
+    width: 100%;
+}
+.modal-footer{
+    text-align: center;
+    display: inline-block !important;
+}
+.modal{
+    top:30% !important;
+}
+
+
+@media(max-width: 600px) { 
+    #input_promptModal{
+        margin-top: 5%;
+    }
+    .modal-title{
+        font-size: 1rem;
+    }
+}

@@ -4,6 +4,9 @@ import { post } from 'axios';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import './PromptModal.css';
+import $ from 'jquery';
 
 
 // 블록체인
@@ -45,10 +48,29 @@ class StudyInfo extends Component {
             studyGroupInstance: null,
             myAccount: null,
             web3: null,
-            account_pw: ''
+            account_pw: '',
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
     }
 
+    // PromptModal
+    toggle() {
+        let account_pw_val = $('#input_promptModal').val();
+        this.setState(prevState => ({
+          modal: !prevState.modal,
+          account_pw: account_pw_val
+        }));
+    
+        if(this.state.modal === true){
+            if(account_pw_val == ''){
+                this.studyExchenageConfirm();
+            } else{
+                this.studyJoinConfirm();
+            }
+        } 
+        
+      }
     // handleFormSubmit = (e) => {
     //     // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
     //     e.preventDefault(); 
@@ -170,7 +192,7 @@ class StudyInfo extends Component {
           buttons: [
             {
                 label: '네',
-                onClick: () => this.studyExchenageConfirm()
+                onClick: () => this.handleFormOkSubmit()
             },
             {
                 label: '아니요',
@@ -180,22 +202,21 @@ class StudyInfo extends Component {
         })
     };
 
-    // 코인 충전 확인 창
     studyExchenageConfirm = () => {
 
         setTimeout(()=>{
             confirmAlert({
-                title: '[  코인을 충전하시겠습니까?  ]',
-                message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
+                title: '패스워드를 입력해주세요.',
+                // message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
                 buttons: [
                   {
                       label: '네',
-                      onClick: () => this.handleFormOkSubmit()
+                    //   onClick: () => this.handleFormOkSubmit()
                   },
-                  {
-                      label: '아니요',
-                      onClick: () => alert('아니오')
-                  }
+                //   {
+                //       label: '아니요',
+                //       onClick: () => alert('아니오')
+                //   }
                 ]
               })
         },100);
@@ -276,9 +297,9 @@ class StudyInfo extends Component {
         
         // 계정 생성 
         //var account_pw = this.state.account_pw;
-        let account_pw = prompt("코인지갑 비밀번호를 입력해주세요.");
-        web3.eth.personal.newAccount(account_pw);
-        console.log('사용된 패스워드: ' + account_pw);
+        //let account_pw = prompt("코인지갑 비밀번호를 입력해주세요.");
+        web3.eth.personal.newAccount(this.state.account_pw);
+        console.log('사용된 패스워드: ' + this.state.account_pw);
     
         // (예정) 생성된 계좌의 잔액은 0Ether이다. 충전하는 부분 만들어야 한다.
         // 있는 계정들 모두 출력
@@ -289,13 +310,13 @@ class StudyInfo extends Component {
     
         // DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
         var account_num = myAccount[account_id];
-        console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
+        console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + this.state.account_pw);
     
         
         // DB에 값 삽입
-        this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw).then((response) => {
+        this.callCreateAccountApi(this.state.person_id, account_id, account_num, this.state.account_pw).then((response) => {
             //console.log(response.data);
-            console.log(this.state.person_id +' '+account_id+' '+account_num+' '+account_pw);
+            console.log(this.state.person_id +' '+account_id+' '+account_num+' '+this.state.account_pw);
         }).catch((error)=>{
         console.log(error);
         });
@@ -415,7 +436,7 @@ class StudyInfo extends Component {
                             <Link to={'/mainPage'}>
                                 <input type="button" value="뒤로가기" className="btn btn-danger" id="study_info_back"/>
                             </Link>
-                            <input type="button" style = {isJoinBtnShow} value="가입하기" className="btn btn-danger" id="study_info_join" name='study_info_join' onClick={this.studyJoinConfirm} />
+                            <Button color="danger" style = {isJoinBtnShow} onClick={this.toggle} id="study_info_join">{this.props.buttonLabel} 가입하기 </Button>
                             <Link to={'/renameStudy/' + this.props.match.params.id}>
                                 <input type="button" style = {isModifyBtnShow} value="수정하기" className="btn btn-danger" id="study_info_modify"/>
                             </Link>
@@ -423,6 +444,17 @@ class StudyInfo extends Component {
                                 <input type="button" style = {isDeleteBtnShow} value="삭제하기" className="btn btn-danger" id="study_info_delete" onClick={(e) => {this.deleteCustomer(this.props.match.params.id)}}/>
                             </Link>
                         </div>
+                        <Modal id = "promptModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                            <ModalHeader toggle={this.toggle}>코인지갑 비밀번호를 입력해주셔야 <br/>코인을 충전할 수 있습니다.</ModalHeader>
+                            <ModalBody>
+                                    <div>{this.state.study_coin}코인 충전 시 {5000 * this.state.study_coin}원 입니다. (1코인당 5000원)</div>
+                                    <br/>
+                                    <input type="text" id="input_promptModal"/> 
+                                </ModalBody>
+                            <ModalFooter>
+                                <Button id="btn_promptModal" onClick={this.toggle}>확인</Button>{' '}
+                            </ModalFooter>
+                        </Modal>
                     </div>
                 </div>
             </div>
