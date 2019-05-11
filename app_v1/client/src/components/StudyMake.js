@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
+<<<<<<< HEAD
 import DateTimePicker from 'react-datetime-picker';
+=======
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'
+>>>>>>> 170fc00a22a24bc1e65d666de3848f2ef13a7b37
 
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
@@ -151,6 +156,7 @@ class StudyMake extends Component {
 
     handleFormSubmit = (e) => {
         // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
+<<<<<<< HEAD
         e.preventDefault();
 
         if(this.check() === true){
@@ -177,7 +183,33 @@ class StudyMake extends Component {
             alert('모든 항목에 입력해주세요.');
         }
     }
+=======
+        e.preventDefault(); 
+        if(this.check() === true){
+            this.studyExchenageConfirm();
+              
+        } else{
+            alert('모든 항목에 입력해주세요.');
+        }
+       
+    }
+    handleFormOkSubmit(){
+        setTimeout(()=>{
+            this.addCustomer()
+            .then((response) => {
+                setTimeout(
+                    this.addleader(response.data.insertId).then(() =>{
+                        let account_id = this.createAccount();
+                        this.transferCoin(account_id);
+                        this.props.history.push('/mainPage'); 
+                    })
+                    , 100);
+        })  
+        },100);
+>>>>>>> 170fc00a22a24bc1e65d666de3848f2ef13a7b37
 
+        
+    }
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
@@ -300,6 +332,25 @@ class StudyMake extends Component {
     //     $('.react-datetime-picker__inputGroup__month').val('11');
     //     $('.react-datetime-picker__inputGroup__day').val('25');
     // }
+
+    studyExchenageConfirm = () => {
+        confirmAlert({
+            title: '[  코인을 충전하시겠습니까?  ]',
+            message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
+            buttons: [
+            {
+                label: '네',
+                onClick: () => this.handleFormOkSubmit()
+            },
+            {
+                label: '아니요',
+                onClick: () => alert('아니오')
+            }
+          ]
+        })
+    };
+
+
 
     render() {
         return (
