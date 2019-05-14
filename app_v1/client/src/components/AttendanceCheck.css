@@ -52,9 +52,11 @@
 #completion {
     background-color: #D3B8A5 !important;
     border-color: #D3B8A5 !important;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
     width: 20rem;
+    line-height: 2rem;
+    height: 2.8rem;
 }
 
 #completion:hover {
@@ -62,9 +64,9 @@
     border-color: #D3B8A5 !important;
 }
 
-.attendance_status {
-    padding-top: 2rem;
-}
+/* .attendance_status {
+    padding-top: 0rem;
+} */
 
 .info_attendance_check {
     font-size: 1.2rem;
@@ -102,6 +104,9 @@
         margin-top: 1rem;
         margin-bottom: 1.5rem;
         width: 12rem;
+        height: 2.5rem;
+        line-height: 1.5rem;
+        font-size: 0.8rem;
     }
     
     .attendance_status {

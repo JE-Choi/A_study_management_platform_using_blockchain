@@ -64,9 +64,11 @@
 #study_make_end_date {
     margin-left: 0.4rem;
     padding-left: 0.1rem;
-    /* background-color: white; */
-    /* width: 18rem !important;
-    height: 2.3rem !important; */
+}
+
+.end_date_desc{
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .react-datetime-picker__inputGroup__input {
@@ -196,7 +198,9 @@
     #study_make_end_date{
         font-size: 0.7rem;
     }
-
+    .end_date_desc{
+        font-size: 0.65rem;
+    }
     #study_make_coin {
         font-size: 0.7rem;
     }

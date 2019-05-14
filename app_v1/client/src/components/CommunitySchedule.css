@@ -9,8 +9,8 @@
 
 .content_schedule{
   padding: 3%;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 15%;
+  margin-right: 15%;
   border: 2px solid #D3B8A5;
 }
 
@@ -156,7 +156,7 @@ main {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 115%;
-  padding: 1.5em 0;
+  padding: 1.2em 0;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -190,7 +190,7 @@ main {
 
 .calendar .body .cell {
   position: relative;
-  height: 5em;
+  height: 4em;
   border-right: 1px solid var(--border-color);
   overflow: hidden;
   cursor: pointer;

@@ -358,7 +358,10 @@ class StudyMake extends Component {
                                     onChange={this.onEndDateChange}
                                     value={this.state.study_end_date}
                                 />
-                            </span>                             
+                            </span>
+                            <br/><br/>
+                            <div className = "end_date_desc">★ Study 종료 날짜에 따라 잔여 코인을 반환 받을 수 있습니다. ★</div>                       
+                            <br/>
                         </div>
 
                         <div className="study_make_form_group">

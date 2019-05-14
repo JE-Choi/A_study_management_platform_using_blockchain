@@ -27,18 +27,25 @@ class CalendarTop extends Component{
     this.state = {
       study_name: '' ,
       study_type: '',
-      study_period: ''
+      end_date: ''
     }
   }
 
   componentDidMount() {
     
+
     this.callLoadApi(this.props.id)
       .then(res => {
+        let end_date = new Date(res[0].end_date);
+
+        let e_year = String(end_date.getFullYear());
+        let e_month = String(end_date.getMonth()+1);
+        let e_date = String(end_date.getDate());
+        let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
         this.setState ({
           study_name: res[0].study_name,
           study_type: res[0].study_type,
-          study_period: res[0].study_period
+          end_date: end_date_view
         });
     }).catch(err => console.log(err));
   }
@@ -57,7 +64,7 @@ class CalendarTop extends Component{
             <span className="calendarTop_name"> - </span>
             <span className="calendarTop_name">{this.state.study_type}</span>
             <br/>
-            <span className="calendarTop_study_period">스터디 기간: {this.state.study_period}주</span>
+            <span className="calendarTop_study_period">종료날짜: {this.state.end_date}</span>
           </div>
       </div>
     );

@@ -18,12 +18,16 @@ class UserPage extends Component{
     }
 
     componentWillMount() {
-        this.getUserNameSession();
+        setTimeout(()=>{
+            this.getUserNameSession();
+        },800);
     }
 
     componentDidMount() {
-        this.getUserNameSession();
-
+        setTimeout(()=>{
+            this.getUserNameSession();
+        },800);
+    
         this.callDBStudyInfo()
         .then(res => {
             this.setState ({
@@ -111,7 +115,7 @@ class JoinMyStudyInfo extends Component {
                 <div>{this.props.study_name}</div>
                 - <span>{this.props.study_type}</span>
                 <br/>
-                <span>Study 종료 날짜: {this.state.end_date_view}</span>
+                <span>종료 날짜: {this.state.end_date_view}</span>
             </div>
         )
     }

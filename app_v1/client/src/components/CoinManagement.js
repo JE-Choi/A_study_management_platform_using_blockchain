@@ -49,23 +49,23 @@ class AboutCoin extends Component{
                 </div>
                 <div className="coin_management_content">
                     <span className="coin_status_text">잔여 코인</span>
-                    <span className="btn btn-danger" id="sum_of_coin">20 코인</span> 
+                    <span className="btn btn-danger" id="sum_of_coin">8.5 코인</span> 
                 </div>
                 <div className="content_coin_usage">
                     <div className="div_coin_usage">
                         <span className="date_of_use">19 / 03 / 02</span>
                         <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-3</span>
+                        <span className="used_coin">-0.5</span>
                     </div>
                     <div className="div_coin_usage">
-                        <span className="date_of_use">19 / 03 / 05</span>
+                        <span className="date_of_use">19 / 03 / 23</span>
                         <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-3</span>
+                        <span className="used_coin">-0.5</span>
                     </div>
                     <div className="div_coin_usage">
-                        <span className="date_of_use">19 / 03 / 05</span>
+                        <span className="date_of_use">19 / 04 / 13</span>
                         <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-3</span>
+                        <span className="used_coin">-0.5</span>
                     </div>
                 </div>
             </div>
