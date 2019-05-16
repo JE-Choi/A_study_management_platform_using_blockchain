@@ -13,6 +13,24 @@
     border: 2px solid #D3B8A5;
 }
 
+.attendance_form_group {
+    text-align: center !important;
+    display: inline-block;
+    width: 60% !important;
+    margin-top: 0.4rem !important;
+}
+
+.attendance_form_group > span{
+    font-size: 1.3rem;
+    float: right;
+}
+
+#valid_attendance_time {
+    float: left;
+    height: 2rem;
+    width: 90%  !important;
+}
+
 .div_attendance_check {
     margin-top: 3%; 
 }
@@ -39,7 +57,7 @@
     font-weight: bold;
     width: 20rem;
     height: 2.8rem;
-    margin-top: 1rem;
+    margin-top: 0.4rem !important;
 }
   
 #btn_attendance_check:hover {
@@ -55,7 +73,7 @@
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
     width: 20rem;
-    line-height: 2rem;
+    /* line-height: 2rem; */
     height: 2.8rem;
 }
 
@@ -64,23 +82,33 @@
     border-color: #D3B8A5 !important;
 }
 
-/* .attendance_status {
-    padding-top: 0rem;
-} */
-
 .info_attendance_check {
     font-size: 1.2rem;
     margin-right: 2%;
 }
 
 /*반응형*/
-@media(max-width: 1000px) {
+@media(max-width: 1200px) {
 
     .content_attendance {
         margin-left: 1%;
         margin-right: 1%;
     }
+
+    .attendance_form_group {
+        width: 80% !important;
+    }
     
+    .attendance_form_group > span{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    #valid_attendance_time {
+        font-size: 0.7rem;
+        width: 80% !important;
+    }
+
     .attendance_header {
         font-size: 1.3rem;
         font-weight: bold;

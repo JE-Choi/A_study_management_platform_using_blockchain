@@ -107,7 +107,11 @@
     width: 48% !important;
 }
 
-#re_study_make_period{
+#re_study_make_start_date{
+    width: 48% !important;
+}
+
+#re_study_make_end_date{
     width: 48% !important;
 }
 
@@ -224,7 +228,11 @@
         font-size: 0.7rem;
     }
     
-    #re_study_make_period{
+    #re_study_make_start_date{
+        font-size: 0.7rem;
+    }
+
+    #re_study_make_end_date{
         font-size: 0.7rem;
     }
     

@@ -168,15 +168,11 @@ class StudyMake extends Component {
                         let account_id = this.createAccount();
                         this.transferCoin(account_id);
                         this.props.history.push('/mainPage'); 
-                    })
-                    , 100);
+                    }), 100);
                 })    
-                }
-                , 100);
-           
-            
+            }, 100);    
         } else{
-            alert('모든 항목에 입력해주세요.');
+            this.inputConfirm();
         }  
     }
     
@@ -241,7 +237,7 @@ class StudyMake extends Component {
           );
       
       
-          // // 확인용 로그
+          // 확인용 로그
           // console.log(ShopContract.abi);
           console.log(web3);
           console.log(myAccount);
@@ -294,14 +290,7 @@ class StudyMake extends Component {
         this.setState({
             dbEndDate: datetime
         });
-        // console.log(year + "년" + month + "월" + cur_day + "일" +  hour+"시" + minute + "분" + amPm);
     }
-
-    // set_test(){
-    //     $('.react-datetime-picker__inputGroup__year').val('2019');
-    //     $('.react-datetime-picker__inputGroup__month').val('11');
-    //     $('.react-datetime-picker__inputGroup__day').val('25');
-    // }
 
     studyExchenageConfirm = () => {
         confirmAlert({
@@ -315,6 +304,17 @@ class StudyMake extends Component {
             {
                 label: '아니요',
                 onClick: () => alert('아니오')
+            }
+          ]
+        })
+    }
+
+    inputConfirm = () => {
+        confirmAlert({
+            title: '모든 항목을 입력해주세요',
+            buttons: [
+            {
+                label: '확인'
             }
           ]
         })
@@ -335,24 +335,24 @@ class StudyMake extends Component {
                     <form className="study_make_form" onSubmit={this.handleFormSubmit}>
                         <div className="study_make_form_group">
                             <label className="study_make_label">스터디 명 </label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                             <input type="text" className="form-control" id="study_make_name" name='study_name' value={this.state.study_name} onChange={this.handleValueChange} />
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">종류 </label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                             <select className="form-control" id="study_make_subject" name='study_type' value={this.state.study_type} onChange={this.handleValueChange}>
                             </select>
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">Study 시작 날짜 </label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                             <input type="text" className="form-control" id="study_make_start_date" name='study_start_date' value={this.state.study_start_date} onChange={this.handleValueChange} disabled/>
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">Study 종료 날짜 </label>
-                            <span id="dotdot">:</span>
-                            <span id="study_make_end_date" name='study_end_date'>
+                            <span className="dotdot">:</span>
+                            <span id="study_make_end_date">
                                 <DateTimePicker
                                     name = 'study_end_date'
                                     onChange={this.onEndDateChange}
@@ -366,19 +366,19 @@ class StudyMake extends Component {
 
                         <div className="study_make_form_group">
                             <label className="study_make_label">Study 모집 인원(명) </label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                                 <select className="form-control" id="study_make_total_number" name='num_people' value={this.state.num_people}  onChange={this.handleValueChange}>
                                 </select>
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">스터디 가입 코인: </label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                             <select className="form-control" id="study_make_coin" name='study_coin' value={this.state.study_coin}  onChange={this.handleValueChange}> 
                             </select>
                         </div>
                         <div className="study_make_form_group">
                             <label className="study_make_label">코인지갑 비밀번호</label>
-                            <span id="dotdot">:</span>
+                            <span className="dotdot">:</span>
                             <input type="password" className="form-control" id="study_make_pw"/>
                         </div>
                         <div className="study_make_form_group">
