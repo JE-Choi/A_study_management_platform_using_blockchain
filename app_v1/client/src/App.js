@@ -35,6 +35,7 @@ class App extends Component {
               <Route exact path='/myPage' component = { MyPage }/>
               <Route exact path='/renameStudy/:id' component = { RenameStudy }/>
               <Route exact path='/community/:id' component = { CommunityMenu } />
+              <Route exact path='/community/:id/:menu' component = { CommunityMenu } />
               <Route exact path='/' component={ MainPage } />
           </Switch>
           <Footer />

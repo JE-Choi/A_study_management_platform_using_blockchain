@@ -18,15 +18,17 @@ class UserPage extends Component{
     }
 
     componentWillMount() {
-        setTimeout(()=>{
-            this.getUserNameSession();
-        },800);
+        // setTimeout(()=>{
+        //     this.getUserNameSession();
+        // },800);
+        this.getUserNameSession();
     }
 
     componentDidMount() {
-        setTimeout(()=>{
-            this.getUserNameSession();
-        },800);
+        // setTimeout(()=>{
+        //     this.getUserNameSession();
+        // },800);
+        this.getUserNameSession();
     
         this.callDBStudyInfo()
         .then(res => {
@@ -52,13 +54,13 @@ class UserPage extends Component{
         })
     }
 
-    // session 불러오기
-    getUserNameSession = () => {
-        if (typeof(Storage) !== "undefined") {
-            this.setState({userName : sessionStorage.getItem("loginInfo_userName")});
-        } else {
-            console.log("Sorry, your browser does not support Web Storage...");
-        }
+    // 사용자 이름 session 불러오기
+    getUserNameSession = async () =>{
+            if (typeof(Storage) !== "undefined") {
+                await this.setState({userName : sessionStorage.getItem("loginInfo_userName")});
+            } else {
+                console.log("Sorry, your browser does not support Web Storage...");
+            }
     }
     
     render() {

@@ -23,7 +23,9 @@
 }
 
 .account_number {
-    width: 25rem !important;
+    width: 26rem !important;
+    font-size: 0.9rem !important;
+    text-align: center;
     margin-left: 10%;
     float: none;
 }

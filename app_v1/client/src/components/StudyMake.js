@@ -56,7 +56,7 @@ class StudyMake extends Component {
         }                                      
     }
 
-    createAccount(){
+    createAccount(_study_id){
         const { shopInstance, myAccount, web3} = this.state; 
        
         // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
@@ -80,7 +80,7 @@ class StudyMake extends Component {
     
         
         // DB에 값 삽입
-        this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw).then((response) => {
+        this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw,_study_id).then((response) => {
             //console.log(response.data);
             console.log(this.state.person_id +' '+account_id+' '+account_num+' '+account_pw);
         }).catch((error)=>{
@@ -90,17 +90,18 @@ class StudyMake extends Component {
         return account_id;
         // this.createTheStudy(0,account_num, 'person', 1, 40);
     }
-
-    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw) => {
+    // 블록체인 계좌생성 후 DB에 account_list에 삽입. 
+    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw,_study_id) => {
         const url = '/api/createAccount';
         return post(url,  {
             person_id: _person_id,
             account_id: _account_id,
             account_num: _account_num,
-            account_pw: _account_pw
+            account_pw: _account_pw,
+            study_id : _study_id
         });
     }
-
+    // 매개변수로 들어온 _account_id에게 ether 지급.
     transferCoin(_account_id){
         const { studyGroupInstance, myAccount, web3} = this.state; 
     
@@ -163,9 +164,10 @@ class StudyMake extends Component {
                 this.addstudyItem()
                 .then((response) => {
                 console.log(response.data);
+                let insert_id = response.data.insertId;
                 setTimeout(
-                    this.addleader(response.data.insertId).then(() =>{
-                        let account_id = this.createAccount();
+                    this.addleader(insert_id).then(() =>{
+                        let account_id = this.createAccount(insert_id);
                         this.transferCoin(account_id);
                         this.props.history.push('/mainPage'); 
                     }), 100);
@@ -203,7 +205,7 @@ class StudyMake extends Component {
             study_id: studyId,
             person_id: this.state.person_id,
             leader: true,
-            account_number: '11-22'
+            // account_number: '11-22'
         
             // personPw: this.state.personPw,
             // personPw2: this.state.personPw2,

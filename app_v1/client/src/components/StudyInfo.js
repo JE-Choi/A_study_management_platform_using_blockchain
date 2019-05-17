@@ -164,9 +164,9 @@ class StudyInfo extends Component {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id,
             leader: false,
-            account_number: '11-22'
+            // account_number: '11-22'
         }).then(()=>{
-            let account_id = this.createAccount();
+            let account_id = this.createAccount(this.props.match.params.id);
             this.transferCoin(account_id);
             this.props.history.push('/mainPage'); 
 
@@ -290,7 +290,7 @@ class StudyInfo extends Component {
         }).catch(err => console.log(err));
     }
 
-    createAccount(){
+    createAccount(_study_id){
         const { shopInstance, myAccount, web3} = this.state; 
        
         // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
@@ -314,7 +314,7 @@ class StudyInfo extends Component {
     
         
         // DB에 값 삽입
-        this.callCreateAccountApi(this.state.person_id, account_id, account_num, this.state.account_pw).then((response) => {
+        this.callCreateAccountApi(this.state.person_id, account_id, account_num, this.state.account_pw,_study_id).then((response) => {
             //console.log(response.data);
             console.log(this.state.person_id +' '+account_id+' '+account_num+' '+this.state.account_pw);
         }).catch((error)=>{
@@ -325,13 +325,14 @@ class StudyInfo extends Component {
         // this.createTheStudy(0,account_num, 'person', 1, 40);
     }
 
-    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw) => {
+    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw,_study_id) => {
         const url = '/api/createAccount';
         return post(url,  {
             person_id: _person_id,
             account_id: _account_id,
             account_num: _account_num,
-            account_pw: _account_pw
+            account_pw: _account_pw,
+            study_id: _study_id
         });
     }
 

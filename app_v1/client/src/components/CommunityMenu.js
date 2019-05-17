@@ -8,6 +8,23 @@ import AttendanceCheck from './AttendanceCheck';
 import CoinManagement from './CoinManagement';
 
 class CommunityMenu extends Component {
+    componentDidMount(){
+        this.setEnterStudyidSession();
+    }
+    // userName session 저장
+    setEnterStudyidSession = () => {
+        if (typeof(Storage) !== "undefined") {
+            sessionStorage.setItem("enterStudyid", this.props.match.params.id);
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
+    }
+
+    contractReloads(){
+        setTimeout(function() { 
+          window.location.reload();
+        }, 100);
+    }
     render() {
         return (
             <Router>
@@ -25,7 +42,7 @@ class CommunityMenu extends Component {
                                     <Link to={'/community/'+this.props.match.params.id+'/attendanceCheck'} className="community_nav_link">출석 체크</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/community/'+this.props.match.params.id+'/coinManagement'} className="community_nav_link">코인 관리</Link>
+                                <Link to={'/community/'+this.props.match.params.id+'/coinManagement'} onClick={this.contractReloads} className="community_nav_link">코인 관리</Link>
                                 </li>
                             </ul>
                         </nav>

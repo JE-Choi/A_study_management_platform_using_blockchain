@@ -21,14 +21,15 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.post('/api/createAccount', (req, res) => {
-    let sql = `INSERT INTO account_list VALUES (?,?,?,?);`;
+    let sql = `INSERT INTO account_list VALUES (?,?,?,?,?);`;
     
     let account_id = req.body.account_id;
     let account_num = req.body.account_num;
     let account_pw = req.body.account_pw;
     let person_id = req.body.person_id;
+    let study_id = req.body.study_id;
 
-    let params = [account_id, account_num, account_pw, person_id];
+    let params = [account_id, account_num, account_pw, person_id,study_id];
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows);
@@ -163,14 +164,15 @@ app.post('/api/signup_overlap', (req, res) => {
 
 // STUDY 가입자
 app.post('/api/studyItems/join/:id', (req, res) => {
-    let sql = `INSERT INTO study_join VALUES (?, ?, ?, ?)`;
+    let sql = `INSERT INTO study_join VALUES (?, ?, ?)`;
 
     let study_id = req.params.id;
     let person_id = req.body.person_id;
     let leader = req.body.leader;
-    let account_number = req.body.account_number;
+    // let account_number = req.body.account_number;
 
-    let params = [study_id, person_id, leader, account_number];
+    // let params = [study_id, person_id, leader, account_number];
+    let params = [study_id, person_id, leader];
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows);
@@ -180,14 +182,15 @@ app.post('/api/studyItems/join/:id', (req, res) => {
 
 // STUDY 생성자
 app.post('/api/studyItems/leader', (req, res) => {
-    let sql = `INSERT INTO study_join VALUES (?, ?, ?, ?)`;
+    let sql = `INSERT INTO study_join VALUES (?, ?, ?)`;
 
     let study_id = req.body.study_id;
     let person_id = req.body.person_id;
     let leader = req.body.leader;
-    let account_number = req.body.account_number;
+    // let account_number = req.body.account_number;
 
-    let params = [study_id, person_id, leader, account_number];
+    // let params = [study_id, person_id, leader, account_number];
+    let params = [study_id, person_id, leader];
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows);
@@ -260,6 +263,21 @@ app.post('/api/myPage/joinStudy', (req, res) => {
     let person_id = req.body.person_id;
     
     let params = [person_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows);
+        }
+    );
+});
+
+// myPage에서 선택한 스터디에서의 자신의 코인 조회
+app.post('/api/coinManagement/loadAccount', (req, res) => {
+    let sql = `SELECT account_id FROM account_list WHERE study_id = ? AND person_id = ?;`;
+    
+    let study_id = req.body.study_id;
+    let person_id = req.body.person_id;
+    
+    let params = [study_id,person_id];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows);
