@@ -56,26 +56,29 @@ class StudyMake extends Component {
         }                                      
     }
 
-    createAccount(_study_id){
-        const { shopInstance, myAccount, web3} = this.state; 
+    createAccount = async (_study_id) =>{
+        const {myAccount, web3} = this.state; 
        
         // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
         
         // 계정 생성 
         //var account_pw = this.state.account_pw;
         let account_pw = $('#study_make_pw').val();
-        web3.eth.personal.newAccount(account_pw);
+        await web3.eth.personal.newAccount(account_pw);
         console.log('사용된 패스워드: ' + account_pw);
-    
-        // (예정) 생성된 계좌의 잔액은 0Ether이다. 충전하는 부분 만들어야 한다.
-        // 있는 계정들 모두 출력
+        // 계좌가 생성되었기 때문에 계좌목록 State값 갱신해야 한다. 
+        let myAccount_new = await web3.eth.getAccounts();
+        this.setState({
+            myAccount: myAccount_new
+        });
 
         // 마지막에 생성된 계정 index구하기
-            var account_id =  myAccount.length - 1;
-            console.log(account_id);
+        // 바로 setState한거 적용 안되기 때문에 state값 안 가져다 사용.
+        var account_id =  myAccount_new.length - 1;
+        console.log(account_id);
     
         // DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
-        var account_num = myAccount[account_id];
+        var account_num = myAccount_new[account_id];
         console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
     
         
@@ -83,10 +86,11 @@ class StudyMake extends Component {
         this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw,_study_id).then((response) => {
             //console.log(response.data);
             console.log(this.state.person_id +' '+account_id+' '+account_num+' '+account_pw);
+            
         }).catch((error)=>{
         console.log(error);
+       
         });
-
         return account_id;
         // this.createTheStudy(0,account_num, 'person', 1, 40);
     }
@@ -102,9 +106,8 @@ class StudyMake extends Component {
         });
     }
     // 매개변수로 들어온 _account_id에게 ether 지급.
-    transferCoin(_account_id){
+    transferCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
-    
         let study_make_coin = $('#study_make_coin').val();
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
         studyGroupInstance.methods.transferCoin(myAccount[_account_id]).send(
@@ -159,17 +162,16 @@ class StudyMake extends Component {
         if(this.check() === true){
             this.getStudyEndDate();
             setTimeout(()=>{
-                console.log('dbStartDate: '+this.state.dbStartDate);
-                console.log('dbEndDate: '+this.state.dbEndDate);
                 this.addstudyItem()
                 .then((response) => {
                 console.log(response.data);
                 let insert_id = response.data.insertId;
                 setTimeout(
                     this.addleader(insert_id).then(() =>{
-                        let account_id = this.createAccount(insert_id);
-                        this.transferCoin(account_id);
-                        this.props.history.push('/mainPage'); 
+                        this.createAccount(insert_id).then((account_id)=>{
+                            this.transferCoin(account_id);
+                            this.props.history.push('/mainPage'); 
+                        });
                     }), 100);
                 })    
             }, 100);    

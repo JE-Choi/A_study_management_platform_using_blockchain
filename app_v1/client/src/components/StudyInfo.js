@@ -166,13 +166,13 @@ class StudyInfo extends Component {
             leader: false,
             // account_number: '11-22'
         }).then(()=>{
-            let account_id = this.createAccount(this.props.match.params.id);
-            this.transferCoin(account_id);
-            this.props.history.push('/mainPage'); 
-
-            setTimeout(()=>{
-                this.studyOkJoinConfirm();
-            },100);
+            this.createAccount(this.props.match.params.id).then((account_id)=>{
+                this.transferCoin(account_id);
+                setTimeout(()=>{
+                    this.studyOkJoinConfirm();
+                },100);
+                this.props.history.push('/mainPage');
+            });
         })
     }
 
@@ -290,26 +290,28 @@ class StudyInfo extends Component {
         }).catch(err => console.log(err));
     }
 
-    createAccount(_study_id){
-        const { shopInstance, myAccount, web3} = this.state; 
+    createAccount = async (_study_id) =>{
+        const {myAccount, web3} = this.state; 
        
         // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
         
         // 계정 생성 
         //var account_pw = this.state.account_pw;
         //let account_pw = prompt("코인지갑 비밀번호를 입력해주세요.");
-        web3.eth.personal.newAccount(this.state.account_pw);
+        await web3.eth.personal.newAccount(this.state.account_pw);
         console.log('사용된 패스워드: ' + this.state.account_pw);
-    
-        // (예정) 생성된 계좌의 잔액은 0Ether이다. 충전하는 부분 만들어야 한다.
-        // 있는 계정들 모두 출력
+        // 계좌가 생성되었기 때문에 계좌목록 State값 갱신해야 한다. 
+        let myAccount_new = await web3.eth.getAccounts();
+        this.setState({
+            myAccount: myAccount_new
+        });
 
-        // 마지막에 생성된 계정 index구하기
-            var account_id =  myAccount.length - 1;
-            console.log(account_id);
+        // 바로 setState한거 적용 안되기 때문에 state값 안 가져다 사용.
+        var account_id =  myAccount_new.length - 1;
+        console.log(account_id);
     
         // DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
-        var account_num = myAccount[account_id];
+        var account_num = myAccount_new[account_id];
         console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + this.state.account_pw);
     
         
@@ -336,7 +338,7 @@ class StudyInfo extends Component {
         });
     }
 
-    transferCoin(_account_id){
+    transferCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
 
         let study_make_coin = this.state.study_coin;

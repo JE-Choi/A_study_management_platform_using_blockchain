@@ -1,6 +1,6 @@
-// 2_deploy_contracts.js
-var Shop = artifacts.require("./Shop.sol");
+// 3_deploy_contracts.js
+var StudyGroup = artifacts.require("./StudyGroup.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Shop);
+  deployer.deploy(StudyGroup);
 };
