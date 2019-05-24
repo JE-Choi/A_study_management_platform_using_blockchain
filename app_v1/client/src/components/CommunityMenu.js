@@ -39,7 +39,7 @@ class CommunityMenu extends Component {
                                     <Link to={'/community/'+this.props.match.params.id+'/communitySchedule'} className="community_nav_link">Schedule</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/community/'+this.props.match.params.id+'/attendanceCheck'} className="community_nav_link">출석 체크</Link>
+                                    <Link to={'/community/'+this.props.match.params.id+'/attendanceCheck'} onClick={this.contractReloads} className="community_nav_link">출석 체크</Link>
                                 </li>
                                 <li>
                                 <Link to={'/community/'+this.props.match.params.id+'/coinManagement'} onClick={this.contractReloads} className="community_nav_link">코인 관리</Link>

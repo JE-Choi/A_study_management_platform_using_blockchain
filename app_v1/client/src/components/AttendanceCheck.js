@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './AttendanceCheck.css';
 import $ from 'jquery';
 import { post } from 'axios';
+// 블록체인
+import getWeb3 from "../utils/getWeb3";
+import StudyGroup from "../contracts/StudyGroup.json"; 
 
 class AttendanceCheck extends Component {
     render() {
@@ -25,13 +28,110 @@ class Attendance extends Component {
             studyId: '', // 스터디 id
             first_start_date_view: '', // 최초 출석자 날짜
             first_start_time_view: '', // 최초 출석자 시각
-            is_attendance: 0 // 출석 여부
+            is_attendance: 0, // 출석 여부
+            // 블록체인
+            studyGroupInstance:null,
+            myAccount: null,
+            web3: null
         }
-      }
+    }
+    initContract = async () => {
 
-    componentDidMount(){
+        try {
+            // Get network provider and web3 instance.
+            const web3 = await getWeb3();
+        
+            // Use web3 to get the user's accounts.
+            const myAccount = await web3.eth.getAccounts();
+        
+            // Get the contract instance.
+            const networkId = await web3.eth.net.getId();
+            const deployedNetwork = StudyGroup.networks[networkId];
+            const instance = new web3.eth.Contract(
+            StudyGroup.abi,
+            deployedNetwork && deployedNetwork.address
+            );
+        
+        
+            // // 확인용 로그
+            // console.log(ShopContract.abi);
+            // console.log(web3);
+            // console.log(myAccount);
+        //   Set web3, accounts, and contract to the state, and then proceed with an
+        //   example of interacting with the contract's methods.
+        this.setState({ web3, myAccount, studyGroupInstance: instance});
+        
+            
+        // this.getUserNameSession().then(()=>{
+        //     this.getEnterSession().then(()=>{
+        //         this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
+        //             let account_id = res.data[0].account_id;
+        //             $('.account_number').val(myAccount[account_id]);
+        //             let account = myAccount[account_id];
+        //             setTimeout(function(){
+        //                 web3.eth.getBalance(myAccount[account_id]).then(result=>{
+        //                 let balance = web3.utils.fromWei(result, 'ether');
+        //                 $('#sum_of_coin').text(balance+'코인');
+        //             });
+        //         }, 100);
+        //         });
+        //     });
+        // });
+        } catch (error) {
+            alert(
+            `Failed to load web3, accounts, or contract. Check console for details.`,
+            );
+            console.error(error);
+        }
+    };
+
+    // .sol파일의 studyMember구조체 load
+    getPersonInfoOfStudy= async (_study_id, _person_id) => {
+    const { studyGroupInstance, web3} = this.state; 
+    let Ascii_person_id = web3.utils.fromAscii(_person_id);
+    studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
+      var memberAddress =  result[0];
+      var person_id = web3.utils.toAscii(result[1]);
+      var study_id =  result[2];
+      var numOfCoins =  result[3];
+      console.log('memberAddress: ' + memberAddress);
+      console.log('person_id: ' + person_id);
+      console.log('study_id: ' + study_id);
+      console.log('numOfCoins: ' + numOfCoins);
+    });    
+  }
+
+    componentWillMount = async () => {
+
+        this.initContract();
+    };
+    componentDidMount= async () => {
         this.make_tag();
-        this.getEnterSession();
+        this.initContract().then(()=>{
+            this.getUserNameSession().then(()=>{
+                this.getEnterSession().then(()=>{
+                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
+                });
+            });
+        });
+    }
+
+    // 사용자 이름 session 불러오기
+    getUserNameSession = async () =>{
+        if (typeof(Storage) !== "undefined") {
+            await this.setState({userName : sessionStorage.getItem("loginInfo_userName")});
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
+    }
+    // 사용자 ID, 들어온 스터디 번호 불러오기
+    getEnterSession = async () => {
+        if (typeof(Storage) !== "undefined") {
+            await this.setState({userId : sessionStorage.getItem("loginInfo")});
+            await this.setState({studyId : sessionStorage.getItem("enterStudyid")});
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
     }
 
     // 출석 유효시간 측정 타이머
