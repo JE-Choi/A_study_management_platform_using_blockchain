@@ -146,6 +146,19 @@ class AboutCoin extends Component{
                         <span className="desc_of_use">지각</span>
                         <span className="used_coin">-0.5</span>
                     </div>
+
+
+
+                    <div className="div_coin_usage">
+                        <span className="date_of_use">19 / 04 / 13</span>
+                        <span className="desc_of_use">지각</span>
+                        <span className="used_coin">-0.5</span>
+                    </div>
+                    <div className="div_coin_usage">
+                        <span className="date_of_use">19 / 04 / 13</span>
+                        <span className="desc_of_use">지각</span>
+                        <span className="used_coin">-0.5</span>
+                    </div>
                 </div>
             </div>
         );

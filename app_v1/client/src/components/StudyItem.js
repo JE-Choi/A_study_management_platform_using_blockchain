@@ -76,7 +76,7 @@ class StudyItem extends React.Component {
                         <li><span className="study_name">{this.props.study_name} - {this.props.study_type}</span></li>
                         <li>모집 인원 : {this.props.num_people} 명</li>
                         <li>현재 인원 : {this.state.current_num_people} 명</li>
-                        <li>Study 종료 날짜 : {this.state.end_date_view}</li>
+                        <li>종료 날짜 : {this.state.end_date_view}</li>
                         <li>스터디 코인 : {this.props.study_coin} 코인</li>
                         <li>스터디 설명 : {this.props.study_desc}</li>
                     </ul>

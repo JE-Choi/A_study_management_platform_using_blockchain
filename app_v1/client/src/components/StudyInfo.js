@@ -429,7 +429,7 @@ class StudyInfo extends Component {
                                         <li>코인: {this.state.study_coin}</li>
                                         <li>모집 인원 : {this.state.num_people} 명</li>
                                         <li>현재 인원 : {this.state.current_num_people} 명</li>
-                                        <li>Study 종료 날짜 : {this.state.study_end_date}</li>
+                                        <li>종료 날짜 : {this.state.study_end_date}</li>
                                     </ul>
                                 </div>
                             </div>

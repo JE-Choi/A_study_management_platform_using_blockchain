@@ -20,6 +20,7 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+// 계좌 생성
 app.post('/api/createAccount', (req, res) => {
     let sql = `INSERT INTO account_list VALUES (?,?,?,?,?);`;
     
@@ -37,6 +38,7 @@ app.post('/api/createAccount', (req, res) => {
     );
 });
 
+// 스터디 목록들 요소 불러오기
 app.get('/api/studyItems', (req, res) => {
 
     connection.query(
@@ -75,7 +77,7 @@ app.post('/api/studyItems/view_currentPeople', (req, res) => {
     );
 });
 
-// 사용자가 고객 추가 데이터 전송했을 때 처리하는 부분.
+// 사용자가 고객 추가 데이터 전송했을 때 처리
 app.post('/api/studyItems', parser, (req, res) => {
     let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)`;
     let study_name = req.body.study_name;
@@ -89,7 +91,6 @@ app.post('/api/studyItems', parser, (req, res) => {
     let params = [study_name, study_type, num_people, study_start_date, study_end_date, study_coin, study_desc];
     connection.query(sql, params, 
         (err, rows, fields) => {
-            // 성공적 데이터 입력->클라이언트에게 출력
             res.send(rows); 
         }
     );
@@ -106,7 +107,7 @@ app.get('/api/studyItems/view/:id', (req, res) => {
     );
 });
 
-// 방장 불러오는 부분
+// 방장 불러오기
 app.get('/api/studyItems/view_leader/:id', (req, res) => {
     let sql = `SELECT person_name FROM person_info WHERE person_id = (SELECT person_id from study_join where study_join.leader = 1 AND study_join.study_id = ?)`;
     
@@ -118,6 +119,7 @@ app.get('/api/studyItems/view_leader/:id', (req, res) => {
     );
 });
 
+// 스터디 내용 수정
 app.post('/api/studyItems/view/rename/', (req, res) => {
     let sql = `UPDATE studyitem SET study_name = ?, study_type = ?, num_people = ?, start_date = ?, end_date = ?, study_coin = ?, study_desc = ? WHERE s_id  = ?`;
    
@@ -138,6 +140,7 @@ app.post('/api/studyItems/view/rename/', (req, res) => {
     );
 });
 
+// 만들어진 스터디 제거
 app.delete('/api/studyItems/:id', (req, res) => {
     let sql = 'DELETE FROM studyitem WHERE s_id = ?';
     let params = [req.params.id];
@@ -180,16 +183,14 @@ app.post('/api/studyItems/join/:id', (req, res) => {
     );
 });
 
-// STUDY 생성자
+// STUDY 생성자 = 방장
 app.post('/api/studyItems/leader', (req, res) => {
     let sql = `INSERT INTO study_join VALUES (?, ?, ?)`;
 
     let study_id = req.body.study_id;
     let person_id = req.body.person_id;
     let leader = req.body.leader;
-    // let account_number = req.body.account_number;
 
-    // let params = [study_id, person_id, leader, account_number];
     let params = [study_id, person_id, leader];
     connection.query(sql,params,
         (err, rows, fields) => {
@@ -198,7 +199,7 @@ app.post('/api/studyItems/leader', (req, res) => {
     );
 });
 
-// 회원가입 데이터 삽입
+// 회원가입
 app.post('/api/signup', parser, (req, res) => {
     let sql =`INSERT INTO person_info VALUES (?,?,?);`;
     let personId  = req.body.personId;
@@ -281,6 +282,44 @@ app.post('/api/coinManagement/loadAccount', (req, res) => {
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows);
+        }
+    );
+});
+
+// 출석체크 최초 출석자인지 확인
+app.post('/api/community/isFirstAttend', parser, (req, res) => {
+    let sql = `SELECT * FROM attendance_check 
+                WHERE study_id = ? AND attendance_start_date IN (SELECT attendance_start_date
+                FROM attendance_check WHERE study_id = ? AND attendance_start_date = ?) 
+                ORDER BY attendance_start_date DESC, attendance_start_time`;
+
+    let study_id = req.body.study_id;
+    let attendance_start_date = req.body.attendance_start_date;
+
+    let params = [study_id, study_id, attendance_start_date];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
+
+// 출석 여부에 따른 DB 삽입
+app.post('/api/community/isAttendStatus', parser, (req, res) => {
+    let sql =`INSERT INTO attendance_check VALUES (?, ?, ?, ?, ?, ?);`;
+
+    let study_id = req.body.study_id;
+    let user_id = req.body.user_id;
+    let attendance_start_date = req.body.attendance_start_date;
+    let attend_start_time = req.body.attendance_start_time;
+    let is_attendance = req.body.is_attendance;
+    let valid_attendance_time = req.body.valid_attendance_time;
+
+    let params = [study_id, user_id, attendance_start_date, attend_start_time, is_attendance, valid_attendance_time];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
         }
     );
 });
