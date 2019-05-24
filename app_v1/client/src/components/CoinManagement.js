@@ -34,8 +34,7 @@ class AboutCoin extends Component{
             web3: null
         }
     }
-
-    componentWillMount = async () => {
+    initContract = async () => {
 
         try {
             // Get network provider and web3 instance.
@@ -55,8 +54,8 @@ class AboutCoin extends Component{
         
             // // 확인용 로그
             // console.log(ShopContract.abi);
-            console.log(web3);
-            console.log(myAccount);
+            // console.log(web3);
+            // console.log(myAccount);
           //   Set web3, accounts, and contract to the state, and then proceed with an
           //   example of interacting with the contract's methods.
           this.setState({ web3, myAccount, studyGroupInstance: instance});
@@ -84,11 +83,19 @@ class AboutCoin extends Component{
             console.error(error);
           }
     };
+    componentWillMount = async () => {
+        this.initContract();
+    };
 
 
-    componentDidMount() {
-        this.getUserNameSession().then(()=>{
-            this.getEnterSession();
+    componentDidMount= async () => {
+
+        this.initContract().then(()=>{
+            this.getUserNameSession().then(()=>{
+                this.getEnterSession().then(()=>{
+                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
+                });
+            });
         });
     }
 
@@ -118,10 +125,25 @@ class AboutCoin extends Component{
         });
     }
 
+    // StudyGroup.sol 파일의 studyMember구조체 load
+    getPersonInfoOfStudy = async (_study_id, _person_id) => {
+        const { studyGroupInstance, web3} = this.state; 
+        let Ascii_person_id = web3.utils.fromAscii(_person_id);
+        studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
+            var memberAddress =  result[0];
+            var person_id = web3.utils.toAscii(result[1]);
+            var study_id =  result[2];
+            var numOfCoins =  result[3];
+            console.log('memberAddress: ' + memberAddress);
+            console.log('person_id: ' + person_id);
+            console.log('study_id: ' + study_id);
+            console.log('numOfCoins: ' + numOfCoins);
+        });    
+    }
+
     render(){
         return(
             <div className="div_coin_management">
-                {/* <div className="coin_management_header">00 님의 계좌 번호</div> */}
                 <div className="coin_management_header">{this.state.userName} 님의 계좌 번호</div>
                 <div className="div_account_number">
                     <input type="text" className="form-control account_number" disabled/>
@@ -146,6 +168,7 @@ class AboutCoin extends Component{
                         <span className="desc_of_use">지각</span>
                         <span className="used_coin">-0.5</span>
                     </div>
+         
                 </div>
             </div>
         );

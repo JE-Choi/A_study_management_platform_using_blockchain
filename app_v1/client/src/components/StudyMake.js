@@ -21,6 +21,7 @@ class StudyMake extends Component {
             study_desc: '',
             study_coin: '1',
             person_id: '', 
+            study_id: '',
 
             // 블록체인
             studyGroupInstance:null,
@@ -106,11 +107,11 @@ class StudyMake extends Component {
         });
     }
     // 매개변수로 들어온 _account_id에게 ether 지급.
-    transferCoin = async (_account_id) =>{
+    chargeTheCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let study_make_coin = $('#study_make_coin').val();
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-        studyGroupInstance.methods.transferCoin(myAccount[_account_id]).send(
+        studyGroupInstance.methods.chargeTheCoin(myAccount[_account_id]).send(
           {
             from: myAccount[0], 
             value: web3.utils.toWei(study_make_coin, 'ether'),
@@ -169,8 +170,17 @@ class StudyMake extends Component {
                 setTimeout(
                     this.addleader(insert_id).then(() =>{
                         this.createAccount(insert_id).then((account_id)=>{
-                            this.transferCoin(account_id);
-                            this.props.history.push('/mainPage'); 
+                            this.setState({
+                                study_id: insert_id
+                            });
+                            this.chargeTheCoin(account_id).then(()=>{
+                                // .sol파일의 studyMember구조체 생성
+                                let person_id = this.state.person_id;
+                                //let memberAddress = account_num;
+                                let join_coin = this.state.study_coin;
+                                this.createMemberItem(this.state.study_id , person_id, account_id, join_coin);
+                                this.props.history.push('/mainPage'); 
+                            });
                         });
                     }), 100);
                 })    
@@ -225,6 +235,11 @@ class StudyMake extends Component {
     }
 
     componentWillMount = async () => {
+        this.initContract();
+    };
+
+    
+    initContract = async () => {
         try {
           // Get network provider and web3 instance.
           const web3 = await getWeb3();
@@ -256,7 +271,6 @@ class StudyMake extends Component {
           console.error(error);
         }
     };
-
     make_tag = () =>{
         let subjects = ['TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
         for(let i = 0; i < subjects.length; i++){
@@ -324,6 +338,22 @@ class StudyMake extends Component {
         })
     }
 
+
+    // StudyGroup.sol파일의 studyMember구조체 생성
+    createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins) => {
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+        let _memberAddress = myAccount[_account_id];
+        // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+        let Ascii_person_id =  web3.utils.fromAscii(_person_id); 
+        console.log(_study_id,_person_id,_memberAddress,_numOfCoins);
+        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,_numOfCoins).send(
+        {
+                from: myAccount[0], // 관리자 계좌
+                gas: 3000000 
+        }
+        );
+    }
+    
     render() {
         return (
             <div className="out_study_make_frame">
@@ -390,7 +420,9 @@ class StudyMake extends Component {
                             <textarea className="form-control" id="study_make_long_desc" rows="7" cols="50" name='study_desc' value={this.state.study_desc}  onChange={this.handleValueChange}></textarea>
                         </div>
                         <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_study_make">STUDY 생성</button>
+                        
                     </form>
+                    
                 </div>
             </div>
         );

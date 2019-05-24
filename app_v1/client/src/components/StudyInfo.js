@@ -167,7 +167,7 @@ class StudyInfo extends Component {
             // account_number: '11-22'
         }).then(()=>{
             this.createAccount(this.props.match.params.id).then((account_id)=>{
-                this.transferCoin(account_id);
+                this.chargeTheCoin(account_id);
                 setTimeout(()=>{
                     this.studyOkJoinConfirm();
                 },100);
@@ -338,12 +338,12 @@ class StudyInfo extends Component {
         });
     }
 
-    transferCoin = async (_account_id) =>{
+    chargeTheCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
 
         let study_make_coin = this.state.study_coin;
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-        studyGroupInstance.methods.transferCoin(myAccount[_account_id]).send(
+        studyGroupInstance.methods.chargeTheCoin(myAccount[_account_id]).send(
             {
                 from: myAccount[0], 
                 value: web3.utils.toWei(String(study_make_coin), 'ether'),

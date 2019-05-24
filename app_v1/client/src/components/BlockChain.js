@@ -11,6 +11,7 @@ import StudyGroup from "../contracts/StudyGroup.json";
 
 import { post } from 'axios';
 import $ from 'jquery';
+// import { format } from "util";
 
 // $(document).ready(function(){
 //   alert('hihi?');
@@ -149,7 +150,7 @@ class BlockChain extends Component {
 
   }
 
-  createAccount = async () =>{
+  createAccount = async (_study_id) =>{
     const { shopInstance, myAccount, web3} = this.state; 
    
     // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
@@ -179,7 +180,12 @@ class BlockChain extends Component {
     }).catch((error)=>{
       console.log(error);
     });
-    this.createTheStudy(0,account_num, 'person', 1, 40);
+
+    // .sol파일의 studyMember구조체 생성
+    let person_id = 'gom';
+    let memberAddress = account_num;
+    let join_coin = 7;
+    this.createMemberItem(_study_id , person_id, memberAddress, join_coin);
   }
 
   callCreateAccountApi = (_account_id,_account_num,_account_pw) => {
@@ -191,26 +197,23 @@ class BlockChain extends Component {
     });
   }
 
-  createTheStudy(_index ,_memberAddress, _person_id, _study_id, _numOfCoins) {
+  // .sol파일의 studyMember구조체 생성
+  createMemberItem(_study_id, _person_id ,_memberAddress, _numOfCoins) {
     const { studyGroupInstance, myAccount, web3} = this.state; 
 
-    // studyGroupInstance.methods.getMyApples().call().then(result=>{
-    //   console.log(result+'??');
-    // });
-    // var nameUtf8Encoded = encode(_person_id);
-    // console.log(nameUtf8Encoded);
     let Ascii_person_id = web3.utils.fromAscii(_person_id);
-    studyGroupInstance.methods.createIndexTheStudy(_index, _memberAddress, Ascii_person_id,_study_id,_numOfCoins).send(
+    studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,_numOfCoins).send(
       { from: myAccount[0],
         gas: 3000000 
       }
     );
   }
 
-  
-  getMemberIndexInfo() {
-    const { studyGroupInstance, myAccount, web3} = this.state; 
-    studyGroupInstance.methods.getMemberIndexInfo(0).call().then(function(result) {
+  // .sol파일의 studyMember구조체 load
+  getPersonInfoOfStudy(_study_id, _person_id) {
+    const { studyGroupInstance, web3} = this.state; 
+    let Ascii_person_id = web3.utils.fromAscii(_person_id);
+    studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
       var memberAddress =  result[0];
       var person_id = web3.utils.toAscii(result[1]);
       var study_id =  result[2];
@@ -220,16 +223,6 @@ class BlockChain extends Component {
       console.log('study_id: ' + study_id);
       console.log('numOfCoins: ' + numOfCoins);
     });    
-    studyGroupInstance.methods.getMemberIndexInfo(1).call().then(function(result) {
-      var memberAddress =  result[0];
-      var person_id = web3.utils.toAscii(result[1]);
-      var study_id =  result[2];
-      var numOfCoins =  result[3];
-      console.log('memberAddress: ' + memberAddress);
-      console.log('person_id: ' + person_id);
-      console.log('study_id: ' + study_id);
-      console.log('numOfCoins: ' + numOfCoins);
-    });  
   }
 
   transferCoin= async () =>{
@@ -295,6 +288,66 @@ class BlockChain extends Component {
     }
   }
 
+  // 스마트 계약 지각 거래발생
+  setTardinessTransfer = async () =>{
+    const { studyGroupInstance, myAccount, web3} = this.state; 
+    // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+    let sender = web3.utils.fromAscii('Kim');
+    let receiver = web3.utils.fromAscii('Choi');
+    // let sender = web3.utils.fromAscii('Choi');
+    // let receiver = web3.utils.fromAscii('Kim');
+    let coin =3;
+    let date = web3.utils.fromAscii('2019.04.06');
+    let person_id = web3.utils.fromAscii('Choi');
+    let study_id = 15;
+    studyGroupInstance.methods.setTardinessTransfer(sender, receiver, coin, date, person_id, study_id).send(
+      { from: myAccount[0],
+        gas: 3000000 
+      }
+    );
+  }
+
+  getTardinessTransfer = async () =>{
+    const { studyGroupInstance, myAccount, web3} = this.state; 
+    
+    studyGroupInstance.methods.getTardinessTransfer(web3.utils.fromAscii('Kim')).call().then(function(result) {
+      
+      let transactions = result[0];
+      var transactions_list = new Array();
+
+      for(let i = 0; i < transactions.length; i++){
+      
+      var transactions_list_sub = new Array();
+      let transactions_web3_sender = transactions[i]._sender;
+      let transactions_web3_receiver = transactions[i]._receiver;
+      let transactions_web3_coin = Number(transactions[i]._coin);
+      let transactions_web3_date = transactions[i]._date;
+      
+      transactions_list_sub.push(transactions_web3_sender,transactions_web3_receiver,transactions_web3_coin,transactions_web3_date);
+      
+      transactions_list.push(transactions_list_sub);
+      
+      }
+      for(let i = 0; i < transactions_list.length; i++){
+        // 블록체인에 date32타입으로 저장되었었기 때문에 변환을 거쳐야 메세지를 볼 수 있다.
+        let transactions_web3_sender = transactions_list[i][0];
+        let transactions_web3_receiver = transactions_list[i][1];
+        let transactions_web3_coin = transactions_list[i][2];
+        let transactions_web3_date = web3.utils.toAscii(transactions_list[i][3]);
+        console.log(transactions_web3_sender); 
+        console.log(transactions_web3_receiver);
+        console.log(transactions_web3_coin);
+        console.log(transactions_web3_date);
+      }
+     
+      // console.log('memberAddress: ' +web3.utils.toAscii( memberAddress[0]));
+      // console.log('memberAddress: ' + web3.utils.toAscii( memberAddress[1]));
+      // console.log('memberAddress: ' + web3.utils.toAscii( memberAddress[2]));
+      // console.log('person_id: ' + person_id);
+      // console.log('study_id: ' + study_id);
+      // console.log('numOfCoins: ' + numOfCoins);
+    });    
+  }
   render() {
     return (
       <div className="blockChainContainer">
@@ -308,15 +361,19 @@ class BlockChain extends Component {
         <div id="createAccount_template">
           <div>회원 가입할 계좌 이름: 
             <input type = "text" id="createInput" name="account_pw" value={this.state.account_pw} onChange={this.handleValueChange}/>
-            <input type = "button" value = "계좌 생성" onClick={() => this.createAccount()}/>
+            <input type = "button" value = "계좌 생성" onClick={() => this.createAccount(15)}/>
             <span id="createInfo"></span>
           </div>  
         </div>
-        <input type="button" value="계좌 정보 보기" onClick={() => this.getMemberIndexInfo()}/>
+        <input type="button" value="계좌 정보 보기" onClick={() => this.getPersonInfoOfStudy(10,'user')}/>
+        <input type="button" value="계좌 정보 보기" onClick={() => this.getPersonInfoOfStudy(15,'gom')}/>
         <br/>
         <input type = "text" size="10" id = "NumOfCoins"/>
         <input type = "button" value="코인 입금" onClick={() => this.transferCoin()}/>
         <input type = "button" value="리스트" onClick={() => this.list()}/>
+        <br/>
+        <input type = "button" value="거래내역 기록" onClick={() => this.setTardinessTransfer()}/>
+        <input type = "button" value="거래내역 보가" onClick={() => this.getTardinessTransfer()}/>
       </div>
     );
   }
