@@ -95,6 +95,7 @@ class StudyMake extends Component {
         return account_id;
         // this.createTheStudy(0,account_num, 'person', 1, 40);
     }
+
     // 블록체인 계좌생성 후 DB에 account_list에 삽입. 
     callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw,_study_id) => {
         const url = '/api/createAccount';
@@ -106,6 +107,7 @@ class StudyMake extends Component {
             study_id : _study_id
         });
     }
+    
     // 매개변수로 들어온 _account_id에게 ether 지급.
     chargeTheCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
@@ -420,9 +422,9 @@ class StudyMake extends Component {
                             <textarea className="form-control" id="study_make_long_desc" rows="7" cols="50" name='study_desc' value={this.state.study_desc}  onChange={this.handleValueChange}></textarea>
                         </div>
                         <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_study_make">STUDY 생성</button>
-                        
+
                     </form>
-                    
+
                 </div>
             </div>
         );

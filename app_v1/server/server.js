@@ -200,7 +200,7 @@ app.post('/api/studyItems/leader', (req, res) => {
 });
 
 // 회원가입
-app.post('/api/signup', parser, (req, res) => {
+app.post('/api/signup', (req, res) => {
     let sql =`INSERT INTO person_info VALUES (?,?,?);`;
     let personId  = req.body.personId;
     let personPw = req.body.personPw;
@@ -287,7 +287,7 @@ app.post('/api/coinManagement/loadAccount', (req, res) => {
 });
 
 // 출석체크 최초 출석자인지 확인
-app.post('/api/community/isFirstAttend', parser, (req, res) => {
+app.post('/api/community/isFirstAttend', (req, res) => {
     let sql = `SELECT * FROM attendance_check 
                 WHERE study_id = ? AND attendance_start_date IN (SELECT attendance_start_date
                 FROM attendance_check WHERE study_id = ? AND attendance_start_date = ?) 
@@ -306,7 +306,7 @@ app.post('/api/community/isFirstAttend', parser, (req, res) => {
 });
 
 // 출석 여부에 따른 DB 삽입
-app.post('/api/community/isAttendStatus', parser, (req, res) => {
+app.post('/api/community/isAttendStatus', (req, res) => {
     let sql =`INSERT INTO attendance_check VALUES (?, ?, ?, ?, ?, ?);`;
 
     let study_id = req.body.study_id;
@@ -322,6 +322,44 @@ app.post('/api/community/isAttendStatus', parser, (req, res) => {
             res.send(rows); 
         }
     );
+});  
+
+// 자신의 출석 여부에 따라 달라지는 버튼 색
+app.post('/api/community/isAttendanceRateBtn', (req, res) => {
+    let sql =` SELECT is_attendance FROM attendance_check WHERE study_id = ? AND person_id = ? AND attendance_start_date = ? ;`;
+    
+    let study_id = req.body.study_id;
+    let user_id = req.body.user_id;
+    let attendance_start_date = req.body.attendance_start_date;
+
+    let params = [study_id, user_id, attendance_start_date];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});  
+
+// DB에서 해당 스터디 최근 날짜 불러오기
+app.post('/api/community/getQuizDate', (req, res) => {
+    let sql =` SELECT is_attendance FROM attendance_check WHERE study_id = ? AND person_id = ? AND attendance_start_date = ? ;`;
+    
+    let study_id = req.body.study_id;
+
+    // return post(url, {
+    //     study_id: this.state.studyId
+    // }); 
+
+    let params = [study_id, user_id, attendance_start_date];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
 });
+
+    // // DB에서 해당 스터디 최근 날짜 불러오기
+    // getQuizDate = () =>{
+    //     const url = '/api/community/getQuizDate';
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -17,10 +17,9 @@ class SignUp extends Component {
     }
 
     handleFormSubmit = (e) => {
-        // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
 
-         //  Pw1과 Pw2 같은지 판별한 후 같은 경우만 DB에 삽입
+         //  Pw와 Pw2가 같은지 판별한 후 같은 경우만 DB에 삽입
          if(this.state.personPw === this.state.personPw2){
             this.callSignUpOverlapApi();
         } else{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './AttendanceCheck.css';
+import './AboutCommunity.css';
 import $ from 'jquery';
 import { post } from 'axios';
 // 블록체인
@@ -9,8 +9,8 @@ import StudyGroup from "../contracts/StudyGroup.json";
 class AttendanceCheck extends Component {
     render() {
         return (
-            <div className="main_attendance">
-                <div className="content_attendance">
+            <div className="main">
+                <div className="content">
                     <Attendance />
                 </div>
             </div>
@@ -29,12 +29,80 @@ class Attendance extends Component {
             first_start_date_view: '', // 최초 출석자 날짜
             first_start_time_view: '', // 최초 출석자 시각
             is_attendance: 0, // 출석 여부
+            edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간          
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
             web3: null
         }
     }
+
+    componentWillMount = async () => {
+
+        this.initContract();
+    };
+
+    componentDidMount= async () => {
+        this.make_tag();
+        this.initContract().then(()=>{
+            this.getUserNameSession().then(()=>{
+                this.getEnterSession().then(()=>{
+                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
+
+                    // 출석 시작 버튼을 누른 오늘 시간
+                    let today_date = new Date();
+                    let today_year_str = String(today_date.getFullYear());
+                    let today_month_str = String(today_date.getMonth()+1);
+                    let today_day_str = String(today_date.getDate());
+
+                    let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
+                    
+                    // 최초 출석자인지 확인
+                    this.isFirstAttend(today_date_view).then((res)=>{
+                        let today_attendance = res.data.length;
+                        // 스터디가 출석체크를 진행 중인 경우
+                        if(today_attendance !== 0){
+                            console.log(res.data);
+                            let first_attend_date = res.data[0].attendance_start_date;
+                            let first_attend_time = res.data[0].attendance_start_time;
+                            let first_attend_valid_time = res.data[0].valid_time;
+
+                            console.log(first_attend_date,first_attend_time);
+
+                            let first_attend_dateTime = new Date(first_attend_date+' '+first_attend_time).getTime();
+                                        
+                            var hours = 9 + Math.floor((first_attend_dateTime % (1000 * 60 * 60 * 24)) / (1000*60*60));
+
+                            if(hours > 24){
+                                hours = hours - 24;
+                            }
+
+                            var miniutes = Number(first_attend_valid_time) + Math.floor((first_attend_dateTime % (1000 * 60 * 60)) / (1000*60));
+                            if(miniutes > 60){
+                                hours = hours + 1;
+                                miniutes = miniutes - 60;
+                            }
+                            var seconds = 59;
+
+                            let valid_add_time = new Date(first_attend_date+' '+hours+':'+ miniutes+':'+seconds);
+                            
+                            this.setState ({
+                                edDate: valid_add_time // 타이머 종료 시간을 출석 시간 마지노선 시간으로 설정
+                            });
+                           
+                            // 최초 출석자 아니면 시간 선택 불가
+                            $('#valid_attendance_time').val(first_attend_valid_time); 
+                            $('#valid_attendance_time').attr("disabled","disabled");  
+
+                            // 출석 유효시간 측정 타이머
+                            this.setAttendance(this.state.studyId, this.state.userId);       
+                        }
+                    });
+                });
+            });
+        });
+    }
+
     initContract = async () => {
 
         try {
@@ -85,35 +153,20 @@ class Attendance extends Component {
         }
     };
 
-    // .sol파일의 studyMember구조체 load
+    // StudyGroup.sol파일의 studyMember구조체 load
     getPersonInfoOfStudy= async (_study_id, _person_id) => {
-    const { studyGroupInstance, web3} = this.state; 
-    let Ascii_person_id = web3.utils.fromAscii(_person_id);
-    studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
-      var memberAddress =  result[0];
-      var person_id = web3.utils.toAscii(result[1]);
-      var study_id =  result[2];
-      var numOfCoins =  result[3];
-      console.log('memberAddress: ' + memberAddress);
-      console.log('person_id: ' + person_id);
-      console.log('study_id: ' + study_id);
-      console.log('numOfCoins: ' + numOfCoins);
-    });    
-  }
-
-    componentWillMount = async () => {
-
-        this.initContract();
-    };
-    componentDidMount= async () => {
-        this.make_tag();
-        this.initContract().then(()=>{
-            this.getUserNameSession().then(()=>{
-                this.getEnterSession().then(()=>{
-                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
-                });
-            });
-        });
+        const { studyGroupInstance, web3} = this.state; 
+        let Ascii_person_id = web3.utils.fromAscii(_person_id);
+        studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
+        var memberAddress =  result[0];
+        var person_id = web3.utils.toAscii(result[1]);
+        var study_id =  result[2];
+        var numOfCoins =  result[3];
+        console.log('memberAddress: ' + memberAddress);
+        console.log('person_id: ' + person_id);
+        console.log('study_id: ' + study_id);
+        console.log('numOfCoins: ' + numOfCoins);
+        });    
     }
 
     // 사용자 이름 session 불러오기
@@ -124,6 +177,7 @@ class Attendance extends Component {
             console.log("Sorry, your browser does not support Web Storage...");
         }
     }
+
     // 사용자 ID, 들어온 스터디 번호 불러오기
     getEnterSession = async () => {
         if (typeof(Storage) !== "undefined") {
@@ -135,7 +189,7 @@ class Attendance extends Component {
     }
 
     // 출석 유효시간 측정 타이머
-    setAttendance() {
+    setAttendance(_studyId, _userId) {
         $(document).ready(function() {
             tid = setInterval(function(){
                 msg_time();
@@ -151,11 +205,59 @@ class Attendance extends Component {
         let s_hour = stDate.getHours();
         let s_minute = stDate.getMinutes() + Number(this.state.valid_attendance_time);
         let s_second = stDate.getSeconds();
-        var edDate =  new Date(s_year+'-'+s_month+'-'+s_date+' '+s_hour+':'+s_minute+':'+s_second).getTime(); // 종료시간
+
+        // 출석체크 진행 중인 경우
+        if (this.state.edDate !== null) {  
+            var edDate = this.state.edDate.getTime();
+
+            $('#btn_attendance_check').val('출석 중'); 
+
+            isAttendanceRateBtn(_studyId, _userId).then((res)=>{
+                console.log(res.data);
+                
+                // 출석 결과가 DB에 삽입이 잘 된 경우
+                if(res.data.length !== 0){
+                    // 유효시간 끝나면 출석종료와 출석 완료 버튼 색 적용
+                    if(res.data[0].is_attendance === 1){
+                        $('#completion').text('출석 완료'); 
+                        $('#btn_attendance_check').val('출석 중'); 
+                        $('#btn_attendance_check').attr("disabled","disabled");
+                        $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
+                    }
+                }    
+            });
+        } 
+        // 출석체크가 진행중이지 않은 경우
+        else{
+            $('#btn_attendance_check').val('출석 중');  
+            $('#completion').text('출석 완료'); 
+            $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
+       
+            var edDate =  new Date(s_year+'-'+s_month+'-'+s_date+' '+s_hour+':'+s_minute+':'+s_second).getTime(); // 종료시간
+        }    
+
         stDate = stDate.getTime(); // 시작시간
-        
         var RemainDate = edDate - stDate; // 잔여시간
+
+        // 자신의 출석 여부에 따라 달라지는 버튼 색
+        async function isAttendanceRateBtn(_studyId, _userId){
+        const url = '/api/community/isAttendanceRateBtn';
+        
+        let start_date = new Date();
+        let s_year = String(start_date.getFullYear());
+        let s_month = String(start_date.getMonth()+1);
+        let s_date = String(start_date.getDate());
+
+        let start_date_view = s_year+'-'+s_month+'-'+s_date;
+
+        return post(url, {
+            study_id: _studyId,
+            user_id: _userId,
+            attendance_start_date: start_date_view
+            }); 
+        }
          
+        // 시간 감소시켜 화면에 출력하는 메소드
         function msg_time() {
             //var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
             var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
@@ -167,11 +269,39 @@ class Attendance extends Component {
 
             if (RemainDate < 1000) {
                 clearInterval(tid);   // 타이머 해제 
+                $('#btn_attendance_check').val('출석 종료'); 
 
-                // 텍스트 - 출석 미완료
-                // this.isAttendStatus(0);
-                // 출석 미완료
-                $('#completion').text('출석 미완료'); 
+                var m = "00분 00초"; // 남은 시간 text형태로 변경
+                $('#timer').text(m);
+                
+                // 타이머 작동하면 시간 선택 불가
+                $('#valid_attendance_time').attr("disabled","disabled");    
+                // 타이머 작동하면 버튼 선택 불가 
+                $('#btn_attendance_check').attr("disabled","disabled");
+
+                isAttendanceRateBtn(_studyId, _userId).then((res)=>{
+                    console.log(res.data);
+                    
+                    // 출석 결과가 DB에 삽입이 잘 된 경우
+                    if(res.data.length !== 0){
+                        
+                        // 유효시간 끝나면 출석종료와 출석 완료 버튼 색 적용
+                        if(res.data[0].is_attendance === 1){
+                            $('#completion').text('출석 완료'); 
+                            $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
+                        }
+                        // 유효시간 지났는데도 출석체크가 안된 경우 
+                        else {
+                            $('#completion').text('출석 미완료'); 
+                            $('#completion').attr('style',  'background-color:rgb(255, 80, 80) !important; border-color:rgb(255, 80, 80) !important;');
+                        }
+                    }
+                    // 출석 결과가 DB에 삽입이 잘 안 된 경우 
+                    else{
+                        $('#completion').text('출석 미완료');  
+                        $('#completion').attr('style',  'background-color:rgb(255, 80, 80) !important; border-color:rgb(255, 80, 80) !important;');
+                    }
+                });
             } else{
                 RemainDate = RemainDate - 1000; // 남은시간 - 1초
             }
@@ -182,21 +312,32 @@ class Attendance extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
 
-        // 출석 유효시간 측정 타이머 
-        this.setAttendance(); 
         // 타이머 작동하면 시간 선택 불가
-        $('#valid_attendance_time').attr("disabled","disabled");
+        $('#valid_attendance_time').attr("disabled","disabled");    
         // 타이머 작동하면 버튼 선택 불가 
         $('#btn_attendance_check').attr("disabled","disabled");
+        $('#btn_attendance_check').val('출석 중');  
+
+        let start_date = new Date();
+        let s_year = String(start_date.getFullYear());
+        let s_month = String(start_date.getMonth()+1);
+        let s_date = String(start_date.getDate());
+        let start_date_view = s_year+'-'+s_month+'-'+s_date;
 
         // 최초 출석자인지 확인
-        this.isFirstAttend().then((res)=>{
-            let numOfAttendance = res.data.length;
-            
+        this.isFirstAttend(start_date_view).then((res)=>{
+            let num_of_attendance = res.data.length;
+            $('#completion').text('출석 완료'); 
+            $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
+        
             // 최초 출석자인 경우
-            if(numOfAttendance === 0){
+            if(num_of_attendance === 0){
                 this.isAttendStatus(1).then((res)=>{
                     console.log(res);
+                    // 출석 유효시간 측정 타이머 
+                    this.setAttendance(this.state.studyId, this.state.userId); 
+                    // $('#completion').text('출석 완료');  
+                    // $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');          
                 });
             } 
 
@@ -219,23 +360,16 @@ class Attendance extends Component {
                     miniutes = miniutes - 60;
                 }
                 
-                // var seconds = Math.floor((startMoment % (1000 * 60)) / 1000);
-                var seconds = 59;
+                var seconds = Math.floor((startMoment % (1000 * 60)) / 1000);
+                // var seconds = 59;
 
                 let valid_add_time = new Date(startDate+' '+hours+':'+ miniutes+':'+seconds);
                 let my_attentdance_dateTime = new Date();
 
                 // console.log(valid_add_time);
 
-                // 최초 출석자가 아닌 사람이 출석 유효시간보다 늦은 경우
-                if( my_attentdance_dateTime > valid_add_time){
-
-                    alert('출석 불가');
-                } 
-                // 제 시간에 출석한 경우
-                else{
-                    alert('출석 완료');
-                    // 유효 시간 내에 출석을 완료한 경우
+                // 유효 시간 내에 출석을 완료한 경우
+                if( my_attentdance_dateTime <= valid_add_time){
                     let start_date = new Date(startDate+' '+startTime);
                     let s_year = String(start_date.getFullYear());
                     let s_month = String(start_date.getMonth()+1);
@@ -250,13 +384,16 @@ class Attendance extends Component {
 
                     this.setState ({
                         first_start_date_view: start_date_view, // 최초 출석자 날짜
-                        first_start_time_view: start_time_view // 최초 출석자 시각
+                        first_start_time_view: start_time_view, // 최초 출석자 시각
+                        valid_attendance_time: res.data[0].valid_time
                     });
                    
                     // 출석 완료
                     this.isAttendStatus(1);
-                    // 출석 완료
-                    $('#completion').text('출석 완료');                   
+
+                    $('#btn_attendance_check').val('출석 중');  
+                    $('#completion').text('출석 완료'); 
+                    $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');
                 }
             }
         });
@@ -269,20 +406,12 @@ class Attendance extends Component {
     }
 
     // 최초 출석자인지 확인
-    isFirstAttend = async () => {
+    isFirstAttend = async (_start_date_view) => {
         const url = '/api/community/isFirstAttend';
         
-        let start_date = new Date();
-        let s_year = String(start_date.getFullYear());
-        let s_month = String(start_date.getMonth()+1);
-        let s_date = String(start_date.getDate());
-        let start_date_view = s_year+'-'+s_month+'-'+s_date;
-
-        console.log(this.state.studyId+'/'+start_date_view);
-
         return post(url, {
             study_id: this.state.studyId,
-            attendance_start_date: start_date_view
+            attendance_start_date: _start_date_view
         });
     }
 
@@ -327,7 +456,7 @@ class Attendance extends Component {
             $("#valid_attendance_time").append('<option>'+i+'</option>' + '분');
         }
     }
-
+    
     render() {
         return(
             <div className="div_attendance_check">

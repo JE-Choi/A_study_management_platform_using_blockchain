@@ -15,7 +15,6 @@ class Login extends Component {
     }
 
     handleFormSubmit = (e) => {
-        // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault(); 
     
         this.callLoginApi().then((response) => {
@@ -37,10 +36,7 @@ class Login extends Component {
                     setTimeout(function() { 
                         window.location.reload();
                     }, 300);
-                            
-                    //window.history.back(); // 임시 이제 빼도 가능.
                     // 최종적으로 alert("로그인 성공"); 1학기 때 뺄 것.
-                    
                 } else{
                     this.setState ({
                         userId: '',
@@ -60,7 +56,6 @@ class Login extends Component {
 
     handleValueChange = (e) => {
         let nextState = {};
-        console.log(e.target.name + ': ' + e.target.value);
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }

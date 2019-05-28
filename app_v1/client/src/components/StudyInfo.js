@@ -8,12 +8,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './PromptModal.css';
 import $ from 'jquery';
 
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
-import { YearView } from 'react-calendar';
-
+// import { YearView } from 'react-calendar';
 
 class StudyInfo extends Component {
 
@@ -206,17 +204,12 @@ class StudyInfo extends Component {
 
         setTimeout(()=>{
             confirmAlert({
-                title: '패스워드를 입력해주세요.',
+                title: '비밀번호를 입력해주세요.',
                 // message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
                 buttons: [
                   {
-                      label: '네',
-                    //   onClick: () => this.handleFormOkSubmit()
-                  },
-                //   {
-                //       label: '아니요',
-                //       onClick: () => alert('아니오')
-                //   }
+                      label: '확인'
+                  }
                 ]
               })
         },100);
