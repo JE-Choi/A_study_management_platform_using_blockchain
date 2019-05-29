@@ -22,6 +22,7 @@ class StudyMake extends Component {
             study_coin: '1',
             person_id: '', 
             study_id: '',
+            person_name:'',
 
             // 블록체인
             studyGroupInstance:null,
@@ -176,11 +177,11 @@ class StudyMake extends Component {
                                 study_id: insert_id
                             });
                             this.chargeTheCoin(account_id).then(()=>{
-                                // .sol파일의 studyMember구조체 생성
+                                // StudyGroup.sol파일의 studyMember구조체 생성
                                 let person_id = this.state.person_id;
                                 //let memberAddress = account_num;
                                 let join_coin = this.state.study_coin;
-                                this.createMemberItem(this.state.study_id , person_id, account_id, join_coin);
+                                this.createMemberItem(this.state.study_id , person_id, account_id, join_coin,this.state.person_name);
                                 this.props.history.push('/mainPage'); 
                             });
                         });
@@ -231,6 +232,7 @@ class StudyMake extends Component {
     getSession = () => {
         if (typeof(Storage) !== "undefined") {
             this.setState({person_id : sessionStorage.getItem("loginInfo")});
+            this.setState({person_name : sessionStorage.getItem("loginInfo_userName")});
         } else {
             console.log("Sorry, your browser does not support Web Storage...");
         }
@@ -342,13 +344,13 @@ class StudyMake extends Component {
 
 
     // StudyGroup.sol파일의 studyMember구조체 생성
-    createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins) => {
+    createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins,_person_name) => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let _memberAddress = myAccount[_account_id];
         // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
         let Ascii_person_id =  web3.utils.fromAscii(_person_id); 
-        console.log(_study_id,_person_id,_memberAddress,_numOfCoins);
-        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,_numOfCoins).send(
+        let Ascii_person_name =  web3.utils.fromAscii(_person_name); 
+        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,web3.utils.toWei(String(_numOfCoins)),Ascii_person_name).send(
         {
                 from: myAccount[0], // 관리자 계좌
                 gas: 3000000 

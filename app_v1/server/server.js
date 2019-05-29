@@ -49,7 +49,7 @@ app.get('/api/studyItems', (req, res) => {
     );
 });
 
-// 스터디에 가입한 현재 인원수
+// 스터디에 가입한 현재 사람 정보
 app.post('/api/studyItems/current_people', (req, res) => {
     let sql = `SELECT * FROM study_join WHERE study_id = ?`;
 
@@ -63,7 +63,7 @@ app.post('/api/studyItems/current_people', (req, res) => {
     );
 });
 
-// 스터디에 가입한 현재 인원수
+// 스터디에 가입한 현재 사람 정보
 app.post('/api/studyItems/view_currentPeople', (req, res) => {
     let sql = `SELECT * FROM study_join WHERE study_id = ?`;
 
@@ -357,6 +357,39 @@ app.post('/api/community/getQuizDate', (req, res) => {
         }
     );
 });
+
+    // 출석 하지 않는 사람들 추출
+    app.post('/api/community/isNotAttend', parser, (req, res) => {
+        let sql =` SELECT person_id FROM study_join WHERE study_id = ? AND person_id 
+            NOT IN (SELECT person_id FROM attendance_check 
+            WHERE study_id = ? AND attendance_start_date IN (SELECT attendance_start_date
+            FROM attendance_check WHERE study_id = ? AND attendance_start_date = ?) 
+            ORDER BY attendance_start_date DESC, attendance_start_time);`;
+
+        let study_id = req.body.study_id;
+        let attendance_start_date = req.body.attendance_start_date;
+
+        let params = [study_id, study_id,study_id, attendance_start_date];
+        connection.query(sql, params, 
+            (err, rows, fields) => {
+                res.send(rows); 
+            }
+        );
+    });
+
+    // 지각 거래 발생 유무 확인
+    app.post('/api/community/status_of_tardiness_transaction', parser, (req, res) => {
+        let sql =`SELECT * FROM status_of_tardiness_transaction where study_id = ?;`;
+
+        let study_id = req.body.study_id;
+
+        let params = [study_id];
+        connection.query(sql, params, 
+            (err, rows, fields) => {
+                res.send(rows); 
+            }
+        );
+    });
 
     // // DB에서 해당 스터디 최근 날짜 불러오기
     // getQuizDate = () =>{

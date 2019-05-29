@@ -26,6 +26,7 @@ class StudyInfo extends Component {
             account_number: '',
             joinStudy: 1,
             JoinShowBtn: 0,
+            person_name:'',
 
             // 스터디 정보 불러올 때 사용
             study_name: '' ,
@@ -138,6 +139,7 @@ class StudyInfo extends Component {
     getSession = () => {
         if (typeof(Storage) !== "undefined") {
             this.setState({person_id: sessionStorage.getItem("loginInfo")});
+            this.setState({person_name : sessionStorage.getItem("loginInfo_userName")});
         } else {
             console.log("Sorry, your browser does not support Web Storage...");
         }
@@ -165,11 +167,20 @@ class StudyInfo extends Component {
             // account_number: '11-22'
         }).then(()=>{
             this.createAccount(this.props.match.params.id).then((account_id)=>{
-                this.chargeTheCoin(account_id);
-                setTimeout(()=>{
-                    this.studyOkJoinConfirm();
-                },100);
-                this.props.history.push('/mainPage');
+
+                this.chargeTheCoin(account_id).then(()=>{
+                    this.chargeTheCoin(account_id).then(()=>{
+                        // StudyGroup.sol파일의 studyMember구조체 생성
+                        let person_id = this.state.person_id;
+                        //let memberAddress = account_num;
+                        let join_coin = this.state.study_coin;
+                        this.createMemberItem(this.props.match.params.id, person_id, account_id, join_coin, this.state.person_name);
+                        setTimeout(()=>{
+                            this.studyOkJoinConfirm();
+                        },100);
+                        this.props.history.push('/mainPage');
+                    });
+                });
             });
         })
     }
@@ -384,6 +395,20 @@ class StudyInfo extends Component {
           console.error(error);
         }
     };
+    // StudyGroup.sol파일의 studyMember구조체 생성
+    createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins,_person_name) => {
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+        let _memberAddress = myAccount[_account_id];
+        // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+        let Ascii_person_id =  web3.utils.fromAscii(_person_id); 
+        let Ascii_person_name =  web3.utils.fromAscii(_person_name); 
+        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,web3.utils.toWei(String(_numOfCoins)),Ascii_person_name).send(
+        {
+                from: myAccount[0], // 관리자 계좌
+                gas: 3000000 
+        }
+        );
+    }
 
     render() {
         

@@ -8,6 +8,7 @@ contract StudyGroup {
         bytes32 person_id; // solidity는 string에 최적화되어 있지 않고, bytes32에 최적화
         uint study_id;// 가입할 study_id
         uint numOfCoins; // 해당 스터디 안에서 자신만의 코인
+        bytes32 person_name; // 사용자 이름
     }
 
     // 스터디 구조체
@@ -18,10 +19,11 @@ contract StudyGroup {
 
     // 지각에 따른 코인 차감
     struct tardinessTransfer {
-        bytes32 _sender; // 지각한 사람의 person_name
-        bytes32 _receiver; // 받는 사람의 person_name
-        uint _coin; // 지각할 때 빠져나갈 코인
-        bytes32 _date; // 지각한 날짜
+        bytes32 senderId; // 지각한 사람의 person_id
+        bytes32 sendName; // 지각한 사람의 person_name
+        bytes32 receiverName; // 받는 사람의 person_name
+        uint coin; // 지각할 때 빠져나갈 코인
+        bytes32 date; // 지각한 날짜
     }
     // 스터디원 배열
     // memberInfo 는 uint 타입인 스터디 id에서 bytes32 타입인 person_id로 값을 얻는데, 
@@ -29,9 +31,10 @@ contract StudyGroup {
     // 스터디 가입, 생성시 회원 정보 저장.
     mapping(uint => mapping(bytes32 => studyMember)) memberInfo;
     // (key, value) = ( _sender의 person_name, 그 사람의 거래 목록들)
-    mapping(bytes32 => tardinessTransfer[]) getTardinessTransferList; 
-    
-    
+    // mapping(bytes32 => tardinessTransfer[]) getTardinessTransferList; 
+    // 해당 스터디의 특정 스터디원의 거래 내역
+    // mapping(uint => mapping(bytes32 => tardinessTransfer[])) getTardinessTransferList;
+    mapping(uint => tardinessTransfer[]) getTardinessTransferList;
     //mapping(uint => mapping(uint => LogOfTardinessTransfer)) LogOfTardinessTransfer_mapping;
 
     
@@ -44,29 +47,43 @@ contract StudyGroup {
     //     bytes32 _date
     // );
     
-
     // 지각에 대한 코인 차감 거래 발생
-    function setTardinessTransfer(bytes32 _sender,bytes32 _receiver, uint _coin, bytes32 _date, bytes32 senderPerson_id,bytes32 receiverPerson_id, uint study_id) public payable {
-        tardinessTransfer memory transferItem = tardinessTransfer(_sender, _receiver, _coin, _date); // 메세지 저장할 객체 생성
+    function setTardinessTransfer(bytes32 _senderId, bytes32 _receiverId, uint _coin, bytes32 _date, uint _study_id) public payable {
+        studyMember memory senderInfo = memberInfo[_study_id][_senderId];
+        studyMember memory receiverInfo = memberInfo[_study_id][_receiverId];
+        // 메세지 저장할 객체 생성
+        // tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
+        tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
+        
+
         // 지각자 처리
-        uint coin_of_sender = memberInfo[study_id][senderPerson_id].numOfCoins; // 지각자의 코인
-        memberInfo[study_id][senderPerson_id].numOfCoins = coin_of_sender - _coin; // 지각자의 코인 감소
+        uint coin_of_sender = senderInfo.numOfCoins; // 지각자의 코인
+        senderInfo.numOfCoins = coin_of_sender - _coin; // 지각자의 코인 감소
         
         // 지각 아닌 사람 처리
-        uint coin_of_receiver = memberInfo[study_id][receiverPerson_id].numOfCoins; // 지각아닌 사람의 코인
-        memberInfo[study_id][receiverPerson_id].numOfCoins = coin_of_receiver + _coin; // 지각아닌 사람의 코인 증가
+        uint coin_of_receiver = receiverInfo.numOfCoins; // 지각아닌 사람의 코인
+        receiverInfo.numOfCoins = coin_of_receiver + _coin; // 지각아닌 사람의 코인 증가
         
         // 객체에 지각한 내용 저장 
-        getTardinessTransferList[_sender].push(transferItem); 
+        // 해당 스터디에 대한 지각 정보
+        getTardinessTransferList[_study_id].push(transferItem); 
         
-        // 실제 거래 부분
-        address receiverAddress = memberInfo[study_id][receiverPerson_id].memberAddress;
+        // // 실제 거래 부분
+        address receiverAddress = receiverInfo.memberAddress;
         receiverAddress.transfer(msg.value);
+        // address receiverAddress = 0x276dE4621e52355F71144134c118111B9a83e938;
+        // //memberInfo[study_id][receiverPerson_id].memberAddress;
+        // receiverAddress.transfer(msg.value);
     }
 
     // 지각에 대한 코인 차감 거래 발생 정보 얻기 
-    function getTardinessTransfer (bytes32 _sender) view external returns(tardinessTransfer[],uint) {
-        tardinessTransfer[] memory transferList = getTardinessTransferList[_sender]; // 메세지 객체 저장
+    function getTardinessTransfer (uint _study_id) view external returns(tardinessTransfer[],uint) {
+
+    // function getTardinessTransfer (uint _study_id, bytes32 _senderId) view external returns(tardinessTransfer) {
+        // 해당 스터디의 모든 지각 정보
+        tardinessTransfer[] memory transferList = getTardinessTransferList[_study_id]; // 메세지 객체 저장
+        // tardinessTransfer memory transferList = getTardinessTransferList[_study_id][_senderId] ; // 메세지 객체 저장
+        
         return (transferList,transferList.length);
     }
 
@@ -89,9 +106,9 @@ contract StudyGroup {
     }
     
     // 다차원 mapping 저장 -> 특정 스터디의 특정 회원의 회원정보를 저장.
-    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, uint _numOfCoins) public {
+    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, uint _numOfCoins, bytes32 _person_name) public {
         //memberInfo[_index] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins);
-        memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins);
+        memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins, _person_name);
     }
 
     // 관리자 계좌에서 가입자에게 코인 충전

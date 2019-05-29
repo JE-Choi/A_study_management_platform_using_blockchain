@@ -31,7 +31,9 @@ class AboutCoin extends Component{
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
-            web3: null
+            web3: null,
+
+            transactionsList : null
         }
     }
     initContract = async () => {
@@ -59,7 +61,64 @@ class AboutCoin extends Component{
           //   Set web3, accounts, and contract to the state, and then proceed with an
           //   example of interacting with the contract's methods.
           this.setState({ web3, myAccount, studyGroupInstance: instance});
+        // let transactions_list = new Array();
+        //   instance.methods.getTardinessTransfer(this.state.studyId).call().then(function(result) {
+            
+        //     let transactions = result[0];
+        //     let transactions_length = result[1];
+        //     console.log(transactions);
+        //     console.log(transactions_length);
+        //     for(let i = 0; i < transactions.length; i++){
+        //         var transactions_list_sub = new Array();
+            
+        //         let transactions_web3_senderId = web3.utils.toAscii(transactions[i].senderId);
+        //         let transactions_web3_sendName =  web3.utils.toAscii(transactions[i].sendName);
+        //         let transactions_web3_receiverName =  web3.utils.toAscii(transactions[i].receiverName);
+        //         let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
+        //         let transactions_web3_date = web3.utils.toAscii(transactions[i].date);
+
+
+        //         // let transactions_web3_senderId = transactions[i].senderId;
+        //         // let transactions_web3_sendName = transactions[i].sendName;
+        //         // let transactions_web3_receiverName = transactions[i].receiverName;
+        //         // let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
+        //         // let transactions_web3_date = transactions[i].date;
+                
+        //         transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
+                
+        //         transactions_list.push(transactions_list_sub);
+        //     }
+        //     // return transactions_list;
+        //     // this.setState({
+        //     //     transactionList : transactions_list
+        //     // });
+        //     for(let i = 0; i < transactions_list.length; i++){
+        //     // 블록체인에 date32타입으로 저장되었었기 때문에 변환을 거쳐야 메세지를 볼 수 있다.
+        //     // let transactions_web3_senderId = web3.utils.toAscii(transactions_list[i][0]);
+        //     // let transactions_web3_sendName =  web3.utils.toAscii(transactions_list[i][1]);
+        //     // let transactions_web3_receiverName =  web3.utils.toAscii(transactions_list[i][2]);
+        //     // let transactions_web3_coin = transactions_list[i][3];
+        //     // let transactions_web3_date = web3.utils.toAscii(transactions_list[i][4]);
+
+            
+        //     let transactions_web3_senderId = transactions_list[i][0];
+        //     let transactions_web3_sendName = transactions_list[i][1];
+        //     let transactions_web3_receiverName = transactions_list[i][2];
+        //     let transactions_web3_coin = transactions_list[i][3];
+        //     let transactions_web3_date = transactions_list[i][4];
+
+        //     console.log(transactions_web3_senderId); 
+        //     console.log(transactions_web3_sendName); 
+        //     console.log(transactions_web3_receiverName);
+        //     console.log(transactions_web3_coin);
+        //     console.log(transactions_web3_date);
+        //     }
           
+        //   });
+
+        //   this.setState({
+        //     transactionsList : transactions_list
+        // });
             
           this.getUserNameSession().then(()=>{
             this.getEnterSession().then(()=>{
@@ -88,12 +147,16 @@ class AboutCoin extends Component{
     };
 
 
-    componentDidMount= async () => {
+    componentDidMount = async () => {
 
         this.initContract().then(()=>{
             this.getUserNameSession().then(()=>{
                 this.getEnterSession().then(()=>{
                     this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
+                    
+                    this.getTardinessTransfer().then(()=>{
+                        this.transactionsListFiltering();
+                    });
                 });
             });
         });
@@ -133,12 +196,91 @@ class AboutCoin extends Component{
             var memberAddress =  result[0];
             var person_id = web3.utils.toAscii(result[1]);
             var study_id =  result[2];
-            var numOfCoins =  result[3];
+            var numOfCoins = web3.utils.fromWei(String(result[3]), 'ether');
+            var person_name =  web3.utils.toAscii(result[4]);
             console.log('memberAddress: ' + memberAddress);
             console.log('person_id: ' + person_id);
             console.log('study_id: ' + study_id);
             console.log('numOfCoins: ' + numOfCoins);
+            console.log('person_name: ' + person_name);
         });    
+    }
+    getTardinessTransfer = async () => {
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+        let transactions_list = null;
+        
+        let transactions = null;
+        await studyGroupInstance.methods.getTardinessTransfer(this.state.studyId).call().then(function(result) {
+            transactions_list = new Array();
+       
+            transactions = result[0];
+            // console.log(result[0][0]);
+            for(let i = 0; i < transactions.length; i++){
+                let transactions_list_sub = new Array();
+        
+                let transactions_web3_senderId = web3.utils.hexToUtf8(transactions[i].senderId);
+                let transactions_web3_sendName =  web3.utils.hexToUtf8(transactions[i].sendName);
+                let transactions_web3_receiverName =  web3.utils.hexToUtf8(transactions[i].receiverName);
+                let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
+                //web3.utils.hexToUtf8(transactions[i].date)
+                let transactions_web3_date = web3.utils.hexToUtf8(transactions[i].date);
+
+                transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
+                
+                transactions_list.push(transactions_list_sub);
+            }
+            
+        });
+        this.setState({
+            transactionsList : transactions_list
+        });
+    }
+
+    // 스터디 거래내역을 접속한 사용하에 맞게 필터링
+    transactionsListFiltering = async () => {
+        // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
+        let transactions_list_before_filtering  = this.state.transactionsList;
+        console.log(this.state.userName);
+        // 접속자가 _sender인 값들을 뽑아서 저장
+        let send_coin_list = new Array();
+        
+        for(let i = 0; i < transactions_list_before_filtering.length; i++){
+            let senderName = transactions_list_before_filtering[i][1];
+            
+            if(senderName === this.state.userName){
+                transactions_list_before_filtering[i].push('sender');
+                let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
+                console.log(date);
+                transactions_list_before_filtering[i].push(date);
+                send_coin_list.push(transactions_list_before_filtering[i]);
+            }
+        }
+
+        let receive_coin_list = new Array();
+        for(let i = 0; i < transactions_list_before_filtering.length; i++){
+            let receiverName = transactions_list_before_filtering[i][2];
+            
+            if(receiverName === this.state.userName){
+                transactions_list_before_filtering[i].push('receiver');
+                let date = new Date(transactions_list_before_filtering[0][4]+' 00:00:01');
+                transactions_list_before_filtering[i].push(date);
+                receive_coin_list.push(transactions_list_before_filtering[i]);
+            }
+        }
+
+        // 사용자가 sender인 receiver인 배열 합치기
+        let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
+        // console.log('send_coin_list');
+        // console.log(send_coin_list);
+        // console.log('receive_coin_list');
+        // console.log(receive_coin_list);
+        
+        // 날짜순으로 정렬
+        transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
+        console.log(transactions_list_atfer_filtering);
+        this.setState({
+            transactionsList : transactions_list_atfer_filtering
+        });
     }
 
     render(){
@@ -148,30 +290,103 @@ class AboutCoin extends Component{
                 <div className="div_account_number">
                     <input type="text" className="form-control account_number" disabled/>
                 </div>
+              
                 <div className="coin_management_content">
                     <span className="coin_status_text">잔여 코인</span>
                     <span className="btn btn-danger" id="sum_of_coin"></span> 
                 </div>
                 <div className="content_coin_usage">
-                    <div className="div_coin_usage">
-                        <span className="date_of_use">19 / 03 / 02</span>
-                        <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-0.5</span>
-                    </div>
-                    <div className="div_coin_usage">
-                        <span className="date_of_use">19 / 03 / 23</span>
-                        <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-0.5</span>
-                    </div>
-                    <div className="div_coin_usage">
-                        <span className="date_of_use">19 / 04 / 13</span>
-                        <span className="desc_of_use">지각</span>
-                        <span className="used_coin">-0.5</span>
-                    </div>
+              
+                { this.state.transactionsList ? this.state.transactionsList.map(c => {
+                    if(c[5] === 'sender'){
+                    return (
+                        <TransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                        )
+                    } else{
+                        return (
+                        <TransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                    )
+                    }
+                  
+                })
+                  : "" }
+               
                 </div>
-            </div>
+                </div>
         );
     }
 }
+
+class TransferSenderInfoItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            current_num_people: 0,
+            start_date_view:'',
+            end_date_view:''
+        }
+    }
+
+    componentDidMount() {
+       
+    }
+
+
+    // componentWillMount(){
+    //     let start_date = new Date(this.props.start_date);
+    //     let end_date = new Date(this.props.end_date);
+
+    //     let s_year = String(start_date.getFullYear());
+    //     let s_month = String(start_date.getMonth()+1);
+    //     let s_date = String(start_date.getDate());
+    //     let start_date_view = s_year+'-'+s_month+'-'+s_date;
+
+    //     let e_year = String(end_date.getFullYear());
+    //     let e_month = String(end_date.getMonth()+1);
+    //     let e_date = String(end_date.getDate());
+    //     let end_date_view = e_year+'-'+e_month+'-'+e_date;
+    //     this.setState({
+    //         start_date_view: start_date_view,
+    //         end_date_view: end_date_view
+    //     });
+    // }
+ 
+    render() {
+        return (
+          <div>
+                <div className="div_coin_usage">
+                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
+                <span className="date_of_use">{this.props.date}</span>
+                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
+                <span className="desc_of_sender_use">지각</span>
+                <span className="used_coin">-{this.props.coin}</span>
+            </div>
+            <div className = "coin_clear"></div>
+        </div>
+            
+        )
+    }
+}
+
+class TransferReceiverrInfoItem extends React.Component {
+
+    render() {
+        return (
+          <div>
+                <div className="div_coin_usage">
+                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
+                <span className="date_of_use">{this.props.date}</span>
+                <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>지각 코인</span>
+                {/* <span className="desc_of_use">지각</span> */}
+                <span className="used_coin">+{this.props.coin}</span>
+            </div>
+            <div className = "coin_clear"></div>
+        </div>
+            
+        )
+    }
+}
+
 
 export default CoinManagement;

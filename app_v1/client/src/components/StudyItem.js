@@ -40,6 +40,7 @@ class StudyItem extends React.Component {
         }).catch(err => console.log(err));
     }
 
+    // 스터디에 가입한 현재 사람 정보 얻어오는 부분
     callCurrentPeopleInfo = async () => {
         const url = '/api/studyItems/current_people';
 

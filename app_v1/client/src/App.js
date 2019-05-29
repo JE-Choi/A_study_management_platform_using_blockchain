@@ -12,7 +12,7 @@ import Login from './components/Login';
 import MyPage from './components/UserPage';
 import RenameStudy from './components/RenameStudy';
 import CommunityMenu from './components/CommunityMenu';
-import BeginningPage from './components/BeginningPage';
+// import BeginningPage from './components/BeginningPage';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,7 +30,7 @@ class App extends Component {
               <Route exact path='/signUp' component={ SignUp } />
               <Route exact path='/pageDesc' component={ PageDesc } />
               <Route exact path='/mainPage' component={ MainPage } />
-              <Route exact path='/beginningPage' component={ BeginningPage } />
+              {/* <Route exact path='/beginningPage' component={ BeginningPage } /> */}
               <Route exact path='/login' component={ Login } />
               <Route exact path='/studyMake' component={ StudyMake }/>
               <Route exact path='/studyInfo/:id' component={ StudyInfo } />

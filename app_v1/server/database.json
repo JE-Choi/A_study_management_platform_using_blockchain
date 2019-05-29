@@ -1,7 +1,7 @@
 {
-    "host": "34.85.53.30",
+    "host": "127.0.0.1",
     "user": "root",
-    "password": "Hidemoon@410",
+    "password": "gomdoll",
     "port": "3306",
-    "database": "my_db"
+    "database": "management"
 }
