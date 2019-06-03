@@ -78,14 +78,13 @@ class Attendance extends Component {
                             }
 
                             var miniutes = Number(first_attend_valid_time) + Math.floor((first_attend_dateTime % (1000 * 60 * 60)) / (1000*60));
-                            if(miniutes > 60){
+                            if(miniutes >= 60){ 
                                 hours = hours + 1;
                                 miniutes = miniutes - 60;
                             }
-                            var seconds = 59;
+                            var seconds = Math.floor((first_attend_dateTime % (1000 * 60)) / 1000);
 
                             let valid_add_time = new Date(first_attend_date+' '+hours+':'+ miniutes+':'+seconds);
-                            
                             this.setState ({
                                 edDate: valid_add_time // 타이머 종료 시간을 출석 시간 마지노선 시간으로 설정
                             });
@@ -129,22 +128,6 @@ class Attendance extends Component {
         //   example of interacting with the contract's methods.
         this.setState({ web3, myAccount, studyGroupInstance: instance});
         
-            
-        // this.getUserNameSession().then(()=>{
-        //     this.getEnterSession().then(()=>{
-        //         this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
-        //             let account_id = res.data[0].account_id;
-        //             $('.account_number').val(myAccount[account_id]);
-        //             let account = myAccount[account_id];
-        //             setTimeout(function(){
-        //                 web3.eth.getBalance(myAccount[account_id]).then(result=>{
-        //                 let balance = web3.utils.fromWei(result, 'ether');
-        //                 $('#sum_of_coin').text(balance+'코인');
-        //             });
-        //         }, 100);
-        //         });
-        //     });
-        // });
         } catch (error) {
             alert(
             `Failed to load web3, accounts, or contract. Check console for details.`,
@@ -217,12 +200,12 @@ class Attendance extends Component {
         var tid = 0;
         
         var stDate =  new Date();
-        let s_year = stDate.getFullYear();
-        let s_month = stDate.getMonth()+1;
-        let s_date = stDate.getDate();
-        let s_hour = stDate.getHours();
-        let s_minute = stDate.getMinutes() + Number(this.state.valid_attendance_time);
-        let s_second = stDate.getSeconds();
+        let e_year = stDate.getFullYear();
+        let e_month = stDate.getMonth()+1;
+        let e_date = stDate.getDate();
+        let e_hour = stDate.getHours();
+        let e_minute = stDate.getMinutes() + Number(this.state.valid_attendance_time);
+        let e_second = stDate.getSeconds();
 
         // 출석체크 진행 중인 경우
         if (this.state.edDate !== null) {  
@@ -251,30 +234,12 @@ class Attendance extends Component {
             $('#completion').text('출석 완료'); 
             $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
        
-            // var edDate =  new Date(s_year+'-'+s_month+'-'+s_date+' '+s_hour+':'+s_minute+':'+s_second).getTime(); // 종료시간
-            var edDate =  new Date('2019-05-28 10:10:00');
+            var edDate =  new Date(e_year+'-'+e_month+'-'+e_date+' '+e_hour+':'+e_minute+':'+e_second).getTime(); // 종료시간
+            // var edDate =  new Date('2019-05-28 10:10:00');
         }    
 
         stDate = stDate.getTime(); // 시작시간
         var RemainDate = edDate - stDate; // 잔여시간
-
-         // 지각자는 매개변수로 들어온 _account_id 에게 ether 지급.
-         async function  chargeTheCoin(_coin,_account_id_sender,_account_id_receiver){
-            // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-            studyGroupInstance.methods.chargeTheCoin(myAccount[25]).send(
-            {
-                from: myAccount[2], 
-                value: web3.utils.toWei("0.01", 'ether'),
-                // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
-                gas: 0 
-            }
-            );
-            setTimeout(function(){
-                web3.eth.getBalance(myAccount[25]).then(result=>{
-                    console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
-                });
-            }, 1000);
-        }
 
         // 스마트 계약 지각 거래발생
         async function setTardinessTransfer (_senderPerson_id, _receiverPerson_id, _date,_studyId,_coin){
@@ -282,11 +247,12 @@ class Attendance extends Component {
             let date = web3.utils.fromAscii(_date);
             let senderPerson_id = web3.utils.fromAscii(_senderPerson_id);
             let receiverPerson_id = web3.utils.fromAscii(_receiverPerson_id);
+            let ether = Number(_coin) / 100;
             // sender가 receiver에세 n코인 만큼 _date일시에 보냈다는 거래 내역을 저장하는 부분
             studyGroupInstance.methods.setTardinessTransfer(senderPerson_id, receiverPerson_id, web3.utils.toWei(String(_coin), 'ether'), date, _studyId).send(
             { 
                 from: myAccount[0],
-                value: web3.utils.toWei(String(_coin), 'ether'),
+                value: web3.utils.toWei(String(ether), 'ether'),
                 gas: 3000000 
             }
             );
@@ -324,7 +290,8 @@ class Attendance extends Component {
                 attendance_start_date: _attendance_date,
                 attendance_start_time: _attendance_view,
                 is_attendance: is_attendance,
-                valid_attendance_time: valid_attendance_time
+                valid_attendance_time: valid_attendance_time,
+                is_first : false
             });       
         }
 
@@ -356,6 +323,42 @@ class Attendance extends Component {
                 attendance_start_date: attendance_date
             });
         }
+
+        // 최초 거래인지 확인
+        async function statusOfTardinessTransaction(attendance_date){
+            const url = '/api/community/status_of_tardiness_transaction';
+            return post(url, {
+                study_id: _studyId,
+                transaction_date: attendance_date
+            });
+        }
+        async function receiver_list(tardiness_id){
+            const url = '/api/community/receiver_list';
+            return post(url, {
+                study_id: _studyId,
+                person_id: tardiness_id
+            });
+        }
+
+        async function inert_status_of_tardiness(transaction_date, tardiness_status){
+            const url = '/api/community/inert_status_of_tardiness';
+            return post(url, {
+                study_id: _studyId,
+                transaction_date: transaction_date,
+                tardiness_status: tardiness_status
+            });
+        }
+        
+        // 지각 스마트 계약 거래를 진행 할 수 있는 사람인지 확인 - 최초 출석자
+        async function attendance_trading_authority(transaction_date){
+            const url = '/api/community/attendanceTradingAuthority';
+            return post(url, {
+                study_id: _studyId,
+                transaction_date: transaction_date,
+                person_id: sessionStorage.getItem("loginInfo")
+            });
+        }
+
         // 시간 감소시켜 화면에 출력하는 메소드
         function msg_time(_studyId){
             //var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
@@ -382,51 +385,102 @@ class Attendance extends Component {
                 let attendance_date = c_year+'-'+c_month+'-'+c_date;
                 let attendance_view = c_hour+':'+c_minute+':'+c_second;
                 
-
                 // 최초 출석자있는 경우에만 처리 진행
                 isFirstAttend(attendance_date).then((res)=>{
                     let num_of_attendance = res.data.length;
                     
                     if(num_of_attendance !== 0){
                         let valid_attendance_time = res.data[0].valid_time;
-                        callCurrentPeopleInfo(_studyId).then((res_studyjoin_person)=>{
-                            let _coin = String(0.001 / (res_studyjoin_person.data.length - 1)).substring(0 , 6);
-                            console.log(_coin);
-
+                        
                             callisNotAttendInfo(_studyId).then((res_personId)=>{
-                                // 지각하지 않은 사람이 지각한 사람 한 사람당 받는 코인 값
-                                // 9를 6까지 줄여도 될 것같음
-                                
-                       
-                                // 위에가 진짜임. 밑에 한줄은 test용
-                                // let _coin = 2;
                                 for(let i = 0; i < res_personId.data.length; i++){
                                     // 출석 미완료자 DB에 넣는 부분
                                     isNotAttendStatus(_studyId, res_personId.data[i].person_id, attendance_date, attendance_view, 0, valid_attendance_time).then((res)=>{
                                         // console.log(res);
-            
-                                        // 지각 거래 스마트 계약 함수 실행 부분
-                                        let senderPerson_id = res_personId.data[i].person_id;
-                                        let receiverPerson_id = sessionStorage.getItem("loginInfo"); 
-                                        let attendance_date = new Date();
-                                        let a_year = String(attendance_date.getFullYear());
-                                        let a_month = String(attendance_date.getMonth()+1);
-                                        let a_date = String(attendance_date.getDate());
-                                        let _date = a_year + '-' + a_month + '-' + a_date;
-            
-                                        console.log(res_personId.data[i].person_id);
-                                        setTardinessTransfer(senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
-                                    });
+
+                                        //블록체인 거래 내역가 있는지 확인
+                                        statusOfTardinessTransaction(attendance_date).then((res)=>{
+                                            // console.log(res.data.length);
+                                            let senderPerson_id = res_personId.data[i].person_id;
+                                            // let receiverPerson_id = sessionStorage.getItem("loginInfo"); 
+                                            let attendance_date = new Date();
+                                            let a_year = String(attendance_date.getFullYear());
+                                            let a_month = String(attendance_date.getMonth()+1);
+                                            let a_date = String(attendance_date.getDate());
+                                            let _date = a_year + '-' + a_month + '-' + a_date;
+
+                                            // 각 지각한 사람 제외의 스터디원 배열 쿼리
+                                            receiver_list(res_personId.data[i].person_id).then((res_studyjoin_person)=>{
+                                                // 지각하지 않은 사람이 지각한 사람 한 사람당 받는 코인 값
+                                                let _coin = String(0.001 / (res_studyjoin_person.data.length)).substring(0 , 6);
+                                                console.log(_coin);
+                                                let receive_list = res_studyjoin_person.data;
+
+                                                //블록체인 거래 내역이 있다면?
+                                                if(res.data.length === 1){
+                                                    // 거래 내역이 true인지, 거래취소 false인지 판별
+                                                    // false일때만 거래 진행 허용
+                                                    if(res.data[0].transaction_status === false){
+                                                        // insert하는 형식이 아닌 update로 값을 넣어줘야 함.
+                                                        
+                                                        attendance_trading_authority(_date).then((is_first_res)=>{
+                                                            console.log(is_first_res);
+                                                            console.log(is_first_res.data.length);
+                                                            // 최초 출석자라면 거래 진행
+                                                            if(is_first_res.data.length === 1){
+    
+                                                                inert_status_of_tardiness(_date, true).then(()=>{
+                                                                    for(let i = 0; i < receive_list.length; i++){
+                                                                        let receiverPerson_id = receive_list[i].person_id;
+                                                                            console.log(senderPerson_id+'->'+receiverPerson_id + '로 '+_coin+'코인 지급');
+                                                                            // 지각 거래 스마트 계약 함수 실행 부분 실행
+                                                                            setTardinessTransfer(senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                    }
+                                                                });   
+                                                            }
+                                                        
+                                                        });
+                                                            
+                                                        
+                                                    }
+                                                } 
+                                                //  블록체인거래 내역이 없다면 거래 진행 허용
+                                                else{
+                                                    attendance_trading_authority(_date).then((is_first_res)=>{
+                                                        console.log(is_first_res);
+                                                        console.log(is_first_res.data.length);
+                                                        if(is_first_res.data.length === 1){
+
+                                                            inert_status_of_tardiness(_date, true).then(()=>{
+                                                                for(let i = 0; i < receive_list.length; i++){
+                                                                    let receiverPerson_id = receive_list[i].person_id;
+                                                                        console.log(senderPerson_id+'->'+receiverPerson_id + '로 '+_coin+'코인 지급');
+                                                                        // 지각 거래 스마트 계약 함수 실행 부분 실행
+                                                                        setTardinessTransfer(senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                }
+                                                            });   
+                                                        }
+                                                    
+                                                    });
+                                                }
+
+                                            });
+                                            
+                                   
+                                           
+                                            });
+                                        });
                                 }
                                 // chargeTheCoin(1,'0x89d24B7DE8a5e45f7ad5C22B2a4a7a2d3Da4dA28','0xc4a8d09d883D1d515933a29C2637efe634bb82AF');
-                           
+                        
                             
                             });
-                        });
                         
                     } 
 
                 });
+                
+               
                
 
                 $('#btn_attendance_check').val('출석 종료'); 
@@ -492,8 +546,8 @@ class Attendance extends Component {
         
             // 최초 출석자인 경우
             if(num_of_attendance === 0){
-                this.isAttendStatus(1).then((res)=>{
-                    console.log(res);
+                this.isAttendStatus(1, true).then((res)=>{
+                   
                     // 출석 유효시간 측정 타이머 
                     this.setAttendance(this.state.studyId, this.state.userId);
                     // $('#completion').text('출석 완료');  
@@ -539,17 +593,17 @@ class Attendance extends Component {
                     let s_minute = String(start_date.getMinutes());
                     let s_second = String(start_date.getSeconds());
 
-                    let start_date_view = s_year+'-'+s_month+'-'+s_date;
-                    let start_time_view = s_hour+':'+s_minute+':'+s_second;
+                    // let start_date_view = s_year+'-'+s_month+'-'+s_date;
+                    // let start_time_view = s_hour+':'+s_minute+':'+s_second;
 
                     this.setState ({
-                        first_start_date_view: start_date_view, // 최초 출석자 날짜
-                        first_start_time_view: start_time_view, // 최초 출석자 시각
+                        first_start_date_view: res.data[0].attendance_start_date, // 최초 출석자 날짜
+                        first_start_time_view: res.data[0].attendance_start_time, // 최초 출석자 시각
                         valid_attendance_time: res.data[0].valid_time
                     });
                    
                     // 출석 완료
-                    this.isAttendStatus(1);
+                    this.isAttendStatus(1, false);
 
                     $('#btn_attendance_check').val('출석 중');  
                     $('#completion').text('출석 완료'); 
@@ -576,7 +630,7 @@ class Attendance extends Component {
     }
 
     // 출석, 미출석 상태에 따른 DB 삽입
-    isAttendStatus = async(is_attendance) => {
+    isAttendStatus = async(is_attendance, is_first) => {
         const url = '/api/community/isAttendStatus';
 
         let start_date = new Date();
@@ -597,7 +651,8 @@ class Attendance extends Component {
             attendance_start_date: start_date_view,
             attendance_start_time: start_time_view,
             is_attendance: is_attendance,
-            valid_attendance_time: this.state.valid_attendance_time
+            valid_attendance_time: this.state.valid_attendance_time,
+            is_first : is_first
         });       
     }  
 

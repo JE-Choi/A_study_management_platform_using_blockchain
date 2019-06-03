@@ -125,13 +125,13 @@ class AboutCoin extends Component{
                 this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
                     let account_id = res.data[0].account_id;
                     $('.account_number').val(myAccount[account_id]);
-                    let account = myAccount[account_id];
-                    setTimeout(function(){
-                        web3.eth.getBalance(myAccount[account_id]).then(result=>{
+                    //let account = myAccount[account_id];
+                    web3.eth.getBalance(myAccount[account_id]).then(result=>{
                         let balance = web3.utils.fromWei(result, 'ether');
-                        $('#sum_of_coin').text(balance+'코인');
+                        console.log('잔여 ether: '+balance);
                     });
-                }, 100);
+                   
+               
                 });
             });
         });
@@ -155,7 +155,11 @@ class AboutCoin extends Component{
                     this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
                     
                     this.getTardinessTransfer().then(()=>{
-                        this.transactionsListFiltering();
+                        this.transactionsListFiltering().then(()=>{
+                            if(this.state.transactionsList.length !== 0){
+                                $('.not_exist_transfer_msg').hide();
+                            }
+                        });
                     });
                 });
             });
@@ -192,18 +196,23 @@ class AboutCoin extends Component{
     getPersonInfoOfStudy = async (_study_id, _person_id) => {
         const { studyGroupInstance, web3} = this.state; 
         let Ascii_person_id = web3.utils.fromAscii(_person_id);
+        let numOfCoins = 0;
         studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
-            var memberAddress =  result[0];
-            var person_id = web3.utils.toAscii(result[1]);
-            var study_id =  result[2];
-            var numOfCoins = web3.utils.fromWei(String(result[3]), 'ether');
-            var person_name =  web3.utils.toAscii(result[4]);
+            let memberAddress =  result[0];
+            let person_id = web3.utils.toAscii(result[1]);
+            let study_id =  result[2];
+            numOfCoins = web3.utils.fromWei(String(result[3]), 'ether');
+            let person_name =  web3.utils.toAscii(result[4]);
             console.log('memberAddress: ' + memberAddress);
             console.log('person_id: ' + person_id);
             console.log('study_id: ' + study_id);
             console.log('numOfCoins: ' + numOfCoins);
             console.log('person_name: ' + person_name);
-        });    
+            // 코인 값 SET
+            $('#sum_of_coin').text(numOfCoins+'코인');
+        });
+       
+      
     }
     getTardinessTransfer = async () => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
@@ -230,6 +239,7 @@ class AboutCoin extends Component{
                 transactions_list.push(transactions_list_sub);
             }
             
+            
         });
         this.setState({
             transactionsList : transactions_list
@@ -240,10 +250,10 @@ class AboutCoin extends Component{
     transactionsListFiltering = async () => {
         // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
         let transactions_list_before_filtering  = this.state.transactionsList;
-        console.log(this.state.userName);
+        // console.log(transactions_list_before_filtering);
+        // console.log(this.state.userName);
         // 접속자가 _sender인 값들을 뽑아서 저장
         let send_coin_list = new Array();
-        
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
             let senderName = transactions_list_before_filtering[i][1];
             
@@ -277,7 +287,7 @@ class AboutCoin extends Component{
         
         // 날짜순으로 정렬
         transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
-        console.log(transactions_list_atfer_filtering);
+        // console.log(transactions_list_atfer_filtering);
         this.setState({
             transactionsList : transactions_list_atfer_filtering
         });
@@ -309,7 +319,8 @@ class AboutCoin extends Component{
                     }
                   
                 })
-                  : "" }
+                  : ""}
+                <div className = "not_exist_transfer_msg">거래 내역이 존재하지 않습니다.</div>
                
                 </div>
                 </div>
@@ -318,39 +329,6 @@ class AboutCoin extends Component{
 }
 
 class TransferSenderInfoItem extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            current_num_people: 0,
-            start_date_view:'',
-            end_date_view:''
-        }
-    }
-
-    componentDidMount() {
-       
-    }
-
-
-    // componentWillMount(){
-    //     let start_date = new Date(this.props.start_date);
-    //     let end_date = new Date(this.props.end_date);
-
-    //     let s_year = String(start_date.getFullYear());
-    //     let s_month = String(start_date.getMonth()+1);
-    //     let s_date = String(start_date.getDate());
-    //     let start_date_view = s_year+'-'+s_month+'-'+s_date;
-
-    //     let e_year = String(end_date.getFullYear());
-    //     let e_month = String(end_date.getMonth()+1);
-    //     let e_date = String(end_date.getDate());
-    //     let end_date_view = e_year+'-'+e_month+'-'+e_date;
-    //     this.setState({
-    //         start_date_view: start_date_view,
-    //         end_date_view: end_date_view
-    //     });
-    // }
  
     render() {
         return (

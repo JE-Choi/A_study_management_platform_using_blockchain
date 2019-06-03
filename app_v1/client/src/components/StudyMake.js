@@ -113,11 +113,13 @@ class StudyMake extends Component {
     chargeTheCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let study_make_coin = $('#study_make_coin').val();
+        // 1코인당 0.01ether를 충전하기 위한 변환 과정
+        let study_make_ether = study_make_coin / 100;
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
         studyGroupInstance.methods.chargeTheCoin(myAccount[_account_id]).send(
           {
             from: myAccount[0], 
-            value: web3.utils.toWei(study_make_coin, 'ether'),
+            value: web3.utils.toWei(String(study_make_ether), 'ether'),
             // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
             gas: 0 
           }
@@ -314,22 +316,22 @@ class StudyMake extends Component {
         });
     }
 
-    studyExchenageConfirm = () => {
-        confirmAlert({
-            title: '[  코인을 충전하시겠습니까?  ]',
-            message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
-            buttons: [
-            {
-                label: '네',
-                onClick: () => this.handleFormOkSubmit()
-            },
-            {
-                label: '아니요',
-                onClick: () => alert('아니오')
-            }
-          ]
-        })
-    }
+    // studyExchenageConfirm = () => {
+    //     confirmAlert({
+    //         title: '[  코인을 충전하시겠습니까?  ]',
+    //         message: this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.(1코인당 10000원)',
+    //         buttons: [
+    //         {
+    //             label: '네',
+    //             onClick: () => this.handleFormOkSubmit()
+    //         },
+    //         {
+    //             label: '아니요',
+    //             onClick: () => alert('아니오')
+    //         }
+    //       ]
+    //     })
+    // }
 
     inputConfirm = () => {
         confirmAlert({
@@ -409,7 +411,7 @@ class StudyMake extends Component {
                                 </select>
                         </div>
                         <div className="study_make_form_group">
-                            <label className="study_make_label">스터디 가입 코인: </label>
+                            <label className="study_make_label">스터디 가입 코인 (1코인당 10000원): </label>
                             <span className="dotdot">:</span>
                             <select className="form-control" id="study_make_coin" name='study_coin' value={this.state.study_coin}  onChange={this.handleValueChange}> 
                             </select>

@@ -33,7 +33,7 @@ class StudyInfo extends Component {
             study_type: '',
             num_people: '',
             current_num_people: 0,
-            study_coin: '',
+            study_coin: 0,
 
             study_start_date: '',
             study_end_date: '',
@@ -169,17 +169,15 @@ class StudyInfo extends Component {
             this.createAccount(this.props.match.params.id).then((account_id)=>{
 
                 this.chargeTheCoin(account_id).then(()=>{
-                    this.chargeTheCoin(account_id).then(()=>{
-                        // StudyGroup.sol파일의 studyMember구조체 생성
-                        let person_id = this.state.person_id;
-                        //let memberAddress = account_num;
-                        let join_coin = this.state.study_coin;
-                        this.createMemberItem(this.props.match.params.id, person_id, account_id, join_coin, this.state.person_name);
-                        setTimeout(()=>{
-                            this.studyOkJoinConfirm();
-                        },100);
-                        this.props.history.push('/mainPage');
-                    });
+                    // StudyGroup.sol파일의 studyMember구조체 생성
+                    let person_id = this.state.person_id;
+                    //let memberAddress = account_num;
+                    let join_coin = this.state.study_coin;
+                    this.createMemberItem(this.props.match.params.id, person_id, account_id, join_coin, this.state.person_name);
+                    setTimeout(()=>{
+                        this.studyOkJoinConfirm();
+                    },100);
+                    this.props.history.push('/mainPage');
                 });
             });
         })
@@ -342,20 +340,22 @@ class StudyInfo extends Component {
         });
     }
 
+    // 매개변수로 들어온 _account_id에게 ether 지급.
     chargeTheCoin = async (_account_id) =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
-
         let study_make_coin = this.state.study_coin;
+        // 1코인당 0.01ether를 충전하기 위한 변환 과정
+        let study_make_ether = study_make_coin / 100;
+
         // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
         studyGroupInstance.methods.chargeTheCoin(myAccount[_account_id]).send(
-            {
-                from: myAccount[0], 
-                value: web3.utils.toWei(String(study_make_coin), 'ether'),
-                // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
-                gas: 0 
-            }
+          {
+            from: myAccount[0], 
+            value: web3.utils.toWei(String(study_make_ether), 'ether'),
+            // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
+            gas: 0 
+          }
         );
-
         setTimeout(function(){
             web3.eth.getBalance(myAccount[_account_id]).then(result=>{
                 console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
@@ -467,7 +467,7 @@ class StudyInfo extends Component {
                         <Modal id = "promptModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                             <ModalHeader toggle={this.toggle}>코인지갑 비밀번호를 입력해주셔야 <br/>코인을 충전할 수 있습니다.</ModalHeader>
                             <ModalBody>
-                                    <div>{this.state.study_coin}코인 충전 시 {5000 * this.state.study_coin}원 입니다. (1코인당 5000원)</div>
+                                    <div>{this.state.study_coin}코인 충전 시 {10000 * this.state.study_coin}원 입니다. (1코인당 10000원)</div>
                                     <br/>
                                     <input type="password" id="input_promptModal"/> 
                                 </ModalBody>

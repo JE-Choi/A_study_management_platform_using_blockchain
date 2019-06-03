@@ -307,7 +307,7 @@ app.post('/api/community/isFirstAttend', (req, res) => {
 
 // 출석 여부에 따른 DB 삽입
 app.post('/api/community/isAttendStatus', (req, res) => {
-    let sql =`INSERT INTO attendance_check VALUES (?, ?, ?, ?, ?, ?);`;
+    let sql =`INSERT INTO attendance_check VALUES (?, ?, ?, ?, ?, ?, ?);`;
 
     let study_id = req.body.study_id;
     let user_id = req.body.user_id;
@@ -315,8 +315,9 @@ app.post('/api/community/isAttendStatus', (req, res) => {
     let attend_start_time = req.body.attendance_start_time;
     let is_attendance = req.body.is_attendance;
     let valid_attendance_time = req.body.valid_attendance_time;
+    let is_first = req.body.is_first;
 
-    let params = [study_id, user_id, attendance_start_date, attend_start_time, is_attendance, valid_attendance_time];
+    let params = [study_id, user_id, attendance_start_date, attend_start_time, is_attendance, valid_attendance_time, is_first];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows); 
@@ -379,17 +380,63 @@ app.post('/api/community/getQuizDate', (req, res) => {
 
     // 지각 거래 발생 유무 확인
     app.post('/api/community/status_of_tardiness_transaction', parser, (req, res) => {
-        let sql =`SELECT * FROM status_of_tardiness_transaction where study_id = ?;`;
-
+        let sql = `SELECT * FROM status_of_tardiness_transaction WHERE study_id = ? AND transaction_date = ?;`;
         let study_id = req.body.study_id;
+        let transaction_date = req.body.transaction_date;
 
-        let params = [study_id];
+        let params = [study_id, transaction_date];
         connection.query(sql, params, 
             (err, rows, fields) => {
                 res.send(rows); 
             }
         );
     });
+
+    // 거래 내역 진행 여부 저장
+    app.post('/api/community/inert_status_of_tardiness', parser, (req, res) => {
+        let sql = `INSERT INTO status_of_tardiness_transaction VALUES (?,?,?);`;
+        let study_id = req.body.study_id;
+        let transaction_date = req.body.transaction_date;
+        let tardiness_status = req.body.tardiness_status;
+
+        let params = [study_id, transaction_date, tardiness_status];
+        connection.query(sql, params, 
+            (err, rows, fields) => {
+                res.send(rows); 
+            }
+        );
+    });
+
+    // 자신을 제외한 스터디원
+    app.post('/api/community/receiver_list', parser, (req, res) => {
+        let sql = `SELECT * FROM study_join WHERE study_id = ? AND person_id != ?;`;
+        let study_id = req.body.study_id;
+        let person_id = req.body.person_id;
+
+        let params = [study_id, person_id];
+        connection.query(sql, params, 
+            (err, rows, fields) => {
+                res.send(rows); 
+            }
+        );
+    });
+
+    // 지각 스마트 계약 거래를 진행 할 수 있는 사람인지 확인 - 최초 출석자 
+app.post('/api/community/attendanceTradingAuthority', (req, res) => {
+    let sql = `SELECT * FROM attendance_check WHERE study_id = ?  AND attendance_start_date = ? AND is_first = 1 AND person_id = ?;`;
+
+    let study_id = req.body.study_id;
+    let transaction_date = req.body.transaction_date;
+    let person_id = req.body.person_id;
+
+    let params = [study_id, transaction_date, person_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
 
     // // DB에서 해당 스터디 최근 날짜 불러오기
     // getQuizDate = () =>{

@@ -58,11 +58,11 @@ contract StudyGroup {
 
         // 지각자 처리
         uint coin_of_sender = senderInfo.numOfCoins; // 지각자의 코인
-        senderInfo.numOfCoins = coin_of_sender - _coin; // 지각자의 코인 감소
+        memberInfo[_study_id][_senderId].numOfCoins = coin_of_sender - _coin; // 지각자의 코인 감소
         
         // 지각 아닌 사람 처리
         uint coin_of_receiver = receiverInfo.numOfCoins; // 지각아닌 사람의 코인
-        receiverInfo.numOfCoins = coin_of_receiver + _coin; // 지각아닌 사람의 코인 증가
+        memberInfo[_study_id][_receiverId].numOfCoins = coin_of_receiver + _coin; // 지각아닌 사람의 코인 증가
         
         // 객체에 지각한 내용 저장 
         // 해당 스터디에 대한 지각 정보
