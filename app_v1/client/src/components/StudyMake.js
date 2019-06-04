@@ -277,6 +277,7 @@ class StudyMake extends Component {
           console.error(error);
         }
     };
+    
     make_tag = () =>{
         let subjects = ['TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
         for(let i = 0; i < subjects.length; i++){
@@ -434,6 +435,5 @@ class StudyMake extends Component {
         );
     }
 }
-
 
 export default StudyMake;

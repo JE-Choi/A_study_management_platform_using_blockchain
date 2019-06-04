@@ -87,7 +87,7 @@
     margin-right: 2%;
 }
 
-/* 퀴즈 점수 */
+/* 퀴즈 점수 입력*/
 .div_quiz_score {
     margin-top: 3%; 
 }
@@ -110,13 +110,8 @@
 .quiz_form_group {
     text-align: center !important;
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
-
-/* .quiz_form_group > span{
-    font-size: 1.3rem;
-    float: right;
-} */
 
 .each_quiz_point {
     text-align: center !important;
@@ -154,12 +149,13 @@
     margin-top: 1rem !important;
 }
   
-/* #btn_quiz_score_input:hover {
-    background-color: white;
+#btn_quiz_score_input:hover {
+    /* background-color: white;
     color: rgb(182, 145, 119);
     border-color:rgb(182, 145, 119);
-    font-weight:bold;
-} */
+    font-weight:bold; */
+    color: #FFFFFF;
+}
 
 .final_result {
     border: 1.2px solid rgb(182, 145, 119);
@@ -190,6 +186,42 @@
     clear: both;
     position: inherit;
 }
+
+/* 퀴즈 결과 화면 */
+.each_quiz_result_point {
+    text-align: center !important;
+    display: inline-block;
+    width: 17em !important;
+    margin-top: 0.4rem !important;
+}
+
+.each_quiz_result_point > span{
+    font-size: 1rem;
+}
+
+.quiz_result_name_label {
+    float: left;
+    padding-right: 2rem;
+}
+
+.result_dotdot {
+    float: left;
+    padding-right: 2rem;
+}
+
+#result_score {
+    width: 5rem !important;
+    height: 2rem;
+    float: left !important;
+    /* padding-right: 2rem !important; */
+}
+
+.quiz_rank {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 1.3rem;
+}
+
 
 /*반응형*/
 @media(max-width: 1200px) {
@@ -241,11 +273,6 @@
         line-height: 1.5rem;
         font-size: 0.8rem;
     }
-    
-    .attendance_status {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
 
     .info_attendance_check {
         font-size: 1rem;
@@ -257,7 +284,7 @@
         padding-bottom: 1rem;
     }
 
-    /* 퀴즈 점수 */
+    /* 퀴즈 점수 입력*/
     .quiz_header {
         font-size: 1.3rem;
         font-weight: bold;
@@ -273,6 +300,8 @@
 
     .quiz_form_group {
         width: 80% !important;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .quiz_form_group > span{
@@ -290,7 +319,6 @@
         height: 2rem;
         font-size: 0.8rem;
         font-weight: normal;
-        /* margin-right: 10rem; */
     }
 
     #final_result_header {
@@ -316,5 +344,31 @@
         height: 0rem;
         clear: both;
         position: inherit;
+    }
+
+    /* 퀴즈 결과 화면 */
+    .each_quiz_result_point {
+        font-size: 0.9rem;
+        width: 12rem !important;
+        margin-top: 1rem !important;
+    }
+    
+    .quiz_result_name_label {
+        padding-right: 1rem !important;
+        font-size: 0.9rem;
+    }
+
+    .result_dotdot {
+        padding-right: 1.5rem;
+    }
+
+    #result_score {
+        width: 4rem !important;
+        height: 1.5rem !important;
+    }
+
+    .quiz_rank {
+        font-size: 1.7rem;
+        margin-left: 1rem;
     }
 }

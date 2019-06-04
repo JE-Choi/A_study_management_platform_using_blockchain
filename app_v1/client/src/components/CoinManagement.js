@@ -211,9 +211,9 @@ class AboutCoin extends Component{
             // 코인 값 SET
             $('#sum_of_coin').text(numOfCoins+'코인');
         });
-       
-      
     }
+
+    // StudyGroup.sol에서 지각 거래 얻기
     getTardinessTransfer = async () => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let transactions_list = null;
@@ -238,9 +238,8 @@ class AboutCoin extends Component{
                 
                 transactions_list.push(transactions_list_sub);
             }
-            
-            
         });
+
         this.setState({
             transactionsList : transactions_list
         });

@@ -438,7 +438,7 @@ class Attendance extends Component {
                                                                     }
                                                                 });   
                                                             }
-                                                        
+
                                                         });
                                                             
                                                         
@@ -465,23 +465,14 @@ class Attendance extends Component {
                                                 }
 
                                             });
-                                            
-                                   
-                                           
-                                            });
+
                                         });
+                                    });
                                 }
                                 // chargeTheCoin(1,'0x89d24B7DE8a5e45f7ad5C22B2a4a7a2d3Da4dA28','0xc4a8d09d883D1d515933a29C2637efe634bb82AF');
-                        
-                            
-                            });
-                        
+                            });  
                     } 
-
                 });
-                
-               
-               
 
                 $('#btn_attendance_check').val('출석 종료'); 
 
@@ -695,12 +686,6 @@ class Attendance extends Component {
                         </form> 
                         <div className="btn btn-danger" id="completion">출석 미완료</div>
                     </div>    
-                </div>
-                <div className="attendance_status">
-                    <span className="info_attendance_check"> 3번 </span>
-                    <span className="info_attendance_check"> Study 중 </span>
-                    <span className="info_attendance_check"> 3번 </span>
-                    <span className="info_attendance_check">출석</span>
                 </div>
             </div>
         );

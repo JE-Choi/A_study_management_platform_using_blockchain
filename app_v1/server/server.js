@@ -431,7 +431,6 @@ app.post('/api/community/attendanceTradingAuthority', (req, res) => {
             res.send(rows); 
         }
     );
-
 });
 
 // DB에서 해당 스터디 최근 날짜 불러오기
@@ -455,6 +454,37 @@ app.post('/api/quiz/getNames', (req, res) => {
     let study_id = req.body.study_id;
 
     let params = [study_id];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+}); 
+
+// 퀴즈 점수 저장
+app.post('/api/quiz/setQuizScore', (req, res) => {
+    let sql =`INSERT INTO quiz_score VALUES(?, ?, ?, ?);`;
+
+    let study_id = req.body.study_id;
+    let user_name = req.body.userName;
+    let quiz_date = req.body.quiz_date;
+    let user_score = req.body.user_score;
+
+    let params = [study_id, user_name, quiz_date, user_score];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+}); 
+
+// 해당 날짜의 스터디 원의 퀴즈 점수 불러오기
+app.post('/api/quiz/getQuizInfo', (req, res) => {
+    let sql = `SELECT * FROM quiz_score WHERE study_id=? AND quiz_date=? ORDER BY score DESC;`;
+    let study_id = req.body.study_id;
+    let quiz_date = req.body.quiz_date;
+
+    let params = [study_id, quiz_date];
     connection.query(sql,params, 
         (err, rows, fields) => {
             res.send(rows); 
