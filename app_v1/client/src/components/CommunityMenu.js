@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Noticeboard from './Noticeboard';
 import CommunitySchedule from './CommunitySchedule';
 import AttendanceCheck from './AttendanceCheck';
+import AboutQuiz from './AboutQuiz';
 import CoinManagement from './CoinManagement';
 
 class CommunityMenu extends Component {
@@ -42,6 +43,9 @@ class CommunityMenu extends Component {
                                     <Link to={'/community/'+this.props.match.params.id+'/attendanceCheck'} onClick={this.contractReloads} className="community_nav_link">출석 체크</Link>
                                 </li>
                                 <li>
+                                    <Link to={'/community/'+this.props.match.params.id+'/AboutQuiz'} onClick={this.contractReloads} className="community_nav_link">퀴즈 점수</Link>
+                                </li>
+                                <li>
                                 <Link to={'/community/'+this.props.match.params.id+'/coinManagement'} onClick={this.contractReloads} className="community_nav_link">코인 관리</Link>
                                 </li>
                             </ul>
@@ -54,6 +58,7 @@ class CommunityMenu extends Component {
                                 <Route exact path='/community/:id/noticeboard' component = { Noticeboard } />
                                 <Route exact path='/community/:id/communitySchedule' component = { CommunitySchedule } />
                                 <Route exact path='/community/:id/attendanceCheck' component = { AttendanceCheck } />
+                                <Route exact path='/community/:id/aboutQuiz' component = { AboutQuiz } />
                                 <Route exact path='/community/:id/coinManagement' component = { CoinManagement } />
                                 <Route exact path='/community/:id' component = { CommunitySchedule } />
                             </Switch>

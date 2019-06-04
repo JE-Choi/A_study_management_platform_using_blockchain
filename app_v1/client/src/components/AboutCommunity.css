@@ -87,11 +87,11 @@
     margin-right: 2%;
 }
 
+/* 퀴즈 점수 */
 .div_quiz_score {
     margin-top: 3%; 
 }
 
-/* 퀴즈 점수 */
 .quiz_header {
     font-size: 2rem;
     font-weight: bold;
@@ -110,36 +110,37 @@
 .quiz_form_group {
     text-align: center !important;
     display: inline-block;
-    width: 60% !important;
+    margin-top: 1rem;
+}
+
+/* .quiz_form_group > span{
+    font-size: 1.3rem;
+    float: right;
+} */
+
+.each_quiz_point {
+    text-align: center !important;
+    display: inline-block;
+    width: 20rem !important;
     margin-top: 0.4rem !important;
 }
 
-.quiz_form_group > span{
-    font-size: 1.3rem;
-    float: right;
-}
-
-
-/* 지우기 */
-.each_quiz_point {
-    width: 25rem;
-    border: 2px solid red;
-    /* position: relative; */
-    display: inline-block; 
+.each_quiz_point > span{
+    font-size: 1rem;
 }
 
 .quiz_name_label {
-    /* font-size: 1rem; */
-    margin-right: 2rem;
     float: left;
 }
 
 #quiz_score {
     width: 9rem !important;
+    height: 2rem;
     float: right !important;
-    /* position: absolute; */
-    /* right: 1.5rem; */
+}
 
+.btn_div {
+    padding-left: 0.6rem;
 }
 
 #btn_quiz_score_input {
@@ -150,7 +151,7 @@
     font-size: 1rem;
     width: 20rem;
     height: 2.8rem;
-    margin-top: 2rem !important;
+    margin-top: 1rem !important;
 }
   
 /* #btn_quiz_score_input:hover {
@@ -182,6 +183,12 @@
 
 .point {
     float: right;
+}
+
+.clear_quiz{
+    height: 0.7rem;
+    clear: both;
+    position: inherit;
 }
 
 /*반응형*/
@@ -275,17 +282,15 @@
     
     .each_quiz_point {
         font-size: 0.9rem;
+        width: 12rem !important;
     }
 
     #btn_quiz_score_input {
-        /* width: 12rem;  */
         width: 12rem; 
         height: 2rem;
         font-size: 0.8rem;
         font-weight: normal;
-/* 잘 안먹음 */
-        margin-top: 1.2rem !important;
-        margin-bottom: 0.7rem !important;
+        /* margin-right: 10rem; */
     }
 
     #final_result_header {
@@ -294,9 +299,22 @@
 
     #quiz_score {
         width: 5rem !important;
+        height: 1.5rem !important;
     }
 
     .quiz_name_label {
         margin-right: 0.6rem !important;
+        font-size: 0.9rem;
+    }
+
+    .btn_div {
+        padding-left: 0rem;
+        margin-bottom: 1rem;
+    }
+
+    .clear_quiz{
+        height: 0rem;
+        clear: both;
+        position: inherit;
     }
 }

@@ -1,7 +1,7 @@
 .communityMenuBar_nav li{
     display: inline;
-    margin-left: 6rem;
-    margin-right: 6rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 
 .communityMenuBar_nav{
@@ -40,7 +40,7 @@
 }
 
 /* 반응형 */
-@media(max-width: 1000px) { 
+@media(max-width: 1200px) { 
 
     .main_communityMenu{
         padding-top: 1rem;
@@ -53,8 +53,9 @@
     }
 
     .communityMenuBar_nav{
-        height: 8rem;
+        /* height: 10rem; */
         padding-top: 1.2rem;
+        display: inline;
     }
 
     .communityMenu_container{
@@ -85,7 +86,8 @@
     
     .clear{
         clear: both;
-        height: 2.4rem;
+        /* height: 4.7rem; */
+        height: 0rem;
     }
 }
 

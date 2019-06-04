@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './MainPage.css';
+import './PageDesc.css';
 import StudyItem from './StudyItem';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import $ from 'jquery';
 
 class MainPage extends Component {
   constructor(props) {
@@ -26,12 +28,17 @@ class MainPage extends Component {
   }
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({customers: res}))
-      .catch(err => console.log(err));
 
-    this.isLoginNow();
-  }
+    this.callApi().then((res)=>{
+      this.setState({customers: res});
+      if(this.state.customers.length !== 0) {
+        $('.out_frame_not_exist_studyItem').hide();
+      }
+    }).catch(err => console.log(err));
+
+  this.isLoginNow();
+
+}
 
   // 세션에 정보 있으면 로그인, 정보 없으면 로그아웃 상태
   isLoginNow = () => {
@@ -89,6 +96,20 @@ class MainPage extends Component {
                   )
                 })
                   : "" }
+                <div className="out_frame_not_exist_studyItem">
+                  <div className="beginning_page">
+                      <div className="page_header">STUDY CHAIN</div>
+                      STUDY CHAIN을 이용해 주셔서 감사합니다.
+                      <br />
+                      <br />
+                      함께 공부할 스터디를 생성해주세요.
+                      <br />
+                      <span id="login_emphasis">로그인</span> 후, <span id="creation_emphasis">STUDY 생성 버튼</span>을 누르면 스터디가 생성됩니다.
+                      <br />
+                      <br />
+                      STUDY CHAIN을 통해 모두가 스터디에 전념하여 좋은 성과를 이루기를 바랍니다.
+                  </div>
+                </div>                  
               </ul>
             </div>
         </div>
