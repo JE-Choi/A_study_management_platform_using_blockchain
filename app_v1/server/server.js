@@ -325,6 +325,25 @@ app.post('/api/community/isAttendStatus', (req, res) => {
     );
 });  
 
+// 최초 출석자에 따라 출석 취소 버튼 활성화하기 위한 자신이 최초 출석자인지 확인
+app.post('/api/community/isFirstAttendee', (req, res) => {
+    let sql = `SELECT * FROM attendance_check 
+                WHERE study_id = ? AND is_first = 1 AND person_id = ? AND attendance_start_date IN (SELECT attendance_start_date
+                FROM attendance_check WHERE study_id = ? AND attendance_start_date = ?) 
+                ORDER BY attendance_start_date DESC, attendance_start_time`;
+
+    let study_id = req.body.study_id;
+    let person_id = req.body.person_id;
+    let attendance_start_date = req.body.attendance_start_date;
+
+    let params = [study_id, person_id, study_id, attendance_start_date];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );    
+});
+
 // 자신의 출석 여부에 따라 달라지는 버튼 색
 app.post('/api/community/isAttendanceRateBtn', (req, res) => {
     let sql =` SELECT is_attendance FROM attendance_check WHERE study_id = ? AND person_id = ? AND attendance_start_date = ? ;`;
@@ -343,8 +362,9 @@ app.post('/api/community/isAttendanceRateBtn', (req, res) => {
 
 // DB에서 해당 스터디 최근 날짜 불러오기
 app.post('/api/quiz/getQuizDate', (req, res) => {
-    let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
+    // let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
 
+    let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date;`;
     let study_id = req.body.study_id;
 
     let params = [study_id];
@@ -434,26 +454,27 @@ app.post('/api/community/attendanceTradingAuthority', (req, res) => {
 });
 
 // DB에서 해당 스터디 최근 날짜 불러오기
-app.post('/api/quiz/getQuizDate', (req, res) => {
-    let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
+// app.post('/api/quiz/getQuizDate', (req, res) => {
+//     let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
 
-    let study_id = req.body.study_id;
+//     let study_id = req.body.study_id;
 
-    let params = [study_id];
-    connection.query(sql,params, 
-        (err, rows, fields) => {
-            res.send(rows); 
-        }
-    );
-}); 
+//     let params = [study_id];
+//     connection.query(sql,params, 
+//         (err, rows, fields) => {
+//             res.send(rows); 
+//         }
+//     );
+// }); 
 
 // 스터디에 있는 스터디원 이름 불러오기
 app.post('/api/quiz/getNames', (req, res) => {
-    let sql =`SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM study_join WHERE study_id = ?);`;
-
+    // let sql =`SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM study_join WHERE study_id = ?);`;
+    let sql = `SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM attendance_check WHERE study_id = ? AND attendance_start_date = ? AND is_attendance = 1);`;
     let study_id = req.body.study_id;
-
-    let params = [study_id];
+    let quiz_date = req.body.quiz_date;
+    
+    let params = [study_id, quiz_date];
     connection.query(sql,params, 
         (err, rows, fields) => {
             res.send(rows); 
@@ -463,14 +484,15 @@ app.post('/api/quiz/getNames', (req, res) => {
 
 // 퀴즈 점수 저장
 app.post('/api/quiz/setQuizScore', (req, res) => {
-    let sql =`INSERT INTO quiz_score VALUES(?, ?, ?, ?);`;
+    let sql =`INSERT INTO quiz_score VALUES(?, ?, ?, ?, ?);`;
 
     let study_id = req.body.study_id;
     let user_name = req.body.userName;
     let quiz_date = req.body.quiz_date;
     let user_score = req.body.user_score;
+    let rank = req.body.rank;
 
-    let params = [study_id, user_name, quiz_date, user_score];
+    let params = [study_id, user_name, quiz_date, user_score, rank];
     connection.query(sql,params, 
         (err, rows, fields) => {
             res.send(rows); 
@@ -479,7 +501,7 @@ app.post('/api/quiz/setQuizScore', (req, res) => {
 }); 
 
 // 해당 날짜의 스터디 원의 퀴즈 점수 불러오기
-app.post('/api/quiz/getQuizInfo', (req, res) => {
+app.post('/api/quiz/getQuizResult', (req, res) => {
     let sql = `SELECT * FROM quiz_score WHERE study_id=? AND quiz_date=? ORDER BY score DESC;`;
     let study_id = req.body.study_id;
     let quiz_date = req.body.quiz_date;
@@ -491,5 +513,19 @@ app.post('/api/quiz/getQuizInfo', (req, res) => {
         }
     );
 }); 
+
+// 퀴즈 점수 등록 여부 확인
+app.post('/api/quiz/isQuizResult', (req, res) => {
+    let sql = `SELECT * FROM quiz_score WHERE study_id = ? AND quiz_date = ?`;
+    let study_id = req.body.study_id;
+    let quiz_date = req.body.quiz_date;
+
+    let params = [study_id, quiz_date];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

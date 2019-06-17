@@ -4,7 +4,7 @@
     background-color: #EEEEEE;
 }
 
-.Login_label{
+.login_label{
     text-align: center;
     font-weight: bold;
     font-size: 1.5rem;
@@ -75,12 +75,19 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-bottom: 0rem;
     }
 
     .login_label{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
+
+    #submit {
+        height: 2.2rem;
+        font-size: 1rem;
+        padding-top: 0.4rem;
+    }
+
 
     .react-confirm-alert-body {
         width:100% !important;

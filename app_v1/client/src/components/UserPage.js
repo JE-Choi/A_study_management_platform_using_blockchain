@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './UserPage.css';
 import { post } from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class UserPage extends Component{
 
@@ -18,16 +18,10 @@ class UserPage extends Component{
     }
 
     componentWillMount() {
-        // setTimeout(()=>{
-        //     this.getUserNameSession();
-        // },800);
         this.getUserNameSession();
     }
 
     componentDidMount() {
-        // setTimeout(()=>{
-        //     this.getUserNameSession();
-        // },800);
         this.getUserNameSession();
     
         this.callDBStudyInfo()

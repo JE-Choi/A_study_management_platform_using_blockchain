@@ -69,8 +69,13 @@
         width: 90%;
     }
 
+    .userP_page_label {
+        font-size: 1.2rem;
+    }
+
     .userP_current_study_label{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
     }
 
     .main_UserP {
@@ -85,6 +90,16 @@
     }
 
     .current_study_item {
-        margin-bottom: 1.5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .current_study_item div {
+        font-size: 1rem;
+    }
+    
+    .current_study_item span {
+        font-size: 0.8rem;
     }
 }

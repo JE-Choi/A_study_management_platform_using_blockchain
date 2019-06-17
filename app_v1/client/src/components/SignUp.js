@@ -60,7 +60,7 @@ class SignUp extends Component {
         var check_id = res.data.length;
         
          // 중복 ID가 없는 경우 회원가입 가능
-         if(check_id == 0) {
+         if(check_id === 0) {
             this.callSignUpApi()
             .then((response) => {
                 this.SignUpConfirm();

@@ -41,19 +41,8 @@
 
 @media(max-width: 1200px) {
     .item_study{
-        width: 70%;
-        margin-left: 3rem;
-        margin-right: 3rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        display: inline-block;
-    }
-}
-
-@media(max-width: 1100px) {
-    .item_study{
-        width: 70%;
-        margin-left: 3rem;
+        width: 95%;
+        margin-left: 0.4rem;
         margin-right: 3rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
@@ -63,8 +52,8 @@
 
 @media(max-width: 1000px) {
     .item_study{
-        width: 70%;
-        margin-left: 1.5rem;
+        width: 95%;
+        margin-left: 0.4rem;
         margin-right: 1.5rem;
         margin-top: 0.8rem;
         margin-bottom: 0.8rem;

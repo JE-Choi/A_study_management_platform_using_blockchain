@@ -47,7 +47,7 @@
     color: #000000;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 1200px) {
 
     .main_page {
         padding-top: 2rem;
@@ -56,5 +56,12 @@
 
     #moveBtn_study_make{
         font-size: 1rem;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #moveBtn_study_make:hover {
+        width: 100%;
+        margin-left: 0;
     }
 }

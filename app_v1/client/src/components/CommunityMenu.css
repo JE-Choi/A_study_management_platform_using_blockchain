@@ -47,31 +47,23 @@
         padding-bottom: 2rem;
     }
 
-    .communityMenuBar_nav li{
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-
     .communityMenuBar_nav{
-        /* height: 10rem; */
         padding-top: 1.2rem;
         display: inline;
     }
 
     .communityMenu_container{
-        padding-right: 1rem;
-        padding-left: 1rem;
-        margin-right: auto;
-        margin-left: auto;
-        width: 80%;
+        padding-right: 0rem;
+        padding-left: 0rem;
+        width: 90%;
     }
 
     .communityMenuBar_nav li{
         display: block;
         margin-bottom: 1.5%;
         background-color:rgb(224, 184, 183);;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
         margin-left: 0rem;
         margin-right: 0rem;
     }
@@ -86,7 +78,6 @@
     
     .clear{
         clear: both;
-        /* height: 4.7rem; */
         height: 0rem;
     }
 }

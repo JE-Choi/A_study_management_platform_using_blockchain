@@ -121,40 +121,21 @@ class Login extends Component {
             ]
           })
     }
-    
-
-    // session 불러오기
-    // getSession = () => {
-    //     if (typeof(Storage) !== "undefined") {
-    //         console.log("session : " + sessionStorage.getItem("loginInfo"));
-    //     } else {
-    //         console.log("Sorry, your browser does not support Web Storage...");
-    //     }
-    // }
-
-    // session 삭제
-    // removeSession = () => {
-    //     if (typeof(Storage) !== "undefined") {
-    //         sessionStorage.removeItem("loginInfo");
-    //     } else {
-    //         console.log("Sorry, your browser does not support Web Storage...");
-    //     }
-    // }
 
     render() {
         return (
             <div className="main_Login">
                 <div style={{marginTop: 10}} className = "login_container">
-                    <div className="Login_label">Login</div>
+                    <div className="login_label">Login</div>
                     <form onSubmit={this.handleFormSubmit} to="">
                         <div className="login_box">
                             <div className="form-group">
                                 <label className="input_text">아이디 </label>
-                                <input type="text" className="form-control" name="userId" placeholder="id" value={this.state.userId} onChange={this.handleValueChange}/>
+                                <input type="text" className="form-control" id="input_id" name="userId" placeholder="id" value={this.state.userId} onChange={this.handleValueChange}/>
                             </div>
                             <div className="form-group">
                                 <label className="input_text">비밀번호  </label>
-                                <input type="password" className="form-control" name="password" placeholder="password" value={this.state.password} onChange={this.handleValueChange}/>
+                                <input type="password" className="form-control" id="input_pw" name="password" placeholder="password" value={this.state.password} onChange={this.handleValueChange}/>
                             </div>
                         </div>
                         <div className="form-group">

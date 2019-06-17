@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { post } from 'axios';
 import dateFns from "date-fns";
 import './CommunitySchedule.css';
-// dateFns 사용법 - 달력 데이터
-//https://date-fns.org/v1.9.0/docs/isWeekend
 
 class CommunitySchedule extends React.Component {
     render() {

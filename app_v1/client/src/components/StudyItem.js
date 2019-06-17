@@ -1,6 +1,4 @@
 import React from 'react';
-// import { post } from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import './StudyItem.css'
 import { post } from 'axios';
 
@@ -48,24 +46,6 @@ class StudyItem extends React.Component {
             index: this.props.index
         });
     }
-    // componentWillMount(){
-    //     let start_date = new Date(this.props.start_date);
-    //     let end_date = new Date(this.props.end_date);
-
-    //     let s_year = String(start_date.getFullYear());
-    //     let s_month = String(start_date.getMonth()+1);
-    //     let s_date = String(start_date.getDate());
-    //     let start_date_view = s_year+'-'+s_month+'-'+s_date;
-
-    //     let e_year = String(end_date.getFullYear());
-    //     let e_month = String(end_date.getMonth()+1);
-    //     let e_date = String(end_date.getDate());
-    //     let end_date_view = e_year+'-'+e_month+'-'+e_date;
-    //     this.setState({
-    //         start_date_view: start_date_view,
-    //         end_date_view: end_date_view
-    //     });
-    // }
  
     render() {
         return (

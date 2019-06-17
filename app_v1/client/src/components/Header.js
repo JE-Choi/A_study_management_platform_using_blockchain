@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
   render() {
     return (
         <header>
-          <Top_logo/>
+          <TopLogo/>
           <Menubar/>
         </header>
     );
   }
 }
 
-class Top_logo extends Component{
+class TopLogo extends Component{
    // 생성자
    constructor(props) {
     super(props);
@@ -53,7 +53,6 @@ class Top_logo extends Component{
               <Link to={'/login'} style={ loginIsShow } className="top_btn">Login</Link>
             </span> 
             <span>
-              {/* 로그아웃 부분 링크 TO부분 바꿔야함. */}
               <Link to={'/mainPage'} style={ logoutIsShow } className="top_btn" onClick={this.removeSession}>Logout</Link>
             </span> 
             <span>
@@ -66,7 +65,7 @@ class Top_logo extends Component{
 
           <span>
             <Link to={'/mainPage'} className="nav-link" >
-              <img className="main_logo" src= "http://34.85.53.30/%EB%A1%9C%EA%B3%A0.png" width="170rem" height="170rem" alt="Main Logo" />
+              <img className="main_logo" src= "http://35.221.90.63/%EB%A1%9C%EA%B3%A0.png" width="170rem" height="170rem" alt="Main Logo" />
             </Link>
           </span>
       </div>

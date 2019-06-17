@@ -1,4 +1,4 @@
-.out_frame_not_exist_studyItem {
+.out_frame{
     width: 100%;
     height: 100%;
     padding-top: 3rem;
@@ -15,18 +15,71 @@
     margin-right: 22%;
 }
 
-.beginning_page {
+.out_frame_not_exist_studyItem { 
     padding: 3rem;
+    margin-top: 3rem;
     border: 2px solid black;
     text-align: left;
     margin-left: 22%;
-    margin-right: 22%;    
+    margin-right: 22%;
 }
 
 .page_header {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2rem;
+}
+
+.emphasis_page_desc_header {
+    font-size: 1rem;
+    font-weight: bold;
+    border-bottom: 1.5px solid black;
+    margin-right: 0.5rem;
+}
+
+.emphasis_page_desc{
+    font-size: 1rem;
+    font-weight: bold;
+    border-bottom: 1.5px solid black;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.emphasis_page_desc_smart{
+    font-weight: bold;
+}
+
+.emphasis_page_desc_cheer {
+    font-weight: bold;
+}
+
+.desc_smart_contract {
+    color: red;
+    margin-right: 0.5rem;
+    border-bottom: 1.5px solid red;
+}
+
+.desc_smart_contract_2 {
+    color: red;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-bottom: 1.5px solid red;
+}
+
+.emphasis_page_contract_desc_title {
+    font-weight: bold;
+    color: red;
+    margin-right: 0.5rem;
+}
+
+.emphasis_page_contract_desc{
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.emphasis_midnight{
+    border-bottom: 1.5px solid black;
 }
 
 #login_emphasis {
@@ -46,28 +99,32 @@
 
 @media(max-width: 500px) {
 
-    .out_frame_not_exist_studyItem {
+    .out_frame {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
 
     .page_header {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        margin-top: 0.7rem;
         margin-bottom: 1rem;
     }
 
     .page_desc {
-        padding: 2rem;
+        padding: 0.5rem;
         font-size: 0.8rem;
         margin-left: 12%;
         margin-right: 12%;
+        height: 25rem;
+        overflow: auto;
     }
 
-    .beginning_page {
-        padding: 2rem;
+    .out_frame_not_exist_studyItem {
+        padding: 1.7rem;
         font-size: 0.8rem;
-        margin-left: 12%;
-        margin-right: 12%;
+        margin-left: 2.7rem;
+        margin-right: 2.7rem;
+        margin-top: 1.2rem;
     }
 
     #login_emphasis {
@@ -79,5 +136,38 @@
         font-size: 1rem;
         margin-left: 0.3rem;
         margin-right: 0.3rem;    
+    }
+
+    .emphasis_page_desc_header {
+        font-size: 0.9rem;
+        margin-right: 0.2rem;
+    }
+
+    .emphasis_page_desc{
+        font-size: 0.8rem;
+        margin-right: 0.2rem;
+        margin-left: 0.2rem; 
+    }
+
+    .emphasis_contract_desc_div {
+        display: inline-block;
+    }
+
+    .colon {
+        display: none;
+    }
+
+    .emphasis_page_contract_desc_title {
+        font-size: 0.9rem;        
+        margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
+        float: left;
+    }
+
+    .emphasis_page_contract_desc {
+        font-size: 0.8rem;
+        float: left;
+        font-weight: normal;
+        margin-bottom: 0.7rem;
     }
 }

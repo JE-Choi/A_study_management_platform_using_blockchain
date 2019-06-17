@@ -61,65 +61,7 @@ class AboutCoin extends Component{
           //   Set web3, accounts, and contract to the state, and then proceed with an
           //   example of interacting with the contract's methods.
           this.setState({ web3, myAccount, studyGroupInstance: instance});
-        // let transactions_list = new Array();
-        //   instance.methods.getTardinessTransfer(this.state.studyId).call().then(function(result) {
-            
-        //     let transactions = result[0];
-        //     let transactions_length = result[1];
-        //     console.log(transactions);
-        //     console.log(transactions_length);
-        //     for(let i = 0; i < transactions.length; i++){
-        //         var transactions_list_sub = new Array();
-            
-        //         let transactions_web3_senderId = web3.utils.toAscii(transactions[i].senderId);
-        //         let transactions_web3_sendName =  web3.utils.toAscii(transactions[i].sendName);
-        //         let transactions_web3_receiverName =  web3.utils.toAscii(transactions[i].receiverName);
-        //         let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
-        //         let transactions_web3_date = web3.utils.toAscii(transactions[i].date);
-
-
-        //         // let transactions_web3_senderId = transactions[i].senderId;
-        //         // let transactions_web3_sendName = transactions[i].sendName;
-        //         // let transactions_web3_receiverName = transactions[i].receiverName;
-        //         // let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
-        //         // let transactions_web3_date = transactions[i].date;
-                
-        //         transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
-                
-        //         transactions_list.push(transactions_list_sub);
-        //     }
-        //     // return transactions_list;
-        //     // this.setState({
-        //     //     transactionList : transactions_list
-        //     // });
-        //     for(let i = 0; i < transactions_list.length; i++){
-        //     // 블록체인에 date32타입으로 저장되었었기 때문에 변환을 거쳐야 메세지를 볼 수 있다.
-        //     // let transactions_web3_senderId = web3.utils.toAscii(transactions_list[i][0]);
-        //     // let transactions_web3_sendName =  web3.utils.toAscii(transactions_list[i][1]);
-        //     // let transactions_web3_receiverName =  web3.utils.toAscii(transactions_list[i][2]);
-        //     // let transactions_web3_coin = transactions_list[i][3];
-        //     // let transactions_web3_date = web3.utils.toAscii(transactions_list[i][4]);
-
-            
-        //     let transactions_web3_senderId = transactions_list[i][0];
-        //     let transactions_web3_sendName = transactions_list[i][1];
-        //     let transactions_web3_receiverName = transactions_list[i][2];
-        //     let transactions_web3_coin = transactions_list[i][3];
-        //     let transactions_web3_date = transactions_list[i][4];
-
-        //     console.log(transactions_web3_senderId); 
-        //     console.log(transactions_web3_sendName); 
-        //     console.log(transactions_web3_receiverName);
-        //     console.log(transactions_web3_coin);
-        //     console.log(transactions_web3_date);
-        //     }
-          
-        //   });
-
-        //   this.setState({
-        //     transactionsList : transactions_list
-        // });
-            
+      
           this.getUserNameSession().then(()=>{
             this.getEnterSession().then(()=>{
                 this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
@@ -215,17 +157,17 @@ class AboutCoin extends Component{
 
     // StudyGroup.sol에서 지각 거래 얻기
     getTardinessTransfer = async () => {
-        const { studyGroupInstance, myAccount, web3} = this.state; 
+        const { studyGroupInstance, web3} = this.state; 
         let transactions_list = null;
         
         let transactions = null;
         await studyGroupInstance.methods.getTardinessTransfer(this.state.studyId).call().then(function(result) {
-            transactions_list = new Array();
+            transactions_list = [];
        
             transactions = result[0];
             // console.log(result[0][0]);
             for(let i = 0; i < transactions.length; i++){
-                let transactions_list_sub = new Array();
+                let transactions_list_sub = [];
         
                 let transactions_web3_senderId = web3.utils.hexToUtf8(transactions[i].senderId);
                 let transactions_web3_sendName =  web3.utils.hexToUtf8(transactions[i].sendName);
@@ -252,7 +194,7 @@ class AboutCoin extends Component{
         // console.log(transactions_list_before_filtering);
         // console.log(this.state.userName);
         // 접속자가 _sender인 값들을 뽑아서 저장
-        let send_coin_list = new Array();
+        let send_coin_list = [];
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
             let senderName = transactions_list_before_filtering[i][1];
             
@@ -265,7 +207,7 @@ class AboutCoin extends Component{
             }
         }
 
-        let receive_coin_list = new Array();
+        let receive_coin_list = [];
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
             let receiverName = transactions_list_before_filtering[i][2];
             
@@ -355,7 +297,6 @@ class TransferReceiverrInfoItem extends React.Component {
                  {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.date}</span>
                 <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>지각 코인</span>
-                {/* <span className="desc_of_use">지각</span> */}
                 <span className="used_coin">+{this.props.coin}</span>
             </div>
             <div className = "coin_clear"></div>

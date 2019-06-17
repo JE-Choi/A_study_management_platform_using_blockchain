@@ -29,7 +29,7 @@ class Attendance extends Component {
             first_start_date_view: '', // 최초 출석자 날짜
             first_start_time_view: '', // 최초 출석자 시각
             is_attendance: 0, // 출석 여부
-            edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간          
+            edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간   
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
@@ -43,10 +43,13 @@ class Attendance extends Component {
     };
 
     componentDidMount= async () => {
+        
         this.make_tag();
         this.initContract().then(()=>{
             this.getUserNameSession().then(()=>{
+                // 사용자 ID, 들어온 스터디 번호 불러오기
                 this.getEnterSession().then(()=>{
+                   
                     this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
 
                     // 출석 시작 버튼을 누른 오늘 시간
@@ -56,13 +59,33 @@ class Attendance extends Component {
                     let today_day_str = String(today_date.getDate());
 
                     let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
-                    
+                   
+                    // 자신이 최초 출석자인지 확인
+                    this.isFirstAttendee(today_date_view, this.state.userId).then((res)=>{
+                        console.log(res.data.length);
+
+                        // 자신이 오늘 출석체크의 최초 출석자인 경우
+                        if (res.data.length !== 0) {
+                            // this.setState ({
+                            //     isFirstAttendee: 1 // 자신이 최초 출석자로 설정
+                            // });
+                            $('.cancel_attendance_btn').val('출석 취소'); 
+                        }
+                        // 자신이 오늘 출석체크의 최초 출석자가 아닌 경우
+                        else {
+                            // this.setState ({
+                            //     isFirstAttendee: 0 // 자신이 최초 출석자가 아닌 것으로 설정
+                            // });
+                            $('.cancel_attendance_btn').attr("disabled","disabled");
+                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                        }
+                    });
+
                     // 최초 출석자인지 확인
                     this.isFirstAttend(today_date_view).then((res)=>{
                         let today_attendance = res.data.length;
                         // 스터디가 출석체크를 진행 중인 경우
                         if(today_attendance !== 0){
-                            console.log(res.data);
                             let first_attend_date = res.data[0].attendance_start_date;
                             let first_attend_time = res.data[0].attendance_start_time;
                             let first_attend_valid_time = res.data[0].valid_time;
@@ -100,10 +123,11 @@ class Attendance extends Component {
                 });
             });
         });
+
+       
     }
 
     initContract = async () => {
-
         try {
             // Get network provider and web3 instance.
             const web3 = await getWeb3();
@@ -154,20 +178,20 @@ class Attendance extends Component {
         });    
     }
 
-        // 스터디에 가입한 현재 사람 정보 얻어오는 부분
-        callCurrentPeopleInfo = async () => {
-            const url = '/api/community/isNotAttend';
-            var enter_date =  new Date();
-            let s_year = enter_date.getFullYear();
-            let s_month = enter_date.getMonth()+1;
-            let s_date = enter_date.getDate();
-            
-            let attendance_start_date = s_year + '-'+s_month+ '-'+s_date;
-            return post(url,  {
-                study_id: this.state.studyId,
-                attendance_start_date: attendance_start_date
-            });
-        }
+    // 스터디에 가입한 현재 사람 정보 얻어오는 부분
+    callCurrentPeopleInfo = async () => {
+        const url = '/api/community/isNotAttend';
+        var enter_date =  new Date();
+        let s_year = enter_date.getFullYear();
+        let s_month = enter_date.getMonth()+1;
+        let s_date = enter_date.getDate();
+        
+        let attendance_start_date = s_year + '-'+s_month+ '-'+s_date;
+        return post(url,  {
+            study_id: this.state.studyId,
+            attendance_start_date: attendance_start_date
+        });
+    }
 
     // 사용자 이름 session 불러오기
     getUserNameSession = async () =>{
@@ -207,14 +231,15 @@ class Attendance extends Component {
         let e_minute = stDate.getMinutes() + Number(this.state.valid_attendance_time);
         let e_second = stDate.getSeconds();
 
+        var edDate = 0;
+
         // 출석체크 진행 중인 경우
         if (this.state.edDate !== null) {  
-            var edDate = this.state.edDate.getTime();
+            edDate = this.state.edDate.getTime();
 
             $('#btn_attendance_check').val('출석 중'); 
 
             isAttendanceRateBtn(_studyId, _userId).then((res)=>{
-                console.log(res.data);
                 
                 // 출석 결과가 DB에 삽입이 잘 된 경우
                 if(res.data.length !== 0){
@@ -234,8 +259,7 @@ class Attendance extends Component {
             $('#completion').text('출석 완료'); 
             $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');               
        
-            var edDate =  new Date(e_year+'-'+e_month+'-'+e_date+' '+e_hour+':'+e_minute+':'+e_second).getTime(); // 종료시간
-            // var edDate =  new Date('2019-05-28 10:10:00');
+            edDate =  new Date(e_year+'-'+e_month+'-'+e_date+' '+e_hour+':'+e_minute+':'+e_second).getTime(); // 종료시간
         }    
 
         stDate = stDate.getTime(); // 시작시간
@@ -258,6 +282,7 @@ class Attendance extends Component {
             );
 
         }
+
         // 지각자 정보 가져오는 쿼리
         async function callisNotAttendInfo(_studyId){
             const url = '/api/community/isNotAttend';
@@ -273,13 +298,6 @@ class Attendance extends Component {
             });
         }
 
-        async function callCurrentPeopleInfo(_studyId){
-            const url = '/api/studyItems/view_currentPeople';
-
-            return post(url, {
-                study_id: _studyId
-            });      
-        }
         // 지각자 DB에 넣는 쿼리
         async function isNotAttendStatus(_studyId, userId, _attendance_date, _attendance_view, is_attendance,valid_attendance_time){
             const url = '/api/community/isAttendStatus';
@@ -294,7 +312,6 @@ class Attendance extends Component {
                 is_first : false
             });       
         }
-
 
         // 자신의 출석 여부에 따라 달라지는 버튼 색
         async function isAttendanceRateBtn(_studyId, _userId){
@@ -332,6 +349,7 @@ class Attendance extends Component {
                 transaction_date: attendance_date
             });
         }
+
         async function receiver_list(tardiness_id){
             const url = '/api/community/receiver_list';
             return post(url, {
@@ -396,7 +414,6 @@ class Attendance extends Component {
                                 for(let i = 0; i < res_personId.data.length; i++){
                                     // 출석 미완료자 DB에 넣는 부분
                                     isNotAttendStatus(_studyId, res_personId.data[i].person_id, attendance_date, attendance_view, 0, valid_attendance_time).then((res)=>{
-                                        // console.log(res);
 
                                         //블록체인 거래 내역가 있는지 확인
                                         statusOfTardinessTransaction(attendance_date).then((res)=>{
@@ -422,7 +439,6 @@ class Attendance extends Component {
                                                     // false일때만 거래 진행 허용
                                                     if(res.data[0].transaction_status === false){
                                                         // insert하는 형식이 아닌 update로 값을 넣어줘야 함.
-                                                        
                                                         attendance_trading_authority(_date).then((is_first_res)=>{
                                                             console.log(is_first_res);
                                                             console.log(is_first_res.data.length);
@@ -438,17 +454,12 @@ class Attendance extends Component {
                                                                     }
                                                                 });   
                                                             }
-
                                                         });
-                                                            
-                                                        
                                                     }
                                                 } 
                                                 //  블록체인거래 내역이 없다면 거래 진행 허용
                                                 else{
                                                     attendance_trading_authority(_date).then((is_first_res)=>{
-                                                        console.log(is_first_res);
-                                                        console.log(is_first_res.data.length);
                                                         if(is_first_res.data.length === 1){
 
                                                             inert_status_of_tardiness(_date, true).then(()=>{
@@ -460,7 +471,6 @@ class Attendance extends Component {
                                                                 }
                                                             });   
                                                         }
-                                                    
                                                     });
                                                 }
 
@@ -476,8 +486,8 @@ class Attendance extends Component {
 
                 $('#btn_attendance_check').val('출석 종료'); 
 
-                var m = "00분 00초"; // 남은 시간 text형태로 변경
-                $('#timer').text(m);
+                var minsecond = "00분 00초"; // 남은 시간 text형태로 변경
+                $('#timer').text(minsecond);
                 
                 // 타이머 작동하면 시간 선택 불가
                 $('#valid_attendance_time').attr("disabled","disabled");    
@@ -485,7 +495,6 @@ class Attendance extends Component {
                 $('#btn_attendance_check').attr("disabled","disabled");
 
                 isAttendanceRateBtn(_studyId, _userId).then((res)=>{
-                    console.log(res.data);
                     
                     // 출석 결과가 DB에 삽입이 잘 된 경우
                     if(res.data.length !== 0){
@@ -566,26 +575,12 @@ class Attendance extends Component {
                 }
                 
                 var seconds = Math.floor((startMoment % (1000 * 60)) / 1000);
-                // var seconds = 59;
 
                 let valid_add_time = new Date(startDate+' '+hours+':'+ miniutes+':'+seconds);
                 let my_attentdance_dateTime = new Date();
 
-                // console.log(valid_add_time);
-
                 // 유효 시간 내에 출석을 완료한 경우
                 if( my_attentdance_dateTime <= valid_add_time){
-                    let start_date = new Date(startDate+' '+startTime);
-                    let s_year = String(start_date.getFullYear());
-                    let s_month = String(start_date.getMonth()+1);
-                    let s_date = String(start_date.getDate());
-
-                    let s_hour = String(start_date.getHours());
-                    let s_minute = String(start_date.getMinutes());
-                    let s_second = String(start_date.getSeconds());
-
-                    // let start_date_view = s_year+'-'+s_month+'-'+s_date;
-                    // let start_time_view = s_hour+':'+s_minute+':'+s_second;
 
                     this.setState ({
                         first_start_date_view: res.data[0].attendance_start_date, // 최초 출석자 날짜
@@ -616,6 +611,17 @@ class Attendance extends Component {
         
         return post(url, {
             study_id: this.state.studyId,
+            attendance_start_date: _start_date_view
+        });
+    }   
+
+    // 최초 출석자에 따라 출석 취소 버튼 활성화하기 위한 자신이 최초 출석자인지 확인
+    isFirstAttendee = async(_start_date_view, user_id) => {
+        const url = '/api/community/isFirstAttendee';
+        
+        return post(url, {
+            study_id: this.state.studyId,
+            person_id : user_id,
             attendance_start_date: _start_date_view
         });
     }
@@ -659,7 +665,8 @@ class Attendance extends Component {
 
     make_tag = () =>{
         for(let i = 1; i < 11; i++){
-            $("#valid_attendance_time").append('<option>'+i+'</option>' + '분');
+            let text = '<option>'+i+'</option> 분';
+            $("#valid_attendance_time").append(text);
         }
     }
     
@@ -684,7 +691,14 @@ class Attendance extends Component {
                                 <input type="submit" value="출석 시작" className="btn btn-danger" id="btn_attendance_check"  />
                             </div>
                         </form> 
-                        <div className="btn btn-danger" id="completion">출석 미완료</div>
+                        <div className="attend_status">
+                            <div className="btn btn-danger" id="completion">출석 미완료</div>
+                            <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
+                        </div>
+                        <div className="cancel_btn_desc">
+                            <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
+                            <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
+                        </div>
                     </div>    
                 </div>
             </div>

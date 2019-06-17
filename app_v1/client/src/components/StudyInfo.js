@@ -3,7 +3,7 @@ import './StudyInfo.css';
 import { post } from 'axios';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './PromptModal.css';
 import $ from 'jquery';
@@ -62,22 +62,13 @@ class StudyInfo extends Component {
         }));
     
         if(this.state.modal === true){
-            if(account_pw_val == ''){
+            if(account_pw_val === ''){
                 this.studyExchenageConfirm();
             } else{
                 this.studyJoinConfirm();
             }
-        } 
-        
-      }
-    // handleFormSubmit = (e) => {
-    //     // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
-    //     e.preventDefault(); 
-    
-    //     this.callJoinApi().then((response) => {
-    //         console.log(response.data);
-    //     });
-    // }
+        }  
+    }
 
     componentDidMount() {
         this.callApi()
@@ -128,7 +119,7 @@ class StudyInfo extends Component {
 
         // 로그인하지 않은 상태, 스터디 가입하지 않은 사람이면 가입하기 버튼을 보이지 않게 함.
         setTimeout(() => {
-            if(sessionStorage.getItem("loginInfo") == null){  
+            if(sessionStorage.getItem("loginInfo") === null){  
                 this.setState({joinStudy: 1});
             }else{
                 this.joinStudy();
@@ -294,8 +285,6 @@ class StudyInfo extends Component {
 
     createAccount = async (_study_id) =>{
         const {myAccount, web3} = this.state; 
-       
-        // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
         
         // 계정 생성 
         //var account_pw = this.state.account_pw;
@@ -316,10 +305,8 @@ class StudyInfo extends Component {
         var account_num = myAccount_new[account_id];
         console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + this.state.account_pw);
     
-        
         // DB에 값 삽입
         this.callCreateAccountApi(this.state.person_id, account_id, account_num, this.state.account_pw,_study_id).then((response) => {
-            //console.log(response.data);
             console.log(this.state.person_id +' '+account_id+' '+account_num+' '+this.state.account_pw);
         }).catch((error)=>{
         console.log(error);
@@ -411,20 +398,19 @@ class StudyInfo extends Component {
     }
 
     render() {
-        
         // 로그인, 스터디 가입 여부
         var isJoinBtnShow = {
-            display: this.state.joinStudy == 1 ? "none" : "inline"
+            display: this.state.joinStudy === 1 ? "none" : "inline"
         };
 
         // 방장의 study 수정 버튼 가시화
         var isModifyBtnShow = {
-            display: this.state.leader == 0 ? "none" : "inline"
+            display: this.state.leader === 0 ? "none" : "inline"
         };
 
         // 방장의 study 삭제 버튼 가시화
         var isDeleteBtnShow = {
-            display: this.state.leader == 0 ? "none" : "inline"
+            display: this.state.leader === 0 ? "none" : "inline"
         };
 
         return (

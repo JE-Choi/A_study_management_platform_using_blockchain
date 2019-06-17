@@ -68,18 +68,48 @@
     font-weight:bold;
 } */
 
+.attend_status {
+    display : inline-block;
+    margin-top: 1.2rem;
+}
+
 #completion {
     background-color: #D3B8A5 !important;
     border-color: #D3B8A5 !important;
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
-    width: 20rem;
-    height: 2.8rem;
+    margin-right: 1.4rem;
+    width: 9.3rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    float: left;
 }
 
 #completion:hover {
     background-color: #D3B8A5 !important;
     border-color: #D3B8A5 !important;
+}
+
+#cancel_attendance_btn {
+    border-color: red;
+    border-width: 1.2px;
+    color:red;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 9.3rem;
+    height: 2.5rem;
+    padding-top: 0.4rem;
+    float: left;
+}
+
+#cancel_attendance_btn:hover {
+    color: red;
+    background: rgba(238, 238, 238, 0) !important;
+}
+
+.cancel_btn_desc {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
 }
 
 .info_attendance_check {
@@ -101,16 +131,27 @@
     margin-top: 1.2rem;
 }
 
-.quiz_today_header {
-    padding-left: 1.1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
 .quiz_form_group {
     text-align: center !important;
     display: inline-block;
     margin-top: 2rem;
+}
+
+.out_frame_not_exist_quiz {
+    /* font-weight: bold; */
+    font-size: 1rem;
+}
+
+.emphasis_letter {
+    border-bottom: 1.2px solid black;
+    margin-right: 0.3rem;
+    font-weight: bold;
+}
+
+.emphasis_letter_first {
+    border-bottom: 1.2px solid black;
+    margin-right: 0.3rem;
+    font-weight: bold;
 }
 
 .each_quiz_point {
@@ -150,10 +191,6 @@
 }
   
 #btn_quiz_score_input:hover {
-    /* background-color: white;
-    color: rgb(182, 145, 119);
-    border-color:rgb(182, 145, 119);
-    font-weight:bold; */
     color: #FFFFFF;
 }
 
@@ -188,6 +225,40 @@
 }
 
 /* 퀴즈 결과 화면 */
+.quiz_result_header {
+    display : inline-block;
+}
+
+#quiz_result_label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 0.3rem;
+    margin-right: 2rem;
+    float: left;
+}
+
+#quiz_date_selected {
+    width: 9rem !important;
+    height: 2rem;
+    margin-top: 0.3rem !important;
+    margin-right: 2rem;
+    float: left;
+}
+
+#moveBtn_select_quiz_date {
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 0.3rem;
+    padding-bottom: 1.5rem !important;
+    float: left;
+    border-color: rgb(182, 145, 119);
+    background-color: rgb(182, 145, 119);
+    border-width: 1.2px;
+}
+
 .each_quiz_result_point {
     text-align: center !important;
     display: inline-block;
@@ -213,7 +284,6 @@
     width: 5rem !important;
     height: 2rem;
     float: left !important;
-    /* padding-right: 2rem !important; */
 }
 
 .quiz_rank {
@@ -222,6 +292,9 @@
     margin-left: 1.3rem;
 }
 
+.no_quiz_result_past {
+    margin-top: 2rem;
+}
 
 /*반응형*/
 @media(max-width: 1200px) {
@@ -233,7 +306,9 @@
 
     /* 출석 체크 */
     .attendance_form_group {
-        width: 80% !important;
+        /* width: 80% !important; */
+        width: 65% !important;
+        margin-left: 0.4rem;
     }
     
     .attendance_form_group > span{
@@ -266,12 +341,36 @@
     }
 
     #completion {
-        margin-top: 1rem;
-        margin-bottom: 1.5rem;
-        width: 12rem;
-        height: 2.5rem;
-        line-height: 1.5rem;
+        width: 5.7rem;
+        height: 2rem;
         font-size: 0.8rem;
+        font-weight: normal;
+        margin-bottom: 0.3rem;
+        margin-right: 0.7rem;
+    }
+
+    #cancel_attendance_btn {
+        width: 5.7rem;
+        height: 2rem;
+        font-size: 0.7rem;
+        font-weight: normal;
+    }
+
+    .cancel_btn_desc {
+        display: inline-block;
+        padding-left: 4rem;
+    }
+
+    .cancel_btn_desc_1 {
+        font-size: 0.8rem;
+        float: left;
+        margin-left: 1.9rem;
+    }
+
+    .cancel_btn_desc_2 {
+        font-size: 0.8rem;
+        float: left;
+        margin-left: 0.5rem;
     }
 
     .info_attendance_check {
@@ -292,10 +391,7 @@
 
     .quiz_content {
         margin-top: 1rem;
-    }
-
-    .quiz_today_header {
-        font-size: 0.9rem;
+        margin-left: 1.3rem;
     }
 
     .quiz_form_group {
@@ -307,6 +403,30 @@
     .quiz_form_group > span{
         font-size: 1rem;
         font-weight: bold;
+    }
+
+    .out_frame_not_exist_quiz {
+        font-size: 0.8rem;
+        text-align: left;
+    }
+
+    .emphasis_letter {
+        font-weight: bold;
+        font-size: 0.8rem;   
+    }
+
+    .page_desc_div {
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+    
+    .emphasis_letter_first {
+        font-weight: bold;
+        font-size: 0.8rem;   
+    }
+
+    .emphasis_letter_next {
+        float: left;
     }
     
     .each_quiz_point {
@@ -347,6 +467,26 @@
     }
 
     /* 퀴즈 결과 화면 */
+    #quiz_result_label {
+        font-size: 0.9rem;
+        margin-top: 0rem;
+        margin-left: 5.5rem;
+    }
+    
+    #quiz_date_selected {
+        width: 12rem !important;
+        font-size: 0.9rem;
+        height: 2rem !important;
+        margin-left: 1.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #moveBtn_select_quiz_date {
+        width: 12rem !important;
+        font-size: 0.9rem;
+        margin-left: 1.9rem;
+    }
+
     .each_quiz_result_point {
         font-size: 0.9rem;
         width: 12rem !important;
@@ -370,5 +510,15 @@
     .quiz_rank {
         font-size: 1.7rem;
         margin-left: 1rem;
+    }
+
+    .no_quiz_result_past {
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .quiz_status_control{
+        width:15.5rem;
     }
 }

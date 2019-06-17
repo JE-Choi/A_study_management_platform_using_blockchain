@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
-
 import DateTimePicker from 'react-datetime-picker';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -61,8 +59,6 @@ class StudyMake extends Component {
     createAccount = async (_study_id) =>{
         const {myAccount, web3} = this.state; 
        
-        // (예정) 계정 생성 전에 DB에 접근하여 중복되는 비밀번호 있는지 검사하고나서, 중복되는 게 없는 경우에만 회원가입 진행
-        
         // 계정 생성 
         //var account_pw = this.state.account_pw;
         let account_pw = $('#study_make_pw').val();
@@ -143,7 +139,7 @@ class StudyMake extends Component {
 
         if(stDate.getHours() >= 12){
             amPm = '오후';
-            if(stDate.getHours() == 12){
+            if(stDate.getHours() === 12){
                 hour = stDate.getHours();
             } else{
                 hour = stDate.getHours() - 12;
@@ -221,16 +217,11 @@ class StudyMake extends Component {
         return post(url,  {
             study_id: studyId,
             person_id: this.state.person_id,
-            leader: true,
-            // account_number: '11-22'
-        
-            // personPw: this.state.personPw,
-            // personPw2: this.state.personPw2,
-            // personName:this.state.personName
+            leader: true
         });
     }
 
-     // session 불러오기
+    // session 불러오기
     getSession = () => {
         if (typeof(Storage) !== "undefined") {
             this.setState({person_id : sessionStorage.getItem("loginInfo")});
@@ -243,7 +234,6 @@ class StudyMake extends Component {
     componentWillMount = async () => {
         this.initContract();
     };
-
     
     initContract = async () => {
         try {
@@ -317,23 +307,6 @@ class StudyMake extends Component {
         });
     }
 
-    // studyExchenageConfirm = () => {
-    //     confirmAlert({
-    //         title: '[  코인을 충전하시겠습니까?  ]',
-    //         message: this.state.study_coin+'코인 충전 시 '+ (10000*this.state.study_coin)+'원 입니다.(1코인당 10000원)',
-    //         buttons: [
-    //         {
-    //             label: '네',
-    //             onClick: () => this.handleFormOkSubmit()
-    //         },
-    //         {
-    //             label: '아니요',
-    //             onClick: () => alert('아니오')
-    //         }
-    //       ]
-    //     })
-    // }
-
     inputConfirm = () => {
         confirmAlert({
             title: '모든 항목을 입력해주세요',
@@ -344,7 +317,6 @@ class StudyMake extends Component {
           ]
         })
     }
-
 
     // StudyGroup.sol파일의 studyMember구조체 생성
     createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins,_person_name) => {
@@ -412,7 +384,7 @@ class StudyMake extends Component {
                                 </select>
                         </div>
                         <div className="study_make_form_group">
-                            <label className="study_make_label">스터디 가입 코인 (1코인당 10000원): </label>
+                            <label className="study_make_label">스터디 가입 코인 (1코인당 10000원) </label>
                             <span className="dotdot">:</span>
                             <select className="form-control" id="study_make_coin" name='study_coin' value={this.state.study_coin}  onChange={this.handleValueChange}> 
                             </select>
