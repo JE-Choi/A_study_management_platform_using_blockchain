@@ -7,7 +7,6 @@ contract StudyGroup {
         address memberAddress; // 계좌번호
         bytes32 person_id; // solidity는 string에 최적화되어 있지 않고, bytes32에 최적화
         uint study_id;// 가입할 study_id
-        uint numOfCoins; // 해당 스터디 안에서 자신만의 코인
         bytes32 person_name; // 사용자 이름
     }
 
@@ -55,15 +54,6 @@ contract StudyGroup {
         // tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
         tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
         
-
-        // 지각자 처리
-        uint coin_of_sender = senderInfo.numOfCoins; // 지각자의 코인
-        memberInfo[_study_id][_senderId].numOfCoins = coin_of_sender - _coin; // 지각자의 코인 감소
-        
-        // 지각 아닌 사람 처리
-        uint coin_of_receiver = receiverInfo.numOfCoins; // 지각아닌 사람의 코인
-        memberInfo[_study_id][_receiverId].numOfCoins = coin_of_receiver + _coin; // 지각아닌 사람의 코인 증가
-        
         // 객체에 지각한 내용 저장 
         // 해당 스터디에 대한 지각 정보
         getTardinessTransferList[_study_id].push(transferItem); 
@@ -106,9 +96,9 @@ contract StudyGroup {
     }
     
     // 다차원 mapping 저장 -> 특정 스터디의 특정 회원의 회원정보를 저장.
-    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, uint _numOfCoins, bytes32 _person_name) public {
-        //memberInfo[_index] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins);
-        memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _numOfCoins, _person_name);
+    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name) public {
+   
+        memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _person_name);
     }
 
     // 관리자 계좌에서 가입자에게 코인 충전

@@ -1,0 +1,17 @@
+.progress_div{
+    text-align: center;
+}
+.progress_div>h5{
+    margin-top: 5%;
+}
+.sub_msg{
+    font-size: 1rem;
+}
+@media(max-width: 500px) {
+    .progress_div>h5{
+        font-size: 1rem;
+    }
+    .sub_msg{
+        font-size: 0.8rem;
+    }
+}

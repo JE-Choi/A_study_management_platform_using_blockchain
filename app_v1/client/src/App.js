@@ -12,10 +12,13 @@ import Login from './components/Login';
 import MyPage from './components/UserPage';
 import RenameStudy from './components/RenameStudy';
 import CommunityMenu from './components/CommunityMenu';
+import EndDateReturnCoin from './components/EndDateReturnCoin';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import InitAccount from './components/InitAccount'; // 삭제 예정
 
 class App extends Component {
 
@@ -37,6 +40,7 @@ class App extends Component {
               <Route exact path='/community/:id' component = { CommunityMenu } />
               <Route exact path='/community/:id/:menu' component = { CommunityMenu } />
               <Route exact path='/community/:id/:menu/:submenu' component = { CommunityMenu } />
+              <Route exact path='/manager/0410' component = { EndDateReturnCoin } />
               <Route exact path='/' component={ MainPage } />
           </Switch>
           <Footer />

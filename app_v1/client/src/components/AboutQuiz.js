@@ -548,7 +548,7 @@ class QuizResult extends Component {
                                 <ResultItem 
                                     person_name = {c.person_name}
                                     score = {c.score}
-                                    rank = {c.rank}
+                                    rank = {c.score_rank}
                                 />
                             )
                             })

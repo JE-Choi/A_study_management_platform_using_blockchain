@@ -160,6 +160,46 @@
     font-size: 1rem;
 }
 
+/*progress_bar 레이어로 띄우기*/
+.progrss_bar_layer{
+    width:100%;
+	height:100%;
+    position:fixed;
+	left:0;
+	top:0;
+	background-color:#00000077;
+    z-index:1;
+    
+}
+/*레이어로 띄운 progress_bar 배경*/
+.progress_bar_body{
+    margin-top:20%;
+    margin-left: 40%;
+    padding-top : 40px;
+    padding-bottom: 40px;
+    width: 300px;
+    /* height: 150px; */
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 3px solid rgb(182, 145, 119);
+    color: #000000;
+}
+
+/*전체 다이얼로그 배경색 지정*/
+.react-confirm-alert-overlay{
+    background-color: #00000077 !important;
+}
+
+.end_date_desc_of_info>br{
+    display: none;
+}
+
+.end_date_desc_of_info{
+    margin-left: 2.4rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 @media(max-width: 1200px) { 
 
     .out_study_make_frame {
@@ -257,5 +297,19 @@
         /* font-size: 1rem; */
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+    }
+
+    .end_date_desc_of_info>br{
+        display: block;
+    }
+    .end_date_desc_of_info{
+        font-size: 0.7rem;
+        margin: 0;
+        padding: 0;
+    }
+    /*레이어로 띄운 progress_bar 배경*/
+    .progress_bar_body{
+        margin-top:65%;
+        margin-left: 10%;
     }
 }

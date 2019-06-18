@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './AboutCommunity.css';
 import $ from 'jquery';
 import { post } from 'axios';
+import ProgressBar from './ProgressBar';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -30,22 +34,36 @@ class Attendance extends Component {
             first_start_time_view: '', // 최초 출석자 시각
             is_attendance: 0, // 출석 여부
             edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간   
+            
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
-            web3: null
+            web3: null,
+            isTardinessTransfer:false
         }
     }
 
-    componentWillMount = async () => {
+    // 출석체크 정책 유의사항 modal
+    attendanceCautionConfirm = () => {
+        confirmAlert({
+            message: '미출석자는 자신을 제외한 스터디원들에게 코인을 자동 지불하게 됩니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
+    }
 
-        this.initContract();
+    componentWillMount = async () => {
+        this.initContract().then(()=>{
+            this.attendanceCautionConfirm();
+        });
     };
 
     componentDidMount= async () => {
-        
-        this.make_tag();
         this.initContract().then(()=>{
+        this.make_tag();
             this.getUserNameSession().then(()=>{
                 // 사용자 ID, 들어온 스터디 번호 불러오기
                 this.getEnterSession().then(()=>{
@@ -66,16 +84,10 @@ class Attendance extends Component {
 
                         // 자신이 오늘 출석체크의 최초 출석자인 경우
                         if (res.data.length !== 0) {
-                            // this.setState ({
-                            //     isFirstAttendee: 1 // 자신이 최초 출석자로 설정
-                            // });
                             $('.cancel_attendance_btn').val('출석 취소'); 
                         }
                         // 자신이 오늘 출석체크의 최초 출석자가 아닌 경우
                         else {
-                            // this.setState ({
-                            //     isFirstAttendee: 0 // 자신이 최초 출석자가 아닌 것으로 설정
-                            // });
                             $('.cancel_attendance_btn').attr("disabled","disabled");
                             $('.cancel_attendance_btn').val('출석 취소 불가'); 
                         }
@@ -116,6 +128,10 @@ class Attendance extends Component {
                             $('#valid_attendance_time').val(first_attend_valid_time); 
                             $('#valid_attendance_time').attr("disabled","disabled");  
 
+                            // 출석취소 기능 비활성화
+                            $('.cancel_attendance_btn').attr("disabled","disabled");
+                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                            
                             // 출석 유효시간 측정 타이머
                             this.setAttendance(this.state.studyId, this.state.userId);       
                         }
@@ -168,12 +184,10 @@ class Attendance extends Component {
         var memberAddress =  result[0];
         var person_id = web3.utils.toAscii(result[1]);
         var study_id =  result[2];
-        var numOfCoins =  web3.utils.fromWei(String(result[3]), 'ether');
-        var person_name =  web3.utils.toAscii(result[4]);
+        var person_name =  web3.utils.toAscii(result[3]);
         console.log('memberAddress: ' + memberAddress);
         console.log('person_id: ' + person_id);
         console.log('study_id: ' + study_id);
-        console.log('numOfCoins: ' + numOfCoins);
         console.log('person_name: ' + person_name);
         });    
     }
@@ -232,7 +246,19 @@ class Attendance extends Component {
         let e_second = stDate.getSeconds();
 
         var edDate = 0;
-
+        // 출석체크 거래 유의사항 modal
+        function attendanceTransactionConfirm() {
+            confirmAlert({
+                title: '출석결과에 따른 거래가 시작되었습니다.',
+                message: '약 1분내로 코인관리 화면에 반영됩니다.',
+                buttons: [
+                    {
+                        label: '확인'
+                    }
+                ]
+            })
+        }
+        
         // 출석체크 진행 중인 경우
         if (this.state.edDate !== null) {  
             edDate = this.state.edDate.getTime();
@@ -266,20 +292,21 @@ class Attendance extends Component {
         var RemainDate = edDate - stDate; // 잔여시간
 
         // 스마트 계약 지각 거래발생
-        async function setTardinessTransfer (_senderPerson_id, _receiverPerson_id, _date,_studyId,_coin){
+        async function setTardinessTransfer (_latecomer_accountIdx,_senderPerson_id, _receiverPerson_id, _date,_studyId,_coin){
+        
             // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
             let date = web3.utils.fromAscii(_date);
             let senderPerson_id = web3.utils.fromAscii(_senderPerson_id);
             let receiverPerson_id = web3.utils.fromAscii(_receiverPerson_id);
-            let ether = Number(_coin) / 100;
+            let ether = String(_coin / 10).substring(0 , 9);
+            console.log(_senderPerson_id+'->'+_receiverPerson_id + '로 '+ether+'이더 지급');
             // sender가 receiver에세 n코인 만큼 _date일시에 보냈다는 거래 내역을 저장하는 부분
             studyGroupInstance.methods.setTardinessTransfer(senderPerson_id, receiverPerson_id, web3.utils.toWei(String(_coin), 'ether'), date, _studyId).send(
             { 
-                from: myAccount[0],
+                from: myAccount[Number(_latecomer_accountIdx)],
                 value: web3.utils.toWei(String(ether), 'ether'),
                 gas: 3000000 
-            }
-            );
+            });
 
         }
 
@@ -377,6 +404,15 @@ class Attendance extends Component {
             });
         }
 
+        //지각자의 계좌 index 얻어오기
+        async function getLatecomerAccountId(latecomer_id){
+            const url = '/api/community/getLatecomerAccountId';
+            return post(url, {
+                study_id: _studyId,
+                latecomer_id: latecomer_id
+            });
+        }
+
         // 시간 감소시켜 화면에 출력하는 메소드
         function msg_time(_studyId){
             //var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
@@ -429,14 +465,15 @@ class Attendance extends Component {
                                             // 각 지각한 사람 제외의 스터디원 배열 쿼리
                                             receiver_list(res_personId.data[i].person_id).then((res_studyjoin_person)=>{
                                                 // 지각하지 않은 사람이 지각한 사람 한 사람당 받는 코인 값
-                                                let _coin = String(0.001 / (res_studyjoin_person.data.length)).substring(0 , 6);
+                                                let latecomer_coin = 0.1;
+                                                let _coin = String(latecomer_coin / (res_studyjoin_person.data.length)).substring(0 , 6);
                                                 console.log(_coin);
                                                 let receive_list = res_studyjoin_person.data;
 
                                                 //블록체인 거래 내역이 있다면?
                                                 if(res.data.length === 1){
                                                     // 거래 내역이 true인지, 거래취소 false인지 판별
-                                                    // false일때만 거래 진행 허용
+                                                    // false일때만 거래 진행 허용 = 거래 취소 후 재 거래 시도할 경우
                                                     if(res.data[0].transaction_status === false){
                                                         // insert하는 형식이 아닌 update로 값을 넣어줘야 함.
                                                         attendance_trading_authority(_date).then((is_first_res)=>{
@@ -449,8 +486,14 @@ class Attendance extends Component {
                                                                     for(let i = 0; i < receive_list.length; i++){
                                                                         let receiverPerson_id = receive_list[i].person_id;
                                                                             console.log(senderPerson_id+'->'+receiverPerson_id + '로 '+_coin+'코인 지급');
-                                                                            // 지각 거래 스마트 계약 함수 실행 부분 실행
-                                                                            setTardinessTransfer(senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                            // 지각자의 계좌 index 얻어오기
+                                                                            getLatecomerAccountId(senderPerson_id).then((latecomer_data)=>{
+                                                                                
+                                                                                let latecomer_id = latecomer_data.data[0].account_index;
+                                                                                console.log(latecomer_id);
+                                                                                // 지각 거래 스마트 계약 함수 실행 부분 실행
+                                                                                setTardinessTransfer(latecomer_id, senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                            });
                                                                     }
                                                                 });   
                                                             }
@@ -465,11 +508,16 @@ class Attendance extends Component {
                                                             inert_status_of_tardiness(_date, true).then(()=>{
                                                                 for(let i = 0; i < receive_list.length; i++){
                                                                     let receiverPerson_id = receive_list[i].person_id;
-                                                                        console.log(senderPerson_id+'->'+receiverPerson_id + '로 '+_coin+'코인 지급');
-                                                                        // 지각 거래 스마트 계약 함수 실행 부분 실행
-                                                                        setTardinessTransfer(senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                    // 지각자의 계좌 index 얻어오기
+                                                                    getLatecomerAccountId(senderPerson_id).then((latecomer_data)=>{
+                                                                        let latecomer_id = latecomer_data.data[0].account_index;
+                                                                        console.log(latecomer_id);
+                                                                            // 지각 거래 스마트 계약 함수 실행 부분 실행
+                                                                        setTardinessTransfer(latecomer_id, senderPerson_id, receiverPerson_id, _date, _studyId, _coin);
+                                                                    });
                                                                 }
-                                                            });   
+                                                                attendanceTransactionConfirm(); 
+                                                            });
                                                         }
                                                     });
                                                 }
@@ -673,34 +721,39 @@ class Attendance extends Component {
     render() {
         return(
             <div className="div_attendance_check">
-                <div className="attendance_header">출석 현황</div>
-                <div className="attendance_content">
+                {this.state.web3 ? 
                     <div>
-                        <span className="attendance_effective_time">출석 유효 시간 :</span>
-                        <span className="attendance_effective_time" id="timer">00분 00초</span>
-                        <br /> 
-                    </div>   
-                    <div className="attendance_status_control">
-                        <form onSubmit={this.handleFormSubmit}>
-                            <div className="attendance_form_group">
-                                <select className="form-control" id="valid_attendance_time" name='valid_attendance_time' value={this.state.valid_attendance_time} onChange={this.handleValueChange}>
-                                </select>
-                                <span>분</span>
-                            </div>
+                        <div className="attendance_header">출석 현황</div>
+                        <div className="attendance_content">
                             <div>
-                                <input type="submit" value="출석 시작" className="btn btn-danger" id="btn_attendance_check"  />
-                            </div>
-                        </form> 
-                        <div className="attend_status">
-                            <div className="btn btn-danger" id="completion">출석 미완료</div>
-                            <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
+                                <span className="attendance_effective_time">출석 유효 시간 :</span>
+                                <span className="attendance_effective_time" id="timer">00분 00초</span>
+                                <br /> 
+                            </div>   
+                            <div className="attendance_status_control">
+                                <form onSubmit={this.handleFormSubmit}>
+                                    <div className="attendance_form_group">
+                                        <select className="form-control" id="valid_attendance_time" name='valid_attendance_time' value={this.state.valid_attendance_time} onChange={this.handleValueChange}>
+                                        </select>
+                                        <span>분</span>
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="출석 시작" className="btn btn-danger" id="btn_attendance_check"  />
+                                    </div>
+                                </form> 
+                                <div className="attend_status">
+                                    <div className="btn btn-danger" id="completion">출석 미완료</div>
+                                    <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
+                                </div>
+                                <div className="cancel_btn_desc">
+                                    <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
+                                    <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
+                                </div>
+                            </div>    
                         </div>
-                        <div className="cancel_btn_desc">
-                            <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
-                            <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
-                        </div>
-                    </div>    
-                </div>
+                    </div>
+                    : <ProgressBar message ='로딩중'/>}
+                
             </div>
         );
     }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './CoinManagement.css';
 import { post } from 'axios';
 import $ from 'jquery';
+import ProgressBar from './ProgressBar';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
@@ -65,11 +68,14 @@ class AboutCoin extends Component{
           this.getUserNameSession().then(()=>{
             this.getEnterSession().then(()=>{
                 this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
-                    let account_id = res.data[0].account_id;
-                    $('.account_number').val(myAccount[account_id]);
+                    let account_index = res.data[0].account_index;
+                    $('.account_number').val(myAccount[account_index]);
                     //let account = myAccount[account_id];
-                    web3.eth.getBalance(myAccount[account_id]).then(result=>{
+                    web3.eth.getBalance(myAccount[account_index]).then(result=>{
                         let balance = web3.utils.fromWei(result, 'ether');
+                        // 코인 값 SET
+                        let coin = String(balance*10).substring(0 , 6);
+                        $('#sum_of_coin').text(coin+'코인');
                         console.log('잔여 ether: '+balance);
                     });
                    
@@ -84,13 +90,27 @@ class AboutCoin extends Component{
             console.error(error);
           }
     };
+
+     // 코인 관리 유의사항 modal
+     cautionConfirm = () => {
+        confirmAlert({
+           message: '블록체인 거래 시 별도의 수수료가 발생하므로 기록된 거래 코인 값보다 잔여 코인이 적을 수 있습니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
+    }
+
     componentWillMount = async () => {
-        this.initContract();
+         this.initContract().then(()=>{
+            this.cautionConfirm();
+        });
     };
 
 
     componentDidMount = async () => {
-
         this.initContract().then(()=>{
             this.getUserNameSession().then(()=>{
                 this.getEnterSession().then(()=>{
@@ -138,20 +158,16 @@ class AboutCoin extends Component{
     getPersonInfoOfStudy = async (_study_id, _person_id) => {
         const { studyGroupInstance, web3} = this.state; 
         let Ascii_person_id = web3.utils.fromAscii(_person_id);
-        let numOfCoins = 0;
         studyGroupInstance.methods.getPersonInfoOfStudy(_study_id, Ascii_person_id).call().then(function(result) {
             let memberAddress =  result[0];
             let person_id = web3.utils.toAscii(result[1]);
             let study_id =  result[2];
-            numOfCoins = web3.utils.fromWei(String(result[3]), 'ether');
-            let person_name =  web3.utils.toAscii(result[4]);
+            let person_name =  web3.utils.toAscii(result[3]);
             console.log('memberAddress: ' + memberAddress);
             console.log('person_id: ' + person_id);
             console.log('study_id: ' + study_id);
-            console.log('numOfCoins: ' + numOfCoins);
             console.log('person_name: ' + person_name);
-            // 코인 값 SET
-            $('#sum_of_coin').text(numOfCoins+'코인');
+            
         });
     }
 
@@ -237,33 +253,39 @@ class AboutCoin extends Component{
     render(){
         return(
             <div className="div_coin_management">
-                <div className="coin_management_header">{this.state.userName} 님의 계좌 번호</div>
-                <div className="div_account_number">
-                    <input type="text" className="form-control account_number" disabled/>
-                </div>
-              
-                <div className="coin_management_content">
-                    <span className="coin_status_text">잔여 코인</span>
-                    <span className="btn btn-danger" id="sum_of_coin"></span> 
-                </div>
-                <div className="content_coin_usage">
-              
-                { this.state.transactionsList ? this.state.transactionsList.map(c => {
-                    if(c[5] === 'sender'){
-                    return (
-                        <TransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                        )
-                    } else{
+                {this.state.web3 ? 
+                <div>
+                    <div className="coin_management_header">{this.state.userName} 님의 계좌 번호</div>
+                    <div className="div_account_number">
+                        <input type="text" className="form-control account_number" disabled/>
+                    </div>
+                
+                    <div className="coin_management_content">
+                        <span className="coin_status_text">잔여 코인</span>
+                        <span className="btn btn-danger" id="sum_of_coin"></span> 
+                    </div>
+                    <div className="content_coin_usage">
+                
+                    { this.state.transactionsList ? this.state.transactionsList.map(c => {
+                        if(c[5] === 'sender'){
                         return (
-                        <TransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                    )
-                    }
-                  
-                })
-                  : ""}
-                <div className = "not_exist_transfer_msg">거래 내역이 존재하지 않습니다.</div>
-               
+                            <TransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                            )
+                        } else{
+                            return (
+                            <TransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                        )
+                        }
+                    
+                    })
+                    : ""}
+                    <div className = "not_exist_transfer_msg">거래 내역이 존재하지 않습니다.</div>
+                    
+                    </div>
+                    <div className="coin_return_message">★잔여 코인 반환은 지정된 종료 날짜의 자정에 반환됩니다.★</div>
+                   
                 </div>
+                :<ProgressBar message ='로딩중'/>}
                 </div>
         );
     }

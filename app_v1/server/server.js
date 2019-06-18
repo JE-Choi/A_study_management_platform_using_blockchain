@@ -24,13 +24,13 @@ connection.connect();
 app.post('/api/createAccount', (req, res) => {
     let sql = `INSERT INTO account_list VALUES (?,?,?,?,?);`;
     
-    let account_id = req.body.account_id;
+    let account_index = req.body.account_index;
     let account_num = req.body.account_num;
     let account_pw = req.body.account_pw;
     let person_id = req.body.person_id;
     let study_id = req.body.study_id;
 
-    let params = [account_id, account_num, account_pw, person_id,study_id];
+    let params = [account_index, account_num, account_pw, person_id,study_id];
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows);
@@ -273,7 +273,7 @@ app.post('/api/myPage/joinStudy', (req, res) => {
 
 // myPage에서 선택한 스터디에서의 자신의 코인 조회
 app.post('/api/coinManagement/loadAccount', (req, res) => {
-    let sql = `SELECT account_id FROM account_list WHERE study_id = ? AND person_id = ?;`;
+    let sql = `SELECT account_index FROM account_list WHERE study_id = ? AND person_id = ?;`;
     
     let study_id = req.body.study_id;
     let person_id = req.body.person_id;
@@ -522,6 +522,110 @@ app.post('/api/quiz/isQuizResult', (req, res) => {
 
     let params = [study_id, quiz_date];
     connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+
+// 계좌 불러오기
+app.get('/api/selectFromInitAccountList', (req, res) => {
+    let sql =`SELECT * FROM init_account_list where is_use = 0 ORDER BY account_index ASC LIMIT 1;`;
+
+    connection.query(sql,
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// 계좌 속성값 변경
+app.post('/api/useInitAccount', (req, res) => {
+    let sql =`UPDATE init_account_list SET is_use = true WHERE account_index = ?;`;
+
+    let account_index = req.body.account_index;
+
+    let params = [account_index];
+    connection.query(sql,params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+}); 
+
+
+
+// 계좌번호 setting
+app.post('/api/init_account_list', (req, res) => {
+    let sql = `INSERT INTO init_account_list VALUES (?,?,?);`;
+
+    let account_id = req.body.account_id;
+    let account_num = req.body.account_num;
+    let is_use = req.body.is_use;
+
+    let params = [account_id, account_num, is_use];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
+
+//지각자의 계좌 index 얻어오기
+app.post('/api/community/getLatecomerAccountId', (req, res) => {
+    let sql = `SELECT * FROM account_list WHERE person_id = ? AND study_id = ?;`;
+   
+    let study_id = req.body.study_id;
+    let latecomer_id = req.body.latecomer_id;
+
+    let params = [latecomer_id, study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
+
+
+// 종료날짜인지 확인
+app.post('/api/manager/callEndDateReturnCoin', (req, res) => {
+    let sql = `SELECT * FROM studyitem WHERE date(end_date)=?;`;
+   
+    let today = req.body.today;
+
+    let params = [today];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
+
+// 종료날짜인 스터디에 속한 스터디원 추출
+app.post('/api/manager/callEndDatePerson', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?;`;
+    let study_id = req.body.study_id;
+
+    let params = [study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
+app.post('/api/manager/callEndDatePersonAccount', (req, res) => {
+    let sql = `SELECT * FROM account_list WHERE study_id = ? AND person_id = ?;`;
+    let study_id = req.body.study_id;
+    let person_id = req.body.person_id;
+    
+    let params = [study_id, person_id];
+    connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows); 
         }

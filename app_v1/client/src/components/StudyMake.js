@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
+import ProgressBar from './ProgressBar';
 import DateTimePicker from 'react-datetime-picker';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -21,18 +22,26 @@ class StudyMake extends Component {
             person_id: '', 
             study_id: '',
             person_name:'',
+            account_idx: 0,
 
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
             account_pw:'',
+            transactionReceiptOfMemberItem:'', // 사용자 등록 트랜잭션 채굴 확인용
+            transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
+            isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
+            isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
 
             study_start_date: '',
             study_end_date: new Date(),
 
             dbStartDate:'',
-            dbEndDate: ''
+            dbEndDate: '',
+
+            // progress 
+            completed: 0
         }
     }
 
@@ -57,103 +66,132 @@ class StudyMake extends Component {
     }
 
     createAccount = async (_study_id) =>{
-        const {myAccount, web3} = this.state; 
-       
         // 계정 생성 
-        //var account_pw = this.state.account_pw;
         let account_pw = $('#study_make_pw').val();
-        await web3.eth.personal.newAccount(account_pw);
         console.log('사용된 패스워드: ' + account_pw);
-        // 계좌가 생성되었기 때문에 계좌목록 State값 갱신해야 한다. 
-        let myAccount_new = await web3.eth.getAccounts();
-        this.setState({
-            myAccount: myAccount_new
-        });
-
-        // 마지막에 생성된 계정 index구하기
-        // 바로 setState한거 적용 안되기 때문에 state값 안 가져다 사용.
-        var account_id =  myAccount_new.length - 1;
-        console.log(account_id);
-    
-        // DB 저장 시 계정 index값과 비밀번호, hash계정 값 저장해야함.
-        var account_num = myAccount_new[account_id];
-        console.log('['+(account_id)+'] 번째 인덱스에 '+ account_num +'계정이 생겨났고, 비밀번호는 ' + account_pw);
-    
         
-        // DB에 값 삽입
-        this.callCreateAccountApi(this.state.person_id, account_id, account_num, account_pw,_study_id).then((response) => {
-            //console.log(response.data);
-            console.log(this.state.person_id +' '+account_id+' '+account_num+' '+account_pw);
+        this.selectFromInitAccountList().then((init)=>{
+            console.log('226줄 account_idx: '+this.state.account_idx);
+            if(init.length === 1){
+                // 계좌 번호
+                let account_num = init[0].account_num;
+           
+                // DB에 값 삽입 account_num 
+                this.callCreateAccountApi(this.state.person_id, this.state.account_idx,
+                    account_num, account_pw, _study_id).then((response) => {
+                    console.log(this.state.person_id +' '+this.state.account_idx+' '+account_pw);
+                    this.useInitAccount(this.state.account_idx).then((res)=>{
+                        console.log(res);
+                        
+                    });
+
+                }).catch((error)=>{
+                console.log(error);
             
-        }).catch((error)=>{
-        console.log(error);
-       
+                });
+                
+            } else{
+                console.log("계좌 생성시 오류");
+            }
         });
-        return account_id;
-        // this.createTheStudy(0,account_num, 'person', 1, 40);
     }
 
     // 블록체인 계좌생성 후 DB에 account_list에 삽입. 
-    callCreateAccountApi = (_person_id,_account_id,_account_num,_account_pw,_study_id) => {
+    callCreateAccountApi = (_person_id,_account_index,_account_num,_account_pw,_study_id) => {
         const url = '/api/createAccount';
         return post(url,  {
             person_id: _person_id,
-            account_id: _account_id,
+            account_index: _account_index,
             account_num: _account_num,
             account_pw: _account_pw,
             study_id : _study_id
         });
     }
+
+    // 계좌 불러오기
+    selectFromInitAccountList  = async () => {
+        const url = '/api/selectFromInitAccountList';
+        const response = await fetch(url);
+        const body = await response.json();
+        
+        // 배정할 계좌의 인덱스 저장
+        if(body.length === 1){
+            this.setState({
+                account_idx : body[0].account_index
+            });
+        }
+        return body;
+    }
+    // 계좌 속성 변경
+    useInitAccount = async (_account_index) => {
+        const url = '/api/useInitAccount';
+        console.log(_account_index);
+        return post(url,  {
+            account_index: _account_index
+        });
+    }
     
     // 매개변수로 들어온 _account_id에게 ether 지급.
-    chargeTheCoin = async (_account_id) =>{
+    chargeTheCoin = async () =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let study_make_coin = $('#study_make_coin').val();
-        // 1코인당 0.01ether를 충전하기 위한 변환 과정
-        let study_make_ether = study_make_coin / 100;
-        // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-        studyGroupInstance.methods.chargeTheCoin(myAccount[_account_id]).send(
+        // 1코인당 0.1ether를 충전하기 위한 변환 과정
+        let study_make_ether = study_make_coin / 10;
+        console.log('study_make_ether: '+study_make_ether);
+        // myAccount[account_id] <- 이 계좌가 받는 사람 계좌.
+        let account_id = Number(this.state.account_idx);
+        studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
           {
             from: myAccount[0], 
             value: web3.utils.toWei(String(study_make_ether), 'ether'),
             // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
             gas: 0 
-          }
-        );
-        setTimeout(function(){
-            web3.eth.getBalance(myAccount[_account_id]).then(result=>{
-                console.log('이체 후 잔액은: ' + web3.utils.fromWei(result, 'ether'));
-            });
-        }, 1000);
+          })
+          // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+          .on('confirmation', (confirmationNumber, receipt) => {
+              console.log('chargeTheCoin')
+              console.log(receipt);
+              let transactionReceiptOfChargeTheCoin = receipt;
+              this.setState({
+                  transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
+              });
+              // 이더 충전 트랜잭션 채굴 완료
+              this.setState({
+                  isChargeTheCoin: false
+              });
+          });
     }
 
     componentDidMount() {
-        this.make_tag();
-        this.getSession();  
+        this.initContract().then(()=>{
+            this.make_tag();
+            this.getSession();  
+            this.timer = setInterval(this.progress, 20); 
 
-        let stDate = new Date();
-        let formatted_stDate = '';
-        let db_formatted_stDate = '';
-        let amPm = '';
-        let hour = '';
+            let stDate = new Date();
+            let formatted_stDate = '';
+            let db_formatted_stDate = '';
+            let amPm = '';
+            let hour = '';
 
-        if(stDate.getHours() >= 12){
-            amPm = '오후';
-            if(stDate.getHours() === 12){
-                hour = stDate.getHours();
+            if(stDate.getHours() >= 12){
+                amPm = '오후';
+                if(stDate.getHours() === 12){
+                    hour = stDate.getHours();
+                } else{
+                    hour = stDate.getHours() - 12;
+                }
+                formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+hour+":"+stDate.getMinutes();
+            
             } else{
-                hour = stDate.getHours() - 12;
+                amPm = '오전';
+                formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+stDate.getHours()+":"+stDate.getMinutes();
             }
-            formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+hour+":"+stDate.getMinutes();
-        
-        } else{
-            amPm = '오전';
-            formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" "+amPm+" "+stDate.getHours()+":"+stDate.getMinutes();
-        }
-        db_formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" " + stDate.getHours()+":"+stDate.getMinutes();
-        this.setState({
-            study_start_date: formatted_stDate,
-            dbStartDate: db_formatted_stDate
+            db_formatted_stDate = stDate.getFullYear()+"-"+(stDate.getMonth()+1)+"-"+stDate.getDate()+" " + stDate.getHours()+":"+stDate.getMinutes();
+            this.setState({
+                study_start_date: formatted_stDate,
+                dbStartDate: db_formatted_stDate
+            });
         });
     }
     
@@ -170,18 +208,36 @@ class StudyMake extends Component {
                 let insert_id = response.data.insertId;
                 setTimeout(
                     this.addleader(insert_id).then(() =>{
+                        this.setState({
+                            isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생 
+                            isChargeTheCoin: true,  // 이더 충전 트랜잭션 발생
+                        });
                         this.createAccount(insert_id).then((account_id)=>{
                             this.setState({
                                 study_id: insert_id
                             });
-                            this.chargeTheCoin(account_id).then(()=>{
-                                // StudyGroup.sol파일의 studyMember구조체 생성
-                                let person_id = this.state.person_id;
-                                //let memberAddress = account_num;
-                                let join_coin = this.state.study_coin;
-                                this.createMemberItem(this.state.study_id , person_id, account_id, join_coin,this.state.person_name);
-                                this.props.history.push('/mainPage'); 
-                            });
+                            setTimeout(()=>{
+                                // 이더 충전 트랜잭션 발생
+                                this.chargeTheCoin(account_id).then(()=>{
+                                    // StudyGroup.sol파일의 studyMember구조체 생성
+                                    let person_id = this.state.person_id;
+                                    // 사용자 등록 트랜잭션 발생 
+                                    this.createMemberItem(this.state.study_id , person_id, this.state.account_idx,this.state.person_name);
+                                    let second = 1000;
+                                    let intervalTime = second * 2;
+ 
+                                    var refreshIntervalId = setInterval(()=>{
+                                        if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.transactionReceiptOfChargeTheCoin !== '')){
+                                            /* refreshIntervalId 중지 */
+                                            clearInterval(refreshIntervalId);
+                                            setTimeout(()=>{
+                                                this.studyOkJoinConfirm();
+                                            },100);
+                                            this.props.history.push('/mainPage');
+                                        }
+                                    },intervalTime);
+                                });
+                            }, 1000);
                         });
                     }), 100);
                 })    
@@ -232,7 +288,7 @@ class StudyMake extends Component {
     }
 
     componentWillMount = async () => {
-        this.initContract();
+        clearInterval(this.timer);
     };
     
     initContract = async () => {
@@ -253,9 +309,13 @@ class StudyMake extends Component {
       
       
           // 확인용 로그
-          // console.log(ShopContract.abi);
-          console.log(web3);
-          console.log(myAccount);
+          if(web3 !== null){
+                console.log("web3연결 성공");
+                console.log(instance);
+            } else{
+                //web3연결 실패
+                console.log("인터넷을 연결 시켜주세요.");
+            }
         //   Set web3, accounts, and contract to the state, and then proceed with an
         //   example of interacting with the contract's methods.
         this.setState({ web3, myAccount, studyGroupInstance: instance});
@@ -318,33 +378,60 @@ class StudyMake extends Component {
         })
     }
 
+    // 스터디 가입 완료 확인창
+    studyOkJoinConfirm = () => {
+        confirmAlert({
+            title: '스터디에 가입되셨습니다.',
+            message: '자세한 사항은 MyPage에서 확인 가능합니다.',
+            buttons: [
+                {
+                    label: '확인'
+                }
+            ]
+        })
+    }
+
     // StudyGroup.sol파일의 studyMember구조체 생성
-    createMemberItem = async (_study_id, _person_id ,_account_id, _numOfCoins,_person_name) => {
+    createMemberItem = async (_study_id, _person_id ,_account_id, _person_name) => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let _memberAddress = myAccount[_account_id];
         // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
         let Ascii_person_id =  web3.utils.fromAscii(_person_id); 
         let Ascii_person_name =  web3.utils.fromAscii(_person_name); 
-        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,web3.utils.toWei(String(_numOfCoins)),Ascii_person_name).send(
+        studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,Ascii_person_name).send(
         {
                 from: myAccount[0], // 관리자 계좌
                 gas: 3000000 
         }
-        );
+        )
+        // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+        .on('confirmation', (confirmationNumber, receipt) => {
+            console.log('setPersonInfoOfStudy')
+            console.log(receipt);
+            let transactionReceiptOfMemberItem = receipt;
+            this.setState({
+                transactionReceiptOfMemberItem:transactionReceiptOfMemberItem
+            });
+            // 이더 충전 트랜잭션 채굴 완료
+            this.setState({
+                isMemberItemTransfer: false
+            });
+        });
     }
     
     render() {
         return (
             <div className="out_study_make_frame">
+                {this.state.web3 ?
                 <div className="study_make_screen">
-                   <div className="study_make_header">
+                    <div className="study_make_header">
                         <div id="study_make_title">
                             STUDY 생성
                         </div>
                         <p id="study_make_desc">
                             - Study를 생성하는 사람이 팀장입니다.
                         </p>
-                   </div>
+                    </div>
                     <form className="study_make_form" onSubmit={this.handleFormSubmit}>
                         <div className="study_make_form_group">
                             <label className="study_make_label">스터디 명 </label>
@@ -373,7 +460,7 @@ class StudyMake extends Component {
                                 />
                             </span>
                             <br/><br/>
-                            <div className = "end_date_desc">★ Study 종료 날짜에 따라 잔여 코인을 반환 받을 수 있습니다. ★</div>                       
+                            <div className = "end_date_desc">★ Study 종료 날짜의 자정에 잔여 코인을 반환 받을 수 있습니다. ★</div>                        
                             <br/>
                         </div>
 
@@ -401,8 +488,18 @@ class StudyMake extends Component {
                         <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_study_make">STUDY 생성</button>
 
                     </form>
-
+                    {(this.state.isMemberItemTransfer === false)&&(this.state.isChargeTheCoin === false)?
+                    '':
+                    <div className="progrss_bar_layer"> 
+                        <div className="progress_bar_body">
+                            <ProgressBar message ='스터디 생성 중...' sub_msg1 = "약 1분 정도 소요됩니다."
+                            sub_msg2 = "잠시만 기다려주세요."/> 
+                        </div>
+                    </div>
+                    }
                 </div>
+                :
+                <ProgressBar message ='로딩중'/>}
             </div>
         );
     }
