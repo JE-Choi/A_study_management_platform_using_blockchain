@@ -21,7 +21,7 @@
 
 .userP_box {
     border-top: 0.5px solid rgb(182, 145, 119) ;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     margin-bottom: 2rem;
     padding-top: 2rem;
 }
@@ -34,6 +34,30 @@
     text-align: center;
     font-size: 1rem;
     margin-top: 0.7rem;
+}
+
+.list_toggle_btn_div{
+    width: 100%;
+    display: inline-block;
+}
+
+#end_study_list_btn {
+    border-width: 2px;
+    border-color: rgb(216, 165, 129);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: rgb(216, 165, 129);
+    height: 2rem;
+    float: right;
+}
+
+#end_study_list_btn:hover {
+    background-color: #EEEEEE !important;
+    color: #D3B8A5;
+}
+
+#end_study_list_btn:active:focus {
+    border-color: rgb(216, 165, 129);
 }
 
 .current_study_item {
@@ -78,9 +102,19 @@
         margin-top: 0.2rem;
     }
 
+    #end_study_list_btn {
+        font-size: 0.7rem;
+        width: 8rem;
+        height: 1.7rem;
+        margin-top: 0.8rem;
+        margin-left: 0rem;
+        padding-top: 0.3rem; 
+        float: none;
+    }
+
     .main_UserP {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.2rem;
     }
     
     .userP_box {

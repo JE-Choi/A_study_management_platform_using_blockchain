@@ -11,11 +11,20 @@ contract StudyGroup {
     }
 
     // 스터디 구조체
-    struct eachStudy {
-        uint study_id;
-        studyMember[] members;
+    struct studyInfo { 
+        bytes32 endDate;    //스터디 종료날짜
+        bool isEndDateDeal; //스터디 종료 거래 진행 여부
     }
 
+    // 스터디 종료내역 저장
+    struct studyEndTransfer {
+        uint studyId;// 종료된 study_id
+        bytes32 personId; // 반환 받아야 하는 person_id
+        bytes32 personName; // 반환 받아야 하는 person_name
+        uint receiveEther; // 반환 받아야 하는 ether값
+        bytes32 endDate; // 종료된 날짜
+    }
+    
     // 지각에 따른 코인 차감
     struct tardinessTransfer {
         bytes32 senderId; // 지각한 사람의 person_id
@@ -29,137 +38,125 @@ contract StudyGroup {
     // 그 값이 studyMember에 매칭되는 회원 정보
     // 스터디 가입, 생성시 회원 정보 저장.
     mapping(uint => mapping(bytes32 => studyMember)) memberInfo;
-    // (key, value) = ( _sender의 person_name, 그 사람의 거래 목록들)
-    // mapping(bytes32 => tardinessTransfer[]) getTardinessTransferList; 
+
+    // (key, value) = ( [스터디id][사용자id] -> 지각거래 내역)
     // 해당 스터디의 특정 스터디원의 거래 내역
-    // mapping(uint => mapping(bytes32 => tardinessTransfer[])) getTardinessTransferList;
     mapping(uint => tardinessTransfer[]) getTardinessTransferList;
     //mapping(uint => mapping(uint => LogOfTardinessTransfer)) LogOfTardinessTransfer_mapping;
 
-    
+    // (key: 스터디 id) 스터디 생성시 스터디 정보 저장
+    mapping(uint => studyInfo) studyInfoList;
 
-    // 지각에 따른 코인 차감 관련 event
-    // struct LogOfTardinessTransfer(
-    //     address _sender,
-    //     address _receiver,
-    //     uint _coin,
-    //     bytes32 _date
-    // );
+    // (스터디별) 스터디 종료 트랜잭션 
+    mapping(uint => studyEndTransfer[]) studyEndTransferList;
+    // (모든 스터디) 스터디 종료 트랜잭션 
+    studyEndTransfer[] studyEndManageList;
+
+    // studyGroup.sol에 스터디 종료 여부, 종료 내역 저장
+    function setStudyEndTransfer(uint _studyId, bytes32 _endDate) public {
+        // 스터디 구조체 생성
+        studyInfo memory studyInfoItem = studyInfo(_endDate, false); 
+        // 스터디 정보 list에 항목 추가
+        studyInfoList[_studyId] = studyInfoItem;
+    }
+
+    // 스터디 정보 반환
+    function getStudyEndTransfer(uint _studyId) view external returns(studyInfo) {
+        // 스터디 구조체 반환
+        return (studyInfoList[_studyId]);
+    }
+
+    // (전체)스터디 정보 반환
+    function getStudyEndTransferManageList() view external returns(studyEndTransfer[]) {
+        // 스터디 구조체 반환
+    
+        return (studyEndManageList);
+    }
+
+    // (인덱스)스터디 정보 반환
+    function getStudyEndTransferList(uint _study_id) view external returns(studyEndTransfer[]) {
+        // 스터디 구조체 반환
+        return (studyEndTransferList[_study_id]);
+    }
+
+    // 스터디 종료처리 - (스터디 구조체에 isEndDateDeal 항목 수정)
+    function renameStudyEndTransfer(uint _studyId) public {
+        studyInfoList[_studyId].isEndDateDeal = true;
+    }
+    
+    // study가 종료될 때 코인을 환급받는 메소드
+    function endTheStudy(uint _studyId, bytes32 _personId, uint _receiveEther,  bytes32 _endDate) external payable {
+
+        // 종료 거래 생성 및 리스트에 추가
+        bytes32 _personName = memberInfo[_studyId][_personId].person_name;
+        // 종료 거래 생성
+        studyEndTransfer memory studyEndTransferItem = studyEndTransfer(_studyId, _personId, _personName, _receiveEther, _endDate);
+        
+        // 리스트에 추가
+        studyEndTransferList[_studyId].push(studyEndTransferItem);
+        studyEndManageList.push(studyEndTransferItem);
+
+        // 사용자 계좌에서 관리자 계좌로 거래 진행
+        address managerAccount = 0x6A514E7125B87a7ca5Eb230abD9E02EEbb3D678E;
+        // sender는 js파일에서 지정됨.
+        // managerAccount는 receiver
+        managerAccount.transfer(msg.value);
+    }
     
     // 지각에 대한 코인 차감 거래 발생
     function setTardinessTransfer(bytes32 _senderId, bytes32 _receiverId, uint _coin, bytes32 _date, uint _study_id) public payable {
         studyMember memory senderInfo = memberInfo[_study_id][_senderId];
         studyMember memory receiverInfo = memberInfo[_study_id][_receiverId];
         // 메세지 저장할 객체 생성
-        // tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
-        tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
+       tardinessTransfer memory transferItem = tardinessTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
         
-        // 객체에 지각한 내용 저장 
-        // 해당 스터디에 대한 지각 정보
+        // 객체에 지각한 내용 저장 - 해당 스터디에 대한 지각 정보
         getTardinessTransferList[_study_id].push(transferItem); 
         
-        // // 실제 거래 부분
+        // 실제 거래 부분
         address receiverAddress = receiverInfo.memberAddress;
         receiverAddress.transfer(msg.value);
-        // address receiverAddress = 0x276dE4621e52355F71144134c118111B9a83e938;
-        // //memberInfo[study_id][receiverPerson_id].memberAddress;
-        // receiverAddress.transfer(msg.value);
     }
 
     // 지각에 대한 코인 차감 거래 발생 정보 얻기 
     function getTardinessTransfer (uint _study_id) view external returns(tardinessTransfer[],uint) {
-
-    // function getTardinessTransfer (uint _study_id, bytes32 _senderId) view external returns(tardinessTransfer) {
-        // 해당 스터디의 모든 지각 정보
+    // 해당 스터디의 모든 지각 정보
         tardinessTransfer[] memory transferList = getTardinessTransferList[_study_id]; // 메세지 객체 저장
-        // tardinessTransfer memory transferList = getTardinessTransferList[_study_id][_senderId] ; // 메세지 객체 저장
-        
         return (transferList,transferList.length);
     }
-
-
-    // function input_tardiness_transfer(address _sender,address _receiver, uint _coin, bytes32 _date) public payable {
-    //     // _receiver.transfer(msg.value);
-    //     //emit log_tardiness_transfer(_sender, _receiver,_coin,_date);
-    // }
-
-
-    // 다차원 mapping 실험용
-    // function getMemberIndexInfo(uint _study_id, bytes32 _person_id) view external returns(address, bytes32, uint, uint) {
-    //       return (memberInfo[_study_id][_person_id].memberAddress, memberInfo[_study_id][_person_id].person_id, memberInfo[_study_id][_person_id].study_id , memberInfo[_study_id][_person_id].numOfCoins);
-    // }
 
     
     // 다차원 mapping 읽음 -> 특정 스터디의 특정 회원의 회원정보를 읽음.
     function getPersonInfoOfStudy(uint _study_id, bytes32 _person_id) view external returns(studyMember) {
           return (memberInfo[_study_id][_person_id]);
     }
-    
-    // 다차원 mapping 저장 -> 특정 스터디의 특정 회원의 회원정보를 저장.
+
+     // 다차원 mapping 저장 -> 특정 스터디의 특정 회원의 회원정보를 저장.
     function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name) public {
-   
         memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _person_name);
     }
 
+
+    // 다차원 mapping 저장 -> 스터디 생성시 스터디, 사용자정보 구조체 생성하여 저장
+    // 이전 함수명 setPersonInfoOfStudy
+    // function createStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name, bytes32 _endDate, bool _isEndDateDeal) public payable {
+    //     // 사용자 정보 생성 후 저장
+    //     memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _person_name);
+
+    //     // 스터디 구조체 생성
+    //     studyInfo memory studyInfoItem = studyInfo(_endDate, _isEndDateDeal); 
+    //     // 스터디 정보 list에 항목 추가
+    //     studyInfoList[_study_id] = studyInfoItem;
+
+    //     // 관리자 계좌에서 가입자에게 코인 충전
+    //     // _receiver에게 msg.value에서 지정된 ether만큼 전송한다. 
+    //     _memberAddress.transfer(msg.value);
+    // }
+
     // 관리자 계좌에서 가입자에게 코인 충전
     function chargeTheCoin(address _receiver) public payable {
-        // _receiver에게 msg.value에서 지정된 ether만큼 전송한다. 
+        // _receiver에게 msg.value에서 지정된 ether만큼 전송. 
         _receiver.transfer(msg.value);
     }
 
-   
-    // 아래 소스 지우면 안됨. 그대로는 안쓰더라도 틀로 이용 예정임.
-    // study 최초 생성자가 호출하는 메소드
-    // function createTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external {
-        
-    //     //studies.push(_study_id, studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));
-    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고
-    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기
-
-        
-    // }
-
-
-    // // study 최초 생성자가 호출하는 메소드
-    // function createTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external payable {
-        
-    //     studies.push(_study_id, studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));
-    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고
-    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기
-
-        
-    //     }
-    // }
-
-    // // study에 가입하는 메소드
-    // function joinTheStudy(address _memberAddress, bytes32 _person_id, uint _study_id, uint _numOfCoins) external payable {
-    //     // http://blog.naver.com/PostView.nhn?blogId=blokorea&logNo=221309181242&redirect=Dlog&widgetTypeCall=true&directAccess=false
-    //     int index = 0;
-    //     while(_study_id < studies.length){
-    //         if(_study_id == studies[index].study_id){
-    //             studies[index].members.push(studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));
-    //             index++;
-    //         }
-    //     }
-
-    //     //members.push(studyMember(_memberAddress, _person_id, _study_id, _numOfCoins));
-    //     // 계정 만드는것이 필요. -> js에서 web3로 만들고
-    //     // 만든 계정(msg.sender)에 관리자 계정에서 돈 가져다가 돈 충전해주는 걸 transfer로 하기
-
-        
-    //     }
-    // }
-
-    // // study 기간이 끝날 때 코인을 환급받는 메소드
-    // // js에서 타이머처럼 시간 검사해서 일정시간되면 실행되는 메소드
-    // // 여기에 매개변수가 있다는 건 js에서 이 함수 실행할 때 매개변수를 넘긴다는 의미.
-    // function endTheStudy() external payable {
-    
-
-    // }
-
-    // // 자신의 코인을 확인하는 메소드
-    // function getNumOfCoins(uint _study_id, bytes32 _person_id) external view returns(uint) {
-    //     return numOfCoins;
-    // }
 }

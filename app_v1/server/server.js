@@ -79,7 +79,7 @@ app.post('/api/studyItems/view_currentPeople', (req, res) => {
 
 // 사용자가 고객 추가 데이터 전송했을 때 처리
 app.post('/api/studyItems', parser, (req, res) => {
-    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)`;
+    let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, 0)`;
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
     let num_people = req.body.num_people;
@@ -271,7 +271,7 @@ app.post('/api/myPage/joinStudy', (req, res) => {
     );
 });
 
-// myPage에서 선택한 스터디에서의 자신의 코인 조회
+// 코인 관리 화면에서 선택한 스터디에서의 자신의 코인 조회
 app.post('/api/coinManagement/loadAccount', (req, res) => {
     let sql = `SELECT account_index FROM account_list WHERE study_id = ? AND person_id = ?;`;
     
@@ -395,8 +395,8 @@ app.post('/api/community/isNotAttend', parser, (req, res) => {
 });
 
 // 지각 거래 발생 유무 확인
-app.post('/api/community/status_of_tardiness_transaction', parser, (req, res) => {
-    let sql = `SELECT * FROM status_of_tardiness_transaction WHERE study_id = ? AND transaction_date = ?;`;
+app.post('/api/community/tardiness_deal_status', parser, (req, res) => {
+    let sql = `SELECT * FROM tardiness_deal_status WHERE study_id = ? AND transaction_date = ?;`;
     let study_id = req.body.study_id;
     let transaction_date = req.body.transaction_date;
 
@@ -410,7 +410,7 @@ app.post('/api/community/status_of_tardiness_transaction', parser, (req, res) =>
 
 // 거래 내역 진행 여부 저장
 app.post('/api/community/inert_status_of_tardiness', parser, (req, res) => {
-    let sql = `INSERT INTO status_of_tardiness_transaction VALUES (?,?,?);`;
+    let sql = `INSERT INTO tardiness_deal_status VALUES (?,?,?);`;
     let study_id = req.body.study_id;
     let transaction_date = req.body.transaction_date;
     let tardiness_status = req.body.tardiness_status;
@@ -591,7 +591,7 @@ app.post('/api/community/getLatecomerAccountId', (req, res) => {
 
 
 // 종료날짜인지 확인
-app.post('/api/manager/callEndDateReturnCoin', (req, res) => {
+app.post('/api/manager/callEndDateStudy', (req, res) => {
     let sql = `SELECT * FROM studyitem WHERE date(end_date)=?;`;
    
     let today = req.body.today;

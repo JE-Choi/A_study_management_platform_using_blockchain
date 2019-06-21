@@ -78,7 +78,7 @@ class Attendance extends Component {
 
                     let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
                    
-                    // 자신이 최초 출석자인지 확인
+                    // *자신*이 최초 출석자인지 확인
                     this.isFirstAttendee(today_date_view, this.state.userId).then((res)=>{
                         console.log(res.data.length);
 
@@ -128,9 +128,9 @@ class Attendance extends Component {
                             $('#valid_attendance_time').val(first_attend_valid_time); 
                             $('#valid_attendance_time').attr("disabled","disabled");  
 
-                            // 출석취소 기능 비활성화
-                            $('.cancel_attendance_btn').attr("disabled","disabled");
-                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                            // // 출석취소 기능 비활성화
+                            // $('.cancel_attendance_btn').attr("disabled","disabled");
+                            // $('.cancel_attendance_btn').val('출석 취소 불가'); 
                             
                             // 출석 유효시간 측정 타이머
                             this.setAttendance(this.state.studyId, this.state.userId);       
@@ -249,7 +249,7 @@ class Attendance extends Component {
         // 출석체크 거래 유의사항 modal
         function attendanceTransactionConfirm() {
             confirmAlert({
-                title: '출석결과에 따른 거래가 시작되었습니다.',
+                title: '출석체크가 종료되었습니다.',
                 message: '약 1분내로 코인관리 화면에 반영됩니다.',
                 buttons: [
                     {
@@ -294,12 +294,12 @@ class Attendance extends Component {
         // 스마트 계약 지각 거래발생
         async function setTardinessTransfer (_latecomer_accountIdx,_senderPerson_id, _receiverPerson_id, _date,_studyId,_coin){
         
-            // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+            // String타입 date32타입으로 변환 
             let date = web3.utils.fromAscii(_date);
             let senderPerson_id = web3.utils.fromAscii(_senderPerson_id);
             let receiverPerson_id = web3.utils.fromAscii(_receiverPerson_id);
             let ether = String(_coin / 10).substring(0 , 9);
-            console.log(_senderPerson_id+'->'+_receiverPerson_id + '로 '+ether+'이더 지급');
+
             // sender가 receiver에세 n코인 만큼 _date일시에 보냈다는 거래 내역을 저장하는 부분
             studyGroupInstance.methods.setTardinessTransfer(senderPerson_id, receiverPerson_id, web3.utils.toWei(String(_coin), 'ether'), date, _studyId).send(
             { 
@@ -370,7 +370,7 @@ class Attendance extends Component {
 
         // 최초 거래인지 확인
         async function statusOfTardinessTransaction(attendance_date){
-            const url = '/api/community/status_of_tardiness_transaction';
+            const url = '/api/community/tardiness_deal_status';
             return post(url, {
                 study_id: _studyId,
                 transaction_date: attendance_date
@@ -502,9 +502,10 @@ class Attendance extends Component {
                                                 } 
                                                 //  블록체인거래 내역이 없다면 거래 진행 허용
                                                 else{
+                                                    // 지각 스마트 계약 거래를 진행 할 수 있는 사람인지 확인 - 최초 출석자
                                                     attendance_trading_authority(_date).then((is_first_res)=>{
                                                         if(is_first_res.data.length === 1){
-
+                                                            // DB에 미출석자 지각 처리
                                                             inert_status_of_tardiness(_date, true).then(()=>{
                                                                 for(let i = 0; i < receive_list.length; i++){
                                                                     let receiverPerson_id = receive_list[i].person_id;

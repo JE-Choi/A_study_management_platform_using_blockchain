@@ -68,18 +68,19 @@ class AboutCoin extends Component{
           this.getUserNameSession().then(()=>{
             this.getEnterSession().then(()=>{
                 this.callLoadAccountApi(this.state.userId,this.state.studyId).then((res)=>{
-                    let account_index = res.data[0].account_index;
-                    $('.account_number').val(myAccount[account_index]);
-                    //let account = myAccount[account_id];
-                    web3.eth.getBalance(myAccount[account_index]).then(result=>{
-                        let balance = web3.utils.fromWei(result, 'ether');
-                        // 코인 값 SET
-                        let coin = String(balance*10).substring(0 , 6);
-                        $('#sum_of_coin').text(coin+'코인');
-                        console.log('잔여 ether: '+balance);
-                    });
-                   
-               
+                    console.log(res.data);
+                    if(res.data.length !== 0){
+                        let account_index = res.data[0].account_index;
+                        $('.account_number').val(myAccount[account_index]);
+                        //let account = myAccount[account_id];
+                        web3.eth.getBalance(myAccount[account_index]).then(result=>{
+                            let balance = web3.utils.fromWei(result, 'ether');
+                            // 코인 값 SET
+                            let coin = String(balance*10).substring(0 , 6);
+                            $('#sum_of_coin').text(coin+'코인');
+                            console.log('잔여 ether: '+balance);
+                        });
+                    }
                 });
             });
         });

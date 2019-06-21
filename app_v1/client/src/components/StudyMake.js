@@ -33,6 +33,7 @@ class StudyMake extends Component {
             transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
             isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
+            isEndTransfer: false, // 스터디 구조체 생성 트랜잭션 발생 유무
 
             study_start_date: '',
             study_end_date: new Date(),
@@ -134,28 +135,23 @@ class StudyMake extends Component {
     // 매개변수로 들어온 _account_id에게 ether 지급.
     chargeTheCoin = async () =>{
         const { studyGroupInstance, myAccount, web3} = this.state; 
-        let study_make_coin = $('#study_make_coin').val();
-        // 1코인당 0.1ether를 충전하기 위한 변환 과정
-        let study_make_ether = study_make_coin / 10;
-        console.log('study_make_ether: '+study_make_ether);
-        // myAccount[account_id] <- 이 계좌가 받는 사람 계좌.
+        // 1 코인당 0.1ether를 충전하기 위한 변환 과정
+        let study_make_ether = this.state.study_coin / 10;
         let account_id = Number(this.state.account_idx);
+        // myAccount[account_id] <- 이 계좌가 받는 사람 계좌.
         studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
           {
             from: myAccount[0], 
             value: web3.utils.toWei(String(study_make_ether), 'ether'),
-            // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
             gas: 0 
           })
-          // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+          // receipt 값이 반환되면 트랜잭션의 채굴 완료된 상태
           .on('confirmation', (confirmationNumber, receipt) => {
-              console.log('chargeTheCoin')
-              console.log(receipt);
               let transactionReceiptOfChargeTheCoin = receipt;
               this.setState({
                   transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
               });
-              // 이더 충전 트랜잭션 채굴 완료
+              // 이더 충전 트랜잭션 채굴 완료 상태 설정
               this.setState({
                   isChargeTheCoin: false
               });
@@ -211,6 +207,7 @@ class StudyMake extends Component {
                         this.setState({
                             isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생 
                             isChargeTheCoin: true,  // 이더 충전 트랜잭션 발생
+                            isEndTransfer: true // 스터디 구조체 생성 트랜잭션 발생
                         });
                         this.createAccount(insert_id).then((account_id)=>{
                             this.setState({
@@ -223,6 +220,7 @@ class StudyMake extends Component {
                                     let person_id = this.state.person_id;
                                     // 사용자 등록 트랜잭션 발생 
                                     this.createMemberItem(this.state.study_id , person_id, this.state.account_idx,this.state.person_name);
+                                    this.setStudyEndTransfer(this.state.study_id, this.state.study_end_date);
                                     let second = 1000;
                                     let intervalTime = second * 2;
  
@@ -291,14 +289,15 @@ class StudyMake extends Component {
         clearInterval(this.timer);
     };
     
+    // web3, 이더리움 계좌목록, 배포된 스마트 계약 인스턴스 연결 부분.
     initContract = async () => {
         try {
-          // Get network provider and web3 instance.
+          // network provider와 web3 instance 얻기.
           const web3 = await getWeb3();
          
-          // Use web3 to get the user's accounts.
+          // web3를 사용하여 사용자의 accounts 불러옴.
           const myAccount = await web3.eth.getAccounts();
-      
+    
           // Get the contract instance.
           const networkId = await web3.eth.net.getId();
           const deployedNetwork = StudyGroup.networks[networkId];
@@ -307,8 +306,6 @@ class StudyMake extends Component {
             deployedNetwork && deployedNetwork.address
           );
       
-      
-          // 확인용 로그
           if(web3 !== null){
                 console.log("web3연결 성공");
                 console.log(instance);
@@ -316,8 +313,7 @@ class StudyMake extends Component {
                 //web3연결 실패
                 console.log("인터넷을 연결 시켜주세요.");
             }
-        //   Set web3, accounts, and contract to the state, and then proceed with an
-        //   example of interacting with the contract's methods.
+        //   web3, 계좌목록, 스마트 계약 인스턴스 state에 저장.
         this.setState({ web3, myAccount, studyGroupInstance: instance});
       
         } catch (error) {
@@ -419,6 +415,36 @@ class StudyMake extends Component {
         });
     }
     
+    // StudyGroup.sol파일의 스터디 정보 구조체 저장
+    // uint _studyId, bytes32 _endDate, bool _isEndDateDeal
+    setStudyEndTransfer = async (_studyId, _endDate) => {
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+        let year  = _endDate.getFullYear();
+        let month = _endDate.getMonth()+1;
+        let date = _endDate.getDate();
+        let day = year+'-'+month+'-'+date;
+        // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+        let Ascii_endDate =  web3.utils.fromAscii(day); 
+        console.log(day+'     '+ _studyId);
+        studyGroupInstance.methods.setStudyEndTransfer(_studyId, Ascii_endDate).send(
+        {
+                from: myAccount[0], // 관리자 계좌
+                gas: 0 
+        }
+        )
+        // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+        .on('confirmation', (confirmationNumber, receipt) => {
+            console.log('setPersonInfoOfStudy')
+            console.log(receipt);
+            let transactionReceiptOfEndTransfer = receipt;
+            console.log('setStudyEndTransfer 완료');
+            // 이더 충전 트랜잭션 채굴 완료
+            this.setState({
+                isEndTransfer: false
+            });
+        });
+    }
+
     render() {
         return (
             <div className="out_study_make_frame">
@@ -488,7 +514,7 @@ class StudyMake extends Component {
                         <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_study_make">STUDY 생성</button>
 
                     </form>
-                    {(this.state.isMemberItemTransfer === false)&&(this.state.isChargeTheCoin === false)?
+                    {(this.state.isMemberItemTransfer === false)&&(this.state.isChargeTheCoin === false)&&(this.state.isEndTransfer === false)?
                     '':
                     <div className="progrss_bar_layer"> 
                         <div className="progress_bar_body">

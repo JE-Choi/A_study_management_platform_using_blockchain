@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './UserPage.css';
 import { post } from 'axios';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 
 class UserPage extends Component{
 
@@ -13,17 +14,22 @@ class UserPage extends Component{
             study_name: '' ,
             study_type: '',
             end_date: '',
-            joinStudyArray: '' // 한 사람이 가입한 study 배열
+            joinStudyArray: '', // 한 사람이 가입한 study 배열
+            showStudyListIdx: 1, // 현재 가입 중과 종료 중인 Study 판별
+            showStudyMsg: '종료된 Study 보기' 
         }
     }
 
     componentWillMount() {
+        // 사용자 이름 session 불러오기
         this.getUserNameSession();
     }
 
     componentDidMount() {
+        // 사용자 이름 session 불러오기
         this.getUserNameSession();
     
+        // myPage에서 해당 사용자가 가입한 스터디 불러오기
         this.callDBStudyInfo()
         .then(res => {
             this.setState ({
@@ -38,6 +44,7 @@ class UserPage extends Component{
         });
     }
 
+    // myPage에서 해당 사용자가 가입한 스터디 불러오기
     callDBStudyInfo = async () => {
         const url = '/api/myPage/joinStudy';
 
@@ -56,6 +63,28 @@ class UserPage extends Component{
                 console.log("Sorry, your browser does not support Web Storage...");
             }
     }
+
+    // 버튼에 따라 현재 가입 중인 Study, 종료된 Study 토글
+    showStudyLists = () => {
+        // 현재 가입 중인 Study List를 보여주는 경우
+        if (this.state.showStudyListIdx === 0) {
+            $('.userP_current_study_label').text('현재 가입 중인 Study 보기');
+
+            this.setState ({
+                showStudyListIdx: 1,
+                showStudyMsg: '종료된 Study'
+            })
+        }
+        // 종료된 Study List를 보여주는 경우
+        else if(this.state.showStudyListIdx === 1){
+            $('.userP_current_study_label').text('종료된 Study 보기');
+
+            this.setState ({
+                showStudyListIdx: 0,
+                showStudyMsg: '현재 가입 중인 Study'
+            })
+        }
+    }
     
     render() {
         return(
@@ -64,7 +93,10 @@ class UserPage extends Component{
                     <div className="userP_label">
                         <div className="userP_page_label">{this.state.userName} 님의 Page</div>
                         <div className="userP_current_study_label">
-                            -현재 가입 중인 Study List
+                            현재 가입 중인 Study
+                        </div>
+                        <div className="list_toggle_btn_div">
+                            <input type="button" onClick = {this.showStudyLists} className="btn btn-outline-danger" id="end_study_list_btn" value={this.state.showStudyMsg}/>
                         </div>
                     </div>
                     <div className="userP_box">

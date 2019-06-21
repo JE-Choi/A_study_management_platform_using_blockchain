@@ -163,30 +163,30 @@
 
     #study_info_back {
         font-size: 0.8rem;
-        width: 7.5rem; 
+        width: 16rem; 
         height: 2.3rem;
-        margin-right: 0.5rem;
+        margin-right: 0.3rem;
     }
     
     #study_info_join {
         font-size: 0.8rem;
-        width: 7.5rem; 
+        width: 16rem; 
         height: 2.3rem;
-        margin-right: 0.5rem;
+        margin-right: 0.3rem;
     }
 
     #study_info_modify {
         font-size: 0.8rem;
-        width: 7.5rem; 
+        width: 16rem; 
         height: 2.3rem;
-        margin-right: 0.5rem;
+        margin-right: 0.3rem;
     }
 
     #study_info_delete {
         font-size: 0.8rem;
-        width: 7.5rem; 
+        width: 16rem; 
         height: 2.3rem;
-        margin-right: 0.5rem;
+        margin-right: 0.3rem;
     }
 
     .studyInfo_btn {
@@ -197,11 +197,6 @@
         width:90% !important;
         font-size: 0.9rem !important;
     }
-
-    /* .react-confirm-alert-body {
-        width:100% !important;
-        font-size: 0.9rem;
-    } */
     
     .react-confirm-alert-body h1 {
         font-size: 1.3rem !important;
