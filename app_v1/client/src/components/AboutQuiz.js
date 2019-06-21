@@ -8,9 +8,52 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class AboutQuiz extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            is_end: 0
+        }
+    }
+    // 접속한 스터디가 종료된 스터디인지 확인
+    callStudyIsEnd = async () => {
+        const url = '/api/community/isEnd';
+
+        return post(url,  {
+            study_id: sessionStorage.getItem("enterStudyid")
+        });
+    }
+
+     // 스터디 종료 문구
+     studyEndConfirm = () => {
+        confirmAlert({
+            message: '스터디가 종료되어 퀴즈 결과만 확인 가능합니다.',
+            buttons: [
+            {
+                label: '확인'
+            }
+            ]
+        })        
+    }
+
     componentWillMount= async () => {
-        // 퀴즈 화면 메뉴를 누른 경우, 나타나는 확인 문구
-        this.quizCautionConfirm();
+        this.callStudyIsEnd().then((res)=>{
+            if(res.data.length !== 0){
+                let is_end = res.data[0].is_end;
+                this.setState({
+                    is_end: is_end
+                });
+
+                // 스터디가 종료되지 않았을 경우
+                if(is_end === 0){
+                    // 퀴즈 화면 메뉴를 누른 경우, 나타나는 확인 문구
+                    this.quizCautionConfirm();
+                } else{
+                    this.studyEndConfirm();
+                }
+            }
+            
+        })
+        
    }
 
     // 퀴즈 화면 메뉴를 누른 경우, 나타나는 확인 문구
@@ -32,13 +75,13 @@ class AboutQuiz extends Component {
                     <div className="content">
                         <div className="div_quiz_score">
                             <div className="quiz_header">퀴즈 점수</div>
-                            <Switch>
-                                <Route exact path='/community/:id/aboutQuiz/quizResult' component = { QuizResult } />
-                                <Route exact path='/community/:id/aboutQuiz' component = { QuizInputScore } />
-                            </Switch>
+                                <Switch>
+                                    <Route exact path='/community/:id/aboutQuiz/quizResult' component = { QuizResult } />
+                                    <Route exact path='/community/:id/aboutQuiz' component = { QuizInputScore } />
+                                </Switch>
+                            </div>
                         </div>
                     </div>
-                </div>
             </Router>
         )
     }
@@ -59,6 +102,26 @@ class QuizInputScore extends Component {
         }
     }
 
+    
+    // 접속한 스터디가 종료된 스터디인지 확인
+    callStudyIsEnd = async () => {
+        const url = '/api/community/isEnd';
+
+        return post(url,  {
+            study_id: sessionStorage.getItem("enterStudyid")
+        });
+    }
+
+    componentWillMount= async () => {
+        this.callStudyIsEnd().then((res)=>{
+            if(res.data.length !== 0){
+                if(res.data[0].is_end === 1){
+                    this.props.history.push('/community/'+sessionStorage.getItem("enterStudyid")+'/aboutQuiz/quizResult'); 
+                }           
+            }
+        });
+    }
+    
     componentDidMount= async () => {
         // 스터디 이름 session 불러오기
         this.getStudyIdSession().then(()=>{

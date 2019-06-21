@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 class UserPage extends Component{
 
-    constructor(props) {
+    constructor(props) { 
         super(props);
         this.state = {
             person_id: '',
@@ -15,7 +15,7 @@ class UserPage extends Component{
             study_type: '',
             end_date: '',
             joinStudyArray: '', // 한 사람이 가입한 study 배열
-            showStudyListIdx: 1, // 현재 가입 중과 종료 중인 Study 판별
+            showStudyListIdx: 1, // 현재 진행 중과 종료 중인 Study 판별
             showStudyMsg: '종료된 Study 보기' 
         }
     }
@@ -30,7 +30,11 @@ class UserPage extends Component{
         this.getUserNameSession();
     
         // myPage에서 해당 사용자가 가입한 스터디 불러오기
-        this.callDBStudyInfo()
+        let showState = false
+        if(this.state.showStudyListIdx === 0){
+            showState = true;
+        }
+        this.callDBStudyInfo(showState)
         .then(res => {
             this.setState ({
                 person_id: res[0].person_id,
@@ -45,11 +49,12 @@ class UserPage extends Component{
     }
 
     // myPage에서 해당 사용자가 가입한 스터디 불러오기
-    callDBStudyInfo = async () => {
+    callDBStudyInfo = async (_showState) => {
         const url = '/api/myPage/joinStudy';
 
         post(url,  {
-            person_id: sessionStorage.getItem("loginInfo")
+            person_id: sessionStorage.getItem("loginInfo"),
+            is_end: _showState
         }).then((res)=>{
             this.setState({joinStudyArray: res.data});
         })
@@ -66,23 +71,23 @@ class UserPage extends Component{
 
     // 버튼에 따라 현재 가입 중인 Study, 종료된 Study 토글
     showStudyLists = () => {
-        // 현재 가입 중인 Study List를 보여주는 경우
+        // 현재 진행 중인 Study List를 보여주는 경우
         if (this.state.showStudyListIdx === 0) {
-            $('.userP_current_study_label').text('현재 가입 중인 Study 보기');
-
+            $('.userP_current_study_label').text('현재 진행 중인 Study 보기');
             this.setState ({
                 showStudyListIdx: 1,
                 showStudyMsg: '종료된 Study'
             })
+            this.callDBStudyInfo(false);
         }
         // 종료된 Study List를 보여주는 경우
         else if(this.state.showStudyListIdx === 1){
             $('.userP_current_study_label').text('종료된 Study 보기');
-
             this.setState ({
                 showStudyListIdx: 0,
                 showStudyMsg: '현재 가입 중인 Study'
             })
+            this.callDBStudyInfo(true);
         }
     }
     
@@ -93,7 +98,7 @@ class UserPage extends Component{
                     <div className="userP_label">
                         <div className="userP_page_label">{this.state.userName} 님의 Page</div>
                         <div className="userP_current_study_label">
-                            현재 가입 중인 Study
+                            현재 진행 중인 Study
                         </div>
                         <div className="list_toggle_btn_div">
                             <input type="button" onClick = {this.showStudyLists} className="btn btn-outline-danger" id="end_study_list_btn" value={this.state.showStudyMsg}/>

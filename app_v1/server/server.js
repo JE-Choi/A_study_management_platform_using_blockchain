@@ -260,10 +260,11 @@ app.post('/api/isCheckJoinAndLeader',(req,res)=>{
 
 // myPage에서 해당 사용자가 가입한 스터디 불러오기
 app.post('/api/myPage/joinStudy', (req, res) => {
-    let sql = `SELECT * from studyitem WHERE s_id in (SELECT study_id FROM study_join WHERE person_id = ?)`;
+    let sql = `SELECT * from studyitem WHERE s_id in (SELECT study_id FROM study_join WHERE person_id = ? and is_end = ?)`;
     let person_id = req.body.person_id;
+    let is_end = req.body.is_end;
     
-    let params = [person_id];
+    let params = [person_id, is_end];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows);
@@ -625,6 +626,32 @@ app.post('/api/manager/callEndDatePersonAccount', (req, res) => {
     let person_id = req.body.person_id;
     
     let params = [study_id, person_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// 종료날짜인 스터디 종료 여부 설정
+app.post('/api/manager/endStudy', (req, res) => {
+    let sql = `UPDATE studyitem SET is_end = 1 WHERE s_id = ?;`;
+    let study_id = req.body.study_id;
+    
+    let params = [study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// 접속한 스터디가 종료된 스터디인지 확인
+app.post('/api/community/isEnd', (req, res) => {
+    let sql = `SELECT is_end FROM studyitem WHERE s_id = ?;`;
+    let study_id = req.body.study_id;
+    
+    let params = [study_id];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows); 

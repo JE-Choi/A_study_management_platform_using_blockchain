@@ -30,13 +30,15 @@ class AboutCoin extends Component{
             userName: '',
             userId:'',
             studyId:'',
+            is_end: null,
 
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
 
-            transactionsList : null
+            transactionsList : null,
+            end_transactionsList: null
         }
     }
     initContract = async () => {
@@ -77,6 +79,9 @@ class AboutCoin extends Component{
                             let balance = web3.utils.fromWei(result, 'ether');
                             // 코인 값 SET
                             let coin = String(balance*10).substring(0 , 6);
+                            if(this.state.is_end === 1){
+                                coin = Math.floor(coin);
+                            }
                             $('#sum_of_coin').text(coin+'코인');
                             console.log('잔여 ether: '+balance);
                         });
@@ -104,10 +109,51 @@ class AboutCoin extends Component{
         })
     }
 
-    componentWillMount = async () => {
-         this.initContract().then(()=>{
-            this.cautionConfirm();
+    // 스터디 종료 문구
+    studyEndConfirm = () => {
+        confirmAlert({
+            title: '스터디가 종료되었습니다.',
+            message: '종료 거래는 거래 내역에서 확인하실 수 있습니다.',
+            buttons: [
+            {
+                label: '확인'
+            }
+            ]
+        })        
+    }
+    // 접속한 스터디가 종료된 스터디인지 확인
+    callStudyIsEnd = async () => {
+        const url = '/api/community/isEnd';
+
+        return post(url,  {
+            study_id: sessionStorage.getItem("enterStudyid")
         });
+    }
+
+
+    componentWillMount = async () => {
+        this.callStudyIsEnd().then((res)=>{
+            if(res.data.length !== 0){
+                let is_end = res.data[0].is_end;
+                
+                this.setState({
+                    is_end: is_end
+                });
+                // 종료되지 않은 스터디
+                if(is_end === 0){
+                    this.initContract().then(()=>{
+                        this.cautionConfirm();
+                    });
+                }
+                // 종료된 스터디
+                else{
+                    this.initContract().then(()=>{
+                        this.studyEndConfirm();
+                    });
+                }
+            } 
+        });
+         
     };
 
 
@@ -123,6 +169,7 @@ class AboutCoin extends Component{
                                 $('.not_exist_transfer_msg').hide();
                             }
                         });
+                        this.getStudyEndTransferList(this.state.studyId);
                     });
                 });
             });
@@ -251,6 +298,48 @@ class AboutCoin extends Component{
         });
     }
 
+     // (스터디 별 )지정한 스터디의 종료 내역
+     getStudyEndTransferList = async(_studyId)=>{
+        const { web3, studyGroupInstance} = this.state; 
+        let transactions_list = null;
+        
+        let transactions = null;
+        await studyGroupInstance.methods.getStudyEndTransferList(_studyId).call().then(function(result) {
+            
+            if(result.length != 0 ){
+                transactions_list = [];
+    
+                for(let i = 0; i < result.length ; i++){
+                    let transactions_list_sub = [];
+                    // let studyId = String(transactions[i].studyId);// 반환받아야 하는 스터디 id
+                    let personId = web3.utils.hexToUtf8(result[i].personId); // 반환받아야 하는 사람
+                    // let personName = web3.utils.hexToUtf8(result[i].personName); // 반환받아야 하는 사람 이름
+                    let receiveEther = web3.utils.fromWei(String(result[i].receiveEther), "ether" ); // 반환받아야 하는 사람 ether값
+                    let endDate = web3.utils.hexToUtf8(result[i].endDate); // 반환 요청된 날짜
+                    receiveEther = String(receiveEther).substring(0,6);
+                    // console.log(studyId);
+                    // console.log(personId);
+                    // console.log(personName);
+                    // console.log(receiveEther);
+                    // console.log(endDate);
+                    // console.log('');
+                    
+                    if(sessionStorage.getItem("loginInfo") === personId){
+                        transactions_list_sub.push(endDate, receiveEther);
+                        transactions_list.push(transactions_list_sub);
+                    }
+                }
+                $('.not_exist_transfer_msg').hide();
+            } else{
+                console.log('진행된 거래 없음');
+            }
+        });
+        this.setState({
+            end_transactionsList : transactions_list
+        });
+        console.log(transactions_list);
+    }
+
     render(){
         return(
             <div className="div_coin_management">
@@ -280,6 +369,15 @@ class AboutCoin extends Component{
                     
                     })
                     : ""}
+                    {/* 종료 트랜잭션이 있는 경우 */}
+                    {
+                        this.state.end_transactionsList ? this.state.end_transactionsList.map(c=>{
+                            return(
+                                <TransferEndItem endDate = {c[0]} ether = {c[1]}/>
+                            )
+                            
+                        })
+                        :""}
                     <div className = "not_exist_transfer_msg">거래 내역이 존재하지 않습니다.</div>
                     
                     </div>
@@ -329,5 +427,23 @@ class TransferReceiverrInfoItem extends React.Component {
     }
 }
 
+class TransferEndItem extends React.Component {
+ 
+    render() {
+        return (
+          <div>
+                <div className="div_coin_usage">
+                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
+                <span className="date_of_use">{this.props.endDate}</span>
+                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
+                <span className="desc_of_sender_use">종료</span>
+                <span className="used_coin">-{this.props.ether}</span>
+            </div>
+            <div className = "coin_clear"></div>
+        </div>
+            
+        )
+    }
+}
 
 export default CoinManagement;

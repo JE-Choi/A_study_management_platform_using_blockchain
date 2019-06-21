@@ -262,7 +262,7 @@
 .each_quiz_result_point {
     text-align: center !important;
     display: inline-block;
-    width: 17em !important;
+    width: 17rem !important;
     margin-top: 0.4rem !important;
 }
 
@@ -395,7 +395,7 @@
     }
 
     .quiz_form_group {
-        width: 80% !important;
+        width: 100% !important;
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
@@ -489,7 +489,7 @@
 
     .each_quiz_result_point {
         font-size: 0.9rem;
-        width: 12rem !important;
+        width: 14rem !important;
         margin-top: 1rem !important;
     }
     
@@ -520,5 +520,9 @@
     }
     .quiz_status_control{
         width:15.5rem;
+    }
+    .react-confirm-alert-body{
+        width: 19rem !important;
+        font-size: 0.9rem !important;
     }
 }

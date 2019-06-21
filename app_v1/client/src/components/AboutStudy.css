@@ -200,6 +200,11 @@
     text-align: center;
 }
 
+.attendance_content_end{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 @media(max-width: 1200px) { 
 
     .out_study_make_frame {
@@ -311,5 +316,9 @@
     .progress_bar_body{
         margin-top:65%;
         margin-left: 10%;
+    }
+    
+    .attendance_content_end{
+        font-size: 0.8rem;
     }
 }

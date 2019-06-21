@@ -137,6 +137,7 @@ class EndDateReturnCoin extends React.Component {
                                     
                                     // StudyGroup.sol스터디구조체.종료거래여부 = true로 수정
                                     this.renameStudyEndTransfer(studyId);
+                                    this.callEndStudy(studyId);
 
                                 });
 
@@ -195,6 +196,14 @@ class EndDateReturnCoin extends React.Component {
         return post(url,  {
             study_id: _study_id,
             person_id: _person_id
+        });
+    }
+
+    // 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
+    callEndStudy = (_study_id) => {
+        const url = '/api/manager/endStudy';
+        return post(url,  {
+            study_id: _study_id
         });
     }
 

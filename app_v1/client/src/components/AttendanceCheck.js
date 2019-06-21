@@ -34,6 +34,7 @@ class Attendance extends Component {
             first_start_time_view: '', // 최초 출석자 시각
             is_attendance: 0, // 출석 여부
             edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간   
+            is_end: null,
             
             // 블록체인
             studyGroupInstance:null,
@@ -55,90 +56,120 @@ class Attendance extends Component {
         })
     }
 
+    // 접속한 스터디가 종료된 스터디인지 확인
+    callStudyIsEnd = async () => {
+        const url = '/api/community/isEnd';
+
+        return post(url,  {
+            study_id: sessionStorage.getItem("enterStudyid")
+        });
+    }
+
     componentWillMount = async () => {
-        this.initContract().then(()=>{
-            this.attendanceCautionConfirm();
+        this.callStudyIsEnd().then((res)=>{
+            if(res.data.length!== 0){
+                // 스터디 종료 여부 (1: end, 0:not end)
+                let is_end = res.data[0].is_end; 
+                this.setState({
+                    is_end: is_end
+                });
+                if(is_end === 0){
+                    this.initContract();
+                }
+            }
         });
     };
 
     componentDidMount= async () => {
-        this.initContract().then(()=>{
-        this.make_tag();
-            this.getUserNameSession().then(()=>{
-                // 사용자 ID, 들어온 스터디 번호 불러오기
-                this.getEnterSession().then(()=>{
-                   
-                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
-
-                    // 출석 시작 버튼을 누른 오늘 시간
-                    let today_date = new Date();
-                    let today_year_str = String(today_date.getFullYear());
-                    let today_month_str = String(today_date.getMonth()+1);
-                    let today_day_str = String(today_date.getDate());
-
-                    let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
-                   
-                    // *자신*이 최초 출석자인지 확인
-                    this.isFirstAttendee(today_date_view, this.state.userId).then((res)=>{
-                        console.log(res.data.length);
-
-                        // 자신이 오늘 출석체크의 최초 출석자인 경우
-                        if (res.data.length !== 0) {
-                            $('.cancel_attendance_btn').val('출석 취소'); 
-                        }
-                        // 자신이 오늘 출석체크의 최초 출석자가 아닌 경우
-                        else {
-                            $('.cancel_attendance_btn').attr("disabled","disabled");
-                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
-                        }
-                    });
-
-                    // 최초 출석자인지 확인
-                    this.isFirstAttend(today_date_view).then((res)=>{
-                        let today_attendance = res.data.length;
-                        // 스터디가 출석체크를 진행 중인 경우
-                        if(today_attendance !== 0){
-                            let first_attend_date = res.data[0].attendance_start_date;
-                            let first_attend_time = res.data[0].attendance_start_time;
-                            let first_attend_valid_time = res.data[0].valid_time;
-
-                            console.log(first_attend_date,first_attend_time);
-
-                            let first_attend_dateTime = new Date(first_attend_date+' '+first_attend_time).getTime();
-                                        
-                            var hours = 9 + Math.floor((first_attend_dateTime % (1000 * 60 * 60 * 24)) / (1000*60*60));
-
-                            if(hours > 24){
-                                hours = hours - 24;
-                            }
-
-                            var miniutes = Number(first_attend_valid_time) + Math.floor((first_attend_dateTime % (1000 * 60 * 60)) / (1000*60));
-                            if(miniutes >= 60){ 
-                                hours = hours + 1;
-                                miniutes = miniutes - 60;
-                            }
-                            var seconds = Math.floor((first_attend_dateTime % (1000 * 60)) / 1000);
-
-                            let valid_add_time = new Date(first_attend_date+' '+hours+':'+ miniutes+':'+seconds);
-                            this.setState ({
-                                edDate: valid_add_time // 타이머 종료 시간을 출석 시간 마지노선 시간으로 설정
+        this.callStudyIsEnd().then((res)=>{
+            if(res.data.length!== 0){
+                // 스터디 종료 여부 (1: end, 0:not end)
+                let is_end = res.data[0].is_end; 
+                
+                if(is_end === 0){
+                    this.initContract().then(()=>{
+                        this.attendanceCautionConfirm();
+                        this.make_tag();
+                            this.getUserNameSession().then(()=>{
+                                // 사용자 ID, 들어온 스터디 번호 불러오기
+                                this.getEnterSession().then(()=>{
+                                   
+                                    this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
+                
+                                    // 출석 시작 버튼을 누른 오늘 시간
+                                    let today_date = new Date();
+                                    let today_year_str = String(today_date.getFullYear());
+                                    let today_month_str = String(today_date.getMonth()+1);
+                                    let today_day_str = String(today_date.getDate());
+                
+                                    let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
+                                   
+                                    // *자신*이 최초 출석자인지 확인
+                                    this.isFirstAttendee(today_date_view, this.state.userId).then((res)=>{
+                                        console.log(res.data.length);
+                
+                                        // 자신이 오늘 출석체크의 최초 출석자인 경우
+                                        if (res.data.length !== 0) {
+                                            $('.cancel_attendance_btn').val('출석 취소'); 
+                                        }
+                                        // 자신이 오늘 출석체크의 최초 출석자가 아닌 경우
+                                        else {
+                                            $('.cancel_attendance_btn').attr("disabled","disabled");
+                                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                                        }
+                                    });
+                
+                                    // 최초 출석자인지 확인
+                                    this.isFirstAttend(today_date_view).then((res)=>{
+                                        let today_attendance = res.data.length;
+                                        // 스터디가 출석체크를 진행 중인 경우
+                                        if(today_attendance !== 0){
+                                            let first_attend_date = res.data[0].attendance_start_date;
+                                            let first_attend_time = res.data[0].attendance_start_time;
+                                            let first_attend_valid_time = res.data[0].valid_time;
+                
+                                            console.log(first_attend_date,first_attend_time);
+                
+                                            let first_attend_dateTime = new Date(first_attend_date+' '+first_attend_time).getTime();
+                                                        
+                                            var hours = 9 + Math.floor((first_attend_dateTime % (1000 * 60 * 60 * 24)) / (1000*60*60));
+                
+                                            if(hours > 24){
+                                                hours = hours - 24;
+                                            }
+                
+                                            var miniutes = Number(first_attend_valid_time) + Math.floor((first_attend_dateTime % (1000 * 60 * 60)) / (1000*60));
+                                            if(miniutes >= 60){ 
+                                                hours = hours + 1;
+                                                miniutes = miniutes - 60;
+                                            }
+                                            var seconds = Math.floor((first_attend_dateTime % (1000 * 60)) / 1000);
+                
+                                            let valid_add_time = new Date(first_attend_date+' '+hours+':'+ miniutes+':'+seconds);
+                                            this.setState ({
+                                                edDate: valid_add_time // 타이머 종료 시간을 출석 시간 마지노선 시간으로 설정
+                                            });
+                                           
+                                            // 최초 출석자 아니면 시간 선택 불가
+                                            $('#valid_attendance_time').val(first_attend_valid_time); 
+                                            $('#valid_attendance_time').attr("disabled","disabled");  
+                
+                                            // // 출석취소 기능 비활성화
+                                            // $('.cancel_attendance_btn').attr("disabled","disabled");
+                                            // $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                                            
+                                            // 출석 유효시간 측정 타이머
+                                            this.setAttendance(this.state.studyId, this.state.userId);       
+                                        }
+                                    });
+                                });
                             });
-                           
-                            // 최초 출석자 아니면 시간 선택 불가
-                            $('#valid_attendance_time').val(first_attend_valid_time); 
-                            $('#valid_attendance_time').attr("disabled","disabled");  
-
-                            // // 출석취소 기능 비활성화
-                            // $('.cancel_attendance_btn').attr("disabled","disabled");
-                            // $('.cancel_attendance_btn').val('출석 취소 불가'); 
-                            
-                            // 출석 유효시간 측정 타이머
-                            this.setAttendance(this.state.studyId, this.state.userId);       
-                        }
-                    });
-                });
-            });
+                        });
+                }
+            } 
+            
         });
+        
 
        
     }
@@ -720,40 +751,57 @@ class Attendance extends Component {
     }
     
     render() {
+        console.log(this.state.is_end);
         return(
             <div className="div_attendance_check">
-                {this.state.web3 ? 
+                {/* 진행중인 스터디인가? */}
+                {this.state.is_end === 0?
+                    <div>
+                        {this.state.web3 ? 
+                        <div>
+                            <div className="attendance_header">출석 현황</div>
+                            <div className="attendance_content">
+                                <div>
+                                    <span className="attendance_effective_time">출석 유효 시간 :</span>
+                                    <span className="attendance_effective_time" id="timer">00분 00초</span>
+                                    <br /> 
+                                </div>   
+                                <div className="attendance_status_control">
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        <div className="attendance_form_group">
+                                            <select className="form-control" id="valid_attendance_time" name='valid_attendance_time' value={this.state.valid_attendance_time} onChange={this.handleValueChange}>
+                                            </select>
+                                            <span>분</span>
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="출석 시작" className="btn btn-danger" id="btn_attendance_check"  />
+                                        </div>
+                                    </form> 
+                                    <div className="attend_status">
+                                        <div className="btn btn-danger" id="completion">출석 미완료</div>
+                                        <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
+                                    </div>
+                                    <div className="cancel_btn_desc">
+                                        <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
+                                        <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                        : <ProgressBar message ='로딩중'/>}
+                    </div>
+                    :
                     <div>
                         <div className="attendance_header">출석 현황</div>
-                        <div className="attendance_content">
-                            <div>
-                                <span className="attendance_effective_time">출석 유효 시간 :</span>
-                                <span className="attendance_effective_time" id="timer">00분 00초</span>
-                                <br /> 
-                            </div>   
-                            <div className="attendance_status_control">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    <div className="attendance_form_group">
-                                        <select className="form-control" id="valid_attendance_time" name='valid_attendance_time' value={this.state.valid_attendance_time} onChange={this.handleValueChange}>
-                                        </select>
-                                        <span>분</span>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="출석 시작" className="btn btn-danger" id="btn_attendance_check"  />
-                                    </div>
-                                </form> 
-                                <div className="attend_status">
-                                    <div className="btn btn-danger" id="completion">출석 미완료</div>
-                                    <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
-                                </div>
-                                <div className="cancel_btn_desc">
-                                    <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
-                                    <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
-                                </div>
-                            </div>    
+                        <div className="attendance_content_end">
+                        스터디가 종료되어 
+                        <br/>
+                        더 이상 출석체크가 불가능합니다. 
+                        <br/><br/>
+					    그동안 고생 많으셨습니다.
                         </div>
                     </div>
-                    : <ProgressBar message ='로딩중'/>}
+                }
                 
             </div>
         );
