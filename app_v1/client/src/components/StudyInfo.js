@@ -54,7 +54,7 @@ class StudyInfo extends Component {
             transactionReceiptOfMemberItem:'', // 사용자 등록 트랜잭션 채굴 확인용
             transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
-            isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
+            // isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -203,12 +203,12 @@ class StudyInfo extends Component {
         }).then(()=>{
             this.setState({
                 isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생 
-                isChargeTheCoin: true,  // 이더 충전 트랜잭션 발생
+                // isChargeTheCoin: true,  // 이더 충전 트랜잭션 발생
             });
             this.createAccount(this.props.match.params.id).then((account_id)=>{
                 setTimeout(()=>{
                     // 이더 충전 트랜잭션 발생
-                    this.chargeTheCoin(account_id).then(()=>{
+                    // this.chargeTheCoin(account_id).then(()=>{
                         // StudyGroup.sol파일의 studyMember구조체 생성
                         let person_id = this.state.person_id;
                         
@@ -218,7 +218,7 @@ class StudyInfo extends Component {
                         let second = 1000;
                         let intervalTime = second * 2;
                         var refreshIntervalId = setInterval(()=>{
-                            if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.transactionReceiptOfChargeTheCoin !== '')){
+                            if((this.state.transactionReceiptOfMemberItem !== '')){
                                 /* refreshIntervalId 중지 */
                                 clearInterval(refreshIntervalId);
                                 setTimeout(()=>{
@@ -227,7 +227,7 @@ class StudyInfo extends Component {
                                 this.props.history.push('/mainPage');
                             }
                         },intervalTime);
-                    });
+                    // });
                 },1000);
                 
             });
@@ -386,37 +386,37 @@ class StudyInfo extends Component {
         });
     }
 
-    // 매개변수로 들어온 _account_id에게 ether 지급.
-    chargeTheCoin = async () =>{
-        const { studyGroupInstance, myAccount, web3} = this.state; 
-        let study_make_coin = this.state.study_coin;
-        // 1코인당 0.1ether를 충전하기 위한 변환 과정
-        let study_make_ether = study_make_coin / 10;
-        let account_id = Number(this.state.account_idx);
+    // // 매개변수로 들어온 _account_id에게 ether 지급.
+    // chargeTheCoin = async () =>{
+    //     const { studyGroupInstance, myAccount, web3} = this.state; 
+    //     let study_make_coin = this.state.study_coin;
+    //     // 1코인당 0.1ether를 충전하기 위한 변환 과정
+    //     let study_make_ether = study_make_coin / 10;
+    //     let account_id = Number(this.state.account_idx);
         
-        // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-        studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
-            {
-            from: myAccount[0], 
-            value: web3.utils.toWei(String(study_make_ether), 'ether'),
-            // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
-            gas: 0 
-          }
-        )
-        // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
-        .on('confirmation', (confirmationNumber, receipt) => {
-            console.log('chargeTheCoin')
-            console.log(receipt);
-            let transactionReceiptOfChargeTheCoin = receipt;
-            this.setState({
-                transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
-            });
-            // 이더 충전 트랜잭션 채굴 완료
-            this.setState({
-                isChargeTheCoin: false
-            });
-        });
-    }
+    //     // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
+    //     studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
+    //         {
+    //         from: myAccount[0], 
+    //         value: web3.utils.toWei(String(study_make_ether), 'ether'),
+    //         // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
+    //         gas: 0 
+    //       }
+    //     )
+    //     // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+    //     .on('confirmation', (confirmationNumber, receipt) => {
+    //         console.log('chargeTheCoin')
+    //         console.log(receipt);
+    //         let transactionReceiptOfChargeTheCoin = receipt;
+    //         this.setState({
+    //             transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
+    //         });
+    //         // 이더 충전 트랜잭션 채굴 완료
+    //         this.setState({
+    //             isChargeTheCoin: false
+    //         });
+    //     });
+    // }
 
     // 계좌 불러오기
     selectFromInitAccountList  = async () => {
@@ -448,9 +448,12 @@ class StudyInfo extends Component {
         // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
         let Ascii_person_id =  web3.utils.fromAscii(_person_id); 
         let Ascii_person_name =  web3.utils.fromAscii(_person_name); 
+        // 1 코인당 0.1ether를 충전하기 위한 변환 과정
+        let study_make_ether = this.state.study_coin / 10;
         studyGroupInstance.methods.setPersonInfoOfStudy(_study_id, Ascii_person_id, _memberAddress,Ascii_person_name).send(
         {
                 from: myAccount[0], // 관리자 계좌
+                value: web3.utils.toWei(String(study_make_ether), 'ether'),
                 gas: 3000000 
         })
         // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
@@ -509,7 +512,7 @@ class StudyInfo extends Component {
                                         </ul>
                                     </div>
                                 </div>
-                                {(this.state.isMemberItemTransfer === false)&&(this.state.isChargeTheCoin === false)?
+                                {(this.state.isMemberItemTransfer === false)?
                                 '':
                                     <div className="progrss_bar_layer"> 
                                         <div className="progress_bar_body">

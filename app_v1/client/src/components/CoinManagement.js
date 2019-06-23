@@ -38,7 +38,8 @@ class AboutCoin extends Component{
             web3: null,
 
             transactionsList : null,
-            end_transactionsList: null
+            end_transactionsList: null,
+            quizTransactionsList: null
         }
     }
     initContract = async () => {
@@ -171,6 +172,13 @@ class AboutCoin extends Component{
                         });
                         this.getStudyEndTransferList(this.state.studyId);
                     });
+                    this.getQuizInfoOfStudy(this.state.studyId).then(()=>{
+                        this.quizTransactionsListFiltering().then(()=>{
+                            if(this.state.quizTransactionsList.length !== 0){
+                                $('.not_exist_transfer_msg').hide();
+                            }
+                        });
+                    })
                 });
             });
         });
@@ -216,6 +224,85 @@ class AboutCoin extends Component{
             console.log('study_id: ' + study_id);
             console.log('person_name: ' + person_name);
             
+        });
+    }
+
+    // StudyGroup.sol 파일의 퀴즈 거래 load
+    getQuizInfoOfStudy = async (_study_id) => {
+        const { studyGroupInstance, web3} = this.state;
+        let transactions_list = null;
+        
+        let transactions = null;
+        await studyGroupInstance.methods.getStudyQuizTransfer(_study_id).call().then(function(result) {
+            transactions_list = [];
+       
+            transactions = result[0];
+            // console.log(result[0][0]);
+            for(let i = 0; i < transactions.length; i++){
+                let transactions_list_sub = [];
+        
+                let transactions_web3_senderId = web3.utils.hexToUtf8(transactions[i].senderId);
+                let transactions_web3_sendName =  web3.utils.hexToUtf8(transactions[i].sendName);
+                let transactions_web3_receiverName =  web3.utils.hexToUtf8(transactions[i].receiverName);
+                let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
+                //web3.utils.hexToUtf8(transactions[i].date)
+                let transactions_web3_date = web3.utils.hexToUtf8(transactions[i].date);
+
+                transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
+                
+                transactions_list.push(transactions_list_sub);
+            }
+        });
+        this.setState({
+            quizTransactionsList : transactions_list
+        });
+    }
+
+    // 스터디 거래내역을 접속한 사용하에 맞게 필터링
+    quizTransactionsListFiltering = async () => {
+        // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
+        let transactions_list_before_filtering  = this.state.quizTransactionsList;
+        // console.log(transactions_list_before_filtering);
+        // console.log(this.state.userName);
+        // 접속자가 _sender인 값들을 뽑아서 저장
+        let send_coin_list = [];
+        for(let i = 0; i < transactions_list_before_filtering.length; i++){
+            let senderName = transactions_list_before_filtering[i][1];
+            
+            if(senderName === this.state.userName){
+                transactions_list_before_filtering[i].push('sender');
+                let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
+                console.log(date);
+                transactions_list_before_filtering[i].push(date);
+                send_coin_list.push(transactions_list_before_filtering[i]);
+            }
+        }
+
+        let receive_coin_list = [];
+        for(let i = 0; i < transactions_list_before_filtering.length; i++){
+            let receiverName = transactions_list_before_filtering[i][2];
+            
+            if(receiverName === this.state.userName){
+                transactions_list_before_filtering[i].push('receiver');
+                let date = new Date(transactions_list_before_filtering[0][4]+' 00:00:01');
+                transactions_list_before_filtering[i].push(date);
+                receive_coin_list.push(transactions_list_before_filtering[i]);
+            }
+        }
+
+        // 사용자가 sender인 receiver인 배열 합치기
+        let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
+        // console.log('send_coin_list');
+        // console.log(send_coin_list);
+        // console.log('receive_coin_list');
+        // console.log(receive_coin_list);
+        
+        // 날짜순으로 정렬
+        transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
+        // console.log(transactions_list_atfer_filtering);
+        console.log(transactions_list_atfer_filtering);
+        this.setState({
+            quizTransactionsList : transactions_list_atfer_filtering
         });
     }
 
@@ -369,6 +456,19 @@ class AboutCoin extends Component{
                     
                     })
                     : ""}
+                    { this.state.quizTransactionsList ? this.state.quizTransactionsList.map(c => {
+                        if(c[5] === 'sender'){
+                        return (
+                            <QuizTransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                            )
+                        } else{
+                            return (
+                            <QuizTransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
+                        )
+                        }
+                    
+                    })
+                    : ""}
                     {/* 종료 트랜잭션이 있는 경우 */}
                     {
                         this.state.end_transactionsList ? this.state.end_transactionsList.map(c=>{
@@ -418,6 +518,42 @@ class TransferReceiverrInfoItem extends React.Component {
                  {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.date}</span>
                 <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>지각 코인</span>
+                <span className="used_coin">+{this.props.coin}</span>
+            </div>
+            <div className = "coin_clear"></div>
+        </div>
+            
+        )
+    }
+}
+class QuizTransferSenderInfoItem extends React.Component {
+ 
+    render() {
+        return (
+          <div>
+                <div className="div_coin_usage">
+                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
+                <span className="date_of_use">{this.props.date}</span>
+                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
+                <span className="desc_of_sender_use">퀴즈</span>
+                <span className="used_coin">-{this.props.coin}</span>
+            </div>
+            <div className = "coin_clear"></div>
+        </div>
+            
+        )
+    }
+}
+
+class QuizTransferReceiverrInfoItem extends React.Component {
+
+    render() {
+        return (
+          <div>
+                <div className="div_coin_usage">
+                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
+                <span className="date_of_use">{this.props.date}</span>
+                <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>퀴즈 코인</span>
                 <span className="used_coin">+{this.props.coin}</span>
             </div>
             <div className = "coin_clear"></div>

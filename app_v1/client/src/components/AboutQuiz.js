@@ -5,6 +5,13 @@ import $ from 'jquery';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ProgressBar from './ProgressBar';
+
+// 블록체인
+import getWeb3 from "../utils/getWeb3";
+import StudyGroup from "../contracts/StudyGroup.json"; 
+import { array } from 'prop-types';
+
 
 class AboutQuiz extends Component {
 
@@ -12,6 +19,8 @@ class AboutQuiz extends Component {
         super(props);
         this.state = {
             is_end: 0
+
+            
         }
     }
     // 접속한 스터디가 종료된 스터디인지 확인
@@ -98,9 +107,50 @@ class QuizInputScore extends Component {
             quiz_date: '', // 퀴즈 날짜
             quiz_month: 0, // 퀴즈 날짜 월
             quiz_day: 0, // 퀴즈 날짜 일
-            is_quiz_message: 0 // 퀴즈 설명 화면 유무
+            is_quiz_message: 0, // 퀴즈 설명 화면 유무
+
+            // 블록체인
+            studyGroupInstance:null,
+            myAccount: null,
+            web3: null,
+            isQuizTransfer: false
         }
     }
+
+    // web3, 이더리움 계좌목록, 배포된 스마트 계약 인스턴스 연결 부분.
+    initContract = async () => {
+        try {
+          // network provider와 web3 instance 얻기.
+          const web3 = await getWeb3();
+         
+          // web3를 사용하여 사용자의 accounts 불러옴.
+          const myAccount = await web3.eth.getAccounts();
+    
+          // Get the contract instance.
+          const networkId = await web3.eth.net.getId();
+          const deployedNetwork = StudyGroup.networks[networkId];
+          const instance = new web3.eth.Contract(
+            StudyGroup.abi,
+            deployedNetwork && deployedNetwork.address
+          );
+      
+          if(web3 !== null){
+                console.log("web3연결 성공");
+                console.log(instance);
+            } else{
+                //web3연결 실패
+                console.log("인터넷을 연결 시켜주세요.");
+            }
+        //   web3, 계좌목록, 스마트 계약 인스턴스 state에 저장.
+        this.setState({ web3, myAccount, studyGroupInstance: instance});
+      
+        } catch (error) {
+          alert(
+            `Failed to load web3, accounts, or contract. Check console for details.`,
+          );
+          console.error(error);
+        }
+    };
 
     
     // 접속한 스터디가 종료된 스터디인지 확인
@@ -113,13 +163,15 @@ class QuizInputScore extends Component {
     }
 
     componentWillMount= async () => {
-        this.callStudyIsEnd().then((res)=>{
-            if(res.data.length !== 0){
-                if(res.data[0].is_end === 1){
-                    this.props.history.push('/community/'+sessionStorage.getItem("enterStudyid")+'/aboutQuiz/quizResult'); 
-                }           
-            }
-        });
+        this.initContract().then(()=>{
+            this.callStudyIsEnd().then((res)=>{
+                if(res.data.length !== 0){
+                    if(res.data[0].is_end === 1){
+                        this.props.history.push('/community/'+sessionStorage.getItem("enterStudyid")+'/aboutQuiz/quizResult'); 
+                    }           
+                }
+            });
+        })
     }
     
     componentDidMount= async () => {
@@ -143,6 +195,7 @@ class QuizInputScore extends Component {
                         });
                         
                         this.getQuizResult().then((resInfo)=>{
+                            // 최근 날짜의 퀴즈 점수가 등록이 안 되어있을 경우
                             if(resInfo.data.length === 0){
                                 // 스터디에 있는 스터디원 이름 불러오기
                                 this.getPersonName().then((res)=>{
@@ -225,12 +278,100 @@ class QuizInputScore extends Component {
 
                 this.setQuizScore(person_name, score, rank);
             }
-            this.props.history.push('/community/'+this.state.study_id+'/aboutQuiz/quizResult');
+            // 퀴즈 거래 조건 검증 부분
+            this.getQuizResult().then((res)=>{
+                for(let n=0;n<res.data.length;n++){
+                    let score_rank = res.data[n].score_rank;
+                    // console.log(res.data[n].person_name+'('+score_rank+')');
+                    
+                    let total_coin  = 0.002 * (score_rank-1);
+                    // console.log('total_coin: '+ total_coin);
+                    this.findReceiver(res.data[n].person_name).then((receiver_data)=>{
+                        // sender와 receiver설정
+                        let sender_name = res.data[n].person_name;
+                        this.findPersonId(sender_name).then((sender)=>{
+                            let sender_id = sender.data[0].PERSON_ID;
+                            let _coin = 0;
+                            if(receiver_data.data.length !== 0){
+                                _coin = total_coin / receiver_data.data.length;
+                                // console.log('total_coin: '+ total_coin + ' _coin: '+_coin);
+                            }
+                            
+                            for(let m=0;m<receiver_data.data.length;m++){
+                                this.setState({isQuizTransfer: true});
+                                let receiver_name = receiver_data.data[m].person_name;
+                                let receiver_id = '';
+                                this.findPersonId(receiver_name).then((receiver)=>{
+                                    receiver_id = receiver.data[0].PERSON_ID;
+                                    this.setQuizTransfer(sender_id, receiver_id, _coin);
+                                });
+                               
+                            }
+                        });
+                        
+                        
+                    });
+                }
+               
+            });
+            
         } 
         // 모든 사람이 점수를 입력하지 않은 경우
         else{
             this.quizScoreConfirm();
         }
+    }
+
+    // 스마트 계약 지각 거래발생
+    setQuizTransfer = async(_sender_id, _receiver_id, _coin) => {
+        const { studyGroupInstance, myAccount, web3} = this.state; 
+        let study_id = this.state.study_id;
+        // let quiz_date = this.state.quiz_date;
+        // console.log(study_id);
+        // console.log(quiz_date);
+        // console.log('_sender_id: ' + _sender_id);
+        // console.log('_receiver_id: ' + _receiver_id);
+        // console.log(_coin);
+        // // String타입 date32타입으로 변환 
+        let date = web3.utils.fromAscii(this.state.quiz_date);
+        let senderPerson_id = web3.utils.fromAscii(_sender_id);
+        let receiverPerson_id = web3.utils.fromAscii(_receiver_id);
+        let ether = String(_coin / 10).substring(0 , 9);
+        
+        this.getAccountId(_sender_id).then((account)=>{
+            if(account.data.length !== 0){
+                let account_idx = account.data[0].account_index;
+               
+                // sender가 receiver에세 n코인 만큼 _date일시에 보냈다는 거래 내역을 저장하는 부분
+                studyGroupInstance.methods.setStudyQuizTransfer(senderPerson_id, receiverPerson_id, web3.utils.toWei(String(_coin), 'ether'), date, study_id).send(
+                { 
+                    from: myAccount[Number(account_idx)],
+                    value: web3.utils.toWei(String(ether), 'ether'),
+                    gas: 0 
+                })
+                // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+                .on('confirmation', (confirmationNumber, receipt) => {
+                    // 이더 충전 트랜잭션 채굴 완료
+                    this.setState({
+                        isQuizTransfer: false
+                    });
+                    this.props.history.push('/community/'+this.state.study_id+'/aboutQuiz/quizResult');
+                });
+            }
+            
+        });
+        
+
+    }
+
+    // DB에 퀴즈 점수 저장
+    getAccountId = async(_person_id)=>{
+        const url = '/api/community/getAccountId';
+        
+        return post(url, {
+            study_id : this.state.study_id,
+            person_id : _person_id
+        }); 
     }
 
     handleValueChange = (e) => {
@@ -264,7 +405,7 @@ class QuizInputScore extends Component {
             }
         }
         scoreArray = scoreArray.sort((a,b) =>  b - a);
-    
+        
         // 등수 설정
         let rank = 1;
         for(let i=0; i < scoreArray.length; i++){
@@ -355,52 +496,85 @@ class QuizInputScore extends Component {
         let start_date = date_array[0].getFullYear()+'-'+(date_array[0].getMonth()+1)+'-'+date_array[0].getDate();
         return start_date;
     }
+
+    // person_name으로 person_id찾기
+    findPersonId = async(_person_name)=>{
+        const url = '/api/community/find/person_name';
+        
+        return post(url, {
+            person_name : _person_name
+        }); 
+    }
+
+    // person_name으로 person_id찾기
+    findReceiver = async(_sender_name)=>{
+        const url = '/api/community/find/receiver';
+        
+        return post(url, {
+            person_name : _sender_name,
+            quiz_date: this.state.quiz_date,
+            study_id: this.state.study_id
+        }); 
+    }
     
     render() {
         return(
             <div className="quiz_content">
-                {this.state.is_quiz_message === 1 ? 
-                    <div className="out_frame_not_exist_quiz">
-                        <div className="page_desc_div">
-                            <span className="emphasis_letter_first">스터디 미팅</span><span>을 가진 후, </span>
-                            <span className="emphasis_letter_next">퀴즈를 볼 수 있습니다.</span>
-                        </div>
-                        <br />
-                        <span className="emphasis_letter">퀴즈 점수</span>를 입력하려면 
-                        <br />
-                        <span className="emphasis_letter">'출석 체크' 메뉴에서 출석을 먼저 해주세요.</span>
-                        <br />
-                        <br />
-                        <span className="emphasis_letter">퀴즈 점수의 등수에 따라 코인 거래</span>가 이루어집니다.
-                        <br />
-                        <br />
-                        열심히 공부하여 좋은 성과를 이루기를 바랍니다.
-                    </div> 
-                    :
+                {this.state.web3?
                     <div>
-                        <div>
-                            <span className="quiz_today_header">{this.state.quiz_month}월 {this.state.quiz_day}일 퀴즈 점수 입력</span>
-                        </div>   
-                        <div className="quiz_status_control">
-                            <form onSubmit={this.handleFormSubmit}>
-                                <div className="quiz_form_group">
-                                    { this.state.userNameArray ? this.state.userNameArray.map(c => {
-                                        return (
-                                            <NameItem
-                                                person_name = {c.person_name}
-                                                className = {c.person_name}
-                                            />
-                                        )
-                                        })
-                                    : "" }
-                                    <div className="btn_div">
-                                        <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_quiz_score_input">점수 입력</button>
-                                    </div>
+                        {this.state.is_quiz_message === 1 ? 
+                            <div className="out_frame_not_exist_quiz">
+                                <div className="page_desc_div">
+                                    <span className="emphasis_letter_first">스터디 미팅</span><span>을 가진 후, </span>
+                                    <span className="emphasis_letter_next">퀴즈를 볼 수 있습니다.</span>
                                 </div>
-                            </form>
-                        </div> 
+                                <br />
+                                <span className="emphasis_letter">퀴즈 점수</span>를 입력하려면 
+                                <br />
+                                <span className="emphasis_letter">'출석 체크' 메뉴에서 출석을 먼저 해주세요.</span>
+                                <br />
+                                <br />
+                                <span className="emphasis_letter">퀴즈 점수의 등수에 따라 코인 거래</span>가 이루어집니다.
+                                <br />
+                                <br />
+                                열심히 공부하여 좋은 성과를 이루기를 바랍니다.
+                            </div> 
+                            :
+                            <div>
+                                <div>
+                                    <span className="quiz_today_header">{this.state.quiz_month}월 {this.state.quiz_day}일 퀴즈 점수 입력</span>
+                                </div>   
+                                <div className="quiz_status_control">
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        <div className="quiz_form_group">
+                                            { this.state.userNameArray ? this.state.userNameArray.map(c => {
+                                                return (
+                                                    <NameItem
+                                                        person_name = {c.person_name}
+                                                        className = {c.person_name}
+                                                    />
+                                                )
+                                                })
+                                            : "" }
+                                            <div className="btn_div">
+                                                <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="btn_quiz_score_input">점수 입력</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {(this.state.isQuizTransfer === false)?
+                                        '':
+                                        <div className="progrss_bar_layer"> 
+                                            <div className="progress_bar_body">
+                                                <ProgressBar message ='퀴즈 거래 실행 중...' sub_msg1 = "약 1분 정도 소요됩니다."
+                                                sub_msg2 = "잠시만 기다려주세요."/> 
+                                            </div>
+                                        </div>
+                                    }
+                                </div> 
+                            </div>
+                        }
                     </div>
-                }
+                    :<ProgressBar message ='로딩중'/>}
             </div>
         );
     }
@@ -497,6 +671,7 @@ class QuizResult extends Component {
             quiz_date : this.state.quiz_date
         }); 
     }
+    
 
     // DB에서 스터디 원의 점수 불러오기
     getQuizResult = async () =>{

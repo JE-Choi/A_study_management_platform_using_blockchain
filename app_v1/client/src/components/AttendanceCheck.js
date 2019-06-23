@@ -336,7 +336,7 @@ class Attendance extends Component {
             { 
                 from: myAccount[Number(_latecomer_accountIdx)],
                 value: web3.utils.toWei(String(ether), 'ether'),
-                gas: 3000000 
+                gas: 0 
             });
 
         }
@@ -751,7 +751,7 @@ class Attendance extends Component {
     }
     
     render() {
-        console.log(this.state.is_end);
+        
         return(
             <div className="div_attendance_check">
                 {/* 진행중인 스터디인가? */}

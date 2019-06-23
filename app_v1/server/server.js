@@ -659,4 +659,52 @@ app.post('/api/community/isEnd', (req, res) => {
     );
 });
 
+// 퀴즈
+// person_name으로 person_id찾기
+app.post('/api/community/find/person_name', (req, res) => {
+    let sql = `SELECT * FROM person_info WHERE person_name = ?;`;
+    let person_name = req.body.person_name;
+    
+    let params = [person_name];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// 퀴즈
+// person_name으로 person_id찾기
+app.post('/api/community/find/receiver', (req, res) => {
+    let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ?) AND quiz_date = ? AND study_id = ?;`;
+
+    let person_name = req.body.person_name;
+    let quiz_date = req.body.quiz_date;
+    let study_id = req.body.study_id;
+    
+    let params = [person_name, quiz_date, study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+//사용자의 계좌 index 얻어오기
+app.post('/api/community/getAccountId', (req, res) => {
+    let sql = `SELECT * FROM account_list WHERE person_id = ? AND study_id = ?;`;
+   
+    let study_id = req.body.study_id;
+    let person_id = req.body.person_id;
+
+    let params = [person_id, study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+
+});
+
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -16,6 +16,15 @@ contract StudyGroup {
         bool isEndDateDeal; //스터디 종료 거래 진행 여부
     }
 
+   // 스터디 퀴즈내역 저장
+    struct studyQuizTransfer {
+        bytes32 senderId; // 지각한 사람의 person_id
+        bytes32 sendName; // 지각한 사람의 person_name
+        bytes32 receiverName; // 받는 사람의 person_name
+        uint coin; // 지각할 때 빠져나갈 코인
+        bytes32 date; // 지각한 날짜
+    }
+
     // 스터디 종료내역 저장
     struct studyEndTransfer {
         uint studyId;// 종료된 study_id
@@ -40,7 +49,7 @@ contract StudyGroup {
     mapping(uint => mapping(bytes32 => studyMember)) memberInfo;
 
     // (key, value) = ( [스터디id][사용자id] -> 지각거래 내역)
-    // 해당 스터디의 특정 스터디원의 거래 내역
+    // 해당 스터디의 특정 스터디원의 지각 거래 내역
     mapping(uint => tardinessTransfer[]) getTardinessTransferList;
     //mapping(uint => mapping(uint => LogOfTardinessTransfer)) LogOfTardinessTransfer_mapping;
 
@@ -51,6 +60,10 @@ contract StudyGroup {
     mapping(uint => studyEndTransfer[]) studyEndTransferList;
     // (모든 스터디) 스터디 종료 트랜잭션 
     studyEndTransfer[] studyEndManageList;
+
+    // (key, value) = ( [스터디id][사용자id] -> 퀴즈거래 내역)
+    // 해당 스터디의 특정 스터디원의 퀴즈 거래 내역
+    mapping(uint => studyQuizTransfer[]) studyQuizTransferList;
 
     // studyGroup.sol에 스터디 종료 여부, 종료 내역 저장
     function setStudyEndTransfer(uint _studyId, bytes32 _endDate) public {
@@ -132,31 +145,37 @@ contract StudyGroup {
     }
 
      // 다차원 mapping 저장 -> 특정 스터디의 특정 회원의 회원정보를 저장.
-    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name) public {
+    function setPersonInfoOfStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name) public payable {
         memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _person_name);
+        _memberAddress.transfer(msg.value);
     }
-
-
-    // 다차원 mapping 저장 -> 스터디 생성시 스터디, 사용자정보 구조체 생성하여 저장
-    // 이전 함수명 setPersonInfoOfStudy
-    // function createStudy(uint _study_id, bytes32 _person_id, address _memberAddress, bytes32 _person_name, bytes32 _endDate, bool _isEndDateDeal) public payable {
-    //     // 사용자 정보 생성 후 저장
-    //     memberInfo[_study_id][_person_id] = studyMember(_memberAddress, _person_id, _study_id, _person_name);
-
-    //     // 스터디 구조체 생성
-    //     studyInfo memory studyInfoItem = studyInfo(_endDate, _isEndDateDeal); 
-    //     // 스터디 정보 list에 항목 추가
-    //     studyInfoList[_study_id] = studyInfoItem;
-
-    //     // 관리자 계좌에서 가입자에게 코인 충전
-    //     // _receiver에게 msg.value에서 지정된 ether만큼 전송한다. 
-    //     _memberAddress.transfer(msg.value);
-    // }
 
     // 관리자 계좌에서 가입자에게 코인 충전
     function chargeTheCoin(address _receiver) public payable {
         // _receiver에게 msg.value에서 지정된 ether만큼 전송. 
         _receiver.transfer(msg.value);
+    }
+
+    // 퀴즈에 대한 코인 차감 거래 발생
+    function setStudyQuizTransfer(bytes32 _senderId, bytes32 _receiverId, uint _coin, bytes32 _date, uint _study_id) public payable {
+        studyMember memory senderInfo = memberInfo[_study_id][_senderId];
+        studyMember memory receiverInfo = memberInfo[_study_id][_receiverId];
+        // 메세지 저장할 객체 생성
+       studyQuizTransfer memory transferItem = studyQuizTransfer(_senderId,senderInfo.person_name, receiverInfo.person_name, _coin, _date); 
+        
+        // 객체에 퀴즈한 내용 저장 - 해당 스터디에 대한 퀴즈 정보
+        studyQuizTransferList[_study_id].push(transferItem); 
+        
+        // 실제 거래 부분
+        address receiverAddress = receiverInfo.memberAddress;
+        receiverAddress.transfer(msg.value);
+    }
+
+    // 퀴즈에 대한 코인 차감 거래 발생 정보 얻기 
+    function getStudyQuizTransfer (uint _study_id) view external returns(studyQuizTransfer[],uint) {
+    // 해당 스터디의 모든 퀴즈 정보
+        studyQuizTransfer[] memory transferList = studyQuizTransferList[_study_id]; // 메세지 객체 저장
+        return (transferList,transferList.length);
     }
 
 }

@@ -262,7 +262,7 @@
 .each_quiz_result_point {
     text-align: center !important;
     display: inline-block;
-    width: 17rem !important;
+    width: 19rem !important;
     margin-top: 0.4rem !important;
 }
 
@@ -489,7 +489,7 @@
 
     .each_quiz_result_point {
         font-size: 0.9rem;
-        width: 14rem !important;
+        width: 16rem !important;
         margin-top: 1rem !important;
     }
     
