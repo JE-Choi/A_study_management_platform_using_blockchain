@@ -454,7 +454,7 @@ class StudyInfo extends Component {
         {
                 from: myAccount[0], // 관리자 계좌
                 value: web3.utils.toWei(String(study_make_ether), 'ether'),
-                gas: 3000000 
+                gas: 6000000 
         })
         // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
         .on('confirmation', (confirmationNumber, receipt) => {

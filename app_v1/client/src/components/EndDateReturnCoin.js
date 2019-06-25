@@ -65,36 +65,36 @@ class EndDateReturnCoin extends React.Component {
 
     componentDidMount(){
         this.initContract().then(()=>{
-            let hour = 1000*60*60; // 1시간
-            let minutes = 1000*60; // 1분
-            let interval_time = minutes * 1; // 12시간
+            // let hour = 1000*60*60; // 1시간
+            // let minutes = 1000*60; // 1분
+            // let interval_time = minutes * 1; // 12시간
 
 
             // setInterval(function() { 
             //     let today = new Date();
-            //     let c_year = today.getFullYear();
-            //     let c_month = today.getMonth() + 1;
-            //     let c_date = today.getDate();
+            //     // let c_year = today.getFullYear();
+            //     // let c_month = today.getMonth() + 1;
+            //     // let c_date = today.getDate();
 
-            //     // let day = 
+            //     // // let day = 
             //     let  c_hour = today.getHours();
             //     let c_min = today.getMinutes();
             //     let c_sec = today.getSeconds(); 
-            //     document.write(c_hour+":"+c_min+":"+c_sec+"<br/>");
-            //     // if (c_hour >8 && c_hour <21 ) 
-            //     // {
-            //     // document.write('내용1'); // 08시부터 21시 이전까지 실행되는 내용
+            //     // document.write(c_hour+":"+c_min+":"+c_sec+"<br/>");
+            //     if (c_hour === 17 && c_min === 2 &&  c_sec === 0) {
+            //         // document.write('내용1'); // 08시부터 21시 이전까지 실행되는 내용
+            //         this.startEndStudyScan();
+            //     }
+            //     // else {
+            //     //     document.write('내용2'); // 21시부터 아침 08시 이전까지 실행
             //     // }
-            //     // else
-            //     // {
-            //     // document.write('내용2'); // 21시부터 아침 08시 이전까지 실행
-            //     // }
+                
 
-            // }, interval_time);
+            // }, 1000);
         });
     }
 
-    startEndStudyScan = () =>{
+    startEndStudyScan = async () =>{
         let today = new Date();
         let year = today.getFullYear();
         let month = today.getMonth() + 1;
@@ -115,6 +115,7 @@ class EndDateReturnCoin extends React.Component {
                     let studyId = datas[i].s_id;
                     // this.processEndDate(datas,i).then(()=>{
                         this.getStudyEndTransfer(studyId).then((is_end)=>{
+                            //gom 주석풀기
                             // 스터디 종료 거래 여부 = false 이고 종료 날짜가 오늘이 맞는지 (true)
                             if(is_end !== false){
                                 //DB에서 해당 스터디에 속한 스터디 원 추출
@@ -228,6 +229,7 @@ class EndDateReturnCoin extends React.Component {
         await studyGroupInstance.methods.getStudyEndTransfer(_studyId).call().then(function(result) {
             endDate =  web3.utils.hexToUtf8(result[0]);
             isEndDateDeal = result[1];
+            console.log(result);
         });
         console.log(endDate);
         let today = new Date();
@@ -235,7 +237,8 @@ class EndDateReturnCoin extends React.Component {
         let month = today.getMonth() + 1;
         let date = today.getDate();
         let day = year+'-'+month+'-'+date
-        
+
+        // gom 주석풀기
         // 스터디 종료 거래가 실행된 적이 없는가?
         if(isEndDateDeal === false){
             // 종료날짜가 오늘이 확실한가?

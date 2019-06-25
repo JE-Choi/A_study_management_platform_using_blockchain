@@ -46,7 +46,7 @@ class AboutQuiz extends Component {
 
     componentWillMount= async () => {
         this.callStudyIsEnd().then((res)=>{
-            if(res.data.length !== 0){
+            // if(res.data.length !== 0){
                 let is_end = res.data[0].is_end;
                 this.setState({
                     is_end: is_end
@@ -59,7 +59,7 @@ class AboutQuiz extends Component {
                 } else{
                     this.studyEndConfirm();
                 }
-            }
+            // }
             
         })
         
@@ -165,11 +165,11 @@ class QuizInputScore extends Component {
     componentWillMount= async () => {
         this.initContract().then(()=>{
             this.callStudyIsEnd().then((res)=>{
-                if(res.data.length !== 0){
+                // if(res.data.length !== 0){
                     if(res.data[0].is_end === 1){
                         this.props.history.push('/community/'+sessionStorage.getItem("enterStudyid")+'/aboutQuiz/quizResult'); 
                     }           
-                }
+                // }
             });
         })
     }
@@ -278,7 +278,8 @@ class QuizInputScore extends Component {
 
                 this.setQuizScore(person_name, score, rank);
             }
-            // 퀴즈 거래 조건 검증 부분
+            setTimeout(()=>{
+                // 퀴즈 거래 조건 검증 부분
             this.getQuizResult().then((res)=>{
                 for(let n=0;n<res.data.length;n++){
                     let score_rank = res.data[n].score_rank;
@@ -292,6 +293,7 @@ class QuizInputScore extends Component {
                         this.findPersonId(sender_name).then((sender)=>{
                             let sender_id = sender.data[0].PERSON_ID;
                             let _coin = 0;
+                            console.log(receiver_data.data);
                             if(receiver_data.data.length !== 0){
                                 _coin = total_coin / receiver_data.data.length;
                                 // console.log('total_coin: '+ total_coin + ' _coin: '+_coin);
@@ -305,15 +307,17 @@ class QuizInputScore extends Component {
                                     receiver_id = receiver.data[0].PERSON_ID;
                                     this.setQuizTransfer(sender_id, receiver_id, _coin);
                                 });
-                               
-                            }
+                            
+                                }
+                            });
+                            
+                            
                         });
-                        
-                        
-                    });
-                }
-               
-            });
+                    }
+                
+                });
+            }, 2000);
+            
             
         } 
         // 모든 사람이 점수를 입력하지 않은 경우
@@ -509,7 +513,7 @@ class QuizInputScore extends Component {
     // person_name으로 person_id찾기
     findReceiver = async(_sender_name)=>{
         const url = '/api/community/find/receiver';
-        
+        console.log(_sender_name+' '+ this.state.quiz_date+' '+this.state.study_id);
         return post(url, {
             person_name : _sender_name,
             quiz_date: this.state.quiz_date,

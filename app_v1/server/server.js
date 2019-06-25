@@ -676,13 +676,13 @@ app.post('/api/community/find/person_name', (req, res) => {
 // 퀴즈
 // person_name으로 person_id찾기
 app.post('/api/community/find/receiver', (req, res) => {
-    let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ?) AND quiz_date = ? AND study_id = ?;`;
-
+    // let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ?) AND quiz_date = ? AND study_id = ?;`;
+    let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ? AND quiz_date = ? AND study_id = ?)  AND quiz_date = ? AND study_id = ?;`;
     let person_name = req.body.person_name;
     let quiz_date = req.body.quiz_date;
     let study_id = req.body.study_id;
     
-    let params = [person_name, quiz_date, study_id];
+    let params = [person_name, quiz_date, study_id, quiz_date, study_id];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows); 

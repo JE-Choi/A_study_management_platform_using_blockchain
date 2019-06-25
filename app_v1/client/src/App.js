@@ -41,6 +41,7 @@ class App extends Component {
               <Route exact path='/community/:id/:menu' component = { CommunityMenu } />
               <Route exact path='/community/:id/:menu/:submenu' component = { CommunityMenu } />
               <Route exact path='/manager/0410' component = { EndDateReturnCoin } />
+              <Route exact path='/manager/0411' component = { InitAccount } />
               <Route exact path='/' component={ MainPage } />
           </Switch>
           <Footer />

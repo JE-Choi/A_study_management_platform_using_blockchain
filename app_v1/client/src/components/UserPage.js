@@ -15,7 +15,8 @@ class UserPage extends Component{
             study_type: '',
             end_date: '',
             joinStudyArray: '', // 한 사람이 가입한 study 배열
-            showStudyListIdx: 1, // 현재 진행 중과 종료 중인 Study 판별
+            // showStudyListIdx: 1, // 현재 진행 중과 종료 중인 Study 판별
+            showStudyListIdx: 0,
             showStudyMsg: '종료된 Study 보기' 
         }
     }
@@ -28,24 +29,26 @@ class UserPage extends Component{
     componentDidMount() {
         // 사용자 이름 session 불러오기
         this.getUserNameSession();
-    
+        //gom 주석 없애기(삭제하라는 말 아님.)
         // myPage에서 해당 사용자가 가입한 스터디 불러오기
-        let showState = false
-        if(this.state.showStudyListIdx === 0){
-            showState = true;
-        }
-        this.callDBStudyInfo(showState)
-        .then(res => {
-            this.setState ({
-                person_id: res[0].person_id,
-                userName: res[0].study_name,
-                study_name: res[0].study_name,
-                study_type: res[0].study_type,
-                end_date: res[0].end_date
-            });
-        }).catch(err => {
+        // let showState = false
+        // if(this.state.showStudyListIdx === 0){
+        //     showState = true;
+        // }
+        // console.log(showState);
+        // this.callDBStudyInfo(showState)
+        // .then(res => {
+        //     this.setState ({
+        //         person_id: res[0].person_id,
+        //         userName: res[0].study_name,
+        //         study_name: res[0].study_name,
+        //         study_type: res[0].study_type,
+        //         end_date: res[0].end_date
+        //     });
+        // }).catch(err => {
             
-        });
+        // });
+        this.showStudyLists();
     }
 
     // myPage에서 해당 사용자가 가입한 스터디 불러오기
@@ -56,6 +59,7 @@ class UserPage extends Component{
             person_id: sessionStorage.getItem("loginInfo"),
             is_end: _showState
         }).then((res)=>{
+            
             this.setState({joinStudyArray: res.data});
         })
     }
@@ -108,6 +112,7 @@ class UserPage extends Component{
                         {this.state.joinStudyArray ? this.state.joinStudyArray.map(c => {
                                 return (
                                     <Link to={'/community/' + c.s_id} className="communityMenu">
+                                        
                                         <JoinMyStudyInfo 
                                             study_name={c.study_name}
                                             study_type={c.study_type}
@@ -132,6 +137,8 @@ class JoinMyStudyInfo extends Component {
         }
     }
     componentDidMount(){
+        console.log(this.props.study_name);
+        console.log(this.props.end_date);
         let end_date = new Date(this.props.end_date);
 
         let e_year = String(end_date.getFullYear());
@@ -143,12 +150,14 @@ class JoinMyStudyInfo extends Component {
         });
     }
     render() {
+        let end_fullDate = this.props.end_date;
+        let end_date = end_fullDate.split('T');
         return (
             <div className="current_study_item">
                 <div>{this.props.study_name}</div>
                 - <span>{this.props.study_type}</span>
                 <br/>
-                <span>종료 날짜: {this.state.end_date_view}</span>
+                <span>종료 날짜: {end_date[0]}</span>
             </div>
         )
     }

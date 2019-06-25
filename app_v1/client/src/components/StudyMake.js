@@ -30,7 +30,7 @@ class StudyMake extends Component {
             web3: null,
             account_pw:'',
             transactionReceiptOfMemberItem:'', // 사용자 등록 트랜잭션 채굴 확인용
-            transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
+            // transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
             // isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
             isEndTransfer: false, // 스터디 구조체 생성 트랜잭션 발생 유무
@@ -225,7 +225,7 @@ class StudyMake extends Component {
                                     let intervalTime = second * 2;
  
                                     var refreshIntervalId = setInterval(()=>{
-                                        if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.transactionReceiptOfChargeTheCoin !== '')){
+                                        if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.isMemberItemTransfer !== '')){
                                             /* refreshIntervalId 중지 */
                                             clearInterval(refreshIntervalId);
                                             setTimeout(()=>{
@@ -400,7 +400,7 @@ class StudyMake extends Component {
         {
                 from: myAccount[0], // 관리자 계좌
                 value: web3.utils.toWei(String(study_make_ether), 'ether'),
-                gas: 3000000 
+                gas: 6000000 
         }
         )
         // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
@@ -432,7 +432,7 @@ class StudyMake extends Component {
         studyGroupInstance.methods.setStudyEndTransfer(_studyId, Ascii_endDate).send(
         {
                 from: myAccount[0], // 관리자 계좌
-                gas: 0 
+                gas: 6000000 
         }
         )
         // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태

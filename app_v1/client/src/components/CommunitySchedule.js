@@ -35,6 +35,13 @@ class CalendarTop extends Component{
       .then(res => {
         let end_date = new Date(res[0].end_date);
 
+        let test_date = res[0].end_date;
+        console.log(test_date);
+        let date = test_date.split('-');
+        let day = date[2].split('T');
+        let date_str = date[0]+'년 '+date[1]+'월 '+day[0]+'일';
+        console.log(date_str);
+
         let e_year = String(end_date.getFullYear());
         let e_month = String(end_date.getMonth()+1);
         let e_date = String(end_date.getDate());
@@ -42,7 +49,7 @@ class CalendarTop extends Component{
         this.setState ({
           study_name: res[0].study_name,
           study_type: res[0].study_type,
-          end_date: end_date_view
+          end_date: date_str
         });
     }).catch(err => console.log(err));
   }

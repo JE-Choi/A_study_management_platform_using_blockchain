@@ -20,20 +20,27 @@ class StudyItem extends React.Component {
                 current_num_people: res.data.length
             });
             let start_date = new Date(this.props.start_date);
-            let end_date = new Date(this.props.end_date);
+            // let end_date = new Date(this.props.end_date);
 
             let s_year = String(start_date.getFullYear());
             let s_month = String(start_date.getMonth()+1);
             let s_date = String(start_date.getDate());
             let start_date_view = s_year+'년 '+s_month+'월 '+s_date+'일';
 
-            let e_year = String(end_date.getFullYear());
-            let e_month = String(end_date.getMonth()+1);
-            let e_date = String(end_date.getDate());
-            let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
+            let end_date = this.props.end_date;
+            console.log(end_date);
+            let date = end_date.split('-');
+            let day = date[2].split('T');
+            let date_str = date[0]+'년 '+date[1]+'월 '+day[0]+'일';
+            console.log(date_str);
+
+            // let e_year = String(end_date.getFullYear());
+            // let e_month = String(end_date.getMonth()+1);
+            // let e_date = String(end_date.getDate());
+            // let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
             this.setState({
                 start_date_view: start_date_view,
-                end_date_view: end_date_view
+                end_date_view: date_str
             });
         }).catch(err => console.log(err));
     }

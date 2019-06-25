@@ -6,7 +6,8 @@ const getWeb3 = () =>
     window.addEventListener("load", async () => {
       // testnet web3
       var HDWalletProvider = require("truffle-hdwallet-provider");
-      var mnemonic = "fiber saddle cable end beyond patrol super cheese toward spoon detect diamond";
+      // var mnemonic = "fiber saddle cable end beyond patrol super cheese toward spoon detect diamond";
+      var mnemonic = "elegant stem riot clerk cinnamon resource awful bunker tail trade anchor primary";
       var provider = new HDWalletProvider(mnemonic, "https://ropsten.infura.io/bb09b43c54444cf3b948ff8af5ebdb74", 0, 50);
       const web3 = new Web3(provider);
   

@@ -62,7 +62,7 @@ class AboutCoin extends Component{
         
             // // 확인용 로그
             // console.log(ShopContract.abi);
-            // console.log(web3);
+            console.log(web3);
             // console.log(myAccount);
           //   Set web3, accounts, and contract to the state, and then proceed with an
           //   example of interacting with the contract's methods.
@@ -133,32 +133,57 @@ class AboutCoin extends Component{
 
 
     componentWillMount = async () => {
-        this.callStudyIsEnd().then((res)=>{
-            if(res.data.length !== 0){
-                let is_end = res.data[0].is_end;
+        // this.callStudyIsEnd().then((res)=>{
+        //     console.log('is_end: ');
+        //     console.log(res.data);
+        //     console.log(res.data[0].is_end);
+        //     // if(res.data.length !== 0){
+        //         let is_end = res.data[0].is_end;
                 
-                this.setState({
-                    is_end: is_end
-                });
-                // 종료되지 않은 스터디
-                if(is_end === 0){
-                    this.initContract().then(()=>{
-                        this.cautionConfirm();
-                    });
-                }
-                // 종료된 스터디
-                else{
-                    this.initContract().then(()=>{
-                        this.studyEndConfirm();
-                    });
-                }
-            } 
-        });
+        //         this.setState({
+        //             is_end: is_end
+        //         });
+                
+        //         // 종료되지 않은 스터디
+        //         if(is_end === 0){
+        //             this.initContract().then(()=>{
+        //                 this.cautionConfirm();
+        //             });
+        //         }
+        //         // 종료된 스터디
+        //         else{
+        //             this.initContract().then(()=>{
+        //                 this.studyEndConfirm();
+        //             });
+        //         }
+        //     // } 
+        // });
          
     };
 
 
     componentDidMount = async () => {
+        this.callStudyIsEnd().then((res)=>{
+            console.log('is_end: ');
+            console.log(res.data);
+            console.log(res.data[0].is_end);
+            // if(res.data.length !== 0){
+                let is_end = res.data[0].is_end;
+                
+                this.setState({
+                    is_end: is_end
+                });
+                
+                // 종료되지 않은 스터디
+                if(is_end === 0){
+                    this.cautionConfirm();
+                }
+                // 종료된 스터디
+                else{
+                    this.studyEndConfirm();
+                }
+            // } 
+        });
         this.initContract().then(()=>{
             this.getUserNameSession().then(()=>{
                 this.getEnterSession().then(()=>{
