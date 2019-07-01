@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './UserPage.css';
+import './MyPage.css';
 import { post } from 'axios';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
@@ -29,25 +29,6 @@ class UserPage extends Component{
     componentDidMount() {
         // 사용자 이름 session 불러오기
         this.getUserNameSession();
-        //gom 주석 없애기(삭제하라는 말 아님.)
-        // myPage에서 해당 사용자가 가입한 스터디 불러오기
-        // let showState = false
-        // if(this.state.showStudyListIdx === 0){
-        //     showState = true;
-        // }
-        // console.log(showState);
-        // this.callDBStudyInfo(showState)
-        // .then(res => {
-        //     this.setState ({
-        //         person_id: res[0].person_id,
-        //         userName: res[0].study_name,
-        //         study_name: res[0].study_name,
-        //         study_type: res[0].study_type,
-        //         end_date: res[0].end_date
-        //     });
-        // }).catch(err => {
-            
-        // });
         this.showStudyLists();
     }
 
@@ -112,7 +93,6 @@ class UserPage extends Component{
                         {this.state.joinStudyArray ? this.state.joinStudyArray.map(c => {
                                 return (
                                     <Link to={'/community/' + c.s_id} className="communityMenu">
-                                        
                                         <JoinMyStudyInfo 
                                             study_name={c.study_name}
                                             study_type={c.study_type}
@@ -136,6 +116,7 @@ class JoinMyStudyInfo extends Component {
             end_date_view: ''
         }
     }
+
     componentDidMount(){
         console.log(this.props.study_name);
         console.log(this.props.end_date);
@@ -149,6 +130,7 @@ class JoinMyStudyInfo extends Component {
             end_date_view: end_date_view
         });
     }
+
     render() {
         let end_fullDate = this.props.end_date;
         let end_date = end_fullDate.split('T');

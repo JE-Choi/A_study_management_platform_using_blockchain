@@ -5,7 +5,7 @@ import './CommunitySchedule.css';
 class CommunitySchedule extends React.Component {
     render() {
         return (
-          <div className="main_schedule">
+          <div className="pageBackgroundColor">
               <div className="content_schedule">
                 <CalendarTop id = {this.props.match.params.id}/>
                 <div className="calendar">

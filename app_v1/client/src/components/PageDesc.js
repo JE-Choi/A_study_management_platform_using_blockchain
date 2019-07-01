@@ -4,10 +4,10 @@ import './PageDesc.css';
 class PageDesc extends Component {
     render() {
         return (
-            <div className="out_frame">
+            <div className="mainPageBackgroundColor">
                 <div className="page_desc">
-                    <div className="page_header">[ STUDY CHAIN ]</div>
-                    <span className="emphasis_page_desc_header">STUDY CHAIN </span>은 블록체인 기반의 스마트 계약을 이용한 
+                    <div className="page_header">[ BC_study ]</div>
+                    <span className="emphasis_page_desc_header">BC_study </span>는 블록체인 기반의 스마트 계약을 이용한 
                     <span className="emphasis_page_desc"> 스터디 전용 관리 플랫폼</span>입니다.
                     <br />
                     <span className="emphasis_page_desc_smart">
@@ -39,7 +39,7 @@ class PageDesc extends Component {
                     스터디가 <span className="emphasis_page_desc">최종 종료</span>된 후, 
                     <span className="emphasis_page_desc">다시 그 코인을 돌려받을 수 있습니다.</span>
                     <br /><br />
-                    <span className="emphasis_page_desc_cheer">STUDY CHAIN을 통해 모두가 스터디에 전념하여 좋은 성과를 이루기를 바랍니다.</span>
+                    <span className="emphasis_page_desc_cheer">BC_study를 통해 모두가 스터디에 전념하여 좋은 성과를 이루기를 바랍니다.</span>
                 </div>
             </div>
         );

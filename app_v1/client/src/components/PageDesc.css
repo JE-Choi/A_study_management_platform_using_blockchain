@@ -1,12 +1,3 @@
-.out_frame{
-    width: 100%;
-    height: 100%;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    align-content: center;
-    background-color: #EEEEEE;
-}
-
 .page_desc {
     padding: 3rem;
     border: 2px solid black;
@@ -98,12 +89,6 @@
 }
 
 @media(max-width: 500px) {
-
-    .out_frame {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
-
     .page_header {
         font-size: 1.3rem;
         margin-top: 0.7rem;

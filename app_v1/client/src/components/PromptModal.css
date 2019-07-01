@@ -19,7 +19,6 @@
     top:30% !important;
 }
 
-
 @media(max-width: 600px) { 
     #input_promptModal{
         margin-top: 5%;

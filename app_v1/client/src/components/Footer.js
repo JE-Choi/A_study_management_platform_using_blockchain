@@ -7,7 +7,7 @@ class Footer extends Component {
             <footer>
                 <div className="producer">
                     2019<br />
-                    Produced by Sketch
+                    Produced by BC_study
                 </div>
             </footer>
         );

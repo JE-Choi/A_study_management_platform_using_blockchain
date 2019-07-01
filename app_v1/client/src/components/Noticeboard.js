@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Noticeboard.css';
+import './AboutCommunity.css';
 
 class Noticeboard extends Component {
     render() {

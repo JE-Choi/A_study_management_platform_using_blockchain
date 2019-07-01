@@ -71,7 +71,7 @@ class MainPage extends Component {
     };
 
     return (
-        <div className="main_page">
+        <div className="mainPageBackgroundColor">
           <div className="all_list_frame">
             <Link to={'/studyMake'} className="studyMake">
                 <input type="button" style = {isLoginShow} onClick = {this.contractReloads} className="btn btn-outline-danger btn-lg btn-block " id="moveBtn_study_make" value="STUDY 생성"/>
@@ -99,8 +99,8 @@ class MainPage extends Component {
             </ul>
           </div>
           <div className="out_frame_not_exist_studyItem">
-            <div className="page_header">STUDY CHAIN</div>
-            STUDY CHAIN을 이용해 주셔서 감사합니다.
+            <div className="page_header">BC_STUDY</div>
+            BC_STUDY를 이용해 주셔서 감사합니다.
             <br />
             <br />
             함께 공부할 스터디를 생성해주세요.
@@ -108,7 +108,7 @@ class MainPage extends Component {
             <span id="login_emphasis">로그인</span> 후, <span id="creation_emphasis">STUDY 생성 버튼</span>을 누르면 스터디가 생성됩니다.
             <br />
             <br />
-            STUDY CHAIN을 통해 모두가 스터디에 전념하여 좋은 성과를 이루기를 바랍니다.
+            BC_STUDY를 통해 모두가 스터디에 전념하여 좋은 성과를 이루기를 바랍니다.
           </div>    
         </div>
     );

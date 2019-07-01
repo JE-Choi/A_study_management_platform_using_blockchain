@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import BlockChain from "./components/BlockChain";
 
 import MainPage from './components/MainPage';
 import PageDesc from './components/PageDesc';
@@ -9,7 +8,7 @@ import Header from './components/Header';
 import SignUp from './components/SignUp';
 import StudyInfo from './components/StudyInfo';
 import Login from './components/Login';
-import MyPage from './components/UserPage';
+import MyPage from './components/MyPage';
 import RenameStudy from './components/RenameStudy';
 import CommunityMenu from './components/CommunityMenu';
 import EndDateReturnCoin from './components/EndDateReturnCoin';
@@ -25,7 +24,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <BlockChain/> */}
         <Router>
           <Header />
           <Switch>
@@ -40,8 +38,8 @@ class App extends Component {
               <Route exact path='/community/:id' component = { CommunityMenu } />
               <Route exact path='/community/:id/:menu' component = { CommunityMenu } />
               <Route exact path='/community/:id/:menu/:submenu' component = { CommunityMenu } />
-              <Route exact path='/manager/0410' component = { EndDateReturnCoin } />
-              <Route exact path='/manager/0411' component = { InitAccount } />
+              <Route exact path='/manager/0101' component = { EndDateReturnCoin } />
+              <Route exact path='/manager/0102' component = { InitAccount } />
               <Route exact path='/' component={ MainPage } />
           </Switch>
           <Footer />

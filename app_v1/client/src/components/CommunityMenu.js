@@ -12,6 +12,7 @@ class CommunityMenu extends Component {
     componentDidMount(){
         this.setEnterStudyidSession();
     }
+
     // userName session 저장
     setEnterStudyidSession = () => {
         if (typeof(Storage) !== "undefined") {
@@ -26,6 +27,7 @@ class CommunityMenu extends Component {
           window.location.reload();
         }, 100);
     }
+    
     render() {
         return (
             <Router>

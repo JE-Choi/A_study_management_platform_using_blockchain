@@ -11,7 +11,7 @@ import { createBrowserHistory } from 'history';
 class RenameStudy extends Component {
     render() {
         return (
-            <div className="out_study_make_frame">
+            <div className="pageBackgroundColor">
                 <div className="study_make_screen">
                    <div className="study_make_header">
                         <div id="study_make_title">
@@ -224,6 +224,7 @@ class FormComponent extends Component {
                             name = 'study_end_date'
                             onChange={this.onEndDateChange}
                             value={this.state.study_end_date}
+                            disabled
                         />
                     </span>                             
                 </div>               
@@ -243,7 +244,7 @@ class FormComponent extends Component {
                     <label className="study_make_label">설명 </label>
                     <textarea className="form-control" id="re_study_make_long_desc" rows="7" cols="50" name='study_desc' value={this.state.study_desc}  onChange={this.handleValueChange}></textarea>
                 </div>
-                <button type="submit" className="btn btn-outline-danger btn-lg btn-block " id="re_btn_study_make">STUDY 수정</button>
+                <button type="submit" className="btn btn-outline-info btn-lg btn-block " id="re_btn_study_make">STUDY 수정</button>
             </form>
         );
     }

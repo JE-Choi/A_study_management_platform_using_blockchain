@@ -1,12 +1,4 @@
 /*사용자 정의*/
-.main_schedule{
-    width: 100%;
-    height: 100%;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    background-color: #EEEEEE;
-}
-
 .content_schedule{
   padding: 3%;
   margin-left: 15%;
@@ -110,7 +102,7 @@ main {
 
 /* GRID */
 .row {
-  margin: 0 !important; /*이거풀면 캘린더 망가짐*/
+  margin: 0 !important; /*이 부분 풀면 캘린더 망가짐*/
   padding: 0 ;
   display: flex;
   flex-direction: row;

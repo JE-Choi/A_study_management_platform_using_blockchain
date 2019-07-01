@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import './CoinManagement.css';
 import { post } from 'axios';
-import $ from 'jquery';
+// import $ from 'jquery';
 import ProgressBar from './ProgressBar';
 
 

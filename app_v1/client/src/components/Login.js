@@ -23,8 +23,6 @@ class Login extends Component {
                 console.log(response.data);
                 console.log(response.data[0].PERSON_PW); 
                 if(response.data[0].PERSON_PW === this.state.password){
-                    // alert("로그인 성공");
-                    // this.setSession();
                     this.setUserIdSession();
 
                     this.callNameApi().then((result)=>{
@@ -36,7 +34,6 @@ class Login extends Component {
                     setTimeout(function() { 
                         window.location.reload();
                     }, 300);
-                    // 최종적으로 alert("로그인 성공"); 1학기 때 뺄 것.
                 } else{
                     this.setState ({
                         userId: '',
@@ -124,7 +121,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="main_Login">
+            <div className="pageBackgroundColor">
                 <div style={{marginTop: 10}} className = "login_container">
                     <div className="login_label">Login</div>
                     <form onSubmit={this.handleFormSubmit} to="">

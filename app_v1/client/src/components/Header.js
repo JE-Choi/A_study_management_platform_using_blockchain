@@ -81,7 +81,7 @@ class Menubar extends Component{
       <nav className="menubar_wrapper">
         <ul className="nav">
           <li>
-              <Link to={'/pageDesc'} className="nav-link">About 스터디체인</Link>
+              <Link to={'/pageDesc'} className="nav-link">About BC_study</Link>
           </li>
           <hr className="menu_line"/>
           <li>

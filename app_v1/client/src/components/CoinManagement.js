@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CoinManagement.css';
+import './AboutCommunity.css';
 import { post } from 'axios';
 import $ from 'jquery';
 import ProgressBar from './ProgressBar';
@@ -13,7 +13,7 @@ import StudyGroup from "../contracts/StudyGroup.json";
 class CoinManagement extends Component {
     render() {
         return (
-            <div className="main_coinManagement">
+            <div className="pageBackgroundColor">
                 <div className="content_coinManagement">
                     <AboutCoin />
                 </div>
@@ -443,7 +443,7 @@ class AboutCoin extends Component{
                 }
                 $('.not_exist_transfer_msg').hide();
             } else{
-                console.log('진행된 거래 없음');
+                // console.log('진행된 거래 없음');
             }
         });
         this.setState({

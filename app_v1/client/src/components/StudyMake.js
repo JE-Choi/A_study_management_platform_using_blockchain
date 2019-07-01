@@ -450,7 +450,7 @@ class StudyMake extends Component {
 
     render() {
         return (
-            <div className="out_study_make_frame">
+            <div className="pageBackgroundColor">
                 {this.state.web3 ?
                 <div className="study_make_screen">
                     <div className="study_make_header">

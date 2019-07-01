@@ -10,17 +10,14 @@ import ProgressBar from './ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
-import { array } from 'prop-types';
-
+// import { array } from 'prop-types';
 
 class AboutQuiz extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            is_end: 0
-
-            
+            is_end: 0            
         }
     }
     // 접속한 스터디가 종료된 스터디인지 확인
@@ -59,10 +56,8 @@ class AboutQuiz extends Component {
                 } else{
                     this.studyEndConfirm();
                 }
-            // }
-            
+            // }  
         })
-        
    }
 
     // 퀴즈 화면 메뉴를 누른 경우, 나타나는 확인 문구
@@ -151,7 +146,6 @@ class QuizInputScore extends Component {
           console.error(error);
         }
     };
-
     
     // 접속한 스터디가 종료된 스터디인지 확인
     callStudyIsEnd = async () => {
@@ -307,18 +301,12 @@ class QuizInputScore extends Component {
                                     receiver_id = receiver.data[0].PERSON_ID;
                                     this.setQuizTransfer(sender_id, receiver_id, _coin);
                                 });
-                            
                                 }
                             });
-                            
-                            
                         });
                     }
-                
                 });
             }, 2000);
-            
-            
         } 
         // 모든 사람이 점수를 입력하지 않은 경우
         else{
@@ -362,10 +350,7 @@ class QuizInputScore extends Component {
                     this.props.history.push('/community/'+this.state.study_id+'/aboutQuiz/quizResult');
                 });
             }
-            
         });
-        
-
     }
 
     // DB에 퀴즈 점수 저장

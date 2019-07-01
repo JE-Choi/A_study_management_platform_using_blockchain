@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './StudyInfo.css';
+import './AboutStudy.css';
 import { post } from 'axios';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -12,7 +12,6 @@ import ProgressBar from './ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
-// import { YearView } from 'react-calendar';
 
 class StudyInfo extends Component {
 
@@ -260,6 +259,36 @@ class StudyInfo extends Component {
         })
     };
 
+    // 스터디 삭제 확인창
+    studyDeleteConfirm = () => {
+        confirmAlert({
+            title: '스터디 삭제',
+            message: '스터디를 삭제하시겠습니까?',
+            buttons: [
+            {
+                label: '네',
+                onClick: () => this.deleteCustomer(this.props.match.params.id)
+            },
+            {
+                label: '아니요'
+            }
+            ]
+        })
+    };
+
+    // 스터디 삭제 안내창
+    studyDeleteAlert = () => {
+        confirmAlert({
+            message: '스터디가 삭제되었습니다.',
+            buttons: [
+            {
+                label: '확인'
+            }
+            ]
+        })
+    };
+    
+
     studyExchenageConfirm = () => {
 
         setTimeout(()=>{
@@ -338,9 +367,14 @@ class StudyInfo extends Component {
     // 방장이 study 삭제하는 메소드
     deleteCustomer(_id) {
         const url = '/api/studyItems/' + _id;
+
         fetch(url, {
             method: 'DELETE'
         }).catch(err => console.log(err));
+         setTimeout(() => {
+            this.studyDeleteAlert();
+            this.props.history.push('/mainPage');
+        }, 500);   
     }
 
     createAccount = async (_study_id) =>{
@@ -471,6 +505,15 @@ class StudyInfo extends Component {
         });
     }
 
+    // 수정하기 버튼
+    renameStudy = () =>{
+        this.props.history.push('/renameStudy/' + this.props.match.params.id);
+    }
+
+    // 뒤로가기 버튼
+    back = () =>{
+        this.props.history.push('/mainPage');
+    }
     render() {
         // 로그인, 스터디 가입 여부
         var isJoinBtnShow = {
@@ -489,7 +532,7 @@ class StudyInfo extends Component {
 
         return (
             <div>
-                <div className="main_studyInfo">
+                <div className="pageBackgroundColor">
                     {this.state.web3 ?
                         <div style={{marginTop: 10}} className = "studyInfo_container">
                             <div className="studyInfo_left">
@@ -526,15 +569,11 @@ class StudyInfo extends Component {
                             </div>
                             <div className="studyInfo_btn">
                                 <Link to={'/mainPage'}>
-                                    <input type="button" value="뒤로가기" className="btn btn-danger" id="study_info_back"/>
+                                    <input type="button" value="뒤로가기" className="btn btn-outline-danger" id="study_info_back" onClick={this.back}/>
                                 </Link>
-                                <Button color="danger" style = {isJoinBtnShow} onClick={this.toggle} id="study_info_join">{this.props.buttonLabel} 가입하기 </Button>
-                                <Link to={'/renameStudy/' + this.props.match.params.id}>
-                                    <input type="button" style = {isModifyBtnShow} value="수정하기" className="btn btn-danger" id="study_info_modify"/>
-                                </Link>
-                                <Link to={'/mainPage'}>
-                                    <input type="button" style = {isDeleteBtnShow} value="삭제하기" className="btn btn-danger" id="study_info_delete" onClick={(e) => {this.deleteCustomer(this.props.match.params.id)}}/>
-                                </Link>
+                                <Button color="danger" style = {isJoinBtnShow} onClick={this.toggle} className="btn btn-outline-danger" id="study_info_join">{this.props.buttonLabel} 가입하기 </Button>
+                                <input type="button" style = {isModifyBtnShow} value="수정하기" className="btn btn-outline-danger" id="study_info_modify" onClick={this.renameStudy}/>
+                                <input type="button" style = {isDeleteBtnShow} value="삭제하기" className="btn btn-outline-danger" id="study_info_delete" onClick={this.studyDeleteConfirm}/>
                             </div>
                             <Modal id = "promptModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                 <ModalHeader toggle={this.toggle}>코인지갑 비밀번호를 입력해주셔야 <br/>코인을 충전할 수 있습니다.</ModalHeader>

@@ -68,9 +68,7 @@ class SignUp extends Component {
                 setTimeout(()=>{
                     this.props.history.push('/mainPage');
                 },3000);
-                // this.props.history.push('/mainPage');
             })
-            // 실제 배포에서는 모든 고객 데이터를 다 새로고침하면 안 되지만 잠시 이렇게 코딩 
             this.setState ({
                 personId: '',
                 personPw: '',
@@ -130,7 +128,7 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className="out_frame_signup">
+            <div className="pageBackgroundColor">
                 <div style={{marginTop: 10}} className = "container">
                     <div className="sign_up_label">Sign Up</div>
                     
