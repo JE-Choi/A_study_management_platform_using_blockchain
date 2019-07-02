@@ -593,7 +593,6 @@ app.post('/api/community/getAccountId', (req, res) => {
     );
 });
 
-// AboutMember
 // 가입 스터디 원 leader값으로 정렬해서 불러오기
 app.post('/api/community/getMemberOrderbyLeader', (req, res) => {
     let sql = `SELECT @rownum:=@rownum+1 AS index_num, p_info.person_name, s_join.leader FROM study_join AS s_join 
