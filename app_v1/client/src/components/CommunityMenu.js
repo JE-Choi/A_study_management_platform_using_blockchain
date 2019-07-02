@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './CommunityMenu.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Noticeboard from './Noticeboard';
+import AboutMembers from './AboutMembers';
+import AboutNoticeboard from './AboutNoticeboard';
 import CommunitySchedule from './CommunitySchedule';
 import AttendanceCheck from './AttendanceCheck';
 import AboutQuiz from './AboutQuiz';
@@ -36,6 +37,9 @@ class CommunityMenu extends Component {
                         <nav className="communityMenuBar_wrapper">
                             <ul className="communityMenuBar_nav">
                                 <li>
+                                    <Link to={'/community/'+this.props.match.params.id+'/joinMembers'} className="community_nav_link">스터디 멤버</Link>
+                                </li>
+                                <li>
                                     <Link to={'/community/'+this.props.match.params.id+'/noticeboard'} className="community_nav_link">게시판</Link>
                                 </li>
                                 <li>
@@ -57,7 +61,8 @@ class CommunityMenu extends Component {
                     <div style={{marginTop: 10}} className = "communityMenu_container">
                         <div className = "communityMenuBar_switch">
                             <Switch>
-                                <Route exact path='/community/:id/noticeboard' component = { Noticeboard } />
+                                <Route exact path='/community/:id/joinMembers' component = { AboutMembers } />
+                                <Route exact path='/community/:id/noticeboard' component = { AboutNoticeboard } />
                                 <Route exact path='/community/:id/communitySchedule' component = { CommunitySchedule } />
                                 <Route exact path='/community/:id/attendanceCheck' component = { AttendanceCheck } />
                                 <Route exact path='/community/:id/aboutQuiz' component = { AboutQuiz } />

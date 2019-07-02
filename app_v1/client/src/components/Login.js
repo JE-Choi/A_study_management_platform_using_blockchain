@@ -5,7 +5,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class Login extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -69,7 +68,6 @@ class Login extends Component {
     setUserIdSession = () => {
         if (typeof(Storage) !== "undefined") {
             sessionStorage.setItem("loginInfo", this.state.userId);
-            // this.getSession();
         } else {
             console.log("Sorry, your browser does not support Web Storage...");
         }

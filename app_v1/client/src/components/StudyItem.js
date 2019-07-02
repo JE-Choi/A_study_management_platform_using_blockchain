@@ -3,7 +3,6 @@ import './StudyItem.css'
 import { post } from 'axios';
 
 class StudyItem extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +19,6 @@ class StudyItem extends React.Component {
                 current_num_people: res.data.length
             });
             let start_date = new Date(this.props.start_date);
-            // let end_date = new Date(this.props.end_date);
 
             let s_year = String(start_date.getFullYear());
             let s_month = String(start_date.getMonth()+1);
@@ -34,10 +32,6 @@ class StudyItem extends React.Component {
             let date_str = date[0]+'년 '+date[1]+'월 '+day[0]+'일';
             console.log(date_str);
 
-            // let e_year = String(end_date.getFullYear());
-            // let e_month = String(end_date.getMonth()+1);
-            // let e_date = String(end_date.getDate());
-            // let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
             this.setState({
                 start_date_view: start_date_view,
                 end_date_view: date_str

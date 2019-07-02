@@ -5,7 +5,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class SignUp extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +32,6 @@ class SignUp extends Component {
 
     handleValueChange = (e) => {
         let nextState = {};
-        // 만약 이름 변경하면 변경된 값을 state에 반영한다.
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }

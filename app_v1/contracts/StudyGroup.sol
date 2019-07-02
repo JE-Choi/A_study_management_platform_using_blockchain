@@ -42,6 +42,7 @@ contract StudyGroup {
         uint coin; // 지각할 때 빠져나갈 코인
         bytes32 date; // 지각한 날짜
     }
+
     // 스터디원 배열
     // memberInfo 는 uint 타입인 스터디 id에서 bytes32 타입인 person_id로 값을 얻는데, 
     // 그 값이 studyMember에 매칭되는 회원 정보
@@ -137,7 +138,6 @@ contract StudyGroup {
         tardinessTransfer[] memory transferList = getTardinessTransferList[_study_id]; // 메세지 객체 저장
         return (transferList,transferList.length);
     }
-
     
     // 다차원 mapping 읽음 -> 특정 스터디의 특정 회원의 회원정보를 읽음.
     function getPersonInfoOfStudy(uint _study_id, bytes32 _person_id) view external returns(studyMember) {
@@ -177,5 +177,4 @@ contract StudyGroup {
         studyQuizTransfer[] memory transferList = studyQuizTransferList[_study_id]; // 메세지 객체 저장
         return (transferList,transferList.length);
     }
-
 }

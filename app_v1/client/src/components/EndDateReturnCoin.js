@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-// import './CoinManagement.css';
 import { post } from 'axios';
-// import $ from 'jquery';
 import ProgressBar from './ProgressBar';
-
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -14,12 +10,10 @@ class EndDateReturnCoin extends React.Component {
         super(props);
         this.state = {
             studyId: '',
-
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
-
             // progress 
             completed: 0
         }
@@ -41,7 +35,6 @@ class EndDateReturnCoin extends React.Component {
             deployedNetwork && deployedNetwork.address
           );
       
-      
           // 확인용 로그
           if(web3 !== null){
                 console.log("web3연결 성공");
@@ -61,7 +54,6 @@ class EndDateReturnCoin extends React.Component {
           console.error(error);
         }
     };
-
 
     componentDidMount(){
         this.initContract().then(()=>{
@@ -100,7 +92,7 @@ class EndDateReturnCoin extends React.Component {
         let month = today.getMonth() + 1;
         let date = today.getDate();
         let day = year+'-'+month+'-'+date
-       console.log(day);
+        console.log(day);
         this.callEndDateStudy(day).then((res)=>{
             // 종료일자가 오늘 날짜인것들이 쿼리 결과가 나옴. 
             let datas = res.data;
@@ -109,13 +101,9 @@ class EndDateReturnCoin extends React.Component {
             } else{
                 console.log(datas);
                 for(let i = 0; i<datas.length;i++){
-                    // this.setState({
-                    //     studyId: datas[i].s_id
-                    // });
                     let studyId = datas[i].s_id;
                     // this.processEndDate(datas,i).then(()=>{
                         this.getStudyEndTransfer(studyId).then((is_end)=>{
-                            //gom 주석풀기
                             // 스터디 종료 거래 여부 = false 이고 종료 날짜가 오늘이 맞는지 (true)
                             if(is_end !== false){
                                 //DB에서 해당 스터디에 속한 스터디 원 추출
@@ -126,12 +114,9 @@ class EndDateReturnCoin extends React.Component {
                                     for(let j = 0; j < personDate.length; j++){
                                         // 계좌index 추출
                                         this.callEndDatePersonAccount(studyId, personDate[j].person_id).then((res)=>{
-                                            // console.log(res.data);
                                             let personAccounts = res.data;
-                                            // console.log(personAccounts);
                                             // 스터디 내의 스터디 원들의 종료 내역 저장
                                             this.processEndDateHandle(personAccounts, personDate[j], is_end).then(()=>{
-
                                             });
                                         });
                                     }
@@ -139,20 +124,11 @@ class EndDateReturnCoin extends React.Component {
                                     // StudyGroup.sol스터디구조체.종료거래여부 = true로 수정
                                     this.renameStudyEndTransfer(studyId);
                                     this.callEndStudy(studyId);
-
                                 });
-
                             } else{
                                 console.log(studyId + ': 종료된 거래입니다.');
                             }
                         });
-                        // // 종료날짜인 스터디에 속한 스터디원 추출
-                        // this.callEndDatePerson(this.state.studyId).then((res)=>{
-                        //     let personDate = res.data;
-                        //     for(let j = 0; j < personDate.length; j++){
-                        //         this.processEndDatePersonAccount(this.state.studyId,personDate[j]);
-                        //     }
-                        // });
                     // });
                 }
             }
@@ -238,7 +214,6 @@ class EndDateReturnCoin extends React.Component {
         let date = today.getDate();
         let day = year+'-'+month+'-'+date
 
-        // gom 주석풀기
         // 스터디 종료 거래가 실행된 적이 없는가?
         if(isEndDateDeal === false){
             // 종료날짜가 오늘이 확실한가?
@@ -257,7 +232,6 @@ class EndDateReturnCoin extends React.Component {
     }
 
      // studyGroup.sol에 스터디 종료 여부, 종료 내역 저장
-     //uint _studyId, bytes32 _personId, bytes32 _personName, uint _receiveEther,  bytes32 _endDate
      setStudyEndTransfer = async (_personAccounts, _personDate, _endDate) =>{
         const {web3, studyGroupInstance, myAccount} = this.state; 
         // 종료될 스터디 내의 스터디 원 수만큼 반복
@@ -271,7 +245,6 @@ class EndDateReturnCoin extends React.Component {
                 let balance = web3.utils.fromWei(result, 'ether') - 0.001;
                 
                 console.log(balance);
-
 
                 let receiveEther =web3.utils.toWei(String(balance), 'ether');
                 console.log(studyId);
@@ -291,37 +264,6 @@ class EndDateReturnCoin extends React.Component {
                 });
             });
         }
-        
-        // let study_make_ether = study_make_coin / 10;
-        // console.log(_studyId);
-        // console.log(_endDate);
-        // let Ascii_endDate =  web3.utils.fromAscii(_endDate); 
-        // console.log(Ascii_endDate);
-        //uint _studyId, bytes32 _endDate
-        // studyGroup.sol에 스터디 종료 여부, 종료 내역 저장
-        // studyGroupInstance.methods.setStudyEndTransfer(_study_id, Ascii_endDate).send(
-        // {
-        //         from: myAccount[0], // 관리자 계좌
-        //         value: web3.utils.toWei(String(study_make_ether), 'ether'),
-        //         gas: 0 
-        // });
-        // console.log(endDate);
-        // let today = new Date();
-        // let year = today.getFullYear();
-        // let month = today.getMonth() + 1;
-        // let date = today.getDate();
-        // let day = year+'-'+month+'-'+date
-        
-        // // 스터디 종료 거래가 실행된 적이 없는가?
-        // if(isEndDateDeal === false){
-        //     // 종료날짜가 오늘이 확실한가?
-        //     // 바꿔야함 if( day === endDate){
-        //     if( '2019-5-18' === endDate){
-        //         return true;
-        //     } else{
-        //         return false;
-        //     }
-        // }
     }
     // StudyGroup.sol에서 스터디 종료 거래 부분 제어
     processEndDateHandle = async (_personAccounts, _personDate, _endDate) =>{
@@ -333,7 +275,6 @@ class EndDateReturnCoin extends React.Component {
         // StudyGroup.sol의 스터디 종료 내역 저장
         this.setStudyEndTransfer(_personAccounts, _personDate, _endDate);
     }
-
     
     showEndStudyScan = async()=>{
         const { web3, studyGroupInstance} = this.state; 
@@ -407,14 +348,11 @@ class EndDateReturnCoin extends React.Component {
                     <div>오늘 종료된 스터디가 있는지</div>
                     <input type="button" value="스터디 스캔" onClick={this.startEndStudyScan}/>
                     <input type="button" value="스터디 종료" onClick={this.showEndStudyScan}/>
-                    {/* <input type="button" value="스터디 종료" onClick={this.test}/>  */}
                 </div>
                 :<ProgressBar message ='로딩중'/>}
-        </div>
-            
+        </div>    
         )
     }
 }
-
 
 export default EndDateReturnCoin;

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 class UserPage extends Component{
-
     constructor(props) { 
         super(props);
         this.state = {

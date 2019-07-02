@@ -5,7 +5,6 @@ import $ from 'jquery';
 import DateTimePicker from 'react-datetime-picker';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
 import { createBrowserHistory } from 'history';
 
 class RenameStudy extends Component {
@@ -37,10 +36,8 @@ class FormComponent extends Component {
             num_people: '',
             study_coin: '',
             study_desc: '',
-
             study_start_date: '',
             study_end_date: '',
-
             dbStartDate:'',
             dbEndDate: ''
         }
@@ -66,12 +63,10 @@ class FormComponent extends Component {
         } else{
             this.reInputConfirm();
         }
-       
     }
 
     handleValueChange = (e) => {
         let nextState = {};
-        // 만약 이름 변경하면 변경된 값을 state에 반영한다.
         console.log(e.target.name + ': ' + e.target.value);
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
@@ -89,13 +84,6 @@ class FormComponent extends Component {
                 let s_date = String(start_date.getDate());
 
                 let view_start_date = s_year+'-'+s_month+'-'+s_date;
-
-                // let e_year = String(end_date.getFullYear());
-                // let e_month = String(end_date.getMonth()+1);
-                // let e_date = String(end_date.getDate());
-                // let e_hour = String(end_date.getHours());
-                // let e_minute = String(end_date.getMinutes());
-                // let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
                 
                 this.setState({
                     completed: 0, 
@@ -108,7 +96,6 @@ class FormComponent extends Component {
                     study_desc: res[0].study_desc
                 })
             }).catch(err => console.log(err));
-                // this.setState({study_item_info: res});
     }
     
     callApi = async () => {

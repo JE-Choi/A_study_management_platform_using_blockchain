@@ -42,7 +42,7 @@ app.post('/api/createAccount', (req, res) => {
 app.get('/api/select/studyitem', (req, res) => {
 
     connection.query(
-        "SELECT * FROM studyitem",
+        "SELECT * FROM studyitem where is_end = 0",
         (err, rows, fields) => {
             res.send(rows);
         }
@@ -303,7 +303,7 @@ app.post('/api/community/isAttendanceRateBtn', (req, res) => {
 
 // 스터디 출석 날짜 불러오기
 app.post('/api/community/getAttendanceDate', (req, res) => {
-    let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date;`;
+    let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date desc;`;
     let study_id = req.body.study_id;
 
     let params = [study_id];
@@ -394,7 +394,6 @@ app.post('/api/community/attendanceTradingAuthority', (req, res) => {
 
 // 오늘 출석한 사람 이름 불러오기
 app.post('/api/community/getAttendeeName', (req, res) => {
-    // let sql =`SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM study_join WHERE study_id = ?);`;
     let sql = `SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM attendance_check WHERE study_id = ? AND attendance_start_date = ? AND is_attendance = 1);`;
     let study_id = req.body.study_id;
     let quiz_date = req.body.quiz_date;
@@ -566,7 +565,6 @@ app.post('/api/community/find/person_name', (req, res) => {
 // 퀴즈
 // person_name으로 person_id찾기
 app.post('/api/community/find/receiver', (req, res) => {
-    // let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ?) AND quiz_date = ? AND study_id = ?;`;
     let sql = `SELECT * FROM quiz_score WHERE score_rank < (SELECT score_rank FROM quiz_score WHERE person_name = ? AND quiz_date = ? AND study_id = ?)  AND quiz_date = ? AND study_id = ?;`;
     let person_name = req.body.person_name;
     let quiz_date = req.body.quiz_date;
@@ -588,6 +586,23 @@ app.post('/api/community/getAccountId', (req, res) => {
     let person_id = req.body.person_id;
 
     let params = [person_id, study_id];
+    connection.query(sql, params, 
+        (err, rows, fields) => {
+            res.send(rows); 
+        }
+    );
+});
+
+// AboutMember
+// 가입 스터디 원 leader값으로 정렬해서 불러오기
+app.post('/api/community/getMemberOrderbyLeader', (req, res) => {
+    let sql = `SELECT @rownum:=@rownum+1 AS index_num, p_info.person_name, s_join.leader FROM study_join AS s_join 
+    JOIN person_info AS p_info ON s_join.person_id = p_info.person_id , (SELECT @rownum:=0) TMP 
+    where study_id = ? order by leader desc;`;
+   
+    let study_id = req.body.study_id;
+
+    let params = [study_id];
     connection.query(sql, params, 
         (err, rows, fields) => {
             res.send(rows); 

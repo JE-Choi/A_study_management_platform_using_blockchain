@@ -66,9 +66,7 @@ class TopLogo extends Component{
           <div>
             <Link to={'/mainPage'} className="nav-link" >
               <br/><br/><br/><br/><br/>
-              {/* <link rel="shortcut icon" href="%PUBLIC_URL%/mainIcon.png"></link> */}
-              {/* <img className="main_logo" src= "https://postfiles.pstatic.net/MjAxOTA2MTlfNjIg/MDAxNTYwODgyOTY5NDMz.qN-hMAAYX0Uwpx52LTzsvLfaV-5-GlmkqwEtHHgQdLQg.qh_FXRUdxuvtWKWY-PYM_C0n7nBZm6SjWJmIuYIZXDwg.PNG.skje312/%EB%A1%9C%EA%B3%A0.png?type=w966" width="170rem" height="170rem" alt="Main Logo" /> */}
-            </Link>
+           </Link>
           </div>
       </div>
     );

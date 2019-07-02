@@ -6,11 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ProgressBar from './ProgressBar';
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
-// import { array } from 'prop-types';
 
 class AboutQuiz extends Component {
 
@@ -20,6 +18,7 @@ class AboutQuiz extends Component {
             is_end: 0            
         }
     }
+    
     // 접속한 스터디가 종료된 스터디인지 확인
     callStudyIsEnd = async () => {
         const url = '/api/community/isEnd';
@@ -193,8 +192,6 @@ class QuizInputScore extends Component {
                             if(resInfo.data.length === 0){
                                 // 스터디에 있는 스터디원 이름 불러오기
                                 this.getPersonName().then((res)=>{
-
-                                    // let name_array = new Array();
                                     let name_array = [];
                                     for(let i = 0; i < res.data.length; i++){
                                         name_array.push(res.data[i]);
@@ -245,7 +242,6 @@ class QuizInputScore extends Component {
     // 퀴즈 점수 입력 버튼 누를 때
     handleFormSubmit = (e) => {
         e.preventDefault();
-
         // DB에 퀴즈 점수 저장
         let userNameArray = this.state.userNameArray;
         let is_input_score = 0;
@@ -274,38 +270,35 @@ class QuizInputScore extends Component {
             }
             setTimeout(()=>{
                 // 퀴즈 거래 조건 검증 부분
-            this.getQuizResult().then((res)=>{
-                for(let n=0;n<res.data.length;n++){
-                    let score_rank = res.data[n].score_rank;
-                    // console.log(res.data[n].person_name+'('+score_rank+')');
-                    
-                    let total_coin  = 0.002 * (score_rank-1);
-                    // console.log('total_coin: '+ total_coin);
-                    this.findReceiver(res.data[n].person_name).then((receiver_data)=>{
-                        // sender와 receiver설정
-                        let sender_name = res.data[n].person_name;
-                        this.findPersonId(sender_name).then((sender)=>{
-                            let sender_id = sender.data[0].PERSON_ID;
-                            let _coin = 0;
-                            console.log(receiver_data.data);
-                            if(receiver_data.data.length !== 0){
-                                _coin = total_coin / receiver_data.data.length;
-                                // console.log('total_coin: '+ total_coin + ' _coin: '+_coin);
-                            }
-                            
-                            for(let m=0;m<receiver_data.data.length;m++){
-                                this.setState({isQuizTransfer: true});
-                                let receiver_name = receiver_data.data[m].person_name;
-                                let receiver_id = '';
-                                this.findPersonId(receiver_name).then((receiver)=>{
-                                    receiver_id = receiver.data[0].PERSON_ID;
-                                    this.setQuizTransfer(sender_id, receiver_id, _coin);
-                                });
+                this.getQuizResult().then((res)=>{
+                    for(let n=0;n<res.data.length;n++){
+                        let score_rank = res.data[n].score_rank;
+                        
+                        let total_coin  = 0.002 * (score_rank-1);
+                        this.findReceiver(res.data[n].person_name).then((receiver_data)=>{
+                            // sender와 receiver설정
+                            let sender_name = res.data[n].person_name;
+                            this.findPersonId(sender_name).then((sender)=>{
+                                let sender_id = sender.data[0].PERSON_ID;
+                                let _coin = 0;
+                                console.log(receiver_data.data);
+                                if(receiver_data.data.length !== 0){
+                                    _coin = total_coin / receiver_data.data.length;
                                 }
+                                
+                                for(let m=0;m<receiver_data.data.length;m++){
+                                    this.setState({isQuizTransfer: true});
+                                    let receiver_name = receiver_data.data[m].person_name;
+                                    let receiver_id = '';
+                                    this.findPersonId(receiver_name).then((receiver)=>{
+                                        receiver_id = receiver.data[0].PERSON_ID;
+                                        this.setQuizTransfer(sender_id, receiver_id, _coin);
+                                    });
+                                    }
+                                });
                             });
-                        });
-                    }
-                });
+                        }
+                    });
             }, 2000);
         } 
         // 모든 사람이 점수를 입력하지 않은 경우
@@ -318,13 +311,6 @@ class QuizInputScore extends Component {
     setQuizTransfer = async(_sender_id, _receiver_id, _coin) => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let study_id = this.state.study_id;
-        // let quiz_date = this.state.quiz_date;
-        // console.log(study_id);
-        // console.log(quiz_date);
-        // console.log('_sender_id: ' + _sender_id);
-        // console.log('_receiver_id: ' + _receiver_id);
-        // console.log(_coin);
-        // // String타입 date32타입으로 변환 
         let date = web3.utils.fromAscii(this.state.quiz_date);
         let senderPerson_id = web3.utils.fromAscii(_sender_id);
         let receiverPerson_id = web3.utils.fromAscii(_receiver_id);
@@ -570,7 +556,6 @@ class QuizInputScore extends Component {
 }
 
 class NameItem extends Component {
-
     constructor(props) {
         super(props);
         this.state = {

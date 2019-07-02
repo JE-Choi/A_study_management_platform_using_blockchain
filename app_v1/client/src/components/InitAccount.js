@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 // import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "../utils/getWeb3";
-
 import { post } from 'axios';
-
-// import "./App.css";
 
 class InitAccount extends Component {
   state = { storageValue: 0, web3: null, accounts: null};
@@ -16,9 +13,7 @@ class InitAccount extends Component {
 
       // await web3.eth.personal.newAccount();
       // Use web3 to get the user's accounts.
-      
       const accounts = await web3.eth.getAccounts();
-      
       
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -33,6 +28,7 @@ class InitAccount extends Component {
       console.error(error);
     }
   };
+
   addAccount = async (account_id, account_num)  => {
     const url = '/api/init_account_list';
 
@@ -42,24 +38,24 @@ class InitAccount extends Component {
         is_use: false,
     });
 }
+
 input = async () => {
     const { accounts, web3 } = this.state;
     for(let i = 0 ; i < accounts.length ; i++){
         if(i>1){ // 1까지 관리자 계좌임.
             this.addAccount(i,accounts[i]).then((res)=>{
                 console.log(res);
-            });// 총 50개
+            });
         }
-          
       }
 }
+
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
       <div className="App">
-        지워야 하는 페이지
         <button onClick={this.input}>계좌 DB에 삽입</button>
       </div>
     );

@@ -23,7 +23,6 @@ class StudyMake extends Component {
             study_id: '',
             person_name:'',
             account_idx: 0,
-
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
@@ -34,13 +33,10 @@ class StudyMake extends Component {
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
             // isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
             isEndTransfer: false, // 스터디 구조체 생성 트랜잭션 발생 유무
-
             study_start_date: '',
             study_end_date: new Date(),
-
             dbStartDate:'',
             dbEndDate: '',
-
             // progress 
             completed: 0
         }
@@ -83,14 +79,10 @@ class StudyMake extends Component {
                     console.log(this.state.person_id +' '+this.state.account_idx+' '+account_pw);
                     this.useInitAccount(this.state.account_idx).then((res)=>{
                         console.log(res);
-                        
                     });
-
                 }).catch((error)=>{
-                console.log(error);
-            
+                    console.log(error);
                 });
-                
             } else{
                 console.log("계좌 생성시 오류");
             }
@@ -131,32 +123,6 @@ class StudyMake extends Component {
             account_index: _account_index
         });
     }
-    
-    // // 매개변수로 들어온 _account_id에게 ether 지급.
-    // chargeTheCoin = async () =>{
-    //     const { studyGroupInstance, myAccount, web3} = this.state; 
-    //     // 1 코인당 0.1ether를 충전하기 위한 변환 과정
-    //     let study_make_ether = this.state.study_coin / 10;
-    //     let account_id = Number(this.state.account_idx);
-    //     // myAccount[account_id] <- 이 계좌가 받는 사람 계좌.
-    //     studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
-    //       {
-    //         from: myAccount[0], 
-    //         value: web3.utils.toWei(String(study_make_ether), 'ether'),
-    //         gas: 0 
-    //       })
-    //       // receipt 값이 반환되면 트랜잭션의 채굴 완료된 상태
-    //       .on('confirmation', (confirmationNumber, receipt) => {
-    //           let transactionReceiptOfChargeTheCoin = receipt;
-    //           this.setState({
-    //               transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
-    //           });
-    //           // 이더 충전 트랜잭션 채굴 완료 상태 설정
-    //           this.setState({
-    //               isChargeTheCoin: false
-    //           });
-    //       });
-    // }
 
     componentDidMount() {
         this.initContract().then(()=>{
@@ -192,7 +158,6 @@ class StudyMake extends Component {
     }
     
     handleFormSubmit = (e) => {
-        // data가 서버로 전달될 때 오류 발생하지 않도록 함수로 불러옴.
         e.preventDefault();
 
         if(this.check() === true){
@@ -214,27 +179,24 @@ class StudyMake extends Component {
                                 study_id: insert_id
                             });
                             setTimeout(()=>{
-                                // 이더 충전 트랜잭션 발생
-                                // this.chargeTheCoin(account_id).then(()=>{
-                                    // StudyGroup.sol파일의 studyMember구조체 생성
-                                    let person_id = this.state.person_id;
-                                    // 사용자 등록 트랜잭션 발생 
-                                    this.createMemberItem(this.state.study_id , person_id, this.state.account_idx,this.state.person_name);
-                                    this.setStudyEndTransfer(this.state.study_id, this.state.study_end_date);
-                                    let second = 1000;
-                                    let intervalTime = second * 2;
- 
-                                    var refreshIntervalId = setInterval(()=>{
-                                        if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.isMemberItemTransfer !== '')){
-                                            /* refreshIntervalId 중지 */
-                                            clearInterval(refreshIntervalId);
-                                            setTimeout(()=>{
-                                                this.studyOkJoinConfirm();
-                                            },100);
-                                            this.props.history.push('/mainPage');
-                                        }
-                                    },intervalTime);
-                                // });
+                                // StudyGroup.sol파일의 studyMember구조체 생성
+                                let person_id = this.state.person_id;
+                                // 사용자 등록 트랜잭션 발생 
+                                this.createMemberItem(this.state.study_id , person_id, this.state.account_idx,this.state.person_name);
+                                this.setStudyEndTransfer(this.state.study_id, this.state.study_end_date);
+                                let second = 1000;
+                                let intervalTime = second * 2;
+
+                                var refreshIntervalId = setInterval(()=>{
+                                    if((this.state.transactionReceiptOfMemberItem !== '')&&(this.state.isMemberItemTransfer !== '')){
+                                        /* refreshIntervalId 중지 */
+                                        clearInterval(refreshIntervalId);
+                                        setTimeout(()=>{
+                                            this.studyOkJoinConfirm();
+                                        },100);
+                                        this.props.history.push('/mainPage');
+                                    }
+                                },intervalTime);
                             }, 1000);
                         });
                     }), 100);
@@ -426,8 +388,7 @@ class StudyMake extends Component {
         let year  = _endDate.getFullYear();
         let month = _endDate.getMonth()+1;
         let date = _endDate.getDate();
-        let day = year+'-'+month+'-'+date;
-        // 블록체인에 date32타입으로 저장되었기 때문에 변환을 거쳐 저장해야 한다. 
+        let day = year+'-'+month+'-'+date; 
         let Ascii_endDate =  web3.utils.fromAscii(day); 
         console.log(day+'     '+ _studyId);
         studyGroupInstance.methods.setStudyEndTransfer(_studyId, Ascii_endDate).send(

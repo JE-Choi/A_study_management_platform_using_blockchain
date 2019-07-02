@@ -85,8 +85,6 @@
 #btn_study_make:hover{
     background-color: #D3B8A5;
     color: white;
-    /* border-color: rgb(85, 102, 119); */
-    /* color:rgb(85, 102, 119); */
 }
 
 #re_btn_study_make {
@@ -99,8 +97,6 @@
 #re_btn_study_make:hover{
     background-color: #D3B8A5;
     color: white;
-    /* border-color: rgb(85, 102, 119); */
-    /* color:rgb(85, 102, 119); */
 }
 
 #study_make_title{
@@ -123,6 +119,7 @@
     z-index:1;
     
 }
+
 /*레이어로 띄운 progress_bar 배경*/
 .progress_bar_body{
     margin-top:20%;

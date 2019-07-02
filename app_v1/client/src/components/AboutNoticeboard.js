@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './AboutCommunity.css';
 
-class Noticeboard extends Component {
+class AboutNoticeboard extends Component {
     render() {
         return (
             <div className="">
@@ -11,4 +11,4 @@ class Noticeboard extends Component {
     }
 }
 
-export default Noticeboard;
+export default AboutNoticeboard;

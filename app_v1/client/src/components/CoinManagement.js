@@ -5,7 +5,6 @@ import $ from 'jquery';
 import ProgressBar from './ProgressBar';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -31,17 +30,16 @@ class AboutCoin extends Component{
             userId:'',
             studyId:'',
             is_end: null,
-
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
-
             transactionsList : null,
             end_transactionsList: null,
             quizTransactionsList: null
         }
     }
+
     initContract = async () => {
 
         try {
@@ -59,11 +57,8 @@ class AboutCoin extends Component{
               deployedNetwork && deployedNetwork.address
             );
         
-        
             // // 확인용 로그
-            // console.log(ShopContract.abi);
             console.log(web3);
-            // console.log(myAccount);
           //   Set web3, accounts, and contract to the state, and then proceed with an
           //   example of interacting with the contract's methods.
           this.setState({ web3, myAccount, studyGroupInstance: instance});
@@ -75,7 +70,6 @@ class AboutCoin extends Component{
                     if(res.data.length !== 0){
                         let account_index = res.data[0].account_index;
                         $('.account_number').val(myAccount[account_index]);
-                        //let account = myAccount[account_id];
                         web3.eth.getBalance(myAccount[account_index]).then(result=>{
                             let balance = web3.utils.fromWei(result, 'ether');
                             // 코인 값 SET
@@ -122,6 +116,7 @@ class AboutCoin extends Component{
             ]
         })        
     }
+
     // 접속한 스터디가 종료된 스터디인지 확인
     callStudyIsEnd = async () => {
         const url = '/api/community/isEnd';
@@ -130,35 +125,6 @@ class AboutCoin extends Component{
             study_id: sessionStorage.getItem("enterStudyid")
         });
     }
-
-
-    componentWillMount = async () => {
-        // this.callStudyIsEnd().then((res)=>{
-        //     console.log('is_end: ');
-        //     console.log(res.data);
-        //     console.log(res.data[0].is_end);
-        //     // if(res.data.length !== 0){
-        //         let is_end = res.data[0].is_end;
-                
-        //         this.setState({
-        //             is_end: is_end
-        //         });
-                
-        //         // 종료되지 않은 스터디
-        //         if(is_end === 0){
-        //             this.initContract().then(()=>{
-        //                 this.cautionConfirm();
-        //             });
-        //         }
-        //         // 종료된 스터디
-        //         else{
-        //             this.initContract().then(()=>{
-        //                 this.studyEndConfirm();
-        //             });
-        //         }
-        //     // } 
-        // }); 
-    };
 
     componentDidMount = async () => {
         this.initContract().then(()=>{
@@ -215,6 +181,7 @@ class AboutCoin extends Component{
             console.log("Sorry, your browser does not support Web Storage...");
         }
     }
+
     // 사용자 ID, 들어온 스터디 번호 불러오기
     getEnterSession = async () => {
         if (typeof(Storage) !== "undefined") {
@@ -247,7 +214,6 @@ class AboutCoin extends Component{
             console.log('person_id: ' + person_id);
             console.log('study_id: ' + study_id);
             console.log('person_name: ' + person_name);
-            
         });
     }
 
@@ -261,7 +227,6 @@ class AboutCoin extends Component{
             transactions_list = [];
        
             transactions = result[0];
-            // console.log(result[0][0]);
             for(let i = 0; i < transactions.length; i++){
                 let transactions_list_sub = [];
         
@@ -269,7 +234,6 @@ class AboutCoin extends Component{
                 let transactions_web3_sendName =  web3.utils.hexToUtf8(transactions[i].sendName);
                 let transactions_web3_receiverName =  web3.utils.hexToUtf8(transactions[i].receiverName);
                 let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
-                //web3.utils.hexToUtf8(transactions[i].date)
                 let transactions_web3_date = web3.utils.hexToUtf8(transactions[i].date);
 
                 transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
@@ -286,8 +250,6 @@ class AboutCoin extends Component{
     quizTransactionsListFiltering = async () => {
         // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
         let transactions_list_before_filtering  = this.state.quizTransactionsList;
-        // console.log(transactions_list_before_filtering);
-        // console.log(this.state.userName);
         // 접속자가 _sender인 값들을 뽑아서 저장
         let send_coin_list = [];
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
@@ -316,14 +278,9 @@ class AboutCoin extends Component{
 
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
-        // console.log('send_coin_list');
-        // console.log(send_coin_list);
-        // console.log('receive_coin_list');
-        // console.log(receive_coin_list);
         
         // 날짜순으로 정렬
         transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
-        // console.log(transactions_list_atfer_filtering);
         console.log(transactions_list_atfer_filtering);
         this.setState({
             quizTransactionsList : transactions_list_atfer_filtering
@@ -340,7 +297,6 @@ class AboutCoin extends Component{
             transactions_list = [];
        
             transactions = result[0];
-            // console.log(result[0][0]);
             for(let i = 0; i < transactions.length; i++){
                 let transactions_list_sub = [];
         
@@ -348,7 +304,6 @@ class AboutCoin extends Component{
                 let transactions_web3_sendName =  web3.utils.hexToUtf8(transactions[i].sendName);
                 let transactions_web3_receiverName =  web3.utils.hexToUtf8(transactions[i].receiverName);
                 let transactions_web3_coin = web3.utils.fromWei(String(transactions[i].coin), 'ether');
-                //web3.utils.hexToUtf8(transactions[i].date)
                 let transactions_web3_date = web3.utils.hexToUtf8(transactions[i].date);
 
                 transactions_list_sub.push(transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverName, transactions_web3_coin,transactions_web3_date);
@@ -366,8 +321,6 @@ class AboutCoin extends Component{
     transactionsListFiltering = async () => {
         // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
         let transactions_list_before_filtering  = this.state.transactionsList;
-        // console.log(transactions_list_before_filtering);
-        // console.log(this.state.userName);
         // 접속자가 _sender인 값들을 뽑아서 저장
         let send_coin_list = [];
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
@@ -396,14 +349,9 @@ class AboutCoin extends Component{
 
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
-        // console.log('send_coin_list');
-        // console.log(send_coin_list);
-        // console.log('receive_coin_list');
-        // console.log(receive_coin_list);
         
         // 날짜순으로 정렬
         transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
-        // console.log(transactions_list_atfer_filtering);
         this.setState({
             transactionsList : transactions_list_atfer_filtering
         });
@@ -428,12 +376,6 @@ class AboutCoin extends Component{
                     let receiveEther = web3.utils.fromWei(String(result[i].receiveEther), "ether" ); // 반환받아야 하는 사람 ether값
                     let endDate = web3.utils.hexToUtf8(result[i].endDate); // 반환 요청된 날짜
                     receiveEther = String(receiveEther).substring(0,6);
-                    // console.log(studyId);
-                    // console.log(personId);
-                    // console.log(personName);
-                    // console.log(receiveEther);
-                    // console.log(endDate);
-                    // console.log('');
                     
                     if(sessionStorage.getItem("loginInfo") === personId){
                         transactions_list_sub.push(endDate, receiveEther);
@@ -441,8 +383,6 @@ class AboutCoin extends Component{
                     }
                 }
                 $('.not_exist_transfer_msg').hide();
-            } else{
-                // console.log('진행된 거래 없음');
             }
         });
         this.setState({
@@ -520,9 +460,7 @@ class TransferSenderInfoItem extends React.Component {
         return (
           <div>
                 <div className="div_coin_usage">
-                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.date}</span>
-                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
                 <span className="desc_of_sender_use">지각</span>
                 <span className="used_coin">-{this.props.coin}</span>
             </div>
@@ -539,7 +477,6 @@ class TransferReceiverrInfoItem extends React.Component {
         return (
           <div>
                 <div className="div_coin_usage">
-                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.date}</span>
                 <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>지각 코인</span>
                 <span className="used_coin">+{this.props.coin}</span>
@@ -556,9 +493,7 @@ class QuizTransferSenderInfoItem extends React.Component {
         return (
           <div>
                 <div className="div_coin_usage">
-                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.date}</span>
-                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
                 <span className="desc_of_sender_use">퀴즈</span>
                 <span className="used_coin">-{this.props.coin}</span>
             </div>
@@ -601,7 +536,6 @@ class TransferEndItem extends React.Component {
             </div>
             <div className = "coin_clear"></div>
         </div>
-            
         )
     }
 }

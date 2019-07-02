@@ -33,8 +33,6 @@ class CalendarTop extends Component{
 
     this.callLoadApi(this.props.id)
       .then(res => {
-        let end_date = new Date(res[0].end_date);
-
         let test_date = res[0].end_date;
         console.log(test_date);
         let date = test_date.split('-');
@@ -42,10 +40,6 @@ class CalendarTop extends Component{
         let date_str = date[0]+'년 '+date[1]+'월 '+day[0]+'일';
         console.log(date_str);
 
-        // let e_year = String(end_date.getFullYear());
-        // let e_month = String(end_date.getMonth()+1);
-        // let e_date = String(end_date.getDate());
-        // let end_date_view = e_year+'년 '+e_month+'월 '+e_date+'일';
         this.setState ({
           study_name: res[0].study_name,
           study_type: res[0].study_type,

@@ -5,7 +5,6 @@ import { post } from 'axios';
 import ProgressBar from './ProgressBar';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -35,7 +34,6 @@ class Attendance extends Component {
             is_attendance: 0, // 출석 여부
             edDate: null, // 출석 시작 시간 + 유효 시간까지 더한 마지노선 시간   
             is_end: 0,
-            
             // 블록체인
             studyGroupInstance:null,
             myAccount: null,
@@ -64,23 +62,6 @@ class Attendance extends Component {
             study_id: sessionStorage.getItem("enterStudyid")
         });
     }
-
-    componentWillMount = async () => {
-        // this.callStudyIsEnd().then((res)=>{
-        //     if(res.data.length!== 0){
-        //         // 스터디 종료 여부 (1: end, 0:not end)
-        //         let is_end = res.data[0].is_end; 
-        //         this.setState({
-        //             is_end: is_end
-        //         });
-        //         this.initContract();
-        //         // if(is_end === 0){
-        //         //     this.initContract();
-        //         // }
-        //     }
-        // });
-        // this.initContract();
-    };
 
     componentDidMount= async () => {
         this.callStudyIsEnd().then((res)=>{
@@ -159,11 +140,7 @@ class Attendance extends Component {
                                            
                                             // 최초 출석자 아니면 시간 선택 불가
                                             $('#valid_attendance_time').val(first_attend_valid_time); 
-                                            $('#valid_attendance_time').attr("disabled","disabled");  
-                
-                                            // // 출석취소 기능 비활성화
-                                            // $('.cancel_attendance_btn').attr("disabled","disabled");
-                                            // $('.cancel_attendance_btn').val('출석 취소 불가'); 
+                                            $('#valid_attendance_time').attr("disabled","disabled"); 
                                             
                                             // 출석 유효시간 측정 타이머
                                             this.setAttendance(this.state.studyId, this.state.userId);       
@@ -173,10 +150,7 @@ class Attendance extends Component {
                             });
                         });
                 }
-            
         });
-
-        
     }
 
     initContract = async () => {
@@ -271,7 +245,6 @@ class Attendance extends Component {
         });
 
         var tid = 0;
-        
         var stDate =  new Date();
         let e_year = stDate.getFullYear();
         let e_month = stDate.getMonth()+1;
@@ -450,7 +423,6 @@ class Attendance extends Component {
 
         // 시간 감소시켜 화면에 출력하는 메소드
         function msg_time(_studyId){
-            //var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
             var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
             var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
         
@@ -460,8 +432,6 @@ class Attendance extends Component {
 
             if (RemainDate < 1000) {
                 clearInterval(tid);   // 타이머 해제 
-
-                // (예정)거래 진행 테이블에서 거래 여부가 없을 때만 실행 되어야 함.
                 let check_date = new Date();
                 let c_year = String(check_date.getFullYear());
                 let c_month = String(check_date.getMonth()+1);
@@ -491,7 +461,6 @@ class Attendance extends Component {
 
                                         //블록체인 거래 내역가 있는지 확인
                                         statusOfTardinessTransaction(attendance_date).then((res)=>{
-                                            // console.log(res.data.length);
                                             let senderPerson_id = res_personId.data[i].person_id;
                                             // let receiverPerson_id = sessionStorage.getItem("loginInfo"); 
                                             let attendance_date = new Date();
@@ -565,12 +534,7 @@ class Attendance extends Component {
                                                         }
                                                     });
                                                 }
-
-                                                 
-
-
                                             });
-
                                         });
                                     });
                                 }

@@ -3,7 +3,6 @@ import './ProgressBar.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ProgressBar extends Component {
-
   state = {
     completed: 0
   }
@@ -33,12 +32,6 @@ class ProgressBar extends Component {
             {this.props.sub_msg1}<br/>
             {this.props.sub_msg2}
           </div>
-          {/* {this.props.sub_msg !== '' ?
-          <div>
-
-          </div>
-          :''
-        } */}
         </div> 
     );
   }

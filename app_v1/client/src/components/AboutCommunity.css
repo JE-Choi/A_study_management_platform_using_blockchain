@@ -280,7 +280,6 @@
     margin-top: 2rem;
 }
 
-/**********CoinManagement.js***********/
 /*코인 관리 화면*/
 .content_coinManagement{
     padding: 3%;
@@ -399,6 +398,12 @@
 
 .coin_return_message{
     margin-top: 1.3rem;
+}
+
+/*스터디 멤버 화면*/
+.memberTableHeader{
+    color: white;
+    background-color: #D3B8A5;
 }
 
 /*반응형*/
@@ -744,5 +749,20 @@
         margin-top: 1rem;
         font-size: 0.75rem;
         margin-bottom: 1rem;
+    }
+
+    /*스터디 멤버 화면*/
+    .memberTableHeader, .memberTableBody{
+        font-size: 0.8rem;
+    }
+
+    .memberTableHeader>tr>th, .memberTableBody>tr>td{
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    } 
+
+    .memberTable{
+        width: 95% !important;
+        margin: 0.5rem;
     }
 }

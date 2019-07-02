@@ -8,7 +8,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './PromptModal.css';
 import $ from 'jquery';
 import ProgressBar from './ProgressBar';
-
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -28,22 +27,17 @@ class StudyInfo extends Component {
             JoinShowBtn: 0,
             person_name:'',
             account_idx: 0,
-
             // 스터디 정보 불러올 때 사용
             study_name: '' ,
             study_type: '',
             num_people: '',
             current_num_people: 0,
             study_coin: 0,
-
             study_start_date: '',
             study_end_date: '',
-
             dbStartDate:'',
             dbEndDate: '',
-
             study_desc: '',
-
             // 블록체인
             studyGroupInstance: null,
             myAccount: null,
@@ -92,10 +86,6 @@ class StudyInfo extends Component {
               deployedNetwork && deployedNetwork.address
             );
   
-            // // 확인용 로그
-            // console.log(ShopContract.abi);
-            //console.log(web3);
-            //console.log(myAccount);
           if(web3 !== null){
               console.log("web3연결 성공");
           } else{
@@ -113,61 +103,60 @@ class StudyInfo extends Component {
     
     componentDidMount() {
         this.initContract().then(()=>{
-        this.callApi()
-          .then(res => {
-                let start_date = new Date(res[0].start_date);
-                let end_date = new Date(res[0].end_date);
-              
-                let s_year = String(start_date.getFullYear());
-                let s_month = String(start_date.getMonth()+1);
-                let s_date = String(start_date.getDate());
+            this.callApi()
+            .then(res => {
+                    let start_date = new Date(res[0].start_date);
+                    let end_date = new Date(res[0].end_date);
+                
+                    let s_year = String(start_date.getFullYear());
+                    let s_month = String(start_date.getMonth()+1);
+                    let s_date = String(start_date.getDate());
 
-                let view_start_date = s_year+'-'+s_month+'-'+s_date;
+                    let view_start_date = s_year+'-'+s_month+'-'+s_date;
 
-                let e_year = String(end_date.getFullYear());
-                let e_month = String(end_date.getMonth()+1);
-                let e_date = String(end_date.getDate());
-                let e_hour = String(end_date.getHours());
-                let e_minute = String(end_date.getMinutes());
+                    let e_year = String(end_date.getFullYear());
+                    let e_month = String(end_date.getMonth()+1);
+                    let e_date = String(end_date.getDate());
+                    let e_hour = String(end_date.getHours());
+                    let e_minute = String(end_date.getMinutes());
 
-                let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
+                    let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
 
-              this.setState({study_item_info: res});
-              this.setState ({
-                study_name: res[0].study_name ,
-                study_type: res[0].study_type,
-                num_people: res[0].num_people,
-                study_start_date: view_start_date,
-                study_end_date: view_end_date,
-                study_coin: res[0].study_coin,
-                study_desc: res[0].study_desc
-            });
+                    this.setState({study_item_info: res});
+                    this.setState ({
+                        study_name: res[0].study_name ,
+                        study_type: res[0].study_type,
+                        num_people: res[0].num_people,
+                        study_start_date: view_start_date,
+                        study_end_date: view_end_date,
+                        study_coin: res[0].study_coin,
+                        study_desc: res[0].study_desc
+                    });
+            }).catch(err => console.log(err));
 
-        }).catch(err => console.log(err));
-
-        this.callLeaderApi().then(res => {
-            this.setState ({
-                leader_name: res[0].person_name
+            this.callLeaderApi().then(res => {
+                this.setState ({
+                    leader_name: res[0].person_name
+                })
             })
-        })
 
-        this.callCurrentPeopleApi().then(res => {
-            this.setState ({
-                current_num_people: res.data.length
-            });
-        })
+            this.callCurrentPeopleApi().then(res => {
+                this.setState ({
+                    current_num_people: res.data.length
+                });
+            })
 
-        this.getSession();
+            this.getSession();
 
-        // 로그인하지 않은 상태, 스터디 가입하지 않은 사람이면 가입하기 버튼을 보이지 않게 함.
-        setTimeout(() => {
-            if(sessionStorage.getItem("loginInfo") === null){  
-                this.setState({joinStudy: 1});
-            }else{
-                this.joinStudy();
-            }
-        }, 50);     
-        });   
+            // 로그인하지 않은 상태, 스터디 가입하지 않은 사람이면 가입하기 버튼을 보이지 않게 함.
+            setTimeout(() => {
+                if(sessionStorage.getItem("loginInfo") === null){  
+                    this.setState({joinStudy: 1});
+                }else{
+                    this.joinStudy();
+                }
+            }, 50);   
+        });           
     }
 
     getSession = () => {
@@ -197,8 +186,7 @@ class StudyInfo extends Component {
         post(url,  {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id,
-            leader: false,
-            // account_number: '11-22'
+            leader: false
         }).then(()=>{
             this.setState({
                 isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생 
@@ -207,28 +195,25 @@ class StudyInfo extends Component {
             this.createAccount(this.props.match.params.id).then((account_id)=>{
                 setTimeout(()=>{
                     // 이더 충전 트랜잭션 발생
-                    // this.chargeTheCoin(account_id).then(()=>{
-                        // StudyGroup.sol파일의 studyMember구조체 생성
-                        let person_id = this.state.person_id;
-                        
-                        // 사용자 등록 트랜잭션 발생 
-                        this.createMemberItem(this.props.match.params.id, person_id, this.state.account_idx, this.state.person_name);
-                        
-                        let second = 1000;
-                        let intervalTime = second * 2;
-                        var refreshIntervalId = setInterval(()=>{
-                            if((this.state.transactionReceiptOfMemberItem !== '')){
-                                /* refreshIntervalId 중지 */
-                                clearInterval(refreshIntervalId);
-                                setTimeout(()=>{
-                                    this.studyOkJoinConfirm();
-                                },100);
-                                this.props.history.push('/mainPage');
-                            }
-                        },intervalTime);
-                    // });
+                    // StudyGroup.sol파일의 studyMember구조체 생성
+                    let person_id = this.state.person_id;
+                    
+                    // 사용자 등록 트랜잭션 발생 
+                    this.createMemberItem(this.props.match.params.id, person_id, this.state.account_idx, this.state.person_name);
+                    
+                    let second = 1000;
+                    let intervalTime = second * 2;
+                    var refreshIntervalId = setInterval(()=>{
+                        if((this.state.transactionReceiptOfMemberItem !== '')){
+                            /* refreshIntervalId 중지 */
+                            clearInterval(refreshIntervalId);
+                            setTimeout(()=>{
+                                this.studyOkJoinConfirm();
+                            },100);
+                            this.props.history.push('/mainPage');
+                        }
+                    },intervalTime);
                 },1000);
-                
             });
         })
     }
@@ -287,14 +272,11 @@ class StudyInfo extends Component {
             ]
         })
     };
-    
 
     studyExchenageConfirm = () => {
-
         setTimeout(()=>{
             confirmAlert({
                 title: '비밀번호를 입력해주세요.',
-                // message: this.state.study_coin+'코인 충전 시 '+ (5000*this.state.study_coin)+'원 입니다.(1코인당 5000원)',
                 buttons: [
                   {
                       label: '확인'
@@ -302,12 +284,12 @@ class StudyInfo extends Component {
                 ]
               })
         },100);
-        
     };
 
     handleFormOkSubmit(){
         this.callJoinApi();
     }
+
     // 스터디 가입 완료 확인창
     studyOkJoinConfirm = () => {
         confirmAlert({
@@ -341,15 +323,18 @@ class StudyInfo extends Component {
     }
 
     // 스터디 가입했는지 확인 쿼리
-    joinStudy = () =>{
+    joinStudy = async() =>{
         const url = '/api/isCheckJoinAndLeader';
         post(url,  {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id
         }).then((result)=>{
-            this.setState({joinStudy:result.data.length});
-            setTimeout(() => {
+            // 모집 인원이 다 모이면, 가입 버튼 비가시화.
+            if (this.state.current_num_people < this.state.num_people) {
+                this.setState({joinStudy:result.data.length});
+            }
 
+            setTimeout(() => {
                 if(result.data.length === 1) {
                     this.isStudyLeader(result.data[0].leader);
                 } else{
@@ -392,20 +377,14 @@ class StudyInfo extends Component {
                      account_num, account_pw, _study_id).then((response) => {
                      console.log(this.state.person_id +' '+this.state.account_idx+' '+account_pw);
                      this.useInitAccount(this.state.account_idx).then((res)=>{
-                         console.log(res);
-                         
+                         console.log(res); 
                      });
-                     
-                     
                  }).catch((error)=>{
-                 console.log(error);
-             
+                    console.log(error);
                  });
-                 
              } else{
                  console.log("계좌 생성시 오류");
              }
-             
          });
     }
 
@@ -419,38 +398,6 @@ class StudyInfo extends Component {
             study_id: _study_id
         });
     }
-
-    // // 매개변수로 들어온 _account_id에게 ether 지급.
-    // chargeTheCoin = async () =>{
-    //     const { studyGroupInstance, myAccount, web3} = this.state; 
-    //     let study_make_coin = this.state.study_coin;
-    //     // 1코인당 0.1ether를 충전하기 위한 변환 과정
-    //     let study_make_ether = study_make_coin / 10;
-    //     let account_id = Number(this.state.account_idx);
-        
-    //     // myAccount[_account_id] <- 이 계좌가 받는 사람 계좌.
-    //     studyGroupInstance.methods.chargeTheCoin(myAccount[account_id]).send(
-    //         {
-    //         from: myAccount[0], 
-    //         value: web3.utils.toWei(String(study_make_ether), 'ether'),
-    //         // gasLimit 오류 안나서 일단은 gas:0 으로 했지만 오류 나면 3000000로 바꾸기
-    //         gas: 0 
-    //       }
-    //     )
-    //     // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
-    //     .on('confirmation', (confirmationNumber, receipt) => {
-    //         console.log('chargeTheCoin')
-    //         console.log(receipt);
-    //         let transactionReceiptOfChargeTheCoin = receipt;
-    //         this.setState({
-    //             transactionReceiptOfChargeTheCoin:transactionReceiptOfChargeTheCoin
-    //         });
-    //         // 이더 충전 트랜잭션 채굴 완료
-    //         this.setState({
-    //             isChargeTheCoin: false
-    //         });
-    //     });
-    // }
 
     // 계좌 불러오기
     selectFromInitAccountList  = async () => {
@@ -466,6 +413,7 @@ class StudyInfo extends Component {
         }
         return body;
     }
+
     // 계좌 속성 변경
     useInitAccount = async (_account_index) => {
         const url = '/api/useInitAccount';
@@ -514,8 +462,10 @@ class StudyInfo extends Component {
     back = () =>{
         this.props.history.push('/mainPage');
     }
+
     render() {
         // 로그인, 스터디 가입 여부
+        // 모집 인원이 다 모인 경우 가입 버튼 보이지 않게 함.
         var isJoinBtnShow = {
             display: this.state.joinStudy === 1 ? "none" : "inline"
         };
