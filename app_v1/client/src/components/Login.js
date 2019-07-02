@@ -25,8 +25,8 @@ class Login extends Component {
                 if(response.data[0].PERSON_PW === this.state.password){
                     this.setUserIdSession();
 
-                    this.callNameApi().then((result)=>{
-                        let userName = result.data[0].person_name;
+                    this.callLoginApi().then((result)=>{
+                        let userName = result.data[0].PERSON_NAME;
                         this.setUserNameSession(userName);
                     });
 
@@ -58,10 +58,10 @@ class Login extends Component {
     }
 
     callLoginApi = () => {
-        const url = '/api/login';
+        const url = '/api/select/person_info/where/person_id';
 
         return post(url,  {
-            userId: this.state.userId
+            person_id: this.state.userId
         });
     }
 
@@ -75,20 +75,10 @@ class Login extends Component {
         }
     }
 
-    // myPage 이름 관련
-    callNameApi = () => {
-        const url = '/api/login/user_name';
-
-        return post(url,  {
-            person_id: this.state.userId
-        });
-    }
-
     // userName session 저장
     setUserNameSession = (_username) => {
         if (typeof(Storage) !== "undefined") {
             sessionStorage.setItem("loginInfo_userName", _username);
-            console.log('session에 저장된 이름: ' + sessionStorage.getItem("loginInfo_userName"));
         } else {
             console.log("Sorry, your browser does not support Web Storage...");
         }

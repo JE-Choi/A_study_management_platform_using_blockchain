@@ -51,7 +51,7 @@ class SignUp extends Component {
 
     // 회원 가입할 때 중복 ID 체크하는 부분
     callSignUpOverlapApi = () => {
-        const url = '/api/signup_overlap';
+        const url = '/api/select/person_info/where/person_id';
 
         post(url,  {
             person_id: this.state.personId

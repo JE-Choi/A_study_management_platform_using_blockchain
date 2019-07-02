@@ -459,7 +459,7 @@ class QuizInputScore extends Component {
 
     // 퀴즈 기록 여부 확인
     getQuizResult = async () =>{
-        const url = '/api/quiz/getQuizResult';
+        const url = '/api/community/getQuizResult';
         
         return post(url, {
             study_id : this.state.study_id,
@@ -651,20 +651,9 @@ class QuizResult extends Component {
         this.setState(nextState);
     }
 
-    // 퀴즈 점수 등록 여부 확인
-    isQuizResult = async()=>{
-        const url = '/api/quiz/isQuizResult';
-        
-        return post(url, {
-            study_id : this.state.study_id ,
-            quiz_date : this.state.quiz_date
-        }); 
-    }
-    
-
     // DB에서 스터디 원의 점수 불러오기
     getQuizResult = async () =>{
-        const url = '/api/quiz/getQuizResult';
+        const url = '/api/community/getQuizResult';
         
         return post(url, {
             study_id : this.state.study_id,
@@ -741,7 +730,7 @@ class QuizResult extends Component {
     // 리스트에서 날짜 선택 후 점수 확인하는 버튼
     confirmResultOfTheDate = async() =>{
         // 퀴즈 점수 등록 여부 확인
-        this.isQuizResult().then((res)=>{
+        this.getQuizResult().then((res)=>{
 
             // 해당 날짜에 퀴즈 점수가 등록되지 않은 경우
             if (res.data.length === 0) {

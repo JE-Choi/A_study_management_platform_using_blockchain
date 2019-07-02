@@ -49,33 +49,19 @@ app.get('/api/studyItems', (req, res) => {
     );
 });
 
-// 스터디에 가입한 현재 사람 정보
-app.post('/api/studyItems/current_people', (req, res) => {
-    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
+// 특정 스터디의 가입 정보
+app.post('/api/select/study_join/where/study_id', (req, res) => {
+    let sql = `SELECT * FROM study_join WHERE study_id = ?;`;
+    let study_id = req.body.study_id;
 
-    let id = req.body.index;
-
-    let params = [id];
+    let params = [study_id];
     connection.query(sql, params, 
         (err, rows, fields) => {
-            res.send(rows);
+            res.send(rows); 
         }
     );
 });
 
-// 스터디에 가입한 현재 사람 정보
-app.post('/api/studyItems/view_currentPeople', (req, res) => {
-    let sql = `SELECT * FROM study_join WHERE study_id = ?`;
-
-    let id = req.body.study_id;
-
-    let params = [id];
-    connection.query(sql, params, 
-        (err, rows, fields) => {
-            res.send(rows);
-        }
-    );
-});
 
 // 사용자가 고객 추가 데이터 전송했을 때 처리
 app.post('/api/studyItems', parser, (req, res) => {
@@ -151,40 +137,8 @@ app.delete('/api/studyItems/:id', (req, res) => {
     )
 });
 
-// 회원가입 중복확인 부분
-app.post('/api/signup_overlap', (req, res) => {
-    let sql = "SELECT * FROM person_info WHERE PERSON_ID = ?";
- 
-    let person_id = req.body.person_id;
-
-    let params = [person_id];
-    connection.query(sql, params,
-        (err, rows, fields) => {
-            res.send(rows);
-        }
-    );
-});
-
-// STUDY 가입자
-app.post('/api/studyItems/join/:id', (req, res) => {
-    let sql = `INSERT INTO study_join VALUES (?, ?, ?)`;
-
-    let study_id = req.params.id;
-    let person_id = req.body.person_id;
-    let leader = req.body.leader;
-    // let account_number = req.body.account_number;
-
-    // let params = [study_id, person_id, leader, account_number];
-    let params = [study_id, person_id, leader];
-    connection.query(sql,params,
-        (err, rows, fields) => {
-            res.send(rows);
-        }
-    );
-});
-
-// STUDY 생성자 = 방장
-app.post('/api/studyItems/leader', (req, res) => {
+// STUDY 가입 정보 삽입
+app.post('/api/insert/study_join', (req, res) => {
     let sql = `INSERT INTO study_join VALUES (?, ?, ?)`;
 
     let study_id = req.body.study_id;
@@ -198,6 +152,7 @@ app.post('/api/studyItems/leader', (req, res) => {
         }
     );
 });
+
 
 // 회원가입
 app.post('/api/signup', (req, res) => {
@@ -214,24 +169,10 @@ app.post('/api/signup', (req, res) => {
     );
 });
 
-// 로그인 판별
-app.post('/api/login', (req, res) => {
+// 특정 사용자 정보 불러오기
+app.post('/api/select/person_info/where/person_id', (req, res) => {
     let sql = "SELECT * FROM person_info WHERE PERSON_ID = ?";
-
-    let userId = req.body.userId;
-
-    let params = [userId];
-    connection.query(sql, params,
-        (err, rows, fields) => {
-            res.send(rows);
-        }
-    );
-});
-
-// 로그인한 사용자
-app.post('/api/login/user_name', (req, res) => {
-    let sql = "SELECT person_name FROM person_info WHERE PERSON_ID = ?";
-
+ 
     let person_id = req.body.person_id;
 
     let params = [person_id];
@@ -260,7 +201,7 @@ app.post('/api/isCheckJoinAndLeader',(req,res)=>{
 
 // myPage에서 해당 사용자가 가입한 스터디 불러오기
 app.post('/api/myPage/joinStudy', (req, res) => {
-    let sql = `SELECT * from studyitem WHERE s_id in (SELECT study_id FROM study_join WHERE person_id = ? and is_end = ?)`;
+    let sql = `SELECT * from studyitem WHERE s_id in (SELECT study_id FROM study_join WHERE person_id = ?) and is_end = ?`;
     let person_id = req.body.person_id;
     let is_end = req.body.is_end;
     
@@ -502,7 +443,7 @@ app.post('/api/quiz/setQuizScore', (req, res) => {
 }); 
 
 // 해당 날짜의 스터디 원의 퀴즈 점수 불러오기
-app.post('/api/quiz/getQuizResult', (req, res) => {
+app.post('/api/community/getQuizResult', (req, res) => {
     let sql = `SELECT * FROM quiz_score WHERE study_id=? AND quiz_date=? ORDER BY score DESC;`;
     let study_id = req.body.study_id;
     let quiz_date = req.body.quiz_date;
@@ -514,20 +455,6 @@ app.post('/api/quiz/getQuizResult', (req, res) => {
         }
     );
 }); 
-
-// 퀴즈 점수 등록 여부 확인
-app.post('/api/quiz/isQuizResult', (req, res) => {
-    let sql = `SELECT * FROM quiz_score WHERE study_id = ? AND quiz_date = ?`;
-    let study_id = req.body.study_id;
-    let quiz_date = req.body.quiz_date;
-
-    let params = [study_id, quiz_date];
-    connection.query(sql,params, 
-        (err, rows, fields) => {
-            res.send(rows); 
-        }
-    );
-});
 
 
 // 계좌 불러오기
@@ -606,18 +533,6 @@ app.post('/api/manager/callEndDateStudy', (req, res) => {
 
 });
 
-// 종료날짜인 스터디에 속한 스터디원 추출
-app.post('/api/manager/callEndDatePerson', (req, res) => {
-    let sql = `SELECT * FROM study_join WHERE study_id = ?;`;
-    let study_id = req.body.study_id;
-
-    let params = [study_id];
-    connection.query(sql, params, 
-        (err, rows, fields) => {
-            res.send(rows); 
-        }
-    );
-});
 
 // 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
 app.post('/api/manager/callEndDatePersonAccount', (req, res) => {

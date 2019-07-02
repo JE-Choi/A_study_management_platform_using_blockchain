@@ -266,7 +266,7 @@ class StudyMake extends Component {
     }
 
     addleader = (studyId) => {
-        const url = '/api/studyItems/leader';
+        const url = '/api/insert/study_join';
         console.log(studyId);
         return post(url,  {
             study_id: studyId,

@@ -169,7 +169,7 @@ class EndDateReturnCoin extends React.Component {
 
     // 종료날짜인 스터디에 속한 스터디원 추출
     callEndDatePerson = (_study_id) => {
-        const url = '/api/manager/callEndDatePerson';
+        const url = '/api/select/study_join/where/study_id';
         return post(url,  {
             study_id: _study_id
         });

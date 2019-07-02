@@ -193,7 +193,7 @@ class StudyInfo extends Component {
 
     callJoinApi = () => {
 
-        const url = '/api/studyItems/join/' + this.props.match.params.id;
+        const url = '/api/insert/study_join';
         post(url,  {
             study_id: this.props.match.params.id,
             person_id: this.state.person_id,
@@ -234,7 +234,7 @@ class StudyInfo extends Component {
     }
 
     callCurrentPeopleApi = () => {
-        const url = '/api/studyItems/view_currentPeople';
+        const url = '/api/select/study_join/where/study_id';
 
         return post(url, {
             study_id: this.props.match.params.id

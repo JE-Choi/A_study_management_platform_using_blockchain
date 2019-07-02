@@ -40,7 +40,8 @@ class UserPage extends Component{
             person_id: sessionStorage.getItem("loginInfo"),
             is_end: _showState
         }).then((res)=>{
-            
+            console.log(sessionStorage.getItem("loginInfo"));
+            console.log(res.data);
             this.setState({joinStudyArray: res.data});
         })
     }
