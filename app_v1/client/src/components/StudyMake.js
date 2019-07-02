@@ -250,9 +250,10 @@ class StudyMake extends Component {
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
-    
+
+    // 스터디 목록에 항목 삽입
     addstudyItem = () => {
-        const url = '/api/studyItems';
+        const url = '/api/insert/studyitem';
         
         return post(url,  {
             study_name: this.state.study_name,

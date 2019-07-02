@@ -427,7 +427,7 @@ class QuizInputScore extends Component {
 
     // DB에 퀴즈 점수 저장
     setQuizScore = async(userName, user_score,rank)=>{
-        const url = '/api/quiz/setQuizScore';
+        const url = '/api/community/setQuizScore';
         
         return post(url, {
             study_id : this.state.study_id,
@@ -438,18 +438,18 @@ class QuizInputScore extends Component {
         }); 
     }
 
-    // DB에서 해당 스터디 최근 날짜 불러오기
+    // 스터디 출석 날짜 불러오기
     getQuizDate = async()=>{
-        const url = '/api/quiz/getQuizDate';
+        const url = '/api/community/getAttendanceDate';
         
         return post(url, {
             study_id : this.state.study_id 
         }); 
     }
 
-    // 스터디에 있는 스터디원 이름 불러오기
+    // 오늘 출석한 사람 이름 불러오기
     getPersonName = async()=>{
-        const url = '/api/quiz/getNames';
+        const url = '/api/community/getAttendeeName';
         
         return post(url, {
             study_id : this.state.study_id,
@@ -670,18 +670,18 @@ class QuizResult extends Component {
         }
     }
 
-    // DB에서 해당 스터디 최근 날짜 불러오기
+    // 스터디 출석 날짜 불러오기
     getQuizDate = async()=>{
-        const url = '/api/quiz/getQuizDate';
+        const url = '/api/community/getAttendanceDate';
         
         return post(url, {
             study_id : this.state.study_id 
         }); 
     }
 
-    // 스터디에 있는 스터디원 이름 불러오기
+    // 오늘 출석한 사람 이름 불러오기
     getPersonName = async()=>{
-        const url = '/api/quiz/getNames';
+        const url = '/api/community/getAttendeeName';
         
         return post(url, {
             study_id : this.state.study_id

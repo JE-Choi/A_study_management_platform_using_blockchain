@@ -366,7 +366,7 @@ class StudyInfo extends Component {
 
     // 방장이 study 삭제하는 메소드
     deleteCustomer(_id) {
-        const url = '/api/studyItems/' + _id;
+        const url = '/api/delete/studyitem/' + _id;
 
         fetch(url, {
             method: 'DELETE'

@@ -39,7 +39,7 @@ app.post('/api/createAccount', (req, res) => {
 });
 
 // 스터디 목록들 요소 불러오기
-app.get('/api/studyItems', (req, res) => {
+app.get('/api/select/studyitem', (req, res) => {
 
     connection.query(
         "SELECT * FROM studyitem",
@@ -62,9 +62,8 @@ app.post('/api/select/study_join/where/study_id', (req, res) => {
     );
 });
 
-
-// 사용자가 고객 추가 데이터 전송했을 때 처리
-app.post('/api/studyItems', parser, (req, res) => {
+// 스터디 목록에 항목 삽입
+app.post('/api/insert/studyitem', parser, (req, res) => {
     let sql = `INSERT INTO studyitem VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, 0)`;
     let study_name = req.body.study_name;
     let study_type = req.body.study_type;
@@ -126,8 +125,8 @@ app.post('/api/studyItems/view/rename/', (req, res) => {
     );
 });
 
-// 만들어진 스터디 제거
-app.delete('/api/studyItems/:id', (req, res) => {
+// 스터디 목록에서 요소 삭제
+app.delete('/api/delete/studyitem/:id', (req, res) => {
     let sql = 'DELETE FROM studyitem WHERE s_id = ?';
     let params = [req.params.id];
     connection.query(sql, params, 
@@ -213,8 +212,8 @@ app.post('/api/myPage/joinStudy', (req, res) => {
     );
 });
 
-// 코인 관리 화면에서 선택한 스터디에서의 자신의 코인 조회
-app.post('/api/coinManagement/loadAccount', (req, res) => {
+// 특정 스터디, 특정 사용자에게 할당된 계좌 인덱스
+app.post('/api/community/loadAccountIndex', (req, res) => {
     let sql = `SELECT account_index FROM account_list WHERE study_id = ? AND person_id = ?;`;
     
     let study_id = req.body.study_id;
@@ -302,10 +301,8 @@ app.post('/api/community/isAttendanceRateBtn', (req, res) => {
     );
 });  
 
-// DB에서 해당 스터디 최근 날짜 불러오기
-app.post('/api/quiz/getQuizDate', (req, res) => {
-    // let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
-
+// 스터디 출석 날짜 불러오기
+app.post('/api/community/getAttendanceDate', (req, res) => {
     let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date;`;
     let study_id = req.body.study_id;
 
@@ -379,7 +376,7 @@ app.post('/api/community/receiver_list', parser, (req, res) => {
     );
 });
 
-    // 지각 스마트 계약 거래를 진행 할 수 있는 사람인지 확인 - 최초 출석자 
+// 지각 스마트 계약 거래를 진행 할 수 있는 사람인지 확인 - 최초 출석자 
 app.post('/api/community/attendanceTradingAuthority', (req, res) => {
     let sql = `SELECT * FROM attendance_check WHERE study_id = ?  AND attendance_start_date = ? AND is_first = 1 AND person_id = ?;`;
 
@@ -395,22 +392,8 @@ app.post('/api/community/attendanceTradingAuthority', (req, res) => {
     );
 });
 
-// DB에서 해당 스터디 최근 날짜 불러오기
-// app.post('/api/quiz/getQuizDate', (req, res) => {
-//     let sql =`SELECT attendance_start_date FROM attendance_check WHERE study_id=? GROUP BY attendance_start_date ORDER BY attendance_start_date DESC;`;
-
-//     let study_id = req.body.study_id;
-
-//     let params = [study_id];
-//     connection.query(sql,params, 
-//         (err, rows, fields) => {
-//             res.send(rows); 
-//         }
-//     );
-// }); 
-
-// 스터디에 있는 스터디원 이름 불러오기
-app.post('/api/quiz/getNames', (req, res) => {
+// 오늘 출석한 사람 이름 불러오기
+app.post('/api/community/getAttendeeName', (req, res) => {
     // let sql =`SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM study_join WHERE study_id = ?);`;
     let sql = `SELECT person_name FROM person_info WHERE person_id IN (SELECT person_id FROM attendance_check WHERE study_id = ? AND attendance_start_date = ? AND is_attendance = 1);`;
     let study_id = req.body.study_id;
@@ -425,7 +408,7 @@ app.post('/api/quiz/getNames', (req, res) => {
 }); 
 
 // 퀴즈 점수 저장
-app.post('/api/quiz/setQuizScore', (req, res) => {
+app.post('/api/community/setQuizScore', (req, res) => {
     let sql =`INSERT INTO quiz_score VALUES(?, ?, ?, ?, ?);`;
 
     let study_id = req.body.study_id;
@@ -456,7 +439,6 @@ app.post('/api/community/getQuizResult', (req, res) => {
     );
 }); 
 
-
 // 계좌 불러오기
 app.get('/api/selectFromInitAccountList', (req, res) => {
     let sql =`SELECT * FROM init_account_list where is_use = 0 ORDER BY account_index ASC LIMIT 1;`;
@@ -482,8 +464,6 @@ app.post('/api/useInitAccount', (req, res) => {
     );
 }); 
 
-
-
 // 계좌번호 setting
 app.post('/api/init_account_list', (req, res) => {
     let sql = `INSERT INTO init_account_list VALUES (?,?,?);`;
@@ -498,7 +478,6 @@ app.post('/api/init_account_list', (req, res) => {
             res.send(rows); 
         }
     );
-
 });
 
 //지각자의 계좌 index 얻어오기
@@ -514,12 +493,10 @@ app.post('/api/community/getLatecomerAccountId', (req, res) => {
             res.send(rows); 
         }
     );
-
 });
 
-
-// 종료날짜인지 확인
-app.post('/api/manager/callEndDateStudy', (req, res) => {
+// 오늘이 종료날짜인 스터디항목 추출
+app.post('/api/extractStudyOfEndDate', (req, res) => {
     let sql = `SELECT * FROM studyitem WHERE date(end_date)=?;`;
    
     let today = req.body.today;
@@ -530,12 +507,10 @@ app.post('/api/manager/callEndDateStudy', (req, res) => {
             res.send(rows); 
         }
     );
-
 });
 
-
 // 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
-app.post('/api/manager/callEndDatePersonAccount', (req, res) => {
+app.post('/api/extractAccountOfPerson/inStudyOfEndDate', (req, res) => {
     let sql = `SELECT * FROM account_list WHERE study_id = ? AND person_id = ?;`;
     let study_id = req.body.study_id;
     let person_id = req.body.person_id;
@@ -549,7 +524,7 @@ app.post('/api/manager/callEndDatePersonAccount', (req, res) => {
 });
 
 // 종료날짜인 스터디 종료 여부 설정
-app.post('/api/manager/endStudy', (req, res) => {
+app.post('/api/setEndStudy', (req, res) => {
     let sql = `UPDATE studyitem SET is_end = 1 WHERE s_id = ?;`;
     let study_id = req.body.study_id;
     
@@ -618,8 +593,6 @@ app.post('/api/community/getAccountId', (req, res) => {
             res.send(rows); 
         }
     );
-
 });
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

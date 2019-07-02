@@ -159,9 +159,9 @@ class EndDateReturnCoin extends React.Component {
         });
     }
     
-    // 종료일자가 오늘 날짜인것들이 스터디 추출
+    // 오늘이 종료날짜인 스터디 항목 추출
     callEndDateStudy = (_today) => {
-        const url = '/api/manager/callEndDateStudy';
+        const url = '/api/extractStudyOfEndDate';
         return post(url,  {
             today: _today
         });
@@ -193,7 +193,7 @@ class EndDateReturnCoin extends React.Component {
 
     // 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
     callEndDatePersonAccount = (_study_id, _person_id) => {
-        const url = '/api/manager/callEndDatePersonAccount';
+        const url = '/api/extractAccountOfPerson/inStudyOfEndDate';
         return post(url,  {
             study_id: _study_id,
             person_id: _person_id
@@ -202,7 +202,7 @@ class EndDateReturnCoin extends React.Component {
 
     // 종료날짜인 스터디에 속한 스터디원의 계좌 정보 추출
     callEndStudy = (_study_id) => {
-        const url = '/api/manager/endStudy';
+        const url = '/api/setEndStudy';
         return post(url,  {
             study_id: _study_id
         });
@@ -340,7 +340,7 @@ class EndDateReturnCoin extends React.Component {
             //getStudyEndTransferManageList
             await studyGroupInstance.methods.getStudyEndTransferManageList().call().then(function(result) {
                 
-                if(result.length != 0 ){
+                if(result.length !== 0 ){
                     for(let i = 0; i < result.length ; i++){
                         let studyId = String(result[i].studyId);// 반환받아야 하는 스터디 id
                         let personId = web3.utils.hexToUtf8(result[i].personId); // 반환받아야 하는 사람
@@ -365,7 +365,7 @@ class EndDateReturnCoin extends React.Component {
             let studyId = 32;
             await studyGroupInstance.methods.getStudyEndTransferList(studyId).call().then(function(result) {
                 
-                if(result.length != 0 ){
+                if(result.length !== 0 ){
                     for(let i = 0; i < result.length ; i++){
                         let studyId = String(result[i].studyId);// 반환받아야 하는 스터디 id
                         let personId = web3.utils.hexToUtf8(result[i].personId); // 반환받아야 하는 사람

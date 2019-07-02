@@ -52,8 +52,9 @@ class MainPage extends Component {
     }
   }
 
+  // 스터디 목록들 요소 불러오기  
   callApi = async () => {
-    const response = await fetch('/api/studyItems');
+    const response = await fetch('/api/select/studyitem');
     const body = await response.json();
     return body;
   }

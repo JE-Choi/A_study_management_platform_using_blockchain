@@ -157,33 +157,10 @@ class AboutCoin extends Component{
         //             });
         //         }
         //     // } 
-        // });
-         
+        // }); 
     };
 
-
     componentDidMount = async () => {
-        this.callStudyIsEnd().then((res)=>{
-            console.log('is_end: ');
-            console.log(res.data);
-            console.log(res.data[0].is_end);
-            // if(res.data.length !== 0){
-                let is_end = res.data[0].is_end;
-                
-                this.setState({
-                    is_end: is_end
-                });
-                
-                // 종료되지 않은 스터디
-                if(is_end === 0){
-                    this.cautionConfirm();
-                }
-                // 종료된 스터디
-                else{
-                    this.studyEndConfirm();
-                }
-            // } 
-        });
         this.initContract().then(()=>{
             this.getUserNameSession().then(()=>{
                 this.getEnterSession().then(()=>{
@@ -207,6 +184,27 @@ class AboutCoin extends Component{
                 });
             });
         });
+        this.callStudyIsEnd().then((res)=>{
+            console.log('is_end: ');
+            console.log(res.data);
+            console.log(res.data[0].is_end);
+            // if(res.data.length !== 0){
+                let is_end = res.data[0].is_end;
+                
+                this.setState({
+                    is_end: is_end
+                });
+                
+                // 종료되지 않은 스터디
+                if(is_end === 0){
+                    this.cautionConfirm();
+                }
+                // 종료된 스터디
+                else{
+                    this.studyEndConfirm();
+                }
+            // } 
+        });
     }
 
     // 사용자 이름 session 불러오기
@@ -227,8 +225,9 @@ class AboutCoin extends Component{
         }
     }
 
+    // 특정 스터디, 특정 사용자에게 할당된 계좌 인덱스
     callLoadAccountApi = (_person_id,_study_id) => {
-        const url = '/api/coinManagement/loadAccount';
+        const url = '/api/community/loadAccountIndex';
         return post(url,  {
             person_id: _person_id,
             study_id: _study_id
@@ -418,7 +417,7 @@ class AboutCoin extends Component{
         let transactions = null;
         await studyGroupInstance.methods.getStudyEndTransferList(_studyId).call().then(function(result) {
             
-            if(result.length != 0 ){
+            if(result.length !== 0 ){
                 transactions_list = [];
     
                 for(let i = 0; i < result.length ; i++){
