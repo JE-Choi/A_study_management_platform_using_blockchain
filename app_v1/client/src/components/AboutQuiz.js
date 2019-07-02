@@ -42,7 +42,6 @@ class AboutQuiz extends Component {
 
     componentWillMount= async () => {
         this.callStudyIsEnd().then((res)=>{
-            // if(res.data.length !== 0){
                 let is_end = res.data[0].is_end;
                 this.setState({
                     is_end: is_end
@@ -55,7 +54,6 @@ class AboutQuiz extends Component {
                 } else{
                     this.studyEndConfirm();
                 }
-            // }  
         })
    }
 
