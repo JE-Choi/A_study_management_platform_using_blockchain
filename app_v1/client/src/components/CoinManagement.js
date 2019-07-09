@@ -536,9 +536,9 @@ class AttendanceTransferInfoItem extends React.Component {
                 <div className="div_coin_usage">
                 <span className="date_of_use">{this.props.date}</span>
                 {this.props.role == 'sender'? 
-                <span className="desc_of_transfer">지각 코인<br/>(to. {this.props.receiverName})</span>
+                <span className="desc_of_transfer">지각 코인<br/>(To. {this.props.receiverName})</span>
                 :
-                <span className="desc_of_transfer">지각 코인<br/>(from. {this.props.senderName})</span>
+                <span className="desc_of_transfer">지각 코인<br/>(From. {this.props.senderName})</span>
                 }
                 <span className="used_coin">-{this.props.coin}</span>
             </div>
@@ -557,9 +557,9 @@ class QuizTransferInfoItem extends React.Component {
                 <div className="div_coin_usage">
                 <span className="date_of_use">{this.props.date}</span>
                 {this.props.role == 'sender'? 
-                <span className="desc_of_transfer">퀴즈 코인<br/>(to. {this.props.receiverName})</span>
+                <span className="desc_of_transfer">퀴즈 코인<br/>(To. {this.props.receiverName})</span>
                 :
-                <span className="desc_of_transfer">퀴즈 코인<br/>(from. {this.props.senderName})</span>
+                <span className="desc_of_transfer">퀴즈 코인<br/>(From. {this.props.senderName})</span>
                 }
                 
                 <span className="used_coin">-{this.props.coin}</span>
