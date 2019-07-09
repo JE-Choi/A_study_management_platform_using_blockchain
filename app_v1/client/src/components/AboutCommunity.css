@@ -61,8 +61,7 @@
 #completion {
     background-color: #D3B8A5 !important;
     border-color: #D3B8A5  !important;
-    margin-right: 1.4rem;
-    width: 9.3rem;
+    width: 20rem;
     height: 2.5rem;
     font-size: 1rem;
     font-weight: bold;
@@ -72,29 +71,6 @@
 #completion:hover {
     background-color: #D3B8A5 !important;
     border-color: #D3B8A5 !important;
-}
-
-#cancel_attendance_btn {
-    border-color: red;
-    border-width: 1.2px;
-    color:red;
-    font-weight: bold;
-    font-size: 1rem;
-    width: 9.3rem;
-    height: 2.5rem;
-    padding-top: 0.4rem;
-    float: left;
-}
-
-#cancel_attendance_btn:hover {
-    color: red;
-    background: rgba(238, 238, 238, 0) !important;
-}
-
-.cancel_btn_desc {
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-top: 0.8rem;
 }
 
 .info_attendance_check {
@@ -443,42 +419,19 @@
     }
 
     #btn_attendance_check {
-        width: 12rem; 
-        height: 2.5rem;
-        margin-top: 1rem;
+        width: 12rem !important;
+        margin-top: 0.5rem !important;
+    }
+
+    .attend_status {
+        margin-top: 1rem !important;
     }
 
     #completion {
-        width: 5.7rem;
-        height: 2rem;
+        width: 12rem !important;
+        height: 2rem !important;
         font-size: 0.8rem;
         font-weight: normal;
-        margin-bottom: 0.3rem;
-        margin-right: 0.7rem;
-    }
-
-    #cancel_attendance_btn {
-        width: 5.7rem;
-        height: 2rem;
-        font-size: 0.7rem;
-        font-weight: normal;
-    }
-
-    .cancel_btn_desc {
-        display: inline-block;
-        padding-left: 4rem;
-    }
-
-    .cancel_btn_desc_1 {
-        font-size: 0.8rem;
-        float: left;
-        margin-left: 1.9rem;
-    }
-
-    .cancel_btn_desc_2 {
-        font-size: 0.8rem;
-        float: left;
-        margin-left: 0.5rem;
     }
 
     .info_attendance_check {

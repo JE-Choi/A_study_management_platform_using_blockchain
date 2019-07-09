@@ -66,7 +66,7 @@ class AboutMembers extends Component {
                         <thead className="memberTableHeader">
                             <tr>
                             <th scope="col">No</th>
-                            <th scope="col">이름</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Role</th>
                             </tr>
                         </thead>
@@ -92,7 +92,7 @@ class MemberItem extends Component {
             <tr >
                 <td>{this.props.index}</td>
                 <td>{this.props.person_name}</td>
-                {this.props.leader==1?
+                {this.props.leader===1?
                 <td>팀장</td>:
                 <td>팀원</td>}
             </tr>

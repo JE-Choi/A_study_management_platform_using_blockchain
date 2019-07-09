@@ -91,21 +91,6 @@ class Attendance extends Component {
                                     let today_day_str = String(today_date.getDate());
                 
                                     let today_date_view = today_year_str+'-'+today_month_str+'-'+today_day_str;
-                                   
-                                    // *자신*이 최초 출석자인지 확인
-                                    this.isFirstAttendee(today_date_view, this.state.userId).then((res)=>{
-                                        console.log(res.data.length);
-                
-                                        // 자신이 오늘 출석체크의 최초 출석자인 경우
-                                        if (res.data.length !== 0) {
-                                            $('.cancel_attendance_btn').val('출석 취소'); 
-                                        }
-                                        // 자신이 오늘 출석체크의 최초 출석자가 아닌 경우
-                                        else {
-                                            $('.cancel_attendance_btn').attr("disabled","disabled");
-                                            $('.cancel_attendance_btn').val('출석 취소 불가'); 
-                                        }
-                                    });
                 
                                     // 최초 출석자인지 확인
                                     this.isFirstAttend(today_date_view).then((res)=>{
@@ -538,7 +523,6 @@ class Attendance extends Component {
                                         });
                                     });
                                 }
-                                // chargeTheCoin(1,'0x89d24B7DE8a5e45f7ad5C22B2a4a7a2d3Da4dA28','0xc4a8d09d883D1d515933a29C2637efe634bb82AF');
                             });  
                     } 
                 });
@@ -609,8 +593,6 @@ class Attendance extends Component {
                    
                     // 출석 유효시간 측정 타이머 
                     this.setAttendance(this.state.studyId, this.state.userId);
-                    // $('#completion').text('출석 완료');  
-                    // $('#completion').attr('style',  'background-color:rgb(117, 165, 209) !important; border-color:rgb(117, 165, 209) !important;');          
                 });
             } 
 
@@ -758,11 +740,6 @@ class Attendance extends Component {
                                     </form> 
                                     <div className="attend_status">
                                         <div className="btn btn-info" id="completion">출석 미완료</div>
-                                        <input type="button" className="btn btn-outline-danger btn-lg btn-block cancel_attendance_btn" id="cancel_attendance_btn"  />
-                                    </div>
-                                    <div className="cancel_btn_desc">
-                                        <span className="cancel_btn_desc_1">★ 출석 취소 버튼은 </span>
-                                        <span className="cancel_btn_desc_2">최초 출석자만 가능합니다. ★</span>
                                     </div>
                                 </div>    
                             </div>
