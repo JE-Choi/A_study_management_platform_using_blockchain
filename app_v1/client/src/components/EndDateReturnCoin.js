@@ -346,9 +346,9 @@ class EndDateReturnCoin extends React.Component {
             {this.state.web3?
                 <div>
                     <div>오늘 종료된 스터디가 있는지</div>
-                    <input type="button" value="스터디 스캔" onClick={this.startEndStudyScan}/>
-                    <input type="button" value="스터디 종료" onClick={this.showEndStudyScan}/>
-                </div>
+                    <input type="button" value="스터디 종료 처리" onClick={this.startEndStudyScan}/>
+                    <input type="button" value="종료 스터디 확인" onClick={this.showEndStudyScan}/>
+</div>
                 :<ProgressBar message ='로딩중'/>}
         </div>    
         )

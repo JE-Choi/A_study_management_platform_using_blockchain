@@ -156,11 +156,9 @@ class QuizInputScore extends Component {
     componentWillMount= async () => {
         this.initContract().then(()=>{
             this.callStudyIsEnd().then((res)=>{
-                // if(res.data.length !== 0){
                     if(res.data[0].is_end === 1){
                         this.props.history.push('/community/'+sessionStorage.getItem("enterStudyid")+'/aboutQuiz/quizResult'); 
                     }           
-                // }
             });
         })
     }

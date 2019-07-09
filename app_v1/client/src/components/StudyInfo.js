@@ -120,7 +120,7 @@ class StudyInfo extends Component {
                     let e_hour = String(end_date.getHours());
                     let e_minute = String(end_date.getMinutes());
 
-                    let view_end_date = e_year+'-'+e_month+'-'+e_date+'  '+e_hour+':'+e_minute;
+                    let view_end_date = e_year+'-'+e_month+'-'+e_date;
 
                     this.setState({study_item_info: res});
                     this.setState ({

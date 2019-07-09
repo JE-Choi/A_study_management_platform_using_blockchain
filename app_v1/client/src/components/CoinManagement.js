@@ -34,9 +34,10 @@ class AboutCoin extends Component{
             studyGroupInstance:null,
             myAccount: null,
             web3: null,
-            transactionsList : null,
+            tardinessTransactionsList : null,
             end_transactionsList: null,
-            quizTransactionsList: null
+            quizTransactionsList: null,
+            transactionsList: null
         }
     }
 
@@ -131,22 +132,25 @@ class AboutCoin extends Component{
             this.getUserNameSession().then(()=>{
                 this.getEnterSession().then(()=>{
                     this.getPersonInfoOfStudy(this.state.studyId,this.state.userId);
-                    
-                    this.getTardinessTransfer().then(()=>{
-                        this.transactionsListFiltering().then(()=>{
-                            if(this.state.transactionsList.length !== 0){
-                                $('.not_exist_transfer_msg').hide();
-                            }
-                        });
-                        this.getStudyEndTransferList(this.state.studyId);
-                    });
-                    this.getQuizInfoOfStudy(this.state.studyId).then(()=>{
-                        this.quizTransactionsListFiltering().then(()=>{
-                            if(this.state.quizTransactionsList.length !== 0){
-                                $('.not_exist_transfer_msg').hide();
-                            }
-                        });
-                    })
+                    // 스마트 계약에서 출석체크, 퀴즈 거래 내역 불러와서 합치고, 날짜별로 정렬
+                    this.transactionsListFiltering();
+                    // 스마트 계약에서 종료 거래 불러오기
+                    this.getStudyEndTransferList(this.state.studyId);
+                    // this.getTardinessTransfer().then(()=>{
+                    //     this.transactionsListFiltering().then(()=>{
+                    //         if(this.state.transactionsList.length !== 0){
+                    //             $('.not_exist_transfer_msg').hide();
+                    //         }
+                    //     });
+                        
+                    // });
+                    // this.getQuizInfoOfStudy(this.state.studyId).then(()=>{
+                    //     this.quizTransactionsListFiltering().then(()=>{
+                    //         if(this.state.quizTransactionsList.length !== 0){
+                    //             $('.not_exist_transfer_msg').hide();
+                    //         }
+                    //     });
+                    // })
                 });
             });
         });
@@ -246,8 +250,8 @@ class AboutCoin extends Component{
         });
     }
 
-    // 스터디 거래내역을 접속한 사용하에 맞게 필터링
-    quizTransactionsListFiltering = async () => {
+     // 스터디 퀴즈 거래내역을 접속한 사용자가 sender인지, receiver인지 분류
+     quizListFiltering = async () => {
         // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
         let transactions_list_before_filtering  = this.state.quizTransactionsList;
         // 접속자가 _sender인 값들을 뽑아서 저장
@@ -260,6 +264,7 @@ class AboutCoin extends Component{
                 let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
                 console.log(date);
                 transactions_list_before_filtering[i].push(date);
+                transactions_list_before_filtering[i].push('quiz');
                 send_coin_list.push(transactions_list_before_filtering[i]);
             }
         }
@@ -270,8 +275,9 @@ class AboutCoin extends Component{
             
             if(receiverName === this.state.userName){
                 transactions_list_before_filtering[i].push('receiver');
-                let date = new Date(transactions_list_before_filtering[0][4]+' 00:00:01');
+                let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
                 transactions_list_before_filtering[i].push(date);
+                transactions_list_before_filtering[i].push('quiz');
                 receive_coin_list.push(transactions_list_before_filtering[i]);
             }
         }
@@ -279,9 +285,11 @@ class AboutCoin extends Component{
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
         
-        // 날짜순으로 정렬
-        transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
-        console.log(transactions_list_atfer_filtering);
+        // // 날짜순으로 정렬
+        // transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
+        // // console.log(transactions_list_atfer_filtering);
+        // console.log(transactions_list_atfer_filtering);
+        
         this.setState({
             quizTransactionsList : transactions_list_atfer_filtering
         });
@@ -313,14 +321,91 @@ class AboutCoin extends Component{
         });
 
         this.setState({
-            transactionsList : transactions_list
+            tardinessTransactionsList : transactions_list
         });
     }
 
-    // 스터디 거래내역을 접속한 사용하에 맞게 필터링
+    // 스마트 계약에 저장된 거래 내역 불러오고, 접속한 사용자가 sender인지, receiver인지 분류
     transactionsListFiltering = async () => {
+        // 스마트 계약에서 출석체크 거래 불러오기
+        this.getTardinessTransfer().then(()=>{
+            // 스터디 출석체크 거래내역을 접속한 사용자가 sender인지, receiver인지 분류
+            this.tardinessListFiltering().then(()=>{
+                // 스마트 계약에서 퀴즈 거래 불러오기
+                this.getQuizInfoOfStudy(this.state.studyId).then(()=>{
+                    // 스터디 퀴즈 거래내역을 접속한 사용자가 sender인지, receiver인지 분류
+                    this.quizListFiltering().then(()=>{
+                        this.transactionsMergeAndSort();
+                    });
+                });
+            });
+           
+        });
+
+    }
+
+    // 스마트 계약에서 불러온 거래 내역 병합하고, 최신 순으로 정렬
+    transactionsMergeAndSort = async () => {
+        let tardinessTransactionsList = this.state.tardinessTransactionsList;
+        let quizTransactionsList = this.state.quizTransactionsList;
+        let transactions_merge =  tardinessTransactionsList.concat(quizTransactionsList);
+        if(transactions_merge.length !== 0){
+            transactions_merge.sort((a,b) => b[6] - a[6]);
+            console.log(transactions_merge);
+         
+            // 날짜 배열 생성
+            let date_array = [];
+            let date = transactions_merge[0][6];
+            date_array.push(date);
+            for(let i = 1; i < transactions_merge.length; i++){
+                // 중복 없을 경우만 날짜 삽입
+                let date = transactions_merge[i][6];
+                if(transactions_merge[i-1][6].getTime() !==transactions_merge[i][6].getTime()){
+                    date_array.push(date);
+                }
+            }
+            date_array.sort((a,b) => b - a);
+    
+            // 날짜를 키값으로 가지는 배열 생성
+            let transactions_list_date_index = [];
+            for(let i = 0; i < transactions_merge.length; i++){
+                
+                let date = transactions_merge[i][6];
+               
+                if(transactions_list_date_index[date] === undefined){
+                    transactions_list_date_index[date]=[];
+                    transactions_list_date_index[date].push(transactions_merge[i]);
+                } else{
+                    transactions_list_date_index[date].push(transactions_merge[i]);
+                }
+            }
+            console.log(transactions_list_date_index);
+    
+            // 날짜별 거래 내역에 따른 최신순 정렬 (퀴즈, 지각 ...)
+            let transactions_list = [];
+            for(let i = 0; i < date_array.length; i++){
+                let item = transactions_list_date_index[date_array[i]];
+                item.sort((a,b) => b[7] - a[7]).reverse();
+                console.log(date_array[i]);
+                console.log(item);
+                console.log('-------------------');
+                for(let j = 0; j < item.length; j++){
+                    
+                    transactions_list.push(item[j]);
+                }
+            }
+            if(transactions_list.length !== 0){
+                $('.not_exist_transfer_msg').hide();
+            }
+            console.log(transactions_list);
+            this.setState({transactionsList : transactions_list});
+        }
+    }
+
+    // 스터디 출석체크 거래내역을 접속한 사용자가 sender인지, receiver인지 분류
+    tardinessListFiltering = async () => {
         // [i][0] => serderId, [i][1] => senderName, [i][2] => receiverName, [i][3] => coin, [i][4] => date
-        let transactions_list_before_filtering  = this.state.transactionsList;
+        let transactions_list_before_filtering  = this.state.tardinessTransactionsList;
         // 접속자가 _sender인 값들을 뽑아서 저장
         let send_coin_list = [];
         for(let i = 0; i < transactions_list_before_filtering.length; i++){
@@ -331,6 +416,7 @@ class AboutCoin extends Component{
                 let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
                 console.log(date);
                 transactions_list_before_filtering[i].push(date);
+                transactions_list_before_filtering[i].push('attendance');
                 send_coin_list.push(transactions_list_before_filtering[i]);
             }
         }
@@ -341,19 +427,20 @@ class AboutCoin extends Component{
             
             if(receiverName === this.state.userName){
                 transactions_list_before_filtering[i].push('receiver');
-                let date = new Date(transactions_list_before_filtering[0][4]+' 00:00:01');
+                let date = new Date(transactions_list_before_filtering[i][4]+' 00:00:01');
                 transactions_list_before_filtering[i].push(date);
+                transactions_list_before_filtering[i].push('attendance');
                 receive_coin_list.push(transactions_list_before_filtering[i]);
             }
         }
-
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
         
-        // 날짜순으로 정렬
-        transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
+        // // 날짜순으로 정렬
+        // transactions_list_atfer_filtering.sort((a,b) => b[6] - a[6]);
+        // console.log(transactions_list_atfer_filtering);
         this.setState({
-            transactionsList : transactions_list_atfer_filtering
+            tardinessTransactionsList : transactions_list_atfer_filtering
         });
     }
 
@@ -388,7 +475,7 @@ class AboutCoin extends Component{
         this.setState({
             end_transactionsList : transactions_list
         });
-        console.log(transactions_list);
+        // console.log(transactions_list);
     }
 
     render(){
@@ -407,41 +494,28 @@ class AboutCoin extends Component{
                     </div>
                     <div className="content_coin_usage">
                 
-                    { this.state.transactionsList ? this.state.transactionsList.map(c => {
-                        if(c[5] === 'sender'){
-                        return (
-                            <TransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                            )
-                        } else{
-                            return (
-                            <TransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                        )
-                        }
-                    
-                    })
-                    : ""}
-                    { this.state.quizTransactionsList ? this.state.quizTransactionsList.map(c => {
-                        if(c[5] === 'sender'){
-                        return (
-                            <QuizTransferSenderInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                            )
-                        } else{
-                            return (
-                            <QuizTransferReceiverrInfoItem sendName = {c[1]} coin = {c[3]} date = {c[4]} type = {c[5]}/>
-                        )
-                        }
-                    
-                    })
-                    : ""}
-                    {/* 종료 트랜잭션이 있는 경우 */}
-                    {
-                        this.state.end_transactionsList ? this.state.end_transactionsList.map(c=>{
+                    {/* 종료 트랜잭션*/}
+                    {this.state.end_transactionsList ? this.state.end_transactionsList.map(c=>{
                             return(
                                 <TransferEndItem endDate = {c[0]} ether = {c[1]}/>
                             )
                             
                         })
                         :""}
+                    {/* 지각, 퀴즈 트랜잭션 */}
+                    { this.state.transactionsList ? this.state.transactionsList.map(c => {
+                        if(c[7] === 'attendance'){
+                        return (
+                            <AttendanceTransferInfoItem senderName = {c[1]} receiverName = {c[2]} coin = {c[3]} date = {c[4]} role = {c[5]}/>
+                            )
+                        } else{
+                            return (
+                            <QuizTransferInfoItem senderName = {c[1]} receiverName = {c[2]}  coin = {c[3]} date = {c[4]} role = {c[5]}/>
+                        )
+                        }
+                    
+                    })
+                    : ""}
                     <div className = "not_exist_transfer_msg">거래 내역이 존재하지 않습니다.</div>
                     
                     </div>
@@ -454,14 +528,18 @@ class AboutCoin extends Component{
     }
 }
 
-class TransferSenderInfoItem extends React.Component {
+class AttendanceTransferInfoItem extends React.Component {
  
     render() {
         return (
           <div>
                 <div className="div_coin_usage">
                 <span className="date_of_use">{this.props.date}</span>
-                <span className="desc_of_sender_use">지각</span>
+                {this.props.role == 'sender'? 
+                <span className="desc_of_transfer">지각 코인<br/>(to. {this.props.receiverName})</span>
+                :
+                <span className="desc_of_transfer">지각 코인<br/>(from. {this.props.senderName})</span>
+                }
                 <span className="used_coin">-{this.props.coin}</span>
             </div>
             <div className = "coin_clear"></div>
@@ -471,30 +549,19 @@ class TransferSenderInfoItem extends React.Component {
     }
 }
 
-class TransferReceiverrInfoItem extends React.Component {
-
-    render() {
-        return (
-          <div>
-                <div className="div_coin_usage">
-                <span className="date_of_use">{this.props.date}</span>
-                <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>지각 코인</span>
-                <span className="used_coin">+{this.props.coin}</span>
-            </div>
-            <div className = "coin_clear"></div>
-        </div>
-            
-        )
-    }
-}
-class QuizTransferSenderInfoItem extends React.Component {
+class QuizTransferInfoItem extends React.Component {
  
     render() {
         return (
           <div>
                 <div className="div_coin_usage">
                 <span className="date_of_use">{this.props.date}</span>
-                <span className="desc_of_sender_use">퀴즈</span>
+                {this.props.role == 'sender'? 
+                <span className="desc_of_transfer">퀴즈 코인<br/>(to. {this.props.receiverName})</span>
+                :
+                <span className="desc_of_transfer">퀴즈 코인<br/>(from. {this.props.senderName})</span>
+                }
+                
                 <span className="used_coin">-{this.props.coin}</span>
             </div>
             <div className = "coin_clear"></div>
@@ -503,34 +570,13 @@ class QuizTransferSenderInfoItem extends React.Component {
         )
     }
 }
-
-class QuizTransferReceiverrInfoItem extends React.Component {
-
-    render() {
-        return (
-          <div>
-                <div className="div_coin_usage">
-                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
-                <span className="date_of_use">{this.props.date}</span>
-                <span className="desc_of_receiver_use">{this.props.sendName}의 <br/>퀴즈 코인</span>
-                <span className="used_coin">+{this.props.coin}</span>
-            </div>
-            <div className = "coin_clear"></div>
-        </div>
-            
-        )
-    }
-}
-
 class TransferEndItem extends React.Component {
  
     render() {
         return (
           <div>
                 <div className="div_coin_usage">
-                 {/* <TransferInfoItem sendName = {c[1]} receiverName = {c[1]} coin = {c[2]} date = {c[3]}/> */}
                 <span className="date_of_use">{this.props.endDate}</span>
-                {/* <span className="desc_of_use">{this.props.sendName}의 지각 코인</span> */}
                 <span className="desc_of_sender_use">종료</span>
                 <span className="used_coin">-{this.props.ether}</span>
             </div>
