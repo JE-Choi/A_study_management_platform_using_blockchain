@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import ProgressBar from './ProgressBar';
+import ProgressBar from '../utils/ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 

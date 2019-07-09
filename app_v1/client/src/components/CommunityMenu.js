@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './CommunityMenu.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import AboutMembers from './AboutMembers';
 import AboutNoticeboard from './AboutNoticeboard';
 import CommunitySchedule from './CommunitySchedule';

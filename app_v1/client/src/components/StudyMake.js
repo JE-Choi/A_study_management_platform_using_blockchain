@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './AboutStudy.css';
 import { post } from 'axios';
 import $ from 'jquery';
-import ProgressBar from './ProgressBar';
 import DateTimePicker from 'react-datetime-picker';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ProgressBar from '../utils/ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -29,15 +29,12 @@ class StudyMake extends Component {
             web3: null,
             account_pw:'',
             transactionReceiptOfMemberItem:'', // 사용자 등록 트랜잭션 채굴 확인용
-            // transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
-            // isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
             isEndTransfer: false, // 스터디 구조체 생성 트랜잭션 발생 유무
             study_start_date: '',
             study_end_date: new Date(),
             dbStartDate:'',
             dbEndDate: '',
-            // progress 
             completed: 0
         }
     }
@@ -170,8 +167,7 @@ class StudyMake extends Component {
                 setTimeout(
                     this.addleader(insert_id).then(() =>{
                         this.setState({
-                            isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생 
-                            // isChargeTheCoin: true,  // 이더 충전 트랜잭션 발생
+                            isMemberItemTransfer: true, // 사용자 등록 트랜잭션 발생
                             isEndTransfer: true // 스터디 구조체 생성 트랜잭션 발생
                         });
                         this.createAccount(insert_id).then((account_id)=>{
@@ -382,7 +378,6 @@ class StudyMake extends Component {
     }
     
     // StudyGroup.sol파일의 스터디 정보 구조체 저장
-    // uint _studyId, bytes32 _endDate, bool _isEndDateDeal
     setStudyEndTransfer = async (_studyId, _endDate) => {
         const { studyGroupInstance, myAccount, web3} = this.state; 
         let year  = _endDate.getFullYear();

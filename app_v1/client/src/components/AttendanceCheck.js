@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './AboutCommunity.css';
 import $ from 'jquery';
 import { post } from 'axios';
-import ProgressBar from './ProgressBar';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ProgressBar from '../utils/ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 

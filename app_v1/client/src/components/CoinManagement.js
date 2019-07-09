@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './AboutCommunity.css';
 import { post } from 'axios';
 import $ from 'jquery';
-import ProgressBar from './ProgressBar';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ProgressBar from '../utils/ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -136,44 +136,29 @@ class AboutCoin extends Component{
                     this.transactionsListFiltering();
                     // 스마트 계약에서 종료 거래 불러오기
                     this.getStudyEndTransferList(this.state.studyId);
-                    // this.getTardinessTransfer().then(()=>{
-                    //     this.transactionsListFiltering().then(()=>{
-                    //         if(this.state.transactionsList.length !== 0){
-                    //             $('.not_exist_transfer_msg').hide();
-                    //         }
-                    //     });
-                        
-                    // });
-                    // this.getQuizInfoOfStudy(this.state.studyId).then(()=>{
-                    //     this.quizTransactionsListFiltering().then(()=>{
-                    //         if(this.state.quizTransactionsList.length !== 0){
-                    //             $('.not_exist_transfer_msg').hide();
-                    //         }
-                    //     });
-                    // })
                 });
             });
         });
+        
         this.callStudyIsEnd().then((res)=>{
             console.log('is_end: ');
             console.log(res.data);
             console.log(res.data[0].is_end);
-            // if(res.data.length !== 0){
-                let is_end = res.data[0].is_end;
-                
-                this.setState({
-                    is_end: is_end
-                });
-                
-                // 종료되지 않은 스터디
-                if(is_end === 0){
-                    this.cautionConfirm();
-                }
-                // 종료된 스터디
-                else{
-                    this.studyEndConfirm();
-                }
-            // } 
+
+            let is_end = res.data[0].is_end;
+            
+            this.setState({
+                is_end: is_end
+            });
+            
+            // 종료되지 않은 스터디
+            if(is_end === 0){
+                this.cautionConfirm();
+            }
+            // 종료된 스터디
+            else{
+                this.studyEndConfirm();
+            }
         });
     }
 
@@ -285,11 +270,6 @@ class AboutCoin extends Component{
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
         
-        // // 날짜순으로 정렬
-        // transactions_list_atfer_filtering.sort((a,b) => a[6] - b[6]);
-        // // console.log(transactions_list_atfer_filtering);
-        // console.log(transactions_list_atfer_filtering);
-        
         this.setState({
             quizTransactionsList : transactions_list_atfer_filtering
         });
@@ -386,9 +366,6 @@ class AboutCoin extends Component{
             for(let i = 0; i < date_array.length; i++){
                 let item = transactions_list_date_index[date_array[i]];
                 item.sort((a,b) => b[7] - a[7]).reverse();
-                console.log(date_array[i]);
-                console.log(item);
-                console.log('-------------------');
                 for(let j = 0; j < item.length; j++){
                     
                     transactions_list.push(item[j]);
@@ -436,9 +413,6 @@ class AboutCoin extends Component{
         // 사용자가 sender인 receiver인 배열 합치기
         let transactions_list_atfer_filtering = send_coin_list.concat(receive_coin_list);
         
-        // // 날짜순으로 정렬
-        // transactions_list_atfer_filtering.sort((a,b) => b[6] - a[6]);
-        // console.log(transactions_list_atfer_filtering);
         this.setState({
             tardinessTransactionsList : transactions_list_atfer_filtering
         });
@@ -475,7 +449,6 @@ class AboutCoin extends Component{
         this.setState({
             end_transactionsList : transactions_list
         });
-        // console.log(transactions_list);
     }
 
     render(){

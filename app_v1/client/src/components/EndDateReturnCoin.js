@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { post } from 'axios';
-import ProgressBar from './ProgressBar';
+import ProgressBar from '../utils/ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 

@@ -11,6 +11,7 @@ import MyPage from './components/MyPage';
 import RenameStudy from './components/RenameStudy';
 import CommunityMenu from './components/CommunityMenu';
 import EndDateReturnCoin from './components/EndDateReturnCoin';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';

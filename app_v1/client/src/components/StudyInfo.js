@@ -6,8 +6,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import { BrowserRouter as Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './PromptModal.css';
+import ProgressBar from '../utils/ProgressBar';
 import $ from 'jquery';
-import ProgressBar from './ProgressBar';
 // 블록체인
 import getWeb3 from "../utils/getWeb3";
 import StudyGroup from "../contracts/StudyGroup.json"; 
@@ -47,7 +47,6 @@ class StudyInfo extends Component {
             transactionReceiptOfMemberItem:'', // 사용자 등록 트랜잭션 채굴 확인용
             transactionReceiptOfChargeTheCoin: '', // 사용자 이더 충전 트랜잭션 채굴 확인용
             isMemberItemTransfer: false, // 사용자 등록 트랜잭션 발생 유무
-            // isChargeTheCoin: false, // 사용자 이더 충전 트랜잭션 발생 유무
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -344,7 +343,7 @@ class StudyInfo extends Component {
         });
     }
 
-    // 해당 study의 방장인지 확인 쿼리
+    // 해당 study의 방장인지 확인
     isStudyLeader = (_leader) =>{
         this.setState({leader:_leader});
     }
