@@ -5,21 +5,28 @@
 
 .membership {
   text-align: right;
-  float: right;
-  margin-top:0.7%;
+  padding-top:0.7%;
   font-size: 0.9rem;
 }
 
 img {
-  position: relative;
-  left:43%; 
-  top:0;
+  /* position: relative; */
+  /* left:43%;  */
+  /* top:0; */
+}
+
+.logo_zone{
+  width: 100%;
+  
+}
+
+.main_link{
+  text-align: center;
 }
 
 .main_logo {
-  margin-top: 1rem;
-  margin-left: 3% !important;
   width: 7.5%;
+  margin: auto;
 }
 
 .top_btn {
@@ -53,10 +60,9 @@ img {
   height: 100%;
   text-transform: uppercase;
   float: left;
-  width: 48%;
+  width: 50%;
   text-align: center;
   position: relative;
-  left:2%;
 }
 
 .nav li .nav-link { 
@@ -85,13 +91,6 @@ img {
 
   .main_logo {
     width: 5rem;
-    margin-left: 39% !important;
-    margin-top: 3%;
-    left: 0;
-  }
-
-  .Membership {
-    margin-top:3%;
   }
 
   .top_btn {
@@ -103,19 +102,12 @@ img {
   }
 
   .nav {
-    list-style: none;
     height: 50%;
-    margin: 0;
-    padding: 0;
   }
 
   .nav li {
-    height: 100%;
-    text-transform: uppercase;
     width: 100%;
     letter-spacing: 0.2rem;
-    text-align: center;
-    font-size: 0.9rem; 
   }
 
   .nav-link {
@@ -124,13 +116,14 @@ img {
 
   .menu_line{
     display: block;
-    background-color: rgb(68, 114, 148);
+    height: 1px !important;
+    clear: both;
     padding: 0;
     margin: 0;
   }
 
   .menubar_wrapper {
-    height: 3.5rem;
+    height: 3.9rem;
     text-align: center;
   }
 }

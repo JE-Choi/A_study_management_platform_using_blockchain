@@ -71,16 +71,10 @@ class CalendarTop extends Component{
   componentDidMount() {
     this.callLoadApi(this.props.id)
       .then(res => {
-        // let study_cnt = res[0].study_cnt;
         let study_name = res[0].study_name;
         let study_type = res[0].study_type;
         let study_id = res[0].s_id;
-        // let date = (res[0].end_date).split('T');
-        // let date_a = date[0].split('-');
-        // console.log(res[0].end_date);
-        // console.log(date);
        
-     
         this.call_totalCntAndCnt(study_id).then((res)=>{
           let date_a = [];
           let study_cnt = '';
@@ -195,18 +189,12 @@ class Calendar extends Component{
           let studyId = data[0].s_id;
           // 스터디 종료 거래가 실행되지 않은 경우
             if(is_end === 0){
-              let session_endDate = data[0].end_date;
-              let str_endDate = (session_endDate.split('T')[0]).split('-');
-              let endDate = str_endDate[0]+'-'+str_endDate[1]+'-'+(Number(str_endDate[2])+1);
-              let _d_endDate = new Date(endDate +' 00:00:00');
-              // console.log(_d_endDate);
-              // let study_cnt = data[0].study_cnt;
-              
               SetStudyEndTransfer.callStudyInfo(sessionStorage.getItem("enterStudyid")).then((study_res)=>{
+                let endDate = study_res[0].endDate;
+                let _d_endDate = new Date(endDate +' 00:00:01');
                 let study_cnt = study_res[1].study_cnt;
                 this.checkEndStudy(studyId, study_cnt, _d_endDate);
               });
-              // this.checkEndStudy(studyId, study_cnt, _d_endDate);
             } 
             // 스터디 종료 거래가 실행된 적이 있는 경우
             else{

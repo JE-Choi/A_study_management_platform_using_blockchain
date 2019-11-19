@@ -106,7 +106,7 @@ const CreateStudyTransaction = {
     setStudyInfo  : async function(studyData) {
       let is_setStudyInfo = true
       return new Promise(function (resolve, reject) {
-        $('.sub_msg2').text('조금만 기다려 주세요...80%');
+        $('.sub_msg2').text('조금만 기다려 주세요...75%');
         let _studyId = studyData[0].s_id;
         let _endDate = new Date(studyData[0].end_date);
         let study_cnt = studyData[0].study_cnt;

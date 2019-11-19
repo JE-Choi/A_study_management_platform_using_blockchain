@@ -64,7 +64,7 @@ class TopLogo extends Component{
             </span>
           </div>
           <div className="logo_zone">
-            <Link to={'/mainPage'} className="nav-link" >
+            <Link to={'/mainPage'} className="nav-link main_link" >
               <img src = {MainLogo} className = "main_logo" alt="메인 로고" />
            </Link>
           </div>
@@ -81,7 +81,10 @@ class Menubar extends Component{
           <li>
               <Link to={'/pageDesc'} className="nav-link">About Study_Chain</Link>
           </li>
-          <hr className="menu_line"/>
+          {/* <hr className="menu_line"/> */}
+          <li className = "menu_line">  
+            <div></div>
+          </li>
           <li>
               <Link to={'/mainPage'} className="nav-link">Study List</Link>
           </li>
