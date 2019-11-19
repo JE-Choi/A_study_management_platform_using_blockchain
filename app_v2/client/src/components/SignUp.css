@@ -1,0 +1,100 @@
+.sign_up_label{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: rgb(73, 73, 73);
+ }
+ 
+ .container{
+     width: 40% !important;
+ }
+ 
+ .sign_box{
+    border-top: 0.5px solid rgb(68, 114, 148);
+    border-bottom: 0.5px solid rgb(68, 114, 148);
+     margin-top: 2rem;
+     margin-bottom: 2rem;
+     padding-top: 2rem;
+ }
+ 
+ .sign_up_form {
+    height: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+ 
+ .form-control{
+     float: right;
+     width: 80% !important;
+     margin-top: 0rem !important;
+ }
+ 
+ .input_text{
+     width: 18%;
+    text-align: center;
+ }
+ 
+ #submit{
+    border-color: rgb(68, 114, 148);
+    color: rgb(68, 114, 148);
+    font-weight:bold;
+ }
+ 
+ #submit:hover{
+    background-color: rgb(68, 114, 148);
+    color:white;
+ }
+
+ .account_num_desc {
+    margin-bottom: 0.7rem;
+}
+
+.account_desc {
+    font-size: 0.9rem;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+.sign_up_input {
+   font-size: 0.9rem !important;
+}
+ 
+ @media(max-width: 1200px){
+    .container{
+        width: 80% !important;
+    }
+ 
+    .form-control{
+        height: 80% !important;
+    }
+ 
+     .input_text{
+         font-size: 0.7rem;
+     }
+
+     .sign_box{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+    }
+
+    .sign_up_form {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .sign_up_input {
+        height: 100% !important;
+    }
+
+    .sign_up_label{
+        font-size: 1.1rem;
+    }
+
+    .account_num_desc {
+        margin-top: 1.5rem;
+    }
+
+    .account_desc {
+        font-size: 0.7rem;
+        margin-left: 0;
+    }
+ }

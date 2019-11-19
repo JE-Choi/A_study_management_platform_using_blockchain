@@ -1,0 +1,108 @@
+.modal_div{
+    text-align: center;
+    padding-bottom: 1.3rem; 
+}
+.modal_div>h5{
+    
+    font-weight: bold;
+}
+.modal_div>h6{
+    margin-bottom: 1rem;
+}
+/*progress_bar 레이어로 띄우기*/
+.modal_layer{
+    width:100%;
+	height:100%;
+    position:fixed;
+	left:0;
+	top:0;
+	background-color:#00000077;
+    z-index:1;
+}
+
+.modal_body{
+    margin-top:20%;
+    margin-left: 40%;
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 3px solid rgb(68, 114, 148);
+    color: #000000;
+}
+
+.sub_msg{
+    font-size: 1rem;
+}
+#btn_promptModal{
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#promptModal{
+    border:3px solid rgb(68, 114, 148);
+    border-radius: 2%;
+}
+#input_promptModal{
+    width: 100%;
+}
+.modal-footer{
+    text-align: center;
+    display: inline-block !important;
+}
+.modal_cancel{
+text-align: right;
+font-size: 1.3rem;
+margin-right: 1rem;
+margin-top:0.3rem;
+cursor: pointer;
+}
+
+#convert_to_ether_num{
+    margin-left: 22%;
+    float: left;
+    width: 40% !important;
+}
+
+#convert_to_ether_btn{
+    line-height: 1rem;
+    float: left;
+    border-color: rgb(68, 114, 148);
+    background-color: rgb(68, 114, 148);
+    color: white;
+    width: 4rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+    height: 2rem;
+}
+
+#convert_to_ether_btn:hover{
+    background-color: rgba(211, 184, 165, 0);
+    color: rgb(68, 114, 148);
+}
+
+.add_msg{
+    clear: both;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+}
+
+.add_msg_br{
+    display: none;
+}
+
+@media(max-width: 500px) {
+    .modal_div>h5{
+        font-size: 1rem;
+    }
+
+    .modal_body{
+        margin-top:30%;
+        margin-left: 8%;
+        width: 19.5rem;
+    }
+    .add_msg_br{
+        display: block;
+    }
+}
+

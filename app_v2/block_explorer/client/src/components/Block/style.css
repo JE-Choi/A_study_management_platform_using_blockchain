@@ -1,0 +1,87 @@
+.block_info_header_div {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.transaction_info_header_div {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.transactionItem_div {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.block_all_info_div, .transaction_all_info_div {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.block_all_info, .transaction_all_info{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.block_label, .txn_label {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid rgb(209, 208, 208);
+    text-align: left;
+    padding-left: 1rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.block_content, .txn_content {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid rgb(209, 208, 208);
+    text-align: left;
+    padding-left: 1rem;
+}
+
+@media(max-width: 1200px){
+    .block_info_header_div {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .transaction_info_header_div {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .block_all_info_div, .transaction_all_info_div {
+        font-size: 0.7rem;
+        width: 92% !important;
+        overflow: hidden;
+    }
+
+    .overflow_hash {
+        width: 62%;
+        overflow: auto;
+    }
+
+    .block_label{
+        padding-bottom: 0.7em;
+        padding-left: 0.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .txn_label{
+        padding-bottom: 0.7em;
+        padding-left: 0.2rem;
+        font-size: 0.8rem;
+        padding-right: 2.5rem;
+        padding-right: 2.7rem;
+    }
+}

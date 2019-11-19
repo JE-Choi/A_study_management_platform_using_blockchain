@@ -1,0 +1,974 @@
+.content {
+    margin-left: 25%;
+    margin-right: 25%;
+    box-shadow: 5px 5px 10px 5px rgb(230, 230, 230);
+    background-color: #FFFFFF;
+}
+
+/* 출석 체크 */
+.attendance_form_group {
+    text-align: center !important;
+    display: inline-block;
+    width: 60% !important;
+    margin-top: 0.4rem !important;
+}
+
+.attendance_form_group > span{
+    font-size: 1rem;
+    float: left;
+    margin-left: 1rem;
+}
+
+#valid_attendance_time {
+    float: left;
+    height: 1.8rem;
+    font-size: 0.9rem;
+    width: 53% !important;
+    margin-left: 4.8rem;
+}
+
+.attendance_header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color:  rgb(185, 185, 197);
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.attendance_content {
+    margin-top: 1.2rem;
+    padding-bottom: 1rem;
+}
+
+.attendance_effective_time {
+    padding-left: 1.1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#btn_attendance_check {
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    color:white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 15rem;
+    height: 2.5rem;
+    margin-top: 0.4rem !important;
+}
+
+#btn_attendance_end {
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    color:white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 15rem;
+    height: 2.5rem;
+    margin-top: 0.4rem !important;
+}
+
+.attend_status {
+    display : inline-block;
+    margin-top: 0.7rem;
+}
+
+#completion {
+    background-color: rgb(143, 188, 219) !important;
+    border-color: rgb(143, 188, 219) !important;
+    width: 15rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    float: left;
+}
+
+#completion:hover {
+    background-color: rgb(143, 188, 219) !important;
+    border-color: rgb(143, 188, 219) !important;
+}
+
+.random_number_out_div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.random_desc_br {
+    display: none;
+}
+
+.random_number_desc div{
+    font-size: 0.9rem;
+}
+
+.random_number_in_div {
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+.attendance_auth_label {
+    font-weight: bold;
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+#attendance_auth_text {
+    width: 10rem !important;
+    height: 2rem;
+}
+
+/* CommunitySchedule */
+.info_attendance_check {
+    font-size: 1.2rem;
+    margin-right: 2%;
+}
+
+/* 퀴즈 점수 입력*/
+.div_quiz_score {
+    margin-top: 3%; 
+}
+
+.quiz_header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color:  rgb(185, 185, 197);
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.quiz_today_header {
+    font-size: 0.9rem;
+}
+
+.quiz_content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.quiz_form_group {
+    text-align: center !important;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.out_frame_not_exist_quiz {
+    font-size: 1rem;
+}
+
+.emphasis_letter {
+    border-bottom: 1.2px solid black;
+    margin-right: 0.3rem;
+    font-weight: bold;
+}
+
+.emphasis_letter_first {
+    border-bottom: 1.2px solid black;
+    margin-right: 0.3rem;
+    font-weight: bold;
+}
+
+.each_quiz_point {
+    text-align: center !important;
+    display: inline-block;
+    width: 17rem !important;
+    margin: 0 auto !important;
+    margin-top: 0.4rem !important;
+}
+
+.each_quiz_point > span{
+    font-size: 1rem;
+}
+
+.quiz_name_label {
+    float: left;
+}
+
+#quiz_score {
+    width: 9rem !important;
+    height: 2rem;
+    float: right !important;
+}
+
+.btn_div {
+    padding-left: 0.6rem;
+}
+
+#btn_quiz_score_input {
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    color:white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 17rem;
+    height: 2.5rem;
+    margin: 0 auto;
+    margin-top: 1rem !important;
+}
+  
+#btn_quiz_score_input:hover {
+    color: #FFFFFF;
+}
+
+.final_result {
+    border: 1.2px solid rgb(68, 114, 148);
+    margin-top: 2rem;
+}
+
+#final_result_header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.final_result_content {
+    margin-bottom: 1rem;
+}
+
+.each_result {
+    margin-bottom: 0.3rem;
+}
+
+.point {
+    float: right;
+}
+
+.clear_quiz{
+    height: 0.7rem;
+    clear: both;
+    position: inherit;
+}
+
+/* 퀴즈 결과 화면 */
+.quiz_result_header {
+    display : inline-block;
+}
+
+#quiz_result_label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+    float: left;
+}
+
+#quiz_date_selected {
+    width: 9rem !important;
+    height: 2rem;
+    font-size: 0.9rem;
+    margin-top: 0.3rem !important;
+    margin-right: 2rem;
+    float: left;
+}
+
+#moveBtn_select_quiz_date {
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 0.3rem;
+    padding-bottom: 1.5rem !important;
+    float: left;
+    border-color: rgb(68, 114, 148);
+    background-color: rgb(68, 114, 148);
+    border-width: 1.2px;
+}
+
+.each_quiz_result_point {
+    text-align: center !important;
+    display: inline-block;
+    width: 22rem !important;
+    margin-top: 0.4rem !important;
+}
+
+.each_quiz_result_point > span{
+    font-size: 1rem;
+}
+
+.quiz_result_name_label {
+    float: left;
+    font-size: 0.9rem;
+    text-align: left;
+    width: 27%;
+}
+
+.result_dotdot {
+    float: left;
+    padding-right: 2rem;
+}
+
+#result_score {
+    width: 5rem !important;
+    height: 1.7rem;
+    float: left !important;
+}
+
+.quiz_rank {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 1.3rem;
+}
+
+.no_quiz_result_past {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/*Ether 관리 화면*/
+.content_coinManagement{
+    padding-bottom: 1.2%;
+    margin-left: 24%;
+    margin-right: 24%;
+    box-shadow: 5px 5px 10px 5px rgb(230, 230, 230);
+    background-color: white;
+}
+
+.div_account_number{
+    font-size: 0.85rem;
+    font-weight: 100;
+}
+
+.coin_management_header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color:  rgb(185, 185, 197);
+    color: white;
+    padding: 1rem 0;
+}
+
+.account_number {
+    width: 25rem !important;
+    font-size: 0.9rem !important;
+    text-align: center;
+    margin: 0 auto;
+    float: none;
+}
+
+.form-control {
+    margin-top: 1rem;
+}
+
+.coin_management_content {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    clear: both;
+}
+
+.ether_management_content{
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.coin_status_text {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 7rem;
+}
+
+.ether_status_text{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 7rem;
+}
+
+#sum_of_coin {
+    border-color: rgba(147, 148, 157, 0.733);
+    background-color: rgba(147, 148, 157, 0.733);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 10rem;
+}
+
+.content_coin_usage {
+    margin-bottom: 0.3rem;
+    height: 20rem; 
+    overflow: auto;
+}
+
+.div_coin_usage {
+    width: 80%;
+    height: 4.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(166, 166, 172) ;
+}
+
+.date_of_use {
+    width: 28%;
+    text-align: center;
+    margin-left: 0rem;
+    float: left;
+    font-size: 0.8rem;
+    padding-top: 1rem;
+}
+
+.txn_hash_div{
+    clear: both;
+    font-size: 0.7rem;
+    margin: 0 auto;
+    padding-top: 0.3rem;
+    color: rgb(158, 158, 158);
+}
+
+.txn_hash_lab{
+    float: left;
+    margin-left: 5%;
+}
+
+.txn_hash{
+    float: right;
+    width: 60%;
+    margin-right: 10%;
+    overflow: auto;
+}
+
+.txn_hash::-webkit-scrollbar {  display:none;  }
+
+.desc_of_transfer{
+    width: 43%;
+    text-align: center;
+    float: left;
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+}
+
+.desc_of_end_transfer{
+    width: 43%;
+    text-align: center;
+    float: left;
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+}
+
+.used_coin {
+    width: 28%;
+    text-align: center;
+    float: right;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding-top: 1rem;
+}
+
+.coin_clear{
+    clear: both;
+    position: inherit;
+}
+
+.not_exist_transfer_msg{
+    margin-top: 5rem;
+}
+
+.coin_return_message{
+    margin-top: 1.3rem;
+    font-size: 0.8rem;
+}
+
+.coin_return_message>br {
+    display: none;
+}
+
+/*스터디 멤버 화면*/
+.member_top_div{
+    background-color:  rgb(185, 185, 197);
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.member_studyDesc_div {
+    display: inline-block;
+    width: 70%;
+}
+
+#study_withdrawal {
+    width: 25%;
+    float: right;
+    height: 2rem;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight:bold;
+    border-color: #FFFFFF;
+}
+  
+#study_withdrawal:hover{
+    background-color: #FFFFFF;
+    color:  rgb(185, 185, 197);
+}
+
+.member_studyDesc_final_date{
+    font-size: 0.9rem;
+}
+
+.member_studyDesc_num{
+    font-size: 0.9rem;
+}
+
+.memberList {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 0.9rem;
+}
+
+.member_list_header_lbl {
+    width: 100% !important;
+    height: 2.5rem !important;
+    background-color: rgb(185, 185, 197) !important;
+    border-color: rgb(185, 185, 197) !important;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+
+.member_content {
+    width: 100%;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+
+/*반응형*/
+@media(max-width: 1200px) {
+    .content {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    /* 출석 체크 */
+    .attendance_form_group {
+        width: 65% !important;
+        margin-left: 0.4rem;
+    }
+    
+    .attendance_form_group > span{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    #valid_attendance_time {
+        font-size: 0.7rem;
+        width: 75% !important;
+        margin-left: 0.5rem;
+    }
+
+    .attendance_header {
+        font-size: 1rem;
+    }
+
+    .attendance_content {
+        margin-top: 0.7rem;
+    }
+
+    .attendance_effective_time {
+        font-size: 0.9rem;
+    }
+
+    #btn_attendance_check {
+        width: 12rem !important;
+        margin-top: 0.5rem !important;
+    }
+
+    #btn_attendance_end{
+        width: 12rem !important;
+        height: 2rem !important;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .attend_status {
+        margin-top: 0.5rem !important;
+    }
+
+    #completion {
+        width: 12rem !important;
+        height: 2rem !important;
+        font-size: 0.8rem;
+        font-weight: normal;
+    }
+
+    .random_number_out_div {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .random_desc_br {
+        display: block;
+    }
+
+    .random_number_desc div{
+        font-size: 0.8rem;
+    }
+
+    .random_number_in_div {
+        margin-top: 1.5rem;
+    }
+    
+    .attendance_auth_label {
+        margin-right: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    #attendance_auth_text {
+        width: 8rem !important;
+        font-size: 0.9rem;
+    }
+
+    /* CommunitySchedule */
+    .info_attendance_check {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    /* 퀴즈 점수 입력*/
+    .div_quiz_score {
+        margin-top: 0; 
+    }
+
+    .quiz_header {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .quiz_today_header {
+        font-size: 0.9rem;
+    }
+
+    .quiz_content {
+        padding-top: 1em;
+        padding-bottom: 1rem;
+    }
+
+    .quiz_status_control{
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .quiz_form_group {
+        width: 100% !important;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .quiz_form_group > span{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .out_frame_not_exist_quiz {
+        font-size: 0.8rem;
+        text-align: left;
+        margin: 1rem 1rem;
+    }
+
+    .emphasis_letter {
+        font-size: 0.8rem;   
+    }
+
+    .page_desc_div {
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+    
+    .emphasis_letter_first {
+        font-size: 0.8rem;   
+    }
+
+    .emphasis_letter_next {
+        float: left;
+    }
+    
+    .each_quiz_point {
+        font-size: 0.9rem;
+        width: 12rem !important;
+    }
+
+    #btn_quiz_score_input {
+        width: 12rem; 
+        height: 2rem;
+        font-size: 0.8rem;
+        font-weight: normal;
+    }
+
+    #final_result_header {
+        font-size: 1.3rem;
+    }
+
+    #quiz_score {
+        width: 5rem !important;
+        height: 1.5rem !important;
+    }
+
+    .quiz_name_label {
+        margin-right: 0.6rem !important;
+        font-size: 0.9rem;
+    }
+
+    .btn_div {
+        padding-left: 0rem;
+        margin-bottom: 1rem;
+    }
+
+    .clear_quiz{
+        height: 0rem;
+    }
+
+    /* 퀴즈 결과 화면 */
+    #quiz_result_label {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .div_account_number{
+        margin: 0 auto;
+        width: 14rem;
+        overflow: auto;
+        font-size: 0.8rem;
+    }
+
+    .div_account{
+        font-size: 0.9rem;
+    }
+    
+    #quiz_date_selected {
+        width: 8.5rem !important;
+        font-size: 0.8rem;
+        height: 2rem !important;
+        margin-left: 15%;
+        margin-right: 5%;
+    }
+    
+    #moveBtn_select_quiz_date {
+        width: 3rem !important;
+        font-size: 0.8rem;
+        padding-left: 0.7rem;
+    }
+
+    .each_quiz_result_point {
+        font-size: 0.8rem;
+        width: 65% !important;
+    }
+    
+    .quiz_result_name_label {
+        padding-right: 0.7rem !important;
+        font-size: 0.8rem;
+    }
+
+    .result_dotdot {
+        padding-right: 1rem;
+    }
+
+    .each_quiz_result_point span {
+        font-size: 0.9rem;
+        float: left;
+        margin-left: 0.3rem;
+    }
+
+    #result_score {
+        width: 4rem !important;
+        height: 1.5rem !important;
+    }
+
+    .quiz_rank {
+        font-size: 0.8rem;
+        margin-left: 1rem !important;
+    }
+
+    .no_quiz_result_past {
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .quiz_status_control{
+        width:15.5rem;
+    }
+
+    .react-confirm-alert-body{
+        width: 19rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    /*Ether 관리 화면*/
+    .account_number {
+        width: 15rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .content_coinManagement{
+        margin-left: 1%;
+        margin-right: 1%;
+        padding-bottom: 0.1rem;
+    }
+
+    .coin_management_content {
+        margin-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .coin_management_header {
+        font-size: 1.2rem;
+        padding: 0.5rem 0;
+    }
+
+    .ether_management_content{
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+    }
+
+    .coin_status_text {
+        font-size: 0.9rem;
+        margin-right: 2.5rem;
+    }
+
+    .ether_status_text{
+        font-size: 0.9rem;
+        margin-right: 2.5rem;
+    }
+
+    #sum_of_coin {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        width: 5rem;
+        height: 1.5rem;
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+    }
+
+    .content_coin_usage {
+        margin-bottom: 0rem;
+        height: 13rem; 
+    }
+
+    #sum_of_ether{
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        width: 5rem;
+        font-size: 0.7rem;
+    }
+
+    .div_coin_usage {
+        width: 94%;
+        margin-left: 0;
+        height: 3.5rem;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+    }
+
+    .date_of_use{
+        margin-left: 0;
+        font-size: 0.7rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .desc_of_transfer{
+        width: 40%;
+        font-size: 0.7rem;
+        float: left;
+        padding-top: 0.05rem;
+        padding-bottom: 0.05rem;
+    }
+
+    .desc_of_end_transfer{
+        width: 40%;
+        font-size: 0.7rem;
+        float: left;
+        padding-top: 0.3rem;
+    }
+
+    .used_coin {
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        text-align: right;
+        margin-right: 0.7rem;
+    }
+
+    .coin_return_message{
+        font-size: 0.6rem;
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .coin_return_message>br {
+        display: inline-block;
+    }
+
+    /*스터디 멤버 화면*/
+    .member_all_div {
+        margin-top: 1rem;
+    }
+
+    .member_top_div{
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .member_top_name {
+        font-size: 1rem !important;
+    }
+
+    .member_studyDesc_div {
+        width: 95%;
+    }
+
+    .memberList{
+        width: 95% !important;
+        margin: 0.5rem;
+    }
+
+    #study_withdrawal {
+        width: 20%;
+        font-size: 0.7rem;
+        height: 2.5em;
+        margin-left: 0;
+    }
+
+    .member_studyDesc_final_date{
+        font-size: 0.8rem;
+    }
+
+    .member_studyDesc_num{
+        font-size: 0.8rem;
+    }
+
+    .member_list_header_lbl {
+        height: 2rem !important;
+        font-size: 0.8rem;
+        line-height: 0.5rem;
+    }
+
+    .member_content {
+        height: 2rem !important;
+        font-size: 0.8rem;
+        line-height: 0.5rem;
+    }
+
+    .txn_hash_div{
+        padding: 0 1rem;
+    }
+    
+    .txn_hash{
+        width: 10rem;
+        width: 55%;
+        margin-right: 3%;
+    }
+
+    .txn_hash_lab{
+        float: left;
+
+    }
+}

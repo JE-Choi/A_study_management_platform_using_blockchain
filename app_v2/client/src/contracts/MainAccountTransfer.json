@@ -1,0 +1,2204 @@
+{
+  "contractName": "MainAccountTransfer",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "personAddress",
+          "type": "address"
+        },
+        {
+          "name": "destination",
+          "type": "bytes32"
+        },
+        {
+          "name": "startingPoint",
+          "type": "bytes32"
+        },
+        {
+          "name": "etherNum",
+          "type": "uint256"
+        },
+        {
+          "name": "date",
+          "type": "bytes32"
+        },
+        {
+          "name": "content",
+          "type": "bytes32"
+        },
+        {
+          "name": "receiverAddress",
+          "type": "address"
+        },
+        {
+          "name": "_idx_hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "setMainAccountTransfer",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "personAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getMainAccountTransfer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "destination",
+              "type": "bytes32"
+            },
+            {
+              "name": "startingPoint",
+              "type": "bytes32"
+            },
+            {
+              "name": "date",
+              "type": "bytes32"
+            },
+            {
+              "name": "content",
+              "type": "bytes32"
+            },
+            {
+              "name": "etherNum",
+              "type": "uint256"
+            },
+            {
+              "name": "idx_hash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5061062b806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806359de7b6d14610051578063b67a97781461006d575b600080fd5b61006b600480360361006691908101906103bc565b6100aa565b005b34801561007957600080fd5b50610094600480360361008f9190810190610393565b61020f565b6040516100a19190610562565b60405180910390f35b6100b2610311565b8273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156100f8573d6000803e3d6000fd5b5060c06040519081016040528089600019168152602001886000191681526020018660001916815260200185600019168152602001878152602001836000191681525090506000808a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190806001815401808255809150509060018203906000526020600020906006020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a08201518160050190600019169055505050505050505050505050565b60606000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b82821015610306578382906000526020600020906006020160c060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681526020016003820154600019166000191681526020016004820154815260200160058201546000191660001916815250508152602001906001019061026f565b505050509050919050565b60c0604051908101604052806000801916815260200160008019168152602001600080191681526020016000801916815260200160008152602001600080191681525090565b600061036382356105bd565b905092915050565b600061037782356105dd565b905092915050565b600061038b82356105e7565b905092915050565b6000602082840312156103a557600080fd5b60006103b384828501610357565b91505092915050565b600080600080600080600080610100898b0312156103d957600080fd5b60006103e78b828c01610357565b98505060206103f88b828c0161036b565b97505060406104098b828c0161036b565b965050606061041a8b828c0161037f565b955050608061042b8b828c0161036b565b94505060a061043c8b828c0161036b565b93505060c061044d8b828c01610357565b92505060e061045e8b828c0161036b565b9150509295985092959890939650565b600061047982610591565b80845260208401935061048b83610584565b60005b828110156104bd576104a18683516104d8565b6104aa8261059c565b915060c08601955060018101905061048e565b50849250505092915050565b6104d2816105a9565b82525050565b60c0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610553565b5060a082015161054d60a08501826104c9565b50505050565b61055c816105b3565b82525050565b6000602082019050818103600083015261057c818461046e565b905092915050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a723058205bd1ab38b3e456204e63537a98788adae5a26f73e20c172fc14c7fbc38c78f646c6578706572696d656e74616cf50037",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806359de7b6d14610051578063b67a97781461006d575b600080fd5b61006b600480360361006691908101906103bc565b6100aa565b005b34801561007957600080fd5b50610094600480360361008f9190810190610393565b61020f565b6040516100a19190610562565b60405180910390f35b6100b2610311565b8273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156100f8573d6000803e3d6000fd5b5060c06040519081016040528089600019168152602001886000191681526020018660001916815260200185600019168152602001878152602001836000191681525090506000808a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190806001815401808255809150509060018203906000526020600020906006020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a08201518160050190600019169055505050505050505050505050565b60606000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b82821015610306578382906000526020600020906006020160c060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681526020016003820154600019166000191681526020016004820154815260200160058201546000191660001916815250508152602001906001019061026f565b505050509050919050565b60c0604051908101604052806000801916815260200160008019168152602001600080191681526020016000801916815260200160008152602001600080191681525090565b600061036382356105bd565b905092915050565b600061037782356105dd565b905092915050565b600061038b82356105e7565b905092915050565b6000602082840312156103a557600080fd5b60006103b384828501610357565b91505092915050565b600080600080600080600080610100898b0312156103d957600080fd5b60006103e78b828c01610357565b98505060206103f88b828c0161036b565b97505060406104098b828c0161036b565b965050606061041a8b828c0161037f565b955050608061042b8b828c0161036b565b94505060a061043c8b828c0161036b565b93505060c061044d8b828c01610357565b92505060e061045e8b828c0161036b565b9150509295985092959890939650565b600061047982610591565b80845260208401935061048b83610584565b60005b828110156104bd576104a18683516104d8565b6104aa8261059c565b915060c08601955060018101905061048e565b50849250505092915050565b6104d2816105a9565b82525050565b60c0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610553565b5060a082015161054d60a08501826104c9565b50505050565b61055c816105b3565b82525050565b6000602082019050818103600083015261057c818461046e565b905092915050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a723058205bd1ab38b3e456204e63537a98788adae5a26f73e20c172fc14c7fbc38c78f646c6578706572696d656e74616cf50037",
+  "sourceMap": "63:1184:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;63:1184:1;;;;;;;",
+  "deployedSourceMap": "63:1184:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;527:503;;;;;;;;;;;;;;;;;;;1078:166;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1078:166:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;527:503;792:50;;:::i;:::-;746:15;:24;;:35;771:9;746:35;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;746:35:1;859:83;;;;;;;;;879:11;859:83;;;;;;;892:13;859:83;;;;;;;907:4;859:83;;;;;;;913:7;859:83;;;;;;;922:8;859:83;;;;932:9;859:83;;;;;;792:150;;954:23;:38;978:13;954:38;;;;;;;;;;;;;;;998:23;954:68;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;954:68:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;527:503;;;;;;;;;:::o;1078:166::-;1155:21;1197:23;:38;1221:13;1197:38;;;;;;;;;;;;;;;1189:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1078:166;;;:::o;63:1184::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;5:118:-1:-;;72:46;110:6;97:20;72:46;;;63:55;;57:66;;;;;130:118;;197:46;235:6;222:20;197:46;;;188:55;;182:66;;;;;255:118;;322:46;360:6;347:20;322:46;;;313:55;;307:66;;;;;380:241;;484:2;472:9;463:7;459:23;455:32;452:2;;;500:1;497;490:12;452:2;535:1;552:53;597:7;588:6;577:9;573:22;552:53;;;542:63;;514:97;446:175;;;;;628:1121;;;;;;;;;851:3;839:9;830:7;826:23;822:33;819:2;;;868:1;865;858:12;819:2;903:1;920:53;965:7;956:6;945:9;941:22;920:53;;;910:63;;882:97;1010:2;1028:53;1073:7;1064:6;1053:9;1049:22;1028:53;;;1018:63;;989:98;1118:2;1136:53;1181:7;1172:6;1161:9;1157:22;1136:53;;;1126:63;;1097:98;1226:2;1244:53;1289:7;1280:6;1269:9;1265:22;1244:53;;;1234:63;;1205:98;1334:3;1353:53;1398:7;1389:6;1378:9;1374:22;1353:53;;;1343:63;;1313:99;1443:3;1462:53;1507:7;1498:6;1487:9;1483:22;1462:53;;;1452:63;;1422:99;1552:3;1571:53;1616:7;1607:6;1596:9;1592:22;1571:53;;;1561:63;;1531:99;1661:3;1680:53;1725:7;1716:6;1705:9;1701:22;1680:53;;;1670:63;;1640:99;813:936;;;;;;;;;;;;1865:811;;2062:85;2141:5;2062:85;;;2165:6;2160:3;2153:19;2189:4;2184:3;2180:14;2173:21;;2234:87;2315:5;2234:87;;;2342:1;2327:327;2352:6;2349:1;2346:13;2327:327;;;2392:119;2507:3;2498:6;2492:13;2392:119;;;2528:91;2612:6;2528:91;;;2518:101;;2642:4;2637:3;2633:14;2626:21;;2374:1;2371;2367:9;2362:14;;2327:327;;;2331:14;2667:3;2660:10;;2041:635;;;;;;;2684:110;2757:31;2782:5;2757:31;;;2752:3;2745:44;2739:55;;;2904:1207;3053:4;3048:3;3044:14;3146:3;3139:5;3135:15;3129:22;3163:61;3219:3;3214;3210:13;3197:11;3163:61;;;3073:163;3321:4;3314:5;3310:16;3304:23;3339:62;3395:4;3390:3;3386:14;3373:11;3339:62;;;3246:167;3489:4;3482:5;3478:16;3472:23;3507:62;3563:4;3558:3;3554:14;3541:11;3507:62;;;3423:158;3660:4;3653:5;3649:16;3643:23;3678:62;3734:4;3729:3;3725:14;3712:11;3678:62;;;3591:161;3832:4;3825:5;3821:16;3815:23;3850:62;3906:4;3901:3;3897:14;3884:11;3850:62;;;3762:162;4004:4;3997:5;3993:16;3987:23;4022:62;4078:4;4073:3;4069:14;4056:11;4022:62;;;3934:162;3026:1085;;;;4118:110;4191:31;4216:5;4191:31;;;4186:3;4179:44;4173:55;;;4235:465;;4455:2;4444:9;4440:18;4432:26;;4505:9;4499:4;4495:20;4491:1;4480:9;4476:17;4469:47;4530:160;4685:4;4676:6;4530:160;;;4522:168;;4426:274;;;;;4709:152;;4849:4;4841:6;4837:17;4826:28;;4818:43;;;;4870:138;;4997:5;4991:12;4981:22;;4975:33;;;;5016:153;;5158:4;5150:6;5146:17;5135:28;;5128:41;;;;5177:79;;5246:5;5235:16;;5229:27;;;;5263:79;;5332:5;5321:16;;5315:27;;;;5349:128;;5429:42;5422:5;5418:54;5407:65;;5401:76;;;;5484:79;;5553:5;5542:16;;5536:27;;;;5570:79;;5639:5;5628:16;;5622:27;;;",
+  "source": "pragma solidity ^0.4.25;\r\npragma experimental ABIEncoderV2;\r\n\r\ncontract MainAccountTransfer {\r\n    // 본 계좌 거래 내역 구조체\r\n    struct mainAccountTransfer {\r\n        bytes32 destination; \r\n        bytes32 startingPoint; \r\n        bytes32 date; \r\n        bytes32 content; \r\n        uint etherNum; \r\n        bytes32 idx_hash;\r\n    }\r\n    \r\n    // 본 계좌의 거래 내역 리스트 \r\n    mapping(address => mainAccountTransfer[]) mainAccountTransferList;\r\n    \r\n    // 본 계좌의 거래 내역을 저장\r\n    function setMainAccountTransfer (address personAddress, bytes32 destination,bytes32 startingPoint,\r\n    uint etherNum, bytes32 date, bytes32 content, address receiverAddress, bytes32 _idx_hash) public payable{\r\n        receiverAddress.transfer(msg.value);\r\n        mainAccountTransfer memory mainAccountTransferItem\r\n             = mainAccountTransfer(destination, startingPoint, date, content, etherNum, _idx_hash); \r\n        mainAccountTransferList[personAddress].push(mainAccountTransferItem);\r\n    }\r\n\r\n    // 본 계좌 거래 내역 반환\r\n    function getMainAccountTransfer(address personAddress) view external returns(mainAccountTransfer[]) {\r\n        return (mainAccountTransferList[personAddress]);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\skskj\\project\\gitLab\\p11\\p1105_test\\19_p577_a_study_management_platform_using_blockchain\\contracts\\MainAccountTransfer.sol",
+  "ast": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/MainAccountTransfer.sol",
+    "exportedSymbols": {
+      "MainAccountTransfer": [
+        129
+      ]
+    },
+    "id": 130,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 50,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "id": 51,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 129,
+        "linearizedBaseContracts": [
+          129
+        ],
+        "name": "MainAccountTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "MainAccountTransfer.mainAccountTransfer",
+            "id": 64,
+            "members": [
+              {
+                "constant": false,
+                "id": 53,
+                "name": "destination",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "180:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 52,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "180:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 55,
+                "name": "startingPoint",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "211:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 54,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "211:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 57,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "244:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 56,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "244:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 59,
+                "name": "content",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "268:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 58,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "268:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 61,
+                "name": "etherNum",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "295:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "295:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "320:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "320:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "mainAccountTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 129,
+            "src": "142:202:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 69,
+            "name": "mainAccountTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 129,
+            "src": "403:65:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+              "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer[])"
+            },
+            "typeName": {
+              "id": 68,
+              "keyType": {
+                "id": 65,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "411:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "403:41:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 66,
+                  "name": "mainAccountTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 64,
+                  "src": "422:19:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                    "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                  }
+                },
+                "id": 67,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "422:21:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_ptr",
+                  "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 113,
+              "nodeType": "Block",
+              "src": "735:295:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 91,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "771:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 92,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "771:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 88,
+                        "name": "receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 83,
+                        "src": "746:15:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 90,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "746:24:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 93,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "746:35:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 94,
+                  "nodeType": "ExpressionStatement",
+                  "src": "746:35:1"
+                },
+                {
+                  "assignments": [
+                    96
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 96,
+                      "name": "mainAccountTransferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 114,
+                      "src": "792:50:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                        "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 95,
+                        "name": "mainAccountTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 64,
+                        "src": "792:19:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 105,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 98,
+                        "name": "destination",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 73,
+                        "src": "879:11:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 99,
+                        "name": "startingPoint",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "892:13:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 100,
+                        "name": "date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 79,
+                        "src": "907:4:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 101,
+                        "name": "content",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 81,
+                        "src": "913:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 102,
+                        "name": "etherNum",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 77,
+                        "src": "922:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 103,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 85,
+                        "src": "932:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 97,
+                      "name": "mainAccountTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 64,
+                      "src": "859:19:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_mainAccountTransfer_$64_storage_ptr_$",
+                        "typeString": "type(struct MainAccountTransfer.mainAccountTransfer storage pointer)"
+                      }
+                    },
+                    "id": 104,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "859:83:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "792:150:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 110,
+                        "name": "mainAccountTransferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 96,
+                        "src": "998:23:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 106,
+                          "name": "mainAccountTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 69,
+                          "src": "954:23:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 108,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 107,
+                          "name": "personAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 71,
+                          "src": "978:13:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "954:38:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 109,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "954:43:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_mainAccountTransfer_$64_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct MainAccountTransfer.mainAccountTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 111,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "954:68:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 112,
+                  "nodeType": "ExpressionStatement",
+                  "src": "954:68:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 114,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setMainAccountTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 86,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 71,
+                  "name": "personAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "560:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 70,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "560:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 73,
+                  "name": "destination",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "583:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 72,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "583:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 75,
+                  "name": "startingPoint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "603:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 74,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "603:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 77,
+                  "name": "etherNum",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "631:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 76,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "631:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 79,
+                  "name": "date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "646:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 78,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "646:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 81,
+                  "name": "content",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "660:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 80,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "660:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 83,
+                  "name": "receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "677:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 82,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "677:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 85,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "702:17:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 84,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "702:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "559:161:1"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 87,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "735:0:1"
+            },
+            "scope": 129,
+            "src": "527:503:1",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 127,
+              "nodeType": "Block",
+              "src": "1178:66:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 122,
+                          "name": "mainAccountTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 69,
+                          "src": "1197:23:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 124,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 123,
+                          "name": "personAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 116,
+                          "src": "1221:13:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1197:38:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                        }
+                      }
+                    ],
+                    "id": 125,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1196:40:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 121,
+                  "id": 126,
+                  "nodeType": "Return",
+                  "src": "1189:47:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 128,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getMainAccountTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 117,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 116,
+                  "name": "personAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 128,
+                  "src": "1110:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 115,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1110:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1109:23:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 121,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 128,
+                  "src": "1155:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_memory_$dyn_memory_ptr",
+                    "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 118,
+                      "name": "mainAccountTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 64,
+                      "src": "1155:19:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                        "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                      }
+                    },
+                    "id": 119,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1155:21:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_ptr",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1154:23:1"
+            },
+            "scope": 129,
+            "src": "1078:166:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 130,
+        "src": "63:1184:1"
+      }
+    ],
+    "src": "0:1249:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/MainAccountTransfer.sol",
+    "exportedSymbols": {
+      "MainAccountTransfer": [
+        129
+      ]
+    },
+    "id": 130,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 50,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "id": 51,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 129,
+        "linearizedBaseContracts": [
+          129
+        ],
+        "name": "MainAccountTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "MainAccountTransfer.mainAccountTransfer",
+            "id": 64,
+            "members": [
+              {
+                "constant": false,
+                "id": 53,
+                "name": "destination",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "180:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 52,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "180:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 55,
+                "name": "startingPoint",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "211:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 54,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "211:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 57,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "244:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 56,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "244:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 59,
+                "name": "content",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "268:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 58,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "268:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 61,
+                "name": "etherNum",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "295:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "295:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 64,
+                "src": "320:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "320:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "mainAccountTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 129,
+            "src": "142:202:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 69,
+            "name": "mainAccountTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 129,
+            "src": "403:65:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+              "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer[])"
+            },
+            "typeName": {
+              "id": 68,
+              "keyType": {
+                "id": 65,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "411:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "403:41:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 66,
+                  "name": "mainAccountTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 64,
+                  "src": "422:19:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                    "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                  }
+                },
+                "id": 67,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "422:21:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_ptr",
+                  "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 113,
+              "nodeType": "Block",
+              "src": "735:295:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 91,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "771:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 92,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "771:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 88,
+                        "name": "receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 83,
+                        "src": "746:15:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 90,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "746:24:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 93,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "746:35:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 94,
+                  "nodeType": "ExpressionStatement",
+                  "src": "746:35:1"
+                },
+                {
+                  "assignments": [
+                    96
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 96,
+                      "name": "mainAccountTransferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 114,
+                      "src": "792:50:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                        "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 95,
+                        "name": "mainAccountTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 64,
+                        "src": "792:19:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 105,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 98,
+                        "name": "destination",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 73,
+                        "src": "879:11:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 99,
+                        "name": "startingPoint",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 75,
+                        "src": "892:13:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 100,
+                        "name": "date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 79,
+                        "src": "907:4:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 101,
+                        "name": "content",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 81,
+                        "src": "913:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 102,
+                        "name": "etherNum",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 77,
+                        "src": "922:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 103,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 85,
+                        "src": "932:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 97,
+                      "name": "mainAccountTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 64,
+                      "src": "859:19:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_mainAccountTransfer_$64_storage_ptr_$",
+                        "typeString": "type(struct MainAccountTransfer.mainAccountTransfer storage pointer)"
+                      }
+                    },
+                    "id": 104,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "859:83:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "792:150:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 110,
+                        "name": "mainAccountTransferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 96,
+                        "src": "998:23:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_mainAccountTransfer_$64_memory_ptr",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 106,
+                          "name": "mainAccountTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 69,
+                          "src": "954:23:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 108,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 107,
+                          "name": "personAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 71,
+                          "src": "978:13:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "954:38:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 109,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "954:43:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_mainAccountTransfer_$64_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct MainAccountTransfer.mainAccountTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 111,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "954:68:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 112,
+                  "nodeType": "ExpressionStatement",
+                  "src": "954:68:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 114,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setMainAccountTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 86,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 71,
+                  "name": "personAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "560:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 70,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "560:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 73,
+                  "name": "destination",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "583:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 72,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "583:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 75,
+                  "name": "startingPoint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "603:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 74,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "603:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 77,
+                  "name": "etherNum",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "631:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 76,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "631:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 79,
+                  "name": "date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "646:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 78,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "646:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 81,
+                  "name": "content",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "660:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 80,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "660:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 83,
+                  "name": "receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "677:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 82,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "677:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 85,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 114,
+                  "src": "702:17:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 84,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "702:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "559:161:1"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 87,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "735:0:1"
+            },
+            "scope": 129,
+            "src": "527:503:1",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 127,
+              "nodeType": "Block",
+              "src": "1178:66:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 122,
+                          "name": "mainAccountTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 69,
+                          "src": "1197:23:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 124,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 123,
+                          "name": "personAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 116,
+                          "src": "1221:13:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1197:38:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                          "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                        }
+                      }
+                    ],
+                    "id": 125,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1196:40:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 121,
+                  "id": 126,
+                  "nodeType": "Return",
+                  "src": "1189:47:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 128,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getMainAccountTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 117,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 116,
+                  "name": "personAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 128,
+                  "src": "1110:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 115,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1110:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1109:23:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 121,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 128,
+                  "src": "1155:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_memory_$dyn_memory_ptr",
+                    "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 118,
+                      "name": "mainAccountTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 64,
+                      "src": "1155:19:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_mainAccountTransfer_$64_storage_ptr",
+                        "typeString": "struct MainAccountTransfer.mainAccountTransfer"
+                      }
+                    },
+                    "id": 119,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1155:21:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_mainAccountTransfer_$64_storage_$dyn_storage_ptr",
+                      "typeString": "struct MainAccountTransfer.mainAccountTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1154:23:1"
+            },
+            "scope": 129,
+            "src": "1078:166:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 130,
+        "src": "63:1184:1"
+      }
+    ],
+    "src": "0:1249:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x1191bf29f57079f7e714bb33bb169cce207273e0",
+      "transactionHash": "0x001aeb2af2b015a7678ce06d0945ddd661410537896a7c056e136b27e12cb5d5"
+    },
+    "8282": {
+      "events": {},
+      "links": {},
+      "address": "0x8aa169af4e2072c4552f6f8c3f7eb2dd9bec9396",
+      "transactionHash": "0x31474690beaadb1691642bca6994e28dbcc22836b18a2c9eea9b8a5ebd46ae93"
+    },
+    "8383": {
+      "events": {},
+      "links": {},
+      "address": "0x92b5b2371f0e5f947a0dfa8a3639337765757325",
+      "transactionHash": "0x7cb26ebb5a362bfd50debb33bcd99d432dbef8701d93d8ce56f34a3c0d7549d5"
+    },
+    "8484": {
+      "events": {},
+      "links": {},
+      "address": "0x92b5b2371f0e5f947a0dfa8a3639337765757325",
+      "transactionHash": "0x7cb26ebb5a362bfd50debb33bcd99d432dbef8701d93d8ce56f34a3c0d7549d5"
+    }
+  },
+  "schemaVersion": "2.0.2",
+  "updatedAt": "2019-11-18T18:47:33.392Z"
+}

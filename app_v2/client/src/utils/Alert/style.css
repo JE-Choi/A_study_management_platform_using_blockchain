@@ -1,0 +1,31 @@
+.react-confirm-alert-body {
+    border: 1.5px solid rgb(68, 114, 148);
+    text-align: center !important;
+}
+
+.react-confirm-alert-body h1 {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.react-confirm-alert-button-group {
+    color: white !important;
+    display: inherit !important;
+}
+
+.react-confirm-alert-button-group button {
+    background-color: rgb(68, 114, 148) !important;
+    color: white !important;
+    width: 6rem !important;
+}
+
+@media(max-width: 1200px){
+    .react-confirm-alert-body {
+        width:100% !important;
+        font-size: 0.9rem;
+    }
+
+    .react-confirm-alert-body h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,2574 @@
+{
+  "contractName": "TardinessTransfer",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_senderId",
+          "type": "bytes32"
+        },
+        {
+          "name": "_senderName",
+          "type": "bytes32"
+        },
+        {
+          "name": "_receiverid",
+          "type": "bytes32"
+        },
+        {
+          "name": "_receiverName",
+          "type": "bytes32"
+        },
+        {
+          "name": "_coin",
+          "type": "uint256"
+        },
+        {
+          "name": "_date",
+          "type": "bytes32"
+        },
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_receiverAddress",
+          "type": "address"
+        },
+        {
+          "name": "_idx_hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "setTardinessTransfer",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTardinessTransfer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "senderId",
+              "type": "bytes32"
+            },
+            {
+              "name": "sendName",
+              "type": "bytes32"
+            },
+            {
+              "name": "receiverid",
+              "type": "bytes32"
+            },
+            {
+              "name": "receiverName",
+              "type": "bytes32"
+            },
+            {
+              "name": "coin",
+              "type": "uint256"
+            },
+            {
+              "name": "date",
+              "type": "bytes32"
+            },
+            {
+              "name": "idx_hash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "",
+          "type": "tuple[]"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5061064c806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680636e089eaf14610051578063f20bde0f1461008f575b600080fd5b34801561005d57600080fd5b5061007860048036036100739190810190610445565b6100ab565b604051610086929190610575565b60405180910390f35b6100a960048036036100a4919081019061037f565b61019f565b005b606060006060600080858152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561018c578382906000526020600020906007020160e06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015460001916600019168152602001600382015460001916600019168152602001600482015481526020016005820154600019166000191681526020016006820154600019166000191681525050815260200190600101906100e3565b5050505090508081519250925050915091565b6101a76102f3565b60e0604051908101604052808b6000191681526020018a600019168152602001896000191681526020018860001916815260200187815260200186600019168152602001836000191681525090506000808581526020019081526020016000208190806001815401808255809150509060018203906000526020600020906007020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a0820151816005019060001916905560c082015181600601906000191690555050508273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156102e6573d6000803e3d6000fd5b5050505050505050505050565b60e060405190810160405280600080191681526020016000801916815260200160008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061034f82356105de565b905092915050565b600061036382356105fe565b905092915050565b60006103778235610608565b905092915050565b60008060008060008060008060006101208a8c03121561039e57600080fd5b60006103ac8c828d01610357565b99505060206103bd8c828d01610357565b98505060406103ce8c828d01610357565b97505060606103df8c828d01610357565b96505060806103f08c828d0161036b565b95505060a06104018c828d01610357565b94505060c06104128c828d0161036b565b93505060e06104238c828d01610343565b9250506101006104358c828d01610357565b9150509295985092959850929598565b60006020828403121561045757600080fd5b60006104658482850161036b565b91505092915050565b6000610479826105b2565b80845260208401935061048b836105a5565b60005b828110156104bd576104a18683516104d8565b6104aa826105bd565b915060e08601955060018101905061048e565b50849250505092915050565b6104d2816105ca565b82525050565b60e0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610566565b5060a082015161054d60a08501826104c9565b5060c082015161056060c08501826104c9565b50505050565b61056f816105d4565b82525050565b6000604082019050818103600083015261058f818561046e565b905061059e6020830184610566565b9392505050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a723058201c5766582cb2471dc8b19efefbfc64873d851e45f9a65fea5d45d29bc05900136c6578706572696d656e74616cf50037",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680636e089eaf14610051578063f20bde0f1461008f575b600080fd5b34801561005d57600080fd5b5061007860048036036100739190810190610445565b6100ab565b604051610086929190610575565b60405180910390f35b6100a960048036036100a4919081019061037f565b61019f565b005b606060006060600080858152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561018c578382906000526020600020906007020160e06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015460001916600019168152602001600382015460001916600019168152602001600482015481526020016005820154600019166000191681526020016006820154600019166000191681525050815260200190600101906100e3565b5050505090508081519250925050915091565b6101a76102f3565b60e0604051908101604052808b6000191681526020018a600019168152602001896000191681526020018860001916815260200187815260200186600019168152602001836000191681525090506000808581526020019081526020016000208190806001815401808255809150509060018203906000526020600020906007020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a0820151816005019060001916905560c082015181600601906000191690555050508273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156102e6573d6000803e3d6000fd5b5050505050505050505050565b60e060405190810160405280600080191681526020016000801916815260200160008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061034f82356105de565b905092915050565b600061036382356105fe565b905092915050565b60006103778235610608565b905092915050565b60008060008060008060008060006101208a8c03121561039e57600080fd5b60006103ac8c828d01610357565b99505060206103bd8c828d01610357565b98505060406103ce8c828d01610357565b97505060606103df8c828d01610357565b96505060806103f08c828d0161036b565b95505060a06104018c828d01610357565b94505060c06104128c828d0161036b565b93505060e06104238c828d01610343565b9250506101006104358c828d01610357565b9150509295985092959850929598565b60006020828403121561045757600080fd5b60006104658482850161036b565b91505092915050565b6000610479826105b2565b80845260208401935061048b836105a5565b60005b828110156104bd576104a18683516104d8565b6104aa826105bd565b915060e08601955060018101905061048e565b50849250505092915050565b6104d2816105ca565b82525050565b60e0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610566565b5060a082015161054d60a08501826104c9565b5060c082015161056060c08501826104c9565b50505050565b61056f816105d4565b82525050565b6000604082019050818103600083015261058f818561046e565b905061059e6020830184610566565b9392505050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a723058201c5766582cb2471dc8b19efefbfc64873d851e45f9a65fea5d45d29bc05900136c6578706572696d656e74616cf50037",
+  "sourceMap": "63:1306:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;63:1306:5;;;;;;;",
+  "deployedSourceMap": "63:1306:5:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1125:241;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1125:241:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;570:480;;;;;;;;;;;;;;;;;;;1125:241;1194:19;1214:4;1231:39;1273:21;:32;1295:9;1273:32;;;;;;;;;;;1231:74;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1325:12;1338;:19;1317:41;;;;1125:241;;;;:::o;570:480::-;798:37;;:::i;:::-;838:93;;;;;;;;;856:9;838:93;;;;;;;866:11;838:93;;;;;;;879:11;838:93;;;;;;;892:13;838:93;;;;;;;907:5;838:93;;;;914:5;838:93;;;;;;;921:9;838:93;;;;;;798:133;;943:21;:32;965:9;943:32;;;;;;;;;;;981:12;943:51;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;943:51:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1006:16;:25;;:36;1032:9;1006:36;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1006:36:5;570:480;;;;;;;;;;:::o;63:1306::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;5:118:-1:-;;72:46;110:6;97:20;72:46;;;63:55;;57:66;;;;;130:118;;197:46;235:6;222:20;197:46;;;188:55;;182:66;;;;;255:118;;322:46;360:6;347:20;322:46;;;313:55;;307:66;;;;;380:1247;;;;;;;;;;620:3;608:9;599:7;595:23;591:33;588:2;;;637:1;634;627:12;588:2;672:1;689:53;734:7;725:6;714:9;710:22;689:53;;;679:63;;651:97;779:2;797:53;842:7;833:6;822:9;818:22;797:53;;;787:63;;758:98;887:2;905:53;950:7;941:6;930:9;926:22;905:53;;;895:63;;866:98;995:2;1013:53;1058:7;1049:6;1038:9;1034:22;1013:53;;;1003:63;;974:98;1103:3;1122:53;1167:7;1158:6;1147:9;1143:22;1122:53;;;1112:63;;1082:99;1212:3;1231:53;1276:7;1267:6;1256:9;1252:22;1231:53;;;1221:63;;1191:99;1321:3;1340:53;1385:7;1376:6;1365:9;1361:22;1340:53;;;1330:63;;1300:99;1430:3;1449:53;1494:7;1485:6;1474:9;1470:22;1449:53;;;1439:63;;1409:99;1539:3;1558:53;1603:7;1594:6;1583:9;1579:22;1558:53;;;1548:63;;1518:99;582:1045;;;;;;;;;;;;1634:241;;1738:2;1726:9;1717:7;1713:23;1709:32;1706:2;;;1754:1;1751;1744:12;1706:2;1789:1;1806:53;1851:7;1842:6;1831:9;1827:22;1806:53;;;1796:63;;1768:97;1700:175;;;;;1983:804;;2178:84;2256:5;2178:84;;;2280:6;2275:3;2268:19;2304:4;2299:3;2295:14;2288:21;;2349:86;2429:5;2349:86;;;2456:1;2441:324;2466:6;2463:1;2460:13;2441:324;;;2506:117;2619:3;2610:6;2604:13;2506:117;;;2640:90;2723:6;2640:90;;;2630:100;;2753:4;2748:3;2744:14;2737:21;;2488:1;2485;2481:9;2476:14;;2441:324;;;2445:14;2778:3;2771:10;;2157:630;;;;;;;2795:110;2868:31;2893:5;2868:31;;;2863:3;2856:44;2850:55;;;3007:1372;3154:4;3149:3;3145:14;3244:3;3237:5;3233:15;3227:22;3261:61;3317:3;3312;3308:13;3295:11;3261:61;;;3174:160;3414:4;3407:5;3403:16;3397:23;3432:62;3488:4;3483:3;3479:14;3466:11;3432:62;;;3344:162;3588:4;3581:5;3577:16;3571:23;3606:62;3662:4;3657:3;3653:14;3640:11;3606:62;;;3516:164;3764:4;3757:5;3753:16;3747:23;3782:62;3838:4;3833:3;3829:14;3816:11;3782:62;;;3690:166;3932:4;3925:5;3921:16;3915:23;3950:62;4006:4;4001:3;3997:14;3984:11;3950:62;;;3866:158;4100:4;4093:5;4089:16;4083:23;4118:62;4174:4;4169:3;4165:14;4152:11;4118:62;;;4034:158;4272:4;4265:5;4261:16;4255:23;4290:62;4346:4;4341:3;4337:14;4324:11;4290:62;;;4202:162;3127:1252;;;;4386:110;4459:31;4484:5;4459:31;;;4454:3;4447:44;4441:55;;;4503:562;;4749:2;4738:9;4734:18;4726:26;;4799:9;4793:4;4789:20;4785:1;4774:9;4770:17;4763:47;4824:158;4977:4;4968:6;4824:158;;;4816:166;;4993:62;5051:2;5040:9;5036:18;5027:6;4993:62;;;4720:345;;;;;;5074:151;;5213:4;5205:6;5201:17;5190:28;;5182:43;;;;5234:137;;5360:5;5354:12;5344:22;;5338:33;;;;5379:152;;5520:4;5512:6;5508:17;5497:28;;5490:41;;;;5539:79;;5608:5;5597:16;;5591:27;;;;5625:79;;5694:5;5683:16;;5677:27;;;;5711:128;;5791:42;5784:5;5780:54;5769:65;;5763:76;;;;5846:79;;5915:5;5904:16;;5898:27;;;;5932:79;;6001:5;5990:16;;5984:27;;;",
+  "source": "pragma solidity ^0.4.25;\r\npragma experimental ABIEncoderV2;\r\n\r\ncontract TardinessTransfer {\r\n    // 지각에 따른 ether 차감 구조체 \r\n    struct tardinessTransfer {\r\n        bytes32 senderId; \r\n        bytes32 sendName; \r\n        bytes32 receiverid; \r\n        bytes32 receiverName;\r\n        uint coin; \r\n        bytes32 date; \r\n        bytes32 idx_hash;\r\n    }\r\n\r\n    // 해당 Study Group의 특정 스터디원의 지각 거래 내역\r\n    mapping(uint => tardinessTransfer[]) tardinessTransferList;\r\n\r\n    // 지각에 대한 코인 차감 거래 발생\r\n    function setTardinessTransfer(bytes32 _senderId, bytes32 _senderName, bytes32 _receiverid, bytes32 _receiverName, uint _coin, bytes32 _date, uint _study_id, address _receiverAddress, bytes32 _idx_hash) public payable {\r\n        tardinessTransfer memory transferItem = tardinessTransfer(_senderId,_senderName, _receiverid, _receiverName, _coin, _date, _idx_hash); \r\n        tardinessTransferList[_study_id].push(transferItem); \r\n        _receiverAddress.transfer(msg.value);\r\n    }\r\n\r\n    // 지각에 대한 ether 차감 거래 발생 정보 얻기 \r\n    function getTardinessTransfer (uint _study_id) view external returns(tardinessTransfer[],uint) {\r\n        tardinessTransfer[] memory transferList = tardinessTransferList[_study_id]; \r\n        return (transferList,transferList.length);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\skskj\\project\\gitLab\\p11\\p1105_test\\19_p577_a_study_management_platform_using_blockchain\\contracts\\TardinessTransfer.sol",
+  "ast": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/TardinessTransfer.sol",
+    "exportedSymbols": {
+      "TardinessTransfer": [
+        445
+      ]
+    },
+    "id": 446,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 351,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "id": 352,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 445,
+        "linearizedBaseContracts": [
+          445
+        ],
+        "name": "TardinessTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "TardinessTransfer.tardinessTransfer",
+            "id": 367,
+            "members": [
+              {
+                "constant": false,
+                "id": 354,
+                "name": "senderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "182:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 353,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "182:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 356,
+                "name": "sendName",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "210:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 355,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "210:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 358,
+                "name": "receiverid",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "238:18:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 357,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "238:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 360,
+                "name": "receiverName",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "268:20:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 359,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "268:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 362,
+                "name": "coin",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "299:9:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 361,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "299:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 364,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "320:12:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 363,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "320:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 366,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "344:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 365,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "344:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "tardinessTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 445,
+            "src": "146:222:5",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 372,
+            "name": "tardinessTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 445,
+            "src": "450:58:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer[])"
+            },
+            "typeName": {
+              "id": 371,
+              "keyType": {
+                "id": 368,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "458:4:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "450:36:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 369,
+                  "name": "tardinessTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 367,
+                  "src": "466:17:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                    "typeString": "struct TardinessTransfer.tardinessTransfer"
+                  }
+                },
+                "id": 370,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "466:19:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                  "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 419,
+              "nodeType": "Block",
+              "src": "787:263:5",
+              "statements": [
+                {
+                  "assignments": [
+                    394
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 394,
+                      "name": "transferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 420,
+                      "src": "798:37:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 393,
+                        "name": "tardinessTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 367,
+                        "src": "798:17:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 404,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 396,
+                        "name": "_senderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 374,
+                        "src": "856:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 397,
+                        "name": "_senderName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 376,
+                        "src": "866:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 398,
+                        "name": "_receiverid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 378,
+                        "src": "879:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 399,
+                        "name": "_receiverName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 380,
+                        "src": "892:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 400,
+                        "name": "_coin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 382,
+                        "src": "907:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 401,
+                        "name": "_date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 384,
+                        "src": "914:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 402,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 390,
+                        "src": "921:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 395,
+                      "name": "tardinessTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 367,
+                      "src": "838:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_tardinessTransfer_$367_storage_ptr_$",
+                        "typeString": "type(struct TardinessTransfer.tardinessTransfer storage pointer)"
+                      }
+                    },
+                    "id": 403,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "838:93:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "798:133:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 409,
+                        "name": "transferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 394,
+                        "src": "981:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 405,
+                          "name": "tardinessTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 372,
+                          "src": "943:21:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 407,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 406,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 386,
+                          "src": "965:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "943:32:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 408,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "943:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tardinessTransfer_$367_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct TardinessTransfer.tardinessTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 410,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "943:51:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 411,
+                  "nodeType": "ExpressionStatement",
+                  "src": "943:51:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 415,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "1032:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 416,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1032:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 412,
+                        "name": "_receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 388,
+                        "src": "1006:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 414,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1006:25:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 417,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1006:36:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 418,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1006:36:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 420,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setTardinessTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 391,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 374,
+                  "name": "_senderId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "600:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 373,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "600:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 376,
+                  "name": "_senderName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "619:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 375,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "619:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 378,
+                  "name": "_receiverid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "640:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 377,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "640:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 380,
+                  "name": "_receiverName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "661:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 379,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "661:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 382,
+                  "name": "_coin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "684:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 381,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "684:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 384,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "696:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 383,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "696:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 386,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "711:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 385,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "711:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 388,
+                  "name": "_receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "727:24:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 387,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "727:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 390,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "753:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 389,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "753:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "599:172:5"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 392,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "787:0:5"
+            },
+            "scope": 445,
+            "src": "570:480:5",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 443,
+              "nodeType": "Block",
+              "src": "1220:146:5",
+              "statements": [
+                {
+                  "assignments": [
+                    433
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 433,
+                      "name": "transferList",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 444,
+                      "src": "1231:39:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 431,
+                          "name": "tardinessTransfer",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 367,
+                          "src": "1231:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                            "typeString": "struct TardinessTransfer.tardinessTransfer"
+                          }
+                        },
+                        "id": 432,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "1231:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 437,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 434,
+                      "name": "tardinessTransferList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 372,
+                      "src": "1273:21:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 436,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 435,
+                      "name": "_study_id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 422,
+                      "src": "1295:9:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1273:32:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1231:74:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 438,
+                        "name": "transferList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 433,
+                        "src": "1325:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory[] memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 439,
+                          "name": "transferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 433,
+                          "src": "1338:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                            "typeString": "struct TardinessTransfer.tardinessTransfer memory[] memory"
+                          }
+                        },
+                        "id": 440,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1338:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 441,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1324:34:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct TardinessTransfer.tardinessTransfer memory[] memory,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 429,
+                  "id": 442,
+                  "nodeType": "Return",
+                  "src": "1317:41:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 444,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getTardinessTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 423,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 422,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1156:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 421,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1156:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1155:16:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 429,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 426,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1194:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                    "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 424,
+                      "name": "tardinessTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 367,
+                      "src": "1194:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer"
+                      }
+                    },
+                    "id": 425,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1194:19:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 428,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1214:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 427,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1214:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1193:26:5"
+            },
+            "scope": 445,
+            "src": "1125:241:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 446,
+        "src": "63:1306:5"
+      }
+    ],
+    "src": "0:1371:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/TardinessTransfer.sol",
+    "exportedSymbols": {
+      "TardinessTransfer": [
+        445
+      ]
+    },
+    "id": 446,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 351,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "id": 352,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 445,
+        "linearizedBaseContracts": [
+          445
+        ],
+        "name": "TardinessTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "TardinessTransfer.tardinessTransfer",
+            "id": 367,
+            "members": [
+              {
+                "constant": false,
+                "id": 354,
+                "name": "senderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "182:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 353,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "182:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 356,
+                "name": "sendName",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "210:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 355,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "210:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 358,
+                "name": "receiverid",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "238:18:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 357,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "238:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 360,
+                "name": "receiverName",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "268:20:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 359,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "268:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 362,
+                "name": "coin",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "299:9:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 361,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "299:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 364,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "320:12:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 363,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "320:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 366,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 367,
+                "src": "344:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 365,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "344:7:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "tardinessTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 445,
+            "src": "146:222:5",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 372,
+            "name": "tardinessTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 445,
+            "src": "450:58:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer[])"
+            },
+            "typeName": {
+              "id": 371,
+              "keyType": {
+                "id": 368,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "458:4:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "450:36:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 369,
+                  "name": "tardinessTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 367,
+                  "src": "466:17:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                    "typeString": "struct TardinessTransfer.tardinessTransfer"
+                  }
+                },
+                "id": 370,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "466:19:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                  "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 419,
+              "nodeType": "Block",
+              "src": "787:263:5",
+              "statements": [
+                {
+                  "assignments": [
+                    394
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 394,
+                      "name": "transferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 420,
+                      "src": "798:37:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 393,
+                        "name": "tardinessTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 367,
+                        "src": "798:17:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 404,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 396,
+                        "name": "_senderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 374,
+                        "src": "856:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 397,
+                        "name": "_senderName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 376,
+                        "src": "866:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 398,
+                        "name": "_receiverid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 378,
+                        "src": "879:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 399,
+                        "name": "_receiverName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 380,
+                        "src": "892:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 400,
+                        "name": "_coin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 382,
+                        "src": "907:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 401,
+                        "name": "_date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 384,
+                        "src": "914:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 402,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 390,
+                        "src": "921:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 395,
+                      "name": "tardinessTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 367,
+                      "src": "838:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_tardinessTransfer_$367_storage_ptr_$",
+                        "typeString": "type(struct TardinessTransfer.tardinessTransfer storage pointer)"
+                      }
+                    },
+                    "id": 403,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "838:93:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "798:133:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 409,
+                        "name": "transferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 394,
+                        "src": "981:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_tardinessTransfer_$367_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 405,
+                          "name": "tardinessTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 372,
+                          "src": "943:21:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 407,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 406,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 386,
+                          "src": "965:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "943:32:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 408,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "943:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tardinessTransfer_$367_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct TardinessTransfer.tardinessTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 410,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "943:51:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 411,
+                  "nodeType": "ExpressionStatement",
+                  "src": "943:51:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 415,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "1032:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 416,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1032:9:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 412,
+                        "name": "_receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 388,
+                        "src": "1006:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 414,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1006:25:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 417,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1006:36:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 418,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1006:36:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 420,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setTardinessTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 391,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 374,
+                  "name": "_senderId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "600:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 373,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "600:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 376,
+                  "name": "_senderName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "619:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 375,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "619:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 378,
+                  "name": "_receiverid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "640:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 377,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "640:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 380,
+                  "name": "_receiverName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "661:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 379,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "661:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 382,
+                  "name": "_coin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "684:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 381,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "684:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 384,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "696:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 383,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "696:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 386,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "711:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 385,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "711:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 388,
+                  "name": "_receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "727:24:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 387,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "727:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 390,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "753:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 389,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "753:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "599:172:5"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 392,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "787:0:5"
+            },
+            "scope": 445,
+            "src": "570:480:5",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 443,
+              "nodeType": "Block",
+              "src": "1220:146:5",
+              "statements": [
+                {
+                  "assignments": [
+                    433
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 433,
+                      "name": "transferList",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 444,
+                      "src": "1231:39:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 431,
+                          "name": "tardinessTransfer",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 367,
+                          "src": "1231:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                            "typeString": "struct TardinessTransfer.tardinessTransfer"
+                          }
+                        },
+                        "id": 432,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "1231:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 437,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 434,
+                      "name": "tardinessTransferList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 372,
+                      "src": "1273:21:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct TardinessTransfer.tardinessTransfer storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 436,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 435,
+                      "name": "_study_id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 422,
+                      "src": "1295:9:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1273:32:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1231:74:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 438,
+                        "name": "transferList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 433,
+                        "src": "1325:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                          "typeString": "struct TardinessTransfer.tardinessTransfer memory[] memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 439,
+                          "name": "transferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 433,
+                          "src": "1338:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                            "typeString": "struct TardinessTransfer.tardinessTransfer memory[] memory"
+                          }
+                        },
+                        "id": 440,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1338:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 441,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1324:34:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct TardinessTransfer.tardinessTransfer memory[] memory,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 429,
+                  "id": 442,
+                  "nodeType": "Return",
+                  "src": "1317:41:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 444,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getTardinessTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 423,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 422,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1156:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 421,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1156:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1155:16:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 429,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 426,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1194:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_memory_$dyn_memory_ptr",
+                    "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 424,
+                      "name": "tardinessTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 367,
+                      "src": "1194:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_tardinessTransfer_$367_storage_ptr",
+                        "typeString": "struct TardinessTransfer.tardinessTransfer"
+                      }
+                    },
+                    "id": 425,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1194:19:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_tardinessTransfer_$367_storage_$dyn_storage_ptr",
+                      "typeString": "struct TardinessTransfer.tardinessTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 428,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 444,
+                  "src": "1214:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 427,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1214:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1193:26:5"
+            },
+            "scope": 445,
+            "src": "1125:241:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 446,
+        "src": "63:1306:5"
+      }
+    ],
+    "src": "0:1371:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xcc8aacef12fe3ae39e1ab784166a7c63e61795d0",
+      "transactionHash": "0x48f45c2a21da978751337eec57d28d44bc4209ef4235a5f13cb193260adfe478"
+    },
+    "8282": {
+      "events": {},
+      "links": {},
+      "address": "0xe7d0f94269603efc6ec02f46d7a7b92c97648f1d",
+      "transactionHash": "0x4993e585167e8d7857ccf0ffa2e936ffcccee492f247387a271093ada87c9db1"
+    }
+  },
+  "schemaVersion": "2.0.2",
+  "updatedAt": "2019-11-18T18:47:33.700Z"
+}

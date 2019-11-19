@@ -1,0 +1,58 @@
+@import url(http://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css);
+
+.App {
+  font-family: 'Nanum Barun Gothic';
+ }
+
+ /*배경*/
+ .mainPageBackgroundColor {
+  width: 100%;
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background-color: #eeeeee;
+}
+
+.pageBackgroundColor {
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  align-content: center;
+  background-color: #EEEEEE;
+}
+
+.main_UserP {
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-content: center;
+  background-color: #EEEEEE;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #EEEEEE;
+}
+
+@media(max-width: 1200px) { 
+   /*배경*/
+   .mainPageBackgroundColor {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /*MyPage.css*/  
+  .main_UserP {
+      padding-top: 0.5rem;
+      padding-bottom: 0.2rem;
+  }
+  .main {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}

@@ -1,0 +1,1818 @@
+{
+  "contractName": "StudyEndTransfer",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getStudyEndTransferList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "personId",
+              "type": "bytes32"
+            },
+            {
+              "name": "personName",
+              "type": "bytes32"
+            },
+            {
+              "name": "receiveEther",
+              "type": "uint256"
+            },
+            {
+              "name": "endDate",
+              "type": "bytes32"
+            },
+            {
+              "name": "idx_hash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_studyId",
+          "type": "uint256"
+        },
+        {
+          "name": "_personId",
+          "type": "bytes32"
+        },
+        {
+          "name": "_personName",
+          "type": "bytes32"
+        },
+        {
+          "name": "_receiveEther",
+          "type": "uint256"
+        },
+        {
+          "name": "_endDate",
+          "type": "bytes32"
+        },
+        {
+          "name": "_idx_hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "endTheStudy",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506104e4806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063370e76f914610051578063e81adccb1461008e575b600080fd5b34801561005d57600080fd5b50610078600480360361007391908101906102a8565b6100aa565b604051610085919061043b565b60405180910390f35b6100a860048036036100a391908101906102d1565b61016e565b005b6060600080838152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b82821015610163578382906000526020600020906005020160a06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015481526020016003820154600019166000191681526020016004820154600019166000191681525050815260200190600101906100de565b505050509050919050565b610176610244565b60a060405190810160405280876000191681526020018660001916815260200185815260200184600019168152602001836000191681525090506000808881526020019081526020016000208190806001815401808255809150509060018203906000526020600020906005020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020155606082015181600301906000191690556080820151816004019060001916905550505050505050505050565b60a06040519081016040528060008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061028c8235610496565b905092915050565b60006102a082356104a0565b905092915050565b6000602082840312156102ba57600080fd5b60006102c884828501610294565b91505092915050565b60008060008060008060c087890312156102ea57600080fd5b60006102f889828a01610294565b965050602061030989828a01610280565b955050604061031a89828a01610280565b945050606061032b89828a01610294565b935050608061033c89828a01610280565b92505060a061034d89828a01610280565b9150509295509295509295565b60006103658261046a565b8084526020840193506103778361045d565b60005b828110156103a95761038d8683516103c4565b61039682610475565b915060a08601955060018101905061037a565b50849250505092915050565b6103be81610482565b82525050565b60a0820160008201516103da60008501826103b5565b5060208201516103ed60208501826103b5565b506040820151610400604085018261042c565b50606082015161041360608501826103b5565b50608082015161042660808501826103b5565b50505050565b6104358161048c565b82525050565b60006020820190508181036000830152610455818461035a565b905092915050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b6000819050919050565b60008190509190505600a265627a7a72305820fc2b7ca92aac1195b7142130fda29e76be00b2a99d6fe1c8445766d6ff9d21c46c6578706572696d656e74616cf50037",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063370e76f914610051578063e81adccb1461008e575b600080fd5b34801561005d57600080fd5b50610078600480360361007391908101906102a8565b6100aa565b604051610085919061043b565b60405180910390f35b6100a860048036036100a391908101906102d1565b61016e565b005b6060600080838152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b82821015610163578382906000526020600020906005020160a06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015481526020016003820154600019166000191681526020016004820154600019166000191681525050815260200190600101906100de565b505050509050919050565b610176610244565b60a060405190810160405280876000191681526020018660001916815260200185815260200184600019168152602001836000191681525090506000808881526020019081526020016000208190806001815401808255809150509060018203906000526020600020906005020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020155606082015181600301906000191690556080820151816004019060001916905550505050505050505050565b60a06040519081016040528060008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061028c8235610496565b905092915050565b60006102a082356104a0565b905092915050565b6000602082840312156102ba57600080fd5b60006102c884828501610294565b91505092915050565b60008060008060008060c087890312156102ea57600080fd5b60006102f889828a01610294565b965050602061030989828a01610280565b955050604061031a89828a01610280565b945050606061032b89828a01610294565b935050608061033c89828a01610280565b92505060a061034d89828a01610280565b9150509295509295509295565b60006103658261046a565b8084526020840193506103778361045d565b60005b828110156103a95761038d8683516103c4565b61039682610475565b915060a08601955060018101905061037a565b50849250505092915050565b6103be81610482565b82525050565b60a0820160008201516103da60008501826103b5565b5060208201516103ed60208501826103b5565b506040820151610400604085018261042c565b50606082015161041360608501826103b5565b50608082015161042660808501826103b5565b50505050565b6104358161048c565b82525050565b60006020820190508181036000830152610455818461035a565b905092915050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b6000819050919050565b60008190509190505600a265627a7a72305820fc2b7ca92aac1195b7142130fda29e76be00b2a99d6fe1c8445766d6ff9d21c46c6578706572696d656e74616cf50037",
+  "sourceMap": "63:1033:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;63:1033:4;;;;;;;",
+  "deployedSourceMap": "63:1033:4:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;521:150;;8:9:-1;5:2;;;30:1;27;20:12;5:2;521:150:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;731:362;;;;;;;;;;;;;;;;;;;521:150;592:18;631:20;:31;652:9;631:31;;;;;;;;;;;623:40;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;521:150;;;:::o;731:362::-;893:44;;:::i;:::-;940:77;;;;;;;;;958:9;940:77;;;;;;;969:11;940:77;;;;;;;982:13;940:77;;;;997:8;940:77;;;;;;;1007:9;940:77;;;;;;893:124;;1028:20;:30;1049:8;1028:30;;;;;;;;;;;1064:20;1028:57;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;1028:57:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;731:362;;;;;;;:::o;63:1033::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;5:118:-1:-;;72:46;110:6;97:20;72:46;;;63:55;;57:66;;;;;130:118;;197:46;235:6;222:20;197:46;;;188:55;;182:66;;;;;255:241;;359:2;347:9;338:7;334:23;330:32;327:2;;;375:1;372;365:12;327:2;410:1;427:53;472:7;463:6;452:9;448:22;427:53;;;417:63;;389:97;321:175;;;;;503:869;;;;;;;692:3;680:9;671:7;667:23;663:33;660:2;;;709:1;706;699:12;660:2;744:1;761:53;806:7;797:6;786:9;782:22;761:53;;;751:63;;723:97;851:2;869:53;914:7;905:6;894:9;890:22;869:53;;;859:63;;830:98;959:2;977:53;1022:7;1013:6;1002:9;998:22;977:53;;;967:63;;938:98;1067:2;1085:53;1130:7;1121:6;1110:9;1106:22;1085:53;;;1075:63;;1046:98;1175:3;1194:53;1239:7;1230:6;1219:9;1215:22;1194:53;;;1184:63;;1154:99;1284:3;1303:53;1348:7;1339:6;1328:9;1324:22;1303:53;;;1293:63;;1263:99;654:718;;;;;;;;;1476:797;;1669:83;1746:5;1669:83;;;1770:6;1765:3;1758:19;1794:4;1789:3;1785:14;1778:21;;1839:85;1918:5;1839:85;;;1945:1;1930:321;1955:6;1952:1;1949:13;1930:321;;;1995:115;2106:3;2097:6;2091:13;1995:115;;;2127:89;2209:6;2127:89;;;2117:99;;2239:4;2234:3;2230:14;2223:21;;1977:1;1974;1970:9;1965:14;;1930:321;;;1934:14;2264:3;2257:10;;1648:625;;;;;;;2281:110;2354:31;2379:5;2354:31;;;2349:3;2342:44;2336:55;;;2489:1033;2634:4;2629:3;2625:14;2724:3;2717:5;2713:15;2707:22;2741:61;2797:3;2792;2788:13;2775:11;2741:61;;;2654:160;2896:4;2889:5;2885:16;2879:23;2914:62;2970:4;2965:3;2961:14;2948:11;2914:62;;;2824:164;3072:4;3065:5;3061:16;3055:23;3090:62;3146:4;3141:3;3137:14;3124:11;3090:62;;;2998:166;3243:4;3236:5;3232:16;3226:23;3261:62;3317:4;3312:3;3308:14;3295:11;3261:62;;;3174:161;3415:4;3408:5;3404:16;3398:23;3433:62;3489:4;3484:3;3480:14;3467:11;3433:62;;;3345:162;2607:915;;;;3529:110;3602:31;3627:5;3602:31;;;3597:3;3590:44;3584:55;;;3646:457;;3862:2;3851:9;3847:18;3839:26;;3912:9;3906:4;3902:20;3898:1;3887:9;3883:17;3876:47;3937:156;4088:4;4079:6;3937:156;;;3929:164;;3833:270;;;;;4112:150;;4250:4;4242:6;4238:17;4227:28;;4219:43;;;;4271:136;;4396:5;4390:12;4380:22;;4374:33;;;;4415:151;;4555:4;4547:6;4543:17;4532:28;;4525:41;;;;4574:79;;4643:5;4632:16;;4626:27;;;;4660:79;;4729:5;4718:16;;4712:27;;;;4746:79;;4815:5;4804:16;;4798:27;;;;4832:79;;4901:5;4890:16;;4884:27;;;",
+  "source": "pragma solidity ^0.4.25;\r\npragma experimental ABIEncoderV2;\r\n\r\ncontract StudyEndTransfer {\r\n    // 하나의 Study Group 종료 내역 저장 구조체\r\n    struct studyEndTransfer {\r\n        bytes32 personId; \r\n        bytes32 personName; \r\n        uint receiveEther; \r\n        bytes32 endDate; \r\n        bytes32 idx_hash;\r\n    }\r\n    \r\n    // (Study Group 별) 하나의 Study Group 최종 종료 거래 내역 \r\n    mapping(uint => studyEndTransfer[]) studyEndTransferList;\r\n\r\n    // Study Group의 정보 반환\r\n    function getStudyEndTransferList(uint _study_id) view external returns(studyEndTransfer[]) {\r\n        return (studyEndTransferList[_study_id]);\r\n    }\r\n    \r\n    // Study Group 최종 종료 거래 생성\r\n    function endTheStudy(uint _studyId, bytes32 _personId, bytes32 _personName, uint _receiveEther,  bytes32 _endDate, bytes32 _idx_hash) external payable {\r\n        studyEndTransfer memory studyEndTransferItem = studyEndTransfer (_personId, _personName, _receiveEther, _endDate, _idx_hash);\r\n        studyEndTransferList[_studyId].push(studyEndTransferItem);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\skskj\\project\\gitLab\\p11\\p1105_test\\19_p577_a_study_management_platform_using_blockchain\\contracts\\StudyEndTransfer.sol",
+  "ast": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/StudyEndTransfer.sol",
+    "exportedSymbols": {
+      "StudyEndTransfer": [
+        349
+      ]
+    },
+    "id": 350,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 284,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:4"
+      },
+      {
+        "id": 285,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:4"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "StudyEndTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "StudyEndTransfer.studyEndTransfer",
+            "id": 296,
+            "members": [
+              {
+                "constant": false,
+                "id": 287,
+                "name": "personId",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "192:16:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 286,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "192:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 289,
+                "name": "personName",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "220:18:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 288,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "220:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 291,
+                "name": "receiveEther",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "250:17:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 290,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "250:4:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 293,
+                "name": "endDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "279:15:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 292,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "279:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 295,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "306:16:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 294,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "306:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyEndTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "157:173:4",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 301,
+            "name": "studyEndTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 349,
+            "src": "419:56:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer[])"
+            },
+            "typeName": {
+              "id": 300,
+              "keyType": {
+                "id": 297,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "427:4:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "419:35:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 298,
+                  "name": "studyEndTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 296,
+                  "src": "435:16:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                    "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                  }
+                },
+                "id": 299,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "435:18:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_ptr",
+                  "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 314,
+              "nodeType": "Block",
+              "src": "612:59:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 309,
+                          "name": "studyEndTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 301,
+                          "src": "631:20:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 311,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 310,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 303,
+                          "src": "652:9:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "631:31:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                        }
+                      }
+                    ],
+                    "id": 312,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "630:33:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 308,
+                  "id": 313,
+                  "nodeType": "Return",
+                  "src": "623:40:4"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 315,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getStudyEndTransferList",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 304,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 303,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 315,
+                  "src": "554:14:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 302,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "553:16:4"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 308,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 307,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 315,
+                  "src": "592:18:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_memory_$dyn_memory_ptr",
+                    "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 305,
+                      "name": "studyEndTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 296,
+                      "src": "592:16:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                        "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                      }
+                    },
+                    "id": 306,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "592:18:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_ptr",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "591:20:4"
+            },
+            "scope": 349,
+            "src": "521:150:4",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 347,
+              "nodeType": "Block",
+              "src": "882:211:4",
+              "statements": [
+                {
+                  "assignments": [
+                    331
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 331,
+                      "name": "studyEndTransferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 348,
+                      "src": "893:44:4",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                        "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 330,
+                        "name": "studyEndTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 296,
+                        "src": "893:16:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 339,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 333,
+                        "name": "_personId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 319,
+                        "src": "958:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 334,
+                        "name": "_personName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 321,
+                        "src": "969:11:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 335,
+                        "name": "_receiveEther",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 323,
+                        "src": "982:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 336,
+                        "name": "_endDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 325,
+                        "src": "997:8:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 337,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 327,
+                        "src": "1007:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 332,
+                      "name": "studyEndTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 296,
+                      "src": "940:16:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_studyEndTransfer_$296_storage_ptr_$",
+                        "typeString": "type(struct StudyEndTransfer.studyEndTransfer storage pointer)"
+                      }
+                    },
+                    "id": 338,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "940:77:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "893:124:4"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 344,
+                        "name": "studyEndTransferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 331,
+                        "src": "1064:20:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 340,
+                          "name": "studyEndTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 301,
+                          "src": "1028:20:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 342,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 341,
+                          "name": "_studyId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 317,
+                          "src": "1049:8:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1028:30:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 343,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1028:35:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_studyEndTransfer_$296_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct StudyEndTransfer.studyEndTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 345,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1028:57:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 346,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1028:57:4"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 348,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "endTheStudy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 328,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 317,
+                  "name": "_studyId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "752:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 316,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 319,
+                  "name": "_personId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "767:17:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 318,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "767:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 321,
+                  "name": "_personName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "786:19:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 320,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "786:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 323,
+                  "name": "_receiveEther",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "807:18:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 322,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "807:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 325,
+                  "name": "_endDate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "828:16:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 324,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "828:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 327,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "846:17:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 326,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:113:4"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 329,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "882:0:4"
+            },
+            "scope": 349,
+            "src": "731:362:4",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 350,
+        "src": "63:1033:4"
+      }
+    ],
+    "src": "0:1098:4"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/StudyEndTransfer.sol",
+    "exportedSymbols": {
+      "StudyEndTransfer": [
+        349
+      ]
+    },
+    "id": 350,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 284,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:4"
+      },
+      {
+        "id": 285,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:4"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "StudyEndTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "StudyEndTransfer.studyEndTransfer",
+            "id": 296,
+            "members": [
+              {
+                "constant": false,
+                "id": 287,
+                "name": "personId",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "192:16:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 286,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "192:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 289,
+                "name": "personName",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "220:18:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 288,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "220:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 291,
+                "name": "receiveEther",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "250:17:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 290,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "250:4:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 293,
+                "name": "endDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "279:15:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 292,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "279:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 295,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 296,
+                "src": "306:16:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 294,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "306:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyEndTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "157:173:4",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 301,
+            "name": "studyEndTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 349,
+            "src": "419:56:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer[])"
+            },
+            "typeName": {
+              "id": 300,
+              "keyType": {
+                "id": 297,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "427:4:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "419:35:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 298,
+                  "name": "studyEndTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 296,
+                  "src": "435:16:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                    "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                  }
+                },
+                "id": 299,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "435:18:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_ptr",
+                  "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 314,
+              "nodeType": "Block",
+              "src": "612:59:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 309,
+                          "name": "studyEndTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 301,
+                          "src": "631:20:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 311,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 310,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 303,
+                          "src": "652:9:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "631:31:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                        }
+                      }
+                    ],
+                    "id": 312,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "630:33:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 308,
+                  "id": 313,
+                  "nodeType": "Return",
+                  "src": "623:40:4"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 315,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getStudyEndTransferList",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 304,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 303,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 315,
+                  "src": "554:14:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 302,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "553:16:4"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 308,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 307,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 315,
+                  "src": "592:18:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_memory_$dyn_memory_ptr",
+                    "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 305,
+                      "name": "studyEndTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 296,
+                      "src": "592:16:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                        "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                      }
+                    },
+                    "id": 306,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "592:18:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_ptr",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "591:20:4"
+            },
+            "scope": 349,
+            "src": "521:150:4",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 347,
+              "nodeType": "Block",
+              "src": "882:211:4",
+              "statements": [
+                {
+                  "assignments": [
+                    331
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 331,
+                      "name": "studyEndTransferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 348,
+                      "src": "893:44:4",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                        "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 330,
+                        "name": "studyEndTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 296,
+                        "src": "893:16:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_storage_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 339,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 333,
+                        "name": "_personId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 319,
+                        "src": "958:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 334,
+                        "name": "_personName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 321,
+                        "src": "969:11:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 335,
+                        "name": "_receiveEther",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 323,
+                        "src": "982:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 336,
+                        "name": "_endDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 325,
+                        "src": "997:8:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 337,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 327,
+                        "src": "1007:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 332,
+                      "name": "studyEndTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 296,
+                      "src": "940:16:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_studyEndTransfer_$296_storage_ptr_$",
+                        "typeString": "type(struct StudyEndTransfer.studyEndTransfer storage pointer)"
+                      }
+                    },
+                    "id": 338,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "940:77:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory",
+                      "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "893:124:4"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 344,
+                        "name": "studyEndTransferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 331,
+                        "src": "1064:20:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_studyEndTransfer_$296_memory_ptr",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 340,
+                          "name": "studyEndTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 301,
+                          "src": "1028:20:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 342,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 341,
+                          "name": "_studyId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 317,
+                          "src": "1049:8:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1028:30:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyEndTransfer_$296_storage_$dyn_storage",
+                          "typeString": "struct StudyEndTransfer.studyEndTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 343,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1028:35:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_studyEndTransfer_$296_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct StudyEndTransfer.studyEndTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 345,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1028:57:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 346,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1028:57:4"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 348,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "endTheStudy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 328,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 317,
+                  "name": "_studyId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "752:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 316,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 319,
+                  "name": "_personId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "767:17:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 318,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "767:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 321,
+                  "name": "_personName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "786:19:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 320,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "786:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 323,
+                  "name": "_receiveEther",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "807:18:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 322,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "807:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 325,
+                  "name": "_endDate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "828:16:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 324,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "828:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 327,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "846:17:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 326,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:113:4"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 329,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "882:0:4"
+            },
+            "scope": 349,
+            "src": "731:362:4",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 350,
+        "src": "63:1033:4"
+      }
+    ],
+    "src": "0:1098:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x6ce86b143139f376ae70c9aedf0bee92e9ad3054",
+      "transactionHash": "0x9e5d7bbd92659fe3bb22cf9b7bc23a7153f5877519f5f97f209cddd907b567ef"
+    },
+    "8282": {
+      "events": {},
+      "links": {},
+      "address": "0xb59bb01190b86971c5eb03e433bb6b0dd3ceda87",
+      "transactionHash": "0xf3e2b77de7f3665b5ecec5ea969a83399d93857fc7f762e63fe1da8727f7754a"
+    }
+  },
+  "schemaVersion": "2.0.2",
+  "updatedAt": "2019-11-18T18:47:34.269Z"
+}

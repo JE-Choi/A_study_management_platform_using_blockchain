@@ -1,0 +1,136 @@
+.Top_logo {
+  background-color: rgb(21, 52, 80);
+  height: 9rem;
+}
+
+.membership {
+  text-align: right;
+  float: right;
+  margin-top:0.7%;
+  font-size: 0.9rem;
+}
+
+img {
+  position: relative;
+  left:43%; 
+  top:0;
+}
+
+.main_logo {
+  margin-top: 1rem;
+  margin-left: 3% !important;
+  width: 7.5%;
+}
+
+.top_btn {
+  text-decoration: none;
+  color: white;
+  margin-right: 2rem;
+  font-weight: bold; 
+}
+
+.top_btn:hover {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.menubar_wrapper {
+  height: 2.5rem;
+  text-align: center;
+  background-color: white;
+}
+
+.nav {
+  list-style: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+} 
+
+.nav li {
+  height: 100%;
+  text-transform: uppercase;
+  float: left;
+  width: 48%;
+  text-align: center;
+  position: relative;
+  left:2%;
+}
+
+.nav li .nav-link { 
+  text-decoration: none;
+  color: rgb(21, 52, 80);
+  font-weight: bold;
+  font-size: 0.9rem; 
+}   
+
+.nav li:after{
+  clear: both;
+}
+
+.nav li .nav-link:hover{
+  text-decoration: underline;
+}
+
+.menu_line{
+  display: none;
+}
+
+@media(max-width: 1200px){
+  .Top_logo {
+    height: 7rem;
+  }
+
+  .main_logo {
+    width: 5rem;
+    margin-left: 39% !important;
+    margin-top: 3%;
+    left: 0;
+  }
+
+  .Membership {
+    margin-top:3%;
+  }
+
+  .top_btn {
+    text-decoration: none;
+    color: white;
+    margin-right: 1rem;
+    font-weight: bold; 
+    font-size: 0.8rem;
+  }
+
+  .nav {
+    list-style: none;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav li {
+    height: 100%;
+    text-transform: uppercase;
+    width: 100%;
+    letter-spacing: 0.2rem;
+    text-align: center;
+    font-size: 0.9rem; 
+  }
+
+  .nav-link {
+    font-size: 0.8rem !important;
+  }
+
+  .menu_line{
+    display: block;
+    background-color: rgb(68, 114, 148);
+    padding: 0;
+    margin: 0;
+  }
+
+  .menubar_wrapper {
+    height: 3.5rem;
+    text-align: center;
+  }
+}

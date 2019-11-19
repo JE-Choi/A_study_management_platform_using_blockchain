@@ -1,0 +1,422 @@
+/* index.js */
+.AccountInfo_MainContainer{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+    background-color: #EEEEEE;
+}
+/* AccountInfo.js */
+.accountInfo_SubContainer{
+    border: 2px solid rgb(134, 134, 134);
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 10px 5px  rgb(199, 199, 199) ;
+    width: 40%;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    display: inline-block;
+}
+
+.accountInfoContent_SubContainer{
+    width: 50%;
+    height: 30rem;
+    display: inline-block;
+    box-shadow: 5px 5px 10px 5px  rgb(199, 199, 199) ;
+}
+
+.accountInfo_msgbox{
+    margin-bottom: 1rem;
+}
+#accountInfo_account_pw{
+    margin-left: 23%;
+    float: left;
+    width: 40% !important;
+    border:1px solid rgb(163, 158, 158) ;
+}
+
+#btn_input_account_pw {
+    line-height: 1rem;
+    float: left;
+    border-color: rgb(68, 114, 148);
+    background-color: rgb(68, 114, 148);
+    color: white;
+    width: 13%;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    height: 2rem;
+}
+#btn_input_account_pw:hover {
+    background-color: rgba(211, 184, 165, 0);
+    color: rgb(68, 114, 148);
+}
+
+/* AccountInfoContent.js */
+.accountInfoContent_SubContainer_left{
+    float: left;
+    height: 83%;
+    width: 40%;
+    background-color: rgb(250, 250, 250);
+}
+.accountInfo_title{
+    background-color: rgb(250, 250, 250);
+    width: 100%;
+    height: 17%;
+    text-align: center;
+}
+.accountInfo_title_name{
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.accountInfo_title_accountNum{
+    font-size: 0.8rem;
+    display: inline-block;
+    color: rgb(126, 126, 126);
+}
+.accountInfo_ether{
+    background-color: rgb(147, 148, 157);
+    width: 100%;
+    height: 25%;
+    font-size: 1.5rem;
+    line-height: 7rem;
+}
+.accountInfo_ether>span{
+    color: white;
+    float: left;
+    margin-left: 1rem;
+    height: 100%;
+    line-height: 6rem;
+    font-size: 1.5rem;
+}
+.accountInfo_ether>div{
+    float: left;
+    width: 45%;
+    height: 100%;
+}
+.accountInfo_ether>div>img{
+    float: left;
+    width: 50%;
+    margin-top:1.1rem;
+}
+
+.accountInfoContent_SubContainer_right{
+    float: left;
+    height: 83%;
+    width: 60%;
+    background-color: rgb(255, 255, 255);
+}
+.account_charge_div_pc{
+    width: 100%;
+    height: 25%;
+    border-bottom: 1px solid #eeeeee;
+}
+.account_charge_span{
+    float: left;
+    height: 100%;
+    line-height: 9.5rem;
+    margin-left: 1rem;
+    color: rgb(126, 126, 126);
+}
+#btn_charge{
+    float: right;
+    border: 2px solid rgb(147, 148, 157);
+    background-color: rgb(147, 148, 157);
+    color: white;
+    width: 20%;
+    height: 2rem;
+    font-size: 1rem;
+    line-height: 0.5rem;
+    margin-right: 1rem;
+    margin-top:1.8rem;
+}
+#btn_charge:hover {
+    border-color: rgb(147, 148, 157);
+    background-color: rgba(147, 148, 157, 0.733);
+    color: white;
+}
+.account_history{
+    width: 100%;
+    height: 70%;
+    overflow: auto;
+}
+
+.account_history::-webkit-scrollbar {  display:none;  }
+
+.account_charge_div_mobile{
+    display: none;
+}
+
+.account_info_out_div {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid black;
+    font-size: 0.8rem;
+}
+
+.account_info_left_div {
+    float: left;
+    width: 60%;
+    text-align: left;
+}
+
+.account_info_detail_date {
+    height: 2em;
+    padding-left: 1rem;
+    padding-top: 0.3rem;
+    font-size: 0.7rem;
+}
+
+.account_info_detail_to {
+    height: 1.6rem;
+    padding-left: 1rem;
+    padding-top: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.account_info_detail_from {
+    height: 1.6rem;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+}
+
+.account_info_right_div {
+    float: left;
+    width: 40%;
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.account_info_detail_value {
+    height: 2.5rem;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    font-weight: bold;
+    padding-right: 0.7rem;
+    padding-top: 0.3rem;
+}
+
+.account_info_detail_content {
+    padding-right: 1rem;
+    line-height: 1.5rem;
+}
+
+.clear{
+    clear: both;
+}
+
+.txn_hash_div{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+    font-size: 0.7rem;
+    color: rgb(158, 158, 158);
+    display: inline-block;
+}
+
+.txn_hash_div_l{
+    float: left;
+}
+
+.txn_hash_div_r{
+    float: right;
+    overflow-x:scroll;
+    width: 50%;
+    margin-right: 3.5rem;
+}
+
+/* scroll not display */
+.txn_hash_div_r::-webkit-scrollbar {  display:none;  }
+
+.b_explorer_div{
+    padding-top: 70%;
+    padding-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.m_b_explorer_div{
+    display: none;
+}
+
+@media(max-width: 1200px) { 
+    /* /////////////////////////////// */
+    .AccountInfo_MainContainer{
+        padding-top:1rem;
+        padding-bottom:1rem;
+    }
+
+    /* AccountInfo.js */
+    .accountInfo_SubContainer{
+        width: 85%;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    .accountInfoContent_SubContainer{
+        width: 90%;
+        height: 37rem;
+    }
+
+    .accountInfo_msgbox{
+        font-size: 0.8rem;
+    }
+
+    #accountInfo_account_pw{
+        margin-left: 1.5rem;
+        width: 60% !important;
+    }
+
+    #btn_input_account_pw {
+        width: 20%;
+        font-size: 0.7rem;
+        margin-left: 0.5rem;
+        height: 2rem;
+    }
+
+    .accountInfo_title{
+        height: 11%;
+        background-color: white;
+    }
+
+    .accountInfo_title_name{
+        font-size: 0.9rem;
+        font-weight: bold;
+        padding-top: 0.8rem;
+    }
+
+    .accountInfo_title_accountNum{
+        font-size: 0.65em;
+        margin-left: 0;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .accountInfoContent_SubContainer_left{
+        clear: both;
+        height: auto;
+        width: 100%;
+        background-color: white;
+    }
+
+    .accountInfo_ether{
+        background-color: white;
+        border-top: 1px solid rgb(216, 217, 226);
+        border-bottom: 1px solid rgb(216, 217, 226);
+        height: 100%;
+        display: inline-block;
+    }
+    .accountInfo_ether>span{
+        color: black;
+        margin-left: 0;
+        font-size: 0.9rem !important;
+        font-weight: bold;
+        height: 1.5rem;
+        width: 100%;
+        margin-top: 0rem;
+        line-height: 2.2rem;
+    }
+    .accountInfo_ether>div{
+        width: 100%;
+        height: auto;
+    }
+    .accountInfo_ether>div>img{
+        width: 2.3rem;
+        margin-top: 0;
+    }
+
+    /* //////////// */
+    .accountInfoContent_SubContainer_right{
+        height: 66%;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .account_charge_div_pc{
+        display: none;
+    }
+    .account_charge_div_mobile{
+        display: inline-block;
+
+    }
+    .account_charge_div_mobile>#btn_charge{
+        width: 8rem;
+        height: 1.7rem;
+        font-size: 0.8rem;
+        line-height: 0.4rem;
+        margin-left: 32% !important;
+        margin-right: 32% !important;
+        margin-top: 0.2rem;
+    }
+    .account_charge_div_mobile>.account_charge_div{
+        font-size: 0.8rem;
+        float: left;
+        height: 1rem;
+        line-height: 0rem;
+        margin-left: 1rem;
+        color: rgb(126, 126, 126);
+    }
+
+    .account_history{
+        width: 100%;
+        height: 100%;
+    }
+
+    .account_info_detail_date {
+        padding-top: 0;
+    }
+
+    .account_info_detail_to {
+        padding-top: 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .account_info_detail_from {
+        font-size: 0.8rem;
+        height: 1.2rem;
+    }
+
+    .account_info_right_div {
+        padding-right: 1rem;
+    }
+
+    .account_info_detail_value {
+        height: 2.2rem;
+        font-size: 0.8rem;
+        line-height: 2rem;
+    }
+
+    .txn_hash_div{
+        margin: 0 auto;
+        font-size: 0.6rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .txn_hash_div_l {
+        margin-left: 1rem;
+    }
+
+    .txn_hash_div_r{
+        margin-right: 2rem;
+
+    }
+
+    .m_b_explorer_div{
+        margin: 0 !important;
+        padding-top: 0;
+        padding-left: 0;
+        font-size: 0.7rem;
+        display: inline-block;
+        line-height: 1.5rem;
+        clear: both;
+    }
+    .m_b_explorer_div>br{
+        padding: 0;
+    }
+    .b_explorer_div{
+        display: none;
+    }
+}

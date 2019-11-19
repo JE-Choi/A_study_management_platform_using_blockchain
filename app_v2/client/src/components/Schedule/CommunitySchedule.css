@@ -1,0 +1,501 @@
+/*사용자 정의*/
+.content_schedule{
+  padding: 2%;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-bottom: 0;
+  border: 2px solid rgb(68, 114, 148);
+}
+
+.calendarTop_name{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.calendarTop_type {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.name_br {
+  display: none;
+}
+
+.calendarTop_study_period, .calendarTop_study_cnt{
+  font-size: 0.9rem;
+}
+
+.content_calendar{
+  border-top: 0.5px solid rgb(68, 114, 148);
+}
+
+#add_appointment_btn, #study_end_btn {
+  border-width: 2px;
+  border-color: rgb(68, 114, 148);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgb(68, 114, 148);
+  width: 8rem;
+  height: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  float: right;
+}
+
+#add_appointment_btn:hover, #study_end_btn:hover {
+  background-color: #EEEEEE;
+  border-color: rgb(143, 188, 219);
+  color: rgb(68, 114, 148);
+}
+
+#add_appointment_btn:active:focus  #study_end_btn:active:focus{
+  border-color: rgb(143, 188, 219);
+}
+
+.del_schedule{
+  border-color: rgb(68, 114, 148) !important;
+  font-size: 0.8rem !important;
+  font-weight: bold;
+  height: 1.7rem;
+  margin-top: 0.2rem;
+  line-height: 0.8rem !important;
+  color: rgb(68, 114, 148) !important;
+  float: right;
+}
+
+.del_schedule:hover{
+  background-color: #EEEEEE !important;
+  border-color: rgb(143, 188, 219) !important;
+  color: rgb(68, 114, 148) !important;
+}
+
+.flex-middle{
+  background-color: rgb(143, 188, 219);
+  color: white;
+}
+
+.calendarTop {
+  margin-bottom: 1rem;
+}
+
+.map_start_station_label {
+  width: 50% !important;
+}
+
+.add_today_schedule {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.schedule_detail_lbl {
+  font-weight: bold !important;
+}
+
+.detail_time_lbl{
+  background-color: rgb(143, 188, 219, 0.712) !important;
+  border-color:rgb(143, 188, 219, 0.712) !important;
+  width: 35%;
+  height: 2rem;
+  line-height: 0.8rem;
+  border: 1px solid white !important;
+}
+
+.detail_place_lbl {
+  background-color: rgb(143, 188, 219, 0.712) !important;
+  border-color:rgb(143, 188, 219, 0.712) !important;
+  width: 65%;
+  height: 2rem;
+  line-height: 0.8rem;
+  border: 1px solid white !important;
+}
+
+.detail_time {
+  width: 35%;
+  height: 2.8rem;
+}
+
+.detail_place {
+  width: 65%;
+  height: 2.8rem;
+  line-height: 2rem;
+  padding-top: 0.3rem !important;
+  padding-right: 0.5rem !important;
+}
+
+/* FONT IMPORTS */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.icon {
+  font-family: 'Material Icons', serif;
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+/* VARIABLES */
+:root {
+  --main-color: #1a8fff;
+  --text-color: #777;
+  --text-color-light: #ccc;
+  --border-color: #eee;
+  --bg-color: #f9f9f9;
+  --neutral-color: #fff;
+}
+
+/* GENERAL */
+* {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text-color);
+    background: var(--bg-color);
+    position: relative;
+}
+
+/* ///////////제목부분 - 참고용//////////////// */
+/* header {
+  display: block;
+  width: 100%;
+  padding: 1.75em 0;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--neutral-color);
+}
+
+header #logo {
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-color);
+  line-height: 1;
+  padding-right: .25em;
+} */
+/* ////////////////////////////////// */
+
+header #logo .icon {
+  padding-right: .25em;
+}
+
+main {
+  display: block;
+  margin: 0 auto;
+  margin-top: 5em;
+  max-width: 50em;
+}
+
+/* GRID */
+.row {
+  margin: 0 !important; /*이 부분 풀면 캘린더 망가짐*/
+  padding: 0 ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row-middle {
+  align-items: center;
+}
+
+.col {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+}
+
+.col-start {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.col-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.col-end {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Calendar */
+.calendar {
+  display: block;
+  position: relative;
+  width: 100%;
+  background: var(--neutral-color);
+  border: 1px solid var(--border-color);
+}
+
+.calendar .header {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 115%;
+  padding: 1.2em 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calendar .header .icon {
+  cursor: pointer;
+  transition: .15s ease-out;
+}
+
+.calendar .header .icon:hover {
+  transform: scale(1.75);
+  transition: .25s ease-out;
+  color: var(--main-color);
+}
+
+.calendar .header .icon:first-of-type {
+  margin-left: 1em;
+}
+
+.calendar .header .icon:last-of-type {
+  margin-right: 1em;
+}
+
+.calendar .days {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--text-color-light);
+  font-size: 70%;
+  padding: .75em 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calendar .body .cell {
+  position: relative;
+  height: 4em;
+  border-right: 1px solid var(--border-color);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--neutral-color);
+  transition: 0.25s ease-out;
+}
+
+.calendar .body .cell:hover {
+  background: var(--bg-color);
+  transition: 0.5s ease-out;
+}
+
+.calendar .body .selected {
+  /* linear 애니메이션 */
+  /* border-left: 10px solid transparent;
+  border-image: linear-gradient(45deg, #ddc9ae 0%,#ffe8ca 40%);
+  border-image-slice: 1; */
+  /* 선택되었을때 색 */
+  background-color: rgb(255, 226, 205);
+}
+
+.calendar .body .row {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calendar .body .row:last-child {
+  border-bottom: none;
+}
+
+.calendar .body .cell:last-child {
+  border-right: none;
+}
+
+.calendar .body .cell .number {
+  position: absolute;
+  font-size: 82.5%;
+  line-height: 1;
+  top: .75em;
+  right: .75em;
+  font-weight: 700;
+}
+
+.calendar .body .saturday{
+  color: blue;
+}
+
+.calendar .body .sunday{
+  color: red;
+}
+
+.calendar .body .disabled {
+  color: var(--text-color-light);
+  pointer-events: none;
+}
+
+.calendar .body .cell .bg {
+  font-weight: 700;
+  line-height: 1;
+  color: var(--main-color);
+  opacity: 0;
+  font-size: 8em;
+  position: absolute;
+  top: -.2em;
+  right: -.05em;
+  transition: .25s ease-out;
+  letter-spacing: -.07em;
+}
+
+.calendar .body .cell:hover .bg, .calendar .body .selected .bg  {
+  opacity: 0.05;
+  transition: .5s ease-in;
+}
+
+.calendar .body .col {
+  flex-grow: 0;
+  flex-basis: calc(100%/7);
+  width: calc(100%/7);
+}
+
+/*추가정의 - 반응형*/
+@media(max-width: 1200px) {
+  .content_Attendance_check{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .calendarTop_div {
+    margin-bottom: 1rem;
+  }
+
+  .calendarTop_name{
+    font-size: 1.2rem;
+  }
+
+  .calendarTop_type {
+    font-size: 0.8rem;
+  }
+
+  .name_br {
+    display: block;
+  }
+
+  .calendarTop_study_period, .calendarTop_study_cnt{
+    font-size: 0.9rem;
+  }
+
+  .calendar_br{
+    display: none;
+  }  
+
+  #add_appointment_btn, #study_end_btn {
+    font-size: 0.8rem;
+    width: 12rem;
+    height: 1.7rem;
+    margin-top: 0.8rem;
+    padding-top: 0.2rem;
+    float: none;
+  }
+
+  .del_schedule {
+    font-size: 0.7rem !important;
+    width: 2.7rem;
+    height: 1.5rem;
+    margin-top: 0.3rem;
+    line-height: 0.5rem !important;
+  }
+
+  .calendarTop_div{
+    padding-top: 3%;
+    text-align: center;
+  }
+
+  .calendar .header {
+    font-size: 80%;
+  }
+
+  .calendar .body .cell .number {
+    font-size: 50%;
+  }
+
+  .calendar .days {
+    font-size: 2%;
+  }
+
+  .col {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .calendar .body .cell {
+    height: 2.5em;
+  }
+
+  .calendar .body .selected {
+    /* 선택되었을때 색 */
+    background-color: rgb(255, 226, 205) !important;
+  }
+
+  .info_attendance_check{
+    font-size: 0.8rem;
+    margin-right: 2%;
+  }
+
+  #btn_attendance_check{
+    font-size: 0.8rem;
+    width: 5rem; 
+    height: 2rem;
+  }
+  
+  .div_attendance_check{
+    text-align: center;
+  }
+
+  .content_schedule{
+    padding: 3%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+  .add_today_schedule {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .detail_time_lbl, .detail_place_lbl{
+    height: 2rem;
+    padding-top: 0.4rem !important;
+  }
+  
+  .detail_time, .detail_place {
+    height: 2.3rem;
+    line-height: 2rem;
+    padding-top: 0 !important;
+  } 
+
+  .detail_place {
+    padding-right: 0.5rem !important;
+  }
+
+  .react-calendar{
+    min-width: 10rem !important;
+  }
+
+  .react-calendar__navigation{
+    height: 0.7rem;
+  }
+
+  .react-calendar__navigation button {
+    min-width: 1.5em !important;
+  }
+
+  .react-calendar button{
+    font-size: 0.8rem;
+    height: 1.5rem;
+    line-height: 0.4rem;
+  }
+}

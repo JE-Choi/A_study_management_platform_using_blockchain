@@ -1,0 +1,118 @@
+.communityMenuBar_nav li{
+    display: inline;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.communityMenuBar_nav{
+    clear : both;
+    height: 3rem;
+    background-color: rgb(68, 114, 148);
+    text-align:center;
+    padding-top: 1.2rem;
+    border: 1px solid #CCC;
+    line-height: 0.5rem;
+}
+
+.communityMenuBar_nav li .community_nav_link{
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.community_nav_link:hover{
+    border-bottom: 1px solid #FFFFFF;
+    text-decoration: none;
+}
+
+.communityMenuBar_switch{
+    clear : both;
+    background-color:#FFFFF2;
+    text-align:center;
+    border:1px solid #CCC;
+}
+
+.main_communityMenu{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #EEEEEE;
+}
+
+.communityMenu_container{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
+
+.communityMenu_out_div_app {
+    display: none;
+}
+
+#study_withdrawal {
+    border: 1.5px solid #EEEEEE;
+    color: #EEEEEE;
+}
+
+#study_withdrawal:hover {
+    background-color: #EEEEEE;
+    color: rgb(185, 185, 197);
+}
+
+/* 반응형 */
+@media(max-width: 1200px) { 
+    .communityMenu_out_div_app {
+        display: block;
+    }
+
+    .communityMenu_out_div_web {
+        display: none;
+    }
+
+    .main_communityMenu{
+        padding-top: 0.2rem;
+        padding-bottom: 1rem;
+    }
+
+    .communityMenuBar_nav{
+        padding-top: 1.2rem;
+        display: inline;
+    }
+
+    .community_nav_link{
+        font-size: 0.9rem !important;
+    }
+
+    .communityMenu_container{
+        padding-right: 0rem;
+        padding-left: 0rem;
+        margin-top: 0;
+        width: 90%;
+    }
+
+    .menu_make_form_group {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #selected_menu {
+        width: 100% !important;
+        background-color: rgb(68, 114, 148);
+        color: #EEEEEE;
+        font-weight: bold;
+        font-size: 0.8rem !important;
+        /* padding-left: 40%; */
+    }
+    #selected_menu>option{
+        text-align: center !important;
+        background-color: white;
+        color: rgb(68, 114, 148);
+    }
+    .clear{
+        clear: both;
+        height: 0rem;
+    }
+}
+

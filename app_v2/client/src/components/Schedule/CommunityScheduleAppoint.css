@@ -1,0 +1,407 @@
+.set_day_place {
+    border-top: 0.5px solid rgb(68, 114, 148);
+}
+
+.input_meeting_day_div, .input_place_div{
+    display: inline-block;
+    margin-top: 1rem;
+    width: 25rem;
+}
+
+.input_meeting_day_label, .input_place_label{
+    width: 5rem;
+    font-size: 0.9rem;
+    float: left;
+}
+
+.next_meeting_date{
+    display: inline-block;
+}
+
+.next_meeting_date > .react-datetime-picker{
+    margin-left: 1.6rem;
+}
+
+#input_location{
+    float: right;
+    width: 17.5rem !important;
+    height: 2rem;
+    font-size: 0.9rem;
+}
+
+.dot{
+    float: left;
+}
+
+.input_place_method {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+#btn_sel_direct, #btn_sel_mid_station {
+    width: 10rem;
+    height: 2rem;
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    color:white;
+    font-weight: bold;
+    line-height: 1rem;
+    font-size: 0.9rem;
+}
+
+#btn_sel_direct {
+    margin-right: 3.5rem;
+}
+
+/* 직접 선택 */
+.sel_direct_div {
+    margin-top: 2rem;
+}
+
+.sel_direct_input {
+    display: inline-block;
+    width: 25rem;
+}
+
+#sel_direct_input_search {
+    float: left;
+    width: 17.5rem !important;
+    height: 2rem;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+#btn_sel_direct_input {
+    background-color: rgb(68, 114, 148) !important;
+    border-color: rgb(68, 114, 148) !important;
+    color:white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+.sel_direct_desc {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+}
+
+.sel_mid_station_map {
+    margin-top: 2rem;
+}
+
+/* 중간역 찾기 */
+.search_mid_station_div {
+    margin-top: 1rem;
+}
+
+.each_member_div {
+    clear: both;
+}
+
+.each_input_station_label {
+    margin-right: 2rem;
+    float: left;
+    margin-left: 3rem;
+    margin-top: 0.4rem;
+    width: 10rem;
+    font-size: 0.9rem;
+}
+
+.each_input_station {
+    width: 10rem !important;
+    height: 2rem !important;
+    font-size: 0.9rem !important;
+    float: right;
+    margin-right: 3rem;
+    margin-bottom: 0.3rem;
+}
+
+.each_input_station_div{
+    display: inline-block;
+    width: 30rem;
+}
+
+#btn_search_mid_station, #btn_add_schedule {
+    width: 24rem;
+    height: 2rem;
+    background-color: rgb(68, 114, 148);
+    border-color: rgb(68, 114, 148);
+    color:white;
+    font-weight: bold;
+    line-height: 1rem;
+    font-size: 0.9rem;
+}
+
+#btn_search_study_place {
+    width: 15rem;
+    background-color: rgb(143, 188, 219);
+    border-color: rgb(143, 188, 219);
+    color:white;
+    font-weight: bold;
+}
+
+.search_surrounding {
+    margin-top: 1.5rem;
+    margin-right: 5rem !important;
+}
+
+#btn_search_cafe, #btn_search_study_room {
+    width: 4rem;
+}
+
+#label_search_cafe, #label_search_study_room {
+    font-weight: bold;
+}
+
+.add_schedule_div {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#sel_mid_direct_div {
+    display: block;
+}
+
+#sel_mid_direct_input_search{
+    width: 12rem !important;
+    height: 2rem;
+    font-size: 0.9rem;
+    margin-bottom:1rem;
+    margin-left: 5%;
+    float: left;
+}
+
+#btn_mid_sel_direct_input, #btn_show_center {
+    background-color: rgb(143, 188, 219) !important;
+    border-color: rgb(143, 188, 219) !important;
+    color:white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 4.5rem;
+    height: 2rem;
+    line-height: 1rem;
+    margin-left: 1rem;
+    float: left;
+}
+
+.mid_final_desc {
+    font-size: 0.9rem;
+    clear: both;
+    margin-bottom: 0.3rem;
+}
+
+.mid_final_desc_br {
+    display: none;
+}
+
+#map_searchResult{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#map_div{
+    clear: both;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* map.js */
+#map_sub_searchResult {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.map_sub_desc_br {
+    display: none;
+}
+
+@media(max-width: 1200px) {
+    .calendarTop {
+        margin-bottom: 1rem;
+    }
+
+    .next_meeting_date{
+        width: 4rem !important;
+        margin-right: 9.5rem !important;
+    }
+
+    .next_meeting_date > .react-datetime-picker{
+        margin-left: 0rem;
+        width: 35%;
+    }
+
+    .input_meeting_day_div, .input_place_div{
+        margin-bottom: 0.5rem;
+        width: 19rem;
+    }
+
+    .input_place_div {
+        display: inline;
+    }
+
+    .input_meeting_day_label, .input_place_label{
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    #input_location {
+        width: 9rem !important;
+        font-size: 0.7rem;
+        float: left;
+        margin-left: 2rem;
+    }
+
+    .input_place_method {
+        margin-top: 0.7rem;
+    }
+
+    #btn_sel_direct, #btn_sel_mid_station {
+        width: 7rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+    
+    #btn_sel_direct {
+        margin-right: 2rem;
+    }
+
+    /* 직접 선택 */
+    .sel_direct_div {
+        margin-top: 1rem;
+    }
+    
+    #sel_direct_input_search {
+        width: 10rem !important;
+        margin-left: 1rem;
+        font-size: 0.8rem;
+    }
+
+    #btn_sel_direct_input {
+        width: 5rem;
+        height: 1.8rem;
+        font-size: 0.8rem;
+        float: left;
+        margin-left: 1rem;
+    }
+
+    .sel_direct_desc {
+        margin-top: 0;
+        font-size: 0.8rem;
+    }
+
+    .sel_mid_station_map {
+        margin-top: 0;
+    }
+
+    /* 중간역 찾기 */
+    .search_mid_station_div {
+        margin-top: 0;
+    }
+
+    .each_member_div {
+        margin-left: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .each_input_station_label {
+        font-size: 0.9rem;
+        margin-left: 0rem;
+        width: 5rem;
+        overflow: hidden;
+        margin-right: 0;
+    }
+
+    .each_input_station {
+        font-size: 0.8rem !important;
+        width: 6.5rem !important;
+        margin-right: 0.5rem;
+        margin-bottom: 0.2rem;
+    }
+
+    #btn_search_study_place {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .search_surrounding {
+        display: inline-block;
+    }
+
+    #btn_search_cafe, #btn_search_study_room {
+        width: 2rem;
+        margin-left: 2rem;
+    }
+
+    #label_search_cafe, #label_search_study_room {
+        font-size: 0.9rem;
+        width: 3.5rem;
+    }
+
+    .add_schedule_div {
+        margin-top: 0;
+        margin-bottom: 0.2rem;
+        font-size: 0.7rem !important;
+    }
+
+    #btn_search_mid_station, #btn_search_study_place, #btn_add_schedule {
+        width: 16rem;
+        font-size: 0.8rem;
+        height: 2rem;
+    }
+
+    #btn_add_schedule {
+        margin-top: 1rem;
+    }
+
+    #sel_mid_direct_input_search{
+        width: 7rem !important;
+        font-size: 0.8rem;
+        margin-left: 0;
+    }
+
+    #btn_mid_sel_direct_input {
+        width: 3.5rem;
+        font-size: 0.8rem;
+        margin-left: 0.2rem;
+        height: 1.8rem;
+    }
+
+    #btn_show_center{
+        width: 3.5rem;
+        font-size: 0.8rem;
+        margin-left: 0.2rem;
+        padding-left: 0.3rem;
+        height: 1.8rem;
+    }
+
+    .mid_final_desc_br {
+        display: inline-block;
+    }    
+
+    .each_input_station_div{
+        width: 15rem;
+        margin-top: 0.9rem;
+    }
+
+    #map_div{
+        width: 100% !important;
+    }
+
+    /* map.js */
+    #map_sub_searchResult {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .map_sub_desc_br {
+        display: block;
+    }
+
+    .mid_final_desc {
+        font-size: 0.8rem;
+    }
+}

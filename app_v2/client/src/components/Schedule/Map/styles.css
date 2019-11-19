@@ -1,0 +1,39 @@
+/* 거리표시 팝업*/
+.mPop {
+  border: 1px;
+  background-color: #fff;
+  font-size: 12px;
+  border-color: #ff0000;
+  border-style: solid;
+  text-align: center;
+}
+/*공통사용 클래스*/
+.mPopStyle {
+  border: 1px;
+  background-color: #fff;
+  font-size: 12px;
+  border-color: #ff0000;
+  border-style: solid;
+  text-align: left;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.mid_station_list_div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mid_station_each_list {
+  width: 85%;
+  height: 2.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
+  line-height: 0.8rem;
+}

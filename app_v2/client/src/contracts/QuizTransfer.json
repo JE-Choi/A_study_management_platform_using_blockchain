@@ -1,0 +1,2574 @@
+{
+  "contractName": "QuizTransfer",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_senderId",
+          "type": "bytes32"
+        },
+        {
+          "name": "_senderName",
+          "type": "bytes32"
+        },
+        {
+          "name": "_receiverid",
+          "type": "bytes32"
+        },
+        {
+          "name": "_receiverName",
+          "type": "bytes32"
+        },
+        {
+          "name": "_coin",
+          "type": "uint256"
+        },
+        {
+          "name": "_date",
+          "type": "bytes32"
+        },
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_receiverAddress",
+          "type": "address"
+        },
+        {
+          "name": "_idx_hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "setStudyQuizTransfer",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_study_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getStudyQuizTransfer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "senderId",
+              "type": "bytes32"
+            },
+            {
+              "name": "sendName",
+              "type": "bytes32"
+            },
+            {
+              "name": "receiverid",
+              "type": "bytes32"
+            },
+            {
+              "name": "receiverName",
+              "type": "bytes32"
+            },
+            {
+              "name": "coin",
+              "type": "uint256"
+            },
+            {
+              "name": "date",
+              "type": "bytes32"
+            },
+            {
+              "name": "idx_hash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "",
+          "type": "tuple[]"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5061064c806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063151a9929146100515780634c491bfa1461008f575b600080fd5b34801561005d57600080fd5b5061007860048036036100739190810190610445565b6100ab565b604051610086929190610575565b60405180910390f35b6100a960048036036100a4919081019061037f565b61019f565b005b606060006060600080858152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561018c578382906000526020600020906007020160e06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015460001916600019168152602001600382015460001916600019168152602001600482015481526020016005820154600019166000191681526020016006820154600019166000191681525050815260200190600101906100e3565b5050505090508081519250925050915091565b6101a76102f3565b60e0604051908101604052808b6000191681526020018a600019168152602001896000191681526020018860001916815260200187815260200186600019168152602001836000191681525090506000808581526020019081526020016000208190806001815401808255809150509060018203906000526020600020906007020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a0820151816005019060001916905560c082015181600601906000191690555050508273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156102e6573d6000803e3d6000fd5b5050505050505050505050565b60e060405190810160405280600080191681526020016000801916815260200160008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061034f82356105de565b905092915050565b600061036382356105fe565b905092915050565b60006103778235610608565b905092915050565b60008060008060008060008060006101208a8c03121561039e57600080fd5b60006103ac8c828d01610357565b99505060206103bd8c828d01610357565b98505060406103ce8c828d01610357565b97505060606103df8c828d01610357565b96505060806103f08c828d0161036b565b95505060a06104018c828d01610357565b94505060c06104128c828d0161036b565b93505060e06104238c828d01610343565b9250506101006104358c828d01610357565b9150509295985092959850929598565b60006020828403121561045757600080fd5b60006104658482850161036b565b91505092915050565b6000610479826105b2565b80845260208401935061048b836105a5565b60005b828110156104bd576104a18683516104d8565b6104aa826105bd565b915060e08601955060018101905061048e565b50849250505092915050565b6104d2816105ca565b82525050565b60e0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610566565b5060a082015161054d60a08501826104c9565b5060c082015161056060c08501826104c9565b50505050565b61056f816105d4565b82525050565b6000604082019050818103600083015261058f818561046e565b905061059e6020830184610566565b9392505050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a72305820a736e56e41ebb5855ea4b3819849fb308e859b0724c1a4704bc454c3e7f69ecf6c6578706572696d656e74616cf50037",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063151a9929146100515780634c491bfa1461008f575b600080fd5b34801561005d57600080fd5b5061007860048036036100739190810190610445565b6100ab565b604051610086929190610575565b60405180910390f35b6100a960048036036100a4919081019061037f565b61019f565b005b606060006060600080858152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561018c578382906000526020600020906007020160e06040519081016040529081600082015460001916600019168152602001600182015460001916600019168152602001600282015460001916600019168152602001600382015460001916600019168152602001600482015481526020016005820154600019166000191681526020016006820154600019166000191681525050815260200190600101906100e3565b5050505090508081519250925050915091565b6101a76102f3565b60e0604051908101604052808b6000191681526020018a600019168152602001896000191681526020018860001916815260200187815260200186600019168152602001836000191681525090506000808581526020019081526020016000208190806001815401808255809150509060018203906000526020600020906007020160009091929091909150600082015181600001906000191690556020820151816001019060001916905560408201518160020190600019169055606082015181600301906000191690556080820151816004015560a0820151816005019060001916905560c082015181600601906000191690555050508273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501580156102e6573d6000803e3d6000fd5b5050505050505050505050565b60e060405190810160405280600080191681526020016000801916815260200160008019168152602001600080191681526020016000815260200160008019168152602001600080191681525090565b600061034f82356105de565b905092915050565b600061036382356105fe565b905092915050565b60006103778235610608565b905092915050565b60008060008060008060008060006101208a8c03121561039e57600080fd5b60006103ac8c828d01610357565b99505060206103bd8c828d01610357565b98505060406103ce8c828d01610357565b97505060606103df8c828d01610357565b96505060806103f08c828d0161036b565b95505060a06104018c828d01610357565b94505060c06104128c828d0161036b565b93505060e06104238c828d01610343565b9250506101006104358c828d01610357565b9150509295985092959850929598565b60006020828403121561045757600080fd5b60006104658482850161036b565b91505092915050565b6000610479826105b2565b80845260208401935061048b836105a5565b60005b828110156104bd576104a18683516104d8565b6104aa826105bd565b915060e08601955060018101905061048e565b50849250505092915050565b6104d2816105ca565b82525050565b60e0820160008201516104ee60008501826104c9565b50602082015161050160208501826104c9565b50604082015161051460408501826104c9565b50606082015161052760608501826104c9565b50608082015161053a6080850182610566565b5060a082015161054d60a08501826104c9565b5060c082015161056060c08501826104c9565b50505050565b61056f816105d4565b82525050565b6000604082019050818103600083015261058f818561046e565b905061059e6020830184610566565b9392505050565b6000602082019050919050565b600081519050919050565b6000602082019050919050565b6000819050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b60008190509190505600a265627a7a72305820a736e56e41ebb5855ea4b3819849fb308e859b0724c1a4704bc454c3e7f69ecf6c6578706572696d656e74616cf50037",
+  "sourceMap": "63:1345:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;63:1345:3;;;;;;;",
+  "deployedSourceMap": "63:1345:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1165:240;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1165:240:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;558:532;;;;;;;;;;;;;;;;;;;1165:240;1234:19;1254:4;1271:39;1313:21;:32;1335:9;1313:32;;;;;;;;;;;1271:74;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1364:12;1377;:19;1356:41;;;;1165:240;;;;:::o;558:532::-;787:37;;:::i;:::-;837:93;;;;;;;;;855:9;837:93;;;;;;;865:11;837:93;;;;;;;878:11;837:93;;;;;;;891:13;837:93;;;;;;;906:5;837:93;;;;913:5;837:93;;;;;;;920:9;837:93;;;;;;787:143;;944:21;:32;966:9;944:32;;;;;;;;;;;982:12;944:51;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;944:51:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1046:16;:25;;:36;1072:9;1046:36;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1046:36:3;558:532;;;;;;;;;;:::o;63:1345::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;5:118:-1:-;;72:46;110:6;97:20;72:46;;;63:55;;57:66;;;;;130:118;;197:46;235:6;222:20;197:46;;;188:55;;182:66;;;;;255:118;;322:46;360:6;347:20;322:46;;;313:55;;307:66;;;;;380:1247;;;;;;;;;;620:3;608:9;599:7;595:23;591:33;588:2;;;637:1;634;627:12;588:2;672:1;689:53;734:7;725:6;714:9;710:22;689:53;;;679:63;;651:97;779:2;797:53;842:7;833:6;822:9;818:22;797:53;;;787:63;;758:98;887:2;905:53;950:7;941:6;930:9;926:22;905:53;;;895:63;;866:98;995:2;1013:53;1058:7;1049:6;1038:9;1034:22;1013:53;;;1003:63;;974:98;1103:3;1122:53;1167:7;1158:6;1147:9;1143:22;1122:53;;;1112:63;;1082:99;1212:3;1231:53;1276:7;1267:6;1256:9;1252:22;1231:53;;;1221:63;;1191:99;1321:3;1340:53;1385:7;1376:6;1365:9;1361:22;1340:53;;;1330:63;;1300:99;1430:3;1449:53;1494:7;1485:6;1474:9;1470:22;1449:53;;;1439:63;;1409:99;1539:3;1558:53;1603:7;1594:6;1583:9;1579:22;1558:53;;;1548:63;;1518:99;582:1045;;;;;;;;;;;;1634:241;;1738:2;1726:9;1717:7;1713:23;1709:32;1706:2;;;1754:1;1751;1744:12;1706:2;1789:1;1806:53;1851:7;1842:6;1831:9;1827:22;1806:53;;;1796:63;;1768:97;1700:175;;;;;1973:804;;2168:84;2246:5;2168:84;;;2270:6;2265:3;2258:19;2294:4;2289:3;2285:14;2278:21;;2339:86;2419:5;2339:86;;;2446:1;2431:324;2456:6;2453:1;2450:13;2431:324;;;2496:117;2609:3;2600:6;2594:13;2496:117;;;2630:90;2713:6;2630:90;;;2620:100;;2743:4;2738:3;2734:14;2727:21;;2478:1;2475;2471:9;2466:14;;2431:324;;;2435:14;2768:3;2761:10;;2147:630;;;;;;;2785:110;2858:31;2883:5;2858:31;;;2853:3;2846:44;2840:55;;;2987:1372;3134:4;3129:3;3125:14;3224:3;3217:5;3213:15;3207:22;3241:61;3297:3;3292;3288:13;3275:11;3241:61;;;3154:160;3394:4;3387:5;3383:16;3377:23;3412:62;3468:4;3463:3;3459:14;3446:11;3412:62;;;3324:162;3568:4;3561:5;3557:16;3551:23;3586:62;3642:4;3637:3;3633:14;3620:11;3586:62;;;3496:164;3744:4;3737:5;3733:16;3727:23;3762:62;3818:4;3813:3;3809:14;3796:11;3762:62;;;3670:166;3912:4;3905:5;3901:16;3895:23;3930:62;3986:4;3981:3;3977:14;3964:11;3930:62;;;3846:158;4080:4;4073:5;4069:16;4063:23;4098:62;4154:4;4149:3;4145:14;4132:11;4098:62;;;4014:158;4252:4;4245:5;4241:16;4235:23;4270:62;4326:4;4321:3;4317:14;4304:11;4270:62;;;4182:162;3107:1252;;;;4366:110;4439:31;4464:5;4439:31;;;4434:3;4427:44;4421:55;;;4483:562;;4729:2;4718:9;4714:18;4706:26;;4779:9;4773:4;4769:20;4765:1;4754:9;4750:17;4743:47;4804:158;4957:4;4948:6;4804:158;;;4796:166;;4973:62;5031:2;5020:9;5016:18;5007:6;4973:62;;;4700:345;;;;;;5054:151;;5193:4;5185:6;5181:17;5170:28;;5162:43;;;;5214:137;;5340:5;5334:12;5324:22;;5318:33;;;;5359:152;;5500:4;5492:6;5488:17;5477:28;;5470:41;;;;5519:79;;5588:5;5577:16;;5571:27;;;;5605:79;;5674:5;5663:16;;5657:27;;;;5691:128;;5771:42;5764:5;5760:54;5749:65;;5743:76;;;;5826:79;;5895:5;5884:16;;5878:27;;;;5912:79;;5981:5;5970:16;;5964:27;;;",
+  "source": "pragma solidity ^0.4.25;\r\npragma experimental ABIEncoderV2;\r\n\r\ncontract QuizTransfer {\r\n    // Study Group 퀴즈 내역 구조체\r\n    struct studyQuizTransfer {\r\n        bytes32 senderId; \r\n        bytes32 sendName; \r\n        bytes32 receiverid;\r\n        bytes32 receiverName; \r\n        uint coin; \r\n        bytes32 date; \r\n        bytes32 idx_hash;\r\n    }\r\n\r\n    // 해당 스터디의 특정 스터디원의 퀴즈 거래 내역\r\n    mapping(uint => studyQuizTransfer[]) studyQuizTransferList;\r\n\r\n    // 퀴즈에 대한 코인 차감 거래 발생\r\n    function setStudyQuizTransfer(bytes32 _senderId,  bytes32 _senderName, bytes32 _receiverid, bytes32 _receiverName, uint _coin, bytes32 _date, uint _study_id, address _receiverAddress, bytes32 _idx_hash) public payable {\r\n        studyQuizTransfer memory transferItem \r\n        = studyQuizTransfer(_senderId,_senderName, _receiverid, _receiverName, _coin, _date, _idx_hash); \r\n\r\n        studyQuizTransferList[_study_id].push(transferItem); \r\n        // 실제 ether 거래 발생\r\n        _receiverAddress.transfer(msg.value);\r\n    }\r\n\r\n    // 퀴즈에 대한 ether 차감 거래 발생 정보 얻기 \r\n    function getStudyQuizTransfer (uint _study_id) view external returns(studyQuizTransfer[],uint) {\r\n        studyQuizTransfer[] memory transferList = studyQuizTransferList[_study_id];\r\n        return (transferList,transferList.length);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\skskj\\project\\gitLab\\p11\\p1105_test\\19_p577_a_study_management_platform_using_blockchain\\contracts\\QuizTransfer.sol",
+  "ast": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/QuizTransfer.sol",
+    "exportedSymbols": {
+      "QuizTransfer": [
+        282
+      ]
+    },
+    "id": 283,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 188,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "id": 189,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 282,
+        "linearizedBaseContracts": [
+          282
+        ],
+        "name": "QuizTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "QuizTransfer.studyQuizTransfer",
+            "id": 204,
+            "members": [
+              {
+                "constant": false,
+                "id": 191,
+                "name": "senderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "172:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 190,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "172:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 193,
+                "name": "sendName",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "200:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 192,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "200:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 195,
+                "name": "receiverid",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "228:18:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 194,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "228:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 197,
+                "name": "receiverName",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "257:20:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 196,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "257:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 199,
+                "name": "coin",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "289:9:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 198,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "289:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 201,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "310:12:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 200,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "310:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 203,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "334:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 202,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "334:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyQuizTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 282,
+            "src": "136:222:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 209,
+            "name": "studyQuizTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 282,
+            "src": "438:58:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer[])"
+            },
+            "typeName": {
+              "id": 208,
+              "keyType": {
+                "id": 205,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "446:4:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "438:36:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 206,
+                  "name": "studyQuizTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 204,
+                  "src": "454:17:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                    "typeString": "struct QuizTransfer.studyQuizTransfer"
+                  }
+                },
+                "id": 207,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "454:19:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                  "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 256,
+              "nodeType": "Block",
+              "src": "776:314:3",
+              "statements": [
+                {
+                  "assignments": [
+                    231
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 231,
+                      "name": "transferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 257,
+                      "src": "787:37:3",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 230,
+                        "name": "studyQuizTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 204,
+                        "src": "787:17:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 241,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 233,
+                        "name": "_senderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 211,
+                        "src": "855:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 234,
+                        "name": "_senderName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 213,
+                        "src": "865:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 235,
+                        "name": "_receiverid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 215,
+                        "src": "878:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 236,
+                        "name": "_receiverName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 217,
+                        "src": "891:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 237,
+                        "name": "_coin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 219,
+                        "src": "906:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 238,
+                        "name": "_date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 221,
+                        "src": "913:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 239,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 227,
+                        "src": "920:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 232,
+                      "name": "studyQuizTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 204,
+                      "src": "837:17:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_studyQuizTransfer_$204_storage_ptr_$",
+                        "typeString": "type(struct QuizTransfer.studyQuizTransfer storage pointer)"
+                      }
+                    },
+                    "id": 240,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "837:93:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "787:143:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 246,
+                        "name": "transferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 231,
+                        "src": "982:12:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 242,
+                          "name": "studyQuizTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 209,
+                          "src": "944:21:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 244,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 243,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 223,
+                          "src": "966:9:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "944:32:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 245,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "944:37:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_studyQuizTransfer_$204_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct QuizTransfer.studyQuizTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 247,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "944:51:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 248,
+                  "nodeType": "ExpressionStatement",
+                  "src": "944:51:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 252,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "1072:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 253,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1072:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 249,
+                        "name": "_receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 225,
+                        "src": "1046:16:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 251,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1046:25:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 254,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1046:36:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 255,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1046:36:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 257,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setStudyQuizTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 228,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 211,
+                  "name": "_senderId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "588:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 210,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 213,
+                  "name": "_senderName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "608:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 212,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "608:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 215,
+                  "name": "_receiverid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "629:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 214,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "629:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 217,
+                  "name": "_receiverName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "650:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 216,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "650:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 219,
+                  "name": "_coin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "673:10:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 218,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "673:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 221,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "685:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 220,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "685:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 223,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "700:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 222,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "700:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 225,
+                  "name": "_receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "716:24:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 224,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "716:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 227,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "742:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 226,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "742:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:173:3"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 229,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "776:0:3"
+            },
+            "scope": 282,
+            "src": "558:532:3",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 280,
+              "nodeType": "Block",
+              "src": "1260:145:3",
+              "statements": [
+                {
+                  "assignments": [
+                    270
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 270,
+                      "name": "transferList",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 281,
+                      "src": "1271:39:3",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 268,
+                          "name": "studyQuizTransfer",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 204,
+                          "src": "1271:17:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                            "typeString": "struct QuizTransfer.studyQuizTransfer"
+                          }
+                        },
+                        "id": 269,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "1271:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 274,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 271,
+                      "name": "studyQuizTransferList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 209,
+                      "src": "1313:21:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 273,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 272,
+                      "name": "_study_id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 259,
+                      "src": "1335:9:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1313:32:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1271:74:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 275,
+                        "name": "transferList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 270,
+                        "src": "1364:12:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory[] memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 276,
+                          "name": "transferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 270,
+                          "src": "1377:12:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                            "typeString": "struct QuizTransfer.studyQuizTransfer memory[] memory"
+                          }
+                        },
+                        "id": 277,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1377:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 278,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1363:34:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct QuizTransfer.studyQuizTransfer memory[] memory,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 266,
+                  "id": 279,
+                  "nodeType": "Return",
+                  "src": "1356:41:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 281,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getStudyQuizTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 260,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 259,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1196:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 258,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1196:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1195:16:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 263,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1234:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                    "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 261,
+                      "name": "studyQuizTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 204,
+                      "src": "1234:17:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer"
+                      }
+                    },
+                    "id": 262,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1234:19:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 265,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1254:4:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 264,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1254:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1233:26:3"
+            },
+            "scope": 282,
+            "src": "1165:240:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 283,
+        "src": "63:1345:3"
+      }
+    ],
+    "src": "0:1410:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/skskj/project/gitLab/p11/p1105_test/19_p577_a_study_management_platform_using_blockchain/contracts/QuizTransfer.sol",
+    "exportedSymbols": {
+      "QuizTransfer": [
+        282
+      ]
+    },
+    "id": 283,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 188,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".25"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "id": 189,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "26:33:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 282,
+        "linearizedBaseContracts": [
+          282
+        ],
+        "name": "QuizTransfer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "QuizTransfer.studyQuizTransfer",
+            "id": 204,
+            "members": [
+              {
+                "constant": false,
+                "id": 191,
+                "name": "senderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "172:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 190,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "172:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 193,
+                "name": "sendName",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "200:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 192,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "200:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 195,
+                "name": "receiverid",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "228:18:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 194,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "228:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 197,
+                "name": "receiverName",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "257:20:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 196,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "257:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 199,
+                "name": "coin",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "289:9:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 198,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "289:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 201,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "310:12:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 200,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "310:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 203,
+                "name": "idx_hash",
+                "nodeType": "VariableDeclaration",
+                "scope": 204,
+                "src": "334:16:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 202,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "334:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "studyQuizTransfer",
+            "nodeType": "StructDefinition",
+            "scope": 282,
+            "src": "136:222:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 209,
+            "name": "studyQuizTransferList",
+            "nodeType": "VariableDeclaration",
+            "scope": 282,
+            "src": "438:58:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer[])"
+            },
+            "typeName": {
+              "id": 208,
+              "keyType": {
+                "id": 205,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "446:4:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "438:36:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 206,
+                  "name": "studyQuizTransfer",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 204,
+                  "src": "454:17:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                    "typeString": "struct QuizTransfer.studyQuizTransfer"
+                  }
+                },
+                "id": 207,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "454:19:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                  "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 256,
+              "nodeType": "Block",
+              "src": "776:314:3",
+              "statements": [
+                {
+                  "assignments": [
+                    231
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 231,
+                      "name": "transferItem",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 257,
+                      "src": "787:37:3",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 230,
+                        "name": "studyQuizTransfer",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 204,
+                        "src": "787:17:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 241,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 233,
+                        "name": "_senderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 211,
+                        "src": "855:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 234,
+                        "name": "_senderName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 213,
+                        "src": "865:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 235,
+                        "name": "_receiverid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 215,
+                        "src": "878:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 236,
+                        "name": "_receiverName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 217,
+                        "src": "891:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 237,
+                        "name": "_coin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 219,
+                        "src": "906:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 238,
+                        "name": "_date",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 221,
+                        "src": "913:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 239,
+                        "name": "_idx_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 227,
+                        "src": "920:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 232,
+                      "name": "studyQuizTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 204,
+                      "src": "837:17:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_studyQuizTransfer_$204_storage_ptr_$",
+                        "typeString": "type(struct QuizTransfer.studyQuizTransfer storage pointer)"
+                      }
+                    },
+                    "id": 240,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "837:93:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "787:143:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 246,
+                        "name": "transferItem",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 231,
+                        "src": "982:12:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_studyQuizTransfer_$204_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 242,
+                          "name": "studyQuizTransferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 209,
+                          "src": "944:21:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 244,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 243,
+                          "name": "_study_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 223,
+                          "src": "966:9:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "944:32:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer storage ref[] storage ref"
+                        }
+                      },
+                      "id": 245,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "944:37:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_studyQuizTransfer_$204_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct QuizTransfer.studyQuizTransfer storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 247,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "944:51:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 248,
+                  "nodeType": "ExpressionStatement",
+                  "src": "944:51:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 252,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 460,
+                          "src": "1072:3:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 253,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1072:9:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 249,
+                        "name": "_receiverAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 225,
+                        "src": "1046:16:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 251,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1046:25:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 254,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1046:36:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 255,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1046:36:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 257,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setStudyQuizTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 228,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 211,
+                  "name": "_senderId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "588:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 210,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 213,
+                  "name": "_senderName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "608:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 212,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "608:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 215,
+                  "name": "_receiverid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "629:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 214,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "629:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 217,
+                  "name": "_receiverName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "650:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 216,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "650:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 219,
+                  "name": "_coin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "673:10:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 218,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "673:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 221,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "685:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 220,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "685:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 223,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "700:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 222,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "700:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 225,
+                  "name": "_receiverAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "716:24:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 224,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "716:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 227,
+                  "name": "_idx_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 257,
+                  "src": "742:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 226,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "742:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:173:3"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 229,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "776:0:3"
+            },
+            "scope": 282,
+            "src": "558:532:3",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 280,
+              "nodeType": "Block",
+              "src": "1260:145:3",
+              "statements": [
+                {
+                  "assignments": [
+                    270
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 270,
+                      "name": "transferList",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 281,
+                      "src": "1271:39:3",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "contractScope": null,
+                          "id": 268,
+                          "name": "studyQuizTransfer",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 204,
+                          "src": "1271:17:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                            "typeString": "struct QuizTransfer.studyQuizTransfer"
+                          }
+                        },
+                        "id": 269,
+                        "length": null,
+                        "nodeType": "ArrayTypeName",
+                        "src": "1271:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 274,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 271,
+                      "name": "studyQuizTransferList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 209,
+                      "src": "1313:21:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct QuizTransfer.studyQuizTransfer storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 273,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 272,
+                      "name": "_study_id",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 259,
+                      "src": "1335:9:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1313:32:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1271:74:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 275,
+                        "name": "transferList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 270,
+                        "src": "1364:12:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                          "typeString": "struct QuizTransfer.studyQuizTransfer memory[] memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 276,
+                          "name": "transferList",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 270,
+                          "src": "1377:12:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                            "typeString": "struct QuizTransfer.studyQuizTransfer memory[] memory"
+                          }
+                        },
+                        "id": 277,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1377:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 278,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1363:34:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct QuizTransfer.studyQuizTransfer memory[] memory,uint256)"
+                    }
+                  },
+                  "functionReturnParameters": 266,
+                  "id": 279,
+                  "nodeType": "Return",
+                  "src": "1356:41:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 281,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getStudyQuizTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 260,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 259,
+                  "name": "_study_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1196:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 258,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1196:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1195:16:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 263,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1234:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_memory_$dyn_memory_ptr",
+                    "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 261,
+                      "name": "studyQuizTransfer",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 204,
+                      "src": "1234:17:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_studyQuizTransfer_$204_storage_ptr",
+                        "typeString": "struct QuizTransfer.studyQuizTransfer"
+                      }
+                    },
+                    "id": 262,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1234:19:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_studyQuizTransfer_$204_storage_$dyn_storage_ptr",
+                      "typeString": "struct QuizTransfer.studyQuizTransfer[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 265,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 281,
+                  "src": "1254:4:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 264,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1254:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1233:26:3"
+            },
+            "scope": 282,
+            "src": "1165:240:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 283,
+        "src": "63:1345:3"
+      }
+    ],
+    "src": "0:1410:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x5ccd5daec7e7d5fef53b46840c2c91706c727c60",
+      "transactionHash": "0x4901b524e3a51ba9c927c51b1e34fbcae1fd20bc854777b55ccc64b1c41a9be8"
+    },
+    "8282": {
+      "events": {},
+      "links": {},
+      "address": "0xb23b572df04ffb9543aa5ed8477a76472d39dfbb",
+      "transactionHash": "0xc80939cf41d5c1554eae258fe4a14ad318dbd320607ac4aa32a073f1fd568fbc"
+    }
+  },
+  "schemaVersion": "2.0.2",
+  "updatedAt": "2019-11-18T18:47:34.002Z"
+}

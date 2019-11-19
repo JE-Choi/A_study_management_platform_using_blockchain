@@ -1,0 +1,142 @@
+.sum_of_block_div_web {
+    font-size: 0.9rem;
+}
+
+.block_lists_web {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.block_lists_head_web {
+    background-color: rgb(209, 208, 208);
+}
+
+.block_explorer_label1_web {
+    width: 7rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.block_explorer_label2_web {
+    width: 40rem;
+    padding-top: 0.5rem;;
+    padding-bottom: 0.5rem;
+}
+
+.block_explorer_label3_web {
+    width: 4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.block_explorer_label4_web {
+    width: 10rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.content_block_no_web, .content_hash_web,
+.content_txns_web, .content_timestamp_web {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.pagination_div_web {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.home{
+    display: none;
+}
+
+@media(max-width: 1200px){
+    .home{
+        display: inline-block;
+        margin: 1rem;
+    }
+
+    .home_web {
+        display: none;
+    }
+
+    .header_letter_div {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .sum_of_block_div {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    
+    .block_lists {
+        margin-top: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        font-size: 0.7rem;
+    }
+
+    .block_lists_content {
+        border-bottom: 2px solid #201E38;
+    }
+
+    .content_no_tr, .content_hash_tr,
+    .content_txns_tr, .content_timestamp_tr {
+        height: 0.7rem;
+        border-bottom: 0.5px solid black;
+    }
+
+    .block_explorer_label1, .block_explorer_label2,
+    .block_explorer_label3, .block_explorer_label4 {
+        padding-left: 0.5rem;
+        text-align: center;
+    }
+    
+    .content_block_no, .content_hash,
+    .content_txns, .content_timestamp {
+        text-align: left;
+        padding-left: 1rem;
+    }
+
+    .content_hash {
+        width: 18rem !important;
+        overflow: auto !important;
+    }
+
+    .content_divide {
+        border: 2px solid red;
+    } 
+    
+    .pagination_div {
+        width: 60% !important;
+        margin: 1rem auto;
+    }
+
+    .pagination {
+        width: 100%;
+    }
+
+    .content_divide_tr {
+        height: 0.8rem;
+    }
+}
+
+@media(max-width: 377px){
+    .content_hash {
+        width: 15rem !important;
+        overflow: auto !important;
+    }
+}
+
+@media(max-width: 321px){
+    .content_hash {
+        width: 13rem !important;
+        overflow: auto !important;
+    }
+}

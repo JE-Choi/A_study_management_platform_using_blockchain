@@ -1,0 +1,83 @@
+.admin_container {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 50%;
+}
+
+.transactions_header_div {
+    text-align: center;
+}
+
+.tnx_menu{
+    cursor: pointer !important;
+    height: 2rem;
+    font-size: 0.9rem;
+    line-height: 0.6rem;
+    margin-top: 0.4rem;
+}
+
+.tnx_menu:hover{
+    background-color: rgb(203, 220, 236);
+}
+
+.txns_header {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.transactions_content_div {
+    margin-top: 1rem;
+    box-shadow: 5px 5px 10px 5px  rgb(199, 199, 199);
+}
+
+.detail_lbl {
+    width: 30%;
+    height: 2.5rem;
+    font-weight: bold;
+    background-color: rgb(147, 148, 157) !important;
+    color: white;
+}
+
+.detail_txns {
+    width: 30%;
+    height: 2.5rem;
+    line-height: 1rem;
+}
+
+.study_item {
+    background-color: rgb(203, 220, 236) !important; 
+    padding-top:0.2rem !important;
+    font-size: 0.9rem !important;
+}
+
+/*반응형*/
+@media(max-width: 1200px) {
+    .admin_container {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        width: 95%;
+    }
+
+    .txns_header {
+        font-size: 1rem;
+    }
+
+    .transactions_content_div {
+        font-size: 0.9rem;
+    }
+
+    .detail_lbl {
+        width: 20% !important;
+    }
+
+    .detail_txns {
+        font-size: 0.8rem;
+        line-height: 0.5rem;
+    }
+
+    .tnx_menu{
+        font-size: 0.7rem;
+    }
+}

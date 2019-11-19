@@ -1,0 +1,96 @@
+.loginBackgroud{
+    height: 30rem !important;
+}
+
+.login_label{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: rgb(73, 73, 73);
+}
+
+.login_container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3% !important;
+    width: 40%;
+}
+
+.login_box{
+    border-top: 0.5px solid rgb(68, 114, 148);
+    border-bottom: 0.5px solid rgb(68, 114, 148);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.input_text {
+    font-size: 0.9rem;
+}
+
+.log_in_form{
+    height: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.log_in_input {
+    height: 100% !important;
+    font-size: 0.9rem !important;
+}
+
+#submit {
+    height: 2.5rem;
+    font-size: 1rem;
+    padding-top: 0.4rem;
+}
+
+@media(max-width: 1200px){
+    .loginBackgroud{
+        height: 25rem !important;
+    }
+
+    .login_container{
+        width: 80% !important;
+        margin-top: 17% !important;
+    }
+
+    .form-control{
+        height: 90%;
+    }
+
+    .input_text{
+        font-size: 0.7rem;
+    }
+
+    .log_in_form{
+        margin-bottom: 0.5rem !important;
+    }
+
+    .log_in_input {
+        height: 100% !important;
+    }
+
+    .out_frame_login {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    } 
+
+    .login_box{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 0rem;
+    }
+
+    .login_label{
+        font-size: 1.1rem;
+    }
+
+    #submit {
+        height: 2.2rem;
+        font-size: 1rem;
+        padding-top: 0.4rem;
+    }
+}
