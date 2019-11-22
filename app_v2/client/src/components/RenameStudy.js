@@ -146,7 +146,7 @@ class FormComponent extends Component {
     }
 
     make_tag(){
-        let subjects = [' ','TOEIC', 'TOFEL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
+        let subjects = [' ','TOEIC', 'TOEFL', '토익스피킹', 'OPIC', '전산 관련 자격증', 'GTQ', '한국사능력검정시험', '기타'];
         for(let i = 0; i < subjects.length; i++){
             $("#re_study_make_subject").append('<option>'+subjects[i]+'</option>');
         }

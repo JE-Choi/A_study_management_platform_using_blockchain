@@ -1,8 +1,7 @@
 import * as React from 'react';
 import $ from 'jquery';
 import locationIcon from '../../../utils/Img/Map/placeholder_red.png';
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import alert from '../../../utils/Alert';
 import dotenv from "dotenv";
 dotenv.config();
 declare var Tmap: any;
@@ -191,7 +190,8 @@ class Map extends React.Component {
           // map.zoomToExtent(markerLayer.getDataExtent()); //마커레이어의 영역에 맞게 map을 zoom
           map.setCenter(new Tmap.LonLat(_lon, _lat).transform("EPSG:4326", "EPSG:3857"), 13);	
           let msg = '아래는 중간지점 입니다.';
-          $('#map_sub_searchResult').text('근접 역이 존재하지 않습니다. 만나고 싶은 위치를 입력해주세요.');
+          $('#map_sub_searchResult').text('근접 역이 존재하지 않습니다.');
+          $('#map_sub_searchResult2').text('만나고 싶은 위치를 입력해주세요.');
           $('#map_searchResult').text(msg);
         }
       },
@@ -216,12 +216,12 @@ class Map extends React.Component {
     // 만날 장소를 입력한 경우
     if(this.checkInputDirectLocation() === true) {
       this.props.setNextMeetingLocation(this.state.mid_direct_input_loc);
-      this.setScheduleConfirm();
+      alert.confirm('','상단의 일자와 장소를 확인 후, 하단의 일정추가 버튼을 눌러주세요.');
     }
     // 만날 장소를 입력하지 않은 경우
     else {
       // '장소를 다시 지정해주세요.' 모달창
-      this.inputRightLocationConfirm();
+      alert.confirm('','장소를 다시 지정해주세요.');
     }
   };
 
@@ -233,19 +233,9 @@ class Map extends React.Component {
 
   midHandleFormSubmit = (location) =>{
     this.props.setNextMeetingLocation(location);
-    this.setScheduleConfirm();
+    // 스케줄 등록 확인 문구
+    alert.confirm('','상단의 일자와 장소를 확인 후, 하단의 일정추가 버튼을 눌러주세요.');
   };
-
-  // 스케줄 등록 확인 문구
-  setScheduleConfirm = () => {
-    confirmAlert({
-        message: '상단의 일자와 장소를 확인 후, 하단의 일정추가 버튼을 눌러주세요.',
-        buttons: [
-        {
-            label: '확인'
-        }]
-    })        
-  }
 
   // 중심 좌표로 set
   showCenter = () =>{
@@ -256,23 +246,13 @@ class Map extends React.Component {
   // 추출한 중간 지점에 근접한 역 입력 유무 판단
   checkInputDirectLocation = () => {
     let btn_mid_sel_direct_input = this.state.mid_direct_input_loc;
+
     if(btn_mid_sel_direct_input !== '') {
       return true;
     }
     else {
       return false;
     }
-  }
-
-  // '장소를 다시 지정해주세요.' 모달창
-  inputRightLocationConfirm = () => {
-    confirmAlert({
-      message: '장소를 다시 지정해주세요.',
-      buttons: [
-        { 
-        label: '확인'
-        }],
-      });
   }
 
   render() {
@@ -285,6 +265,7 @@ class Map extends React.Component {
               이외의 장소에서 만나시길 원하시면 <br className="map_sub_desc_br"/>
               입력란에 입력 해주세요.
             </div>
+            <div id="map_sub_searchResult2"></div>
             <div className = "sel_mid_direct_div">
                 <input
                   type="text"

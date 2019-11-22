@@ -209,7 +209,7 @@
 }
 
 /* map.js */
-#map_sub_searchResult {
+#map_sub_searchResult, #map_sub_searchResult2{
     margin-top: 0;
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
@@ -392,9 +392,9 @@
     }
 
     /* map.js */
-    #map_sub_searchResult {
+    #map_sub_searchResult, #map_sub_searchResult2{
         font-size: 0.8rem;
-        margin-top: 1rem;
+        margin-bottom: 0;
     }
 
     .map_sub_desc_br {

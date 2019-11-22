@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './CommunityScheduleAppoint.css';
 import { post } from 'axios';
 import $ from 'jquery';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import alert from '../../utils/Alert';
 import ConvertIntoCoordinate from './Coordinate/ConvertIntoCoordinate';
 import CenterOfGravity from './CenterOfGravity/CenterOfGravity';
 import Map from './Map';
@@ -54,9 +53,7 @@ class CommunityScheduleAppointMid extends Component {
         // 역 입력 칸이 빈 경우
         if ($('.station_' + person_name).val() === '') {
           is_input_station = false;
-
-          // '올바른 역을 입력해주세요' 모달창
-          this.inputRightStationConfirm();
+          alert.confirm('','올바른 역을 다시 입력해주세요.');
         }
         // 역 입력 칸이 입력된 경우
         else {
@@ -68,8 +65,7 @@ class CommunityScheduleAppointMid extends Component {
           if (last_letter !== '역') {
             $('.station_' + person_name).val(''); // 초기값으로 셋팅
             is_input_station = false;
-            // '올바른 역을 입력해주세요' 모달창
-            this.inputRightStationConfirm();
+            alert.confirm('','올바른 역을 다시 입력해주세요.');
           }
           // 입력된 마지막 글자가 역이면
           else {
@@ -114,8 +110,7 @@ class CommunityScheduleAppointMid extends Component {
     }
     // 각자 역을 모두 다 입력하지 않은 경우
     else {
-      // '올바른 역을 입력해주세요' 모달창
-      this.inputRightStationConfirm();
+      alert.confirm('','올바른 역을 다시 입력해주세요.');
     }
   };
 
@@ -128,17 +123,6 @@ class CommunityScheduleAppointMid extends Component {
     console.log('station in:', station);
     ConvertIntoCoordinate.clear();
     ConvertIntoCoordinate.extractCoordinate(station);
-  };
-
-  // '올바른 역을 입력해주세요' 모달창
-  inputRightStationConfirm = () => {
-    confirmAlert({
-      message: '올바른 역을 다시 입력해주세요.',
-      buttons: [
-        { 
-          label: '확인'
-        }],
-    });
   };
 
   // 각자 역을 잘 입력했는지 검사

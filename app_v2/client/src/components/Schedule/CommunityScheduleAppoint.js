@@ -5,8 +5,7 @@ import $ from 'jquery';
 import AppointDirectSelect from './CommunityScheduleAppointDirect';
 import AppointMidSelect from './CommunityScheduleAppointMid';
 import { post } from 'axios';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import alert from '../../utils/Alert';
 
 // 다음 스터디 약속 추가
 class CommunityScheduleAppoint extends Component{
@@ -90,22 +89,11 @@ class CommunityScheduleAppoint extends Component{
         let input_location = $('#input_location').val();
         if(input_location==='아래 버튼으로 장소 지정' || input_location==='') {
             // '장소를 지정해주세요' 모달창
-            this.inputRightLocationConfirm();
+            alert.confirm('','장소를 지정해주세요.');
         } else{
             this.addFinalSchedule();
         }
     }
-
-    // '장소를 지정해주세요' 모달창
-    inputRightLocationConfirm = () => {
-        confirmAlert({
-        message: '장소를 지정해주세요.',
-        buttons: [
-            { 
-            label: '확인'
-            }],
-        });
-    };
   
     render() {
       return (

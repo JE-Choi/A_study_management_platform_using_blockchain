@@ -215,6 +215,7 @@ class QuizInputScore extends Component {
             }
             
             setTimeout(()=>{
+                let cnt = 0;
                 // 퀴즈 거래 조건 검증 부분
                 this.getQuizResult().then((res)=>{
                     let last = res.data.length -1;
@@ -266,6 +267,11 @@ class QuizInputScore extends Component {
                                     }
                                     });
                                 });
+                            } else {
+                                cnt = cnt + 1;
+                                if(cnt === res.data.length){
+                                    alert.replaceConfirm('','전원 동점입니다.', '/community/'+this.state.study_id+'/aboutQuiz/quizResult');         
+                            }
                         }
                         }
                     });

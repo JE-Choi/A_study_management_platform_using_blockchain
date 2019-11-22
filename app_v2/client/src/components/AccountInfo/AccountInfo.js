@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { post } from 'axios';
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import alert from '../../utils/Alert';
 
 class AccountInfo extends Component {
   state = {
@@ -30,21 +29,10 @@ class AccountInfo extends Component {
           window.location.reload();
         }
         else{
-          this.inputConfirm();
+          alert.confirm('','비밀번호가 일치하지 않습니다.');
         }
       }
     });
-  }
-  
-  inputConfirm = () => {
-    confirmAlert({
-        message: '비밀번호가 일치하지 않습니다.',
-        buttons: [
-        {
-            label: '확인'
-        }
-      ]
-    })
   }
 
   // 회원 정보와 계좌 비밀번호 일치한지 확인

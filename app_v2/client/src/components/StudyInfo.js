@@ -180,7 +180,6 @@ class StudyInfo extends Component {
     // 스터디 가입 취소 확인창
     studyNoJoinConfirm = () => {
         alert.confirm('','스터디 가입이 취소되었습니다.');
-
     }
 
     // 스터디 가입 취소 확인 메소드를 호출하는 메소드
