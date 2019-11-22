@@ -9,6 +9,7 @@ contract StudyEndTransfer {
         uint receiveEther; 
         bytes32 endDate; 
         bytes32 idx_hash;
+        bytes32 time; 
     }
     
     // (Study Group 별) 하나의 Study Group 최종 종료 거래 내역 
@@ -20,8 +21,8 @@ contract StudyEndTransfer {
     }
     
     // Study Group 최종 종료 거래 생성
-    function endTheStudy(uint _studyId, bytes32 _personId, bytes32 _personName, uint _receiveEther,  bytes32 _endDate, bytes32 _idx_hash) external payable {
-        studyEndTransfer memory studyEndTransferItem = studyEndTransfer (_personId, _personName, _receiveEther, _endDate, _idx_hash);
+    function endTheStudy(uint _studyId, bytes32 _personId, bytes32 _personName, uint _receiveEther,  bytes32 _endDate, bytes32 _idx_hash, bytes32 _time) external payable {
+        studyEndTransfer memory studyEndTransferItem = studyEndTransfer (_personId, _personName, _receiveEther, _endDate, _idx_hash, _time);
         studyEndTransferList[_studyId].push(studyEndTransferItem);
     }
 }

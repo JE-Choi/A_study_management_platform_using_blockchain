@@ -10,6 +10,7 @@ contract MainAccountTransfer {
         bytes32 content; 
         uint etherNum; 
         bytes32 idx_hash;
+        bytes32 time; 
     }
     
     // 본 계좌의 거래 내역 리스트 
@@ -17,10 +18,10 @@ contract MainAccountTransfer {
     
     // 본 계좌의 거래 내역을 저장
     function setMainAccountTransfer (address personAddress, bytes32 destination,bytes32 startingPoint,
-    uint etherNum, bytes32 date, bytes32 content, address receiverAddress, bytes32 _idx_hash) public payable{
+    uint etherNum, bytes32 date, bytes32 content, address receiverAddress, bytes32 _idx_hash, bytes32 _time) public payable{
         receiverAddress.transfer(msg.value);
         mainAccountTransfer memory mainAccountTransferItem
-             = mainAccountTransfer(destination, startingPoint, date, content, etherNum, _idx_hash); 
+             = mainAccountTransfer(destination, startingPoint, date, content, etherNum, _idx_hash, _time); 
         mainAccountTransferList[personAddress].push(mainAccountTransferItem);
     }
 

@@ -11,14 +11,15 @@ contract TardinessTransfer {
         uint coin; 
         bytes32 date; 
         bytes32 idx_hash;
+        bytes32 time; 
     }
 
     // 해당 Study Group의 특정 스터디원의 지각 거래 내역
     mapping(uint => tardinessTransfer[]) tardinessTransferList;
 
     // 지각에 대한 코인 차감 거래 발생
-    function setTardinessTransfer(bytes32 _senderId, bytes32 _senderName, bytes32 _receiverid, bytes32 _receiverName, uint _coin, bytes32 _date, uint _study_id, address _receiverAddress, bytes32 _idx_hash) public payable {
-        tardinessTransfer memory transferItem = tardinessTransfer(_senderId,_senderName, _receiverid, _receiverName, _coin, _date, _idx_hash); 
+    function setTardinessTransfer(bytes32 _senderId, bytes32 _senderName, bytes32 _receiverid, bytes32 _receiverName, uint _coin, bytes32 _date, uint _study_id, address _receiverAddress, bytes32 _idx_hash, bytes32 _time) public payable {
+        tardinessTransfer memory transferItem = tardinessTransfer(_senderId,_senderName, _receiverid, _receiverName, _coin, _date, _idx_hash, _time); 
         tardinessTransferList[_study_id].push(transferItem); 
         _receiverAddress.transfer(msg.value);
     }
