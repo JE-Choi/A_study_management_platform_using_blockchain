@@ -370,7 +370,7 @@ class Attendance extends Component {
                                             NotAttendHandler.run(_studyId, attendance_date, attendance_view, valid_attendance_time).then((is_end)=>{
                                                 if(is_end === true){
                                                     $('.sub_msg2').text('조금만 기다려 주세요...70%');
-                                                    SendTardinessTransfer.run(_studyId, attendance_date, _use_coin_value).then((is_end)=>{
+                                                    SendTardinessTransfer.run(_studyId, attendance_date, _use_coin_value, attendance_view).then((is_end)=>{
                                                         if(is_end === true){
                                                             $('.sub_msg2').text('조금만 기다려 주세요...90%');
                                                             console.log('모든 거래 완료');

@@ -48,11 +48,13 @@ const GetQuizTransfer = {
                 let transactions_web3_coin = InitContract.web3.utils.fromWei(String(transactions[i].coin), 'ether');
                 // 퀴즈 거래 진행 날짜
                 let transactions_web3_date = InitContract.web3.utils.hexToUtf8(transactions[i].date);
+                let transactions_web3_time = InitContract.web3.utils.hexToUtf8(transactions[i].time);
+                let date = new Date(transactions_web3_date + ' ' +transactions_web3_time);
                 console.log(turn , length-1);
                 DBControl_txn.callSelectTxnInfo(transactions[i].idx_hash.substr(2)).then((res)=>{
                     if(res.data.length > 0){
                         let txn_hash = "0x"+res.data[0].txn_hash;
-                        transactions_list_sub.push(transactions_web3_date, txn_hash, transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverId, transactions_web3_receiverName, transactions_web3_coin);
+                        transactions_list_sub.push(date, txn_hash, transactions_web3_senderId,transactions_web3_sendName,transactions_web3_receiverId, transactions_web3_receiverName, transactions_web3_coin);
                         transactions_list.push(transactions_list_sub);
                     }
                     console.log(length,transactions_list);

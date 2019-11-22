@@ -100,6 +100,10 @@ const ConvertToEther = {
             let year = d.getFullYear();
             let month = d.getMonth() + 1;
             let date = d.getDate();
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let seconds = d.getSeconds();
+            let time = InitContract.web3.utils.fromAscii(hours+':'+minutes+':'+seconds);
             let Ascii_date =  InitContract.web3.utils.fromAscii(year+'.'+month+'.'+date); 
             let idx_hash = Sha256(d+"_"+person_id+"_Admin"+etherNum).substr(0,64);
             // 비밀번호(_accountPw)로 스마트 계약에 전자 서명을 진행할 계좌(_sender) unlock하기
@@ -119,7 +123,7 @@ const ConvertToEther = {
                 InitContract.web3.utils.fromAscii(_content);
 
                 InitContract.MainAccountTransferInstance.methods.setMainAccountTransfer(
-                    _sender, Ascii_destination, Ascii_startingPoint, etherToWei, Ascii_date, Ascii_content, _accountNum, '0x'+idx_hash
+                    _sender, Ascii_destination, Ascii_startingPoint, etherToWei, Ascii_date, Ascii_content, _accountNum, '0x'+idx_hash, time
                 ).send(
                     {
                         from: _sender, 
@@ -148,6 +152,10 @@ const ConvertToEther = {
             let year = d.getFullYear();
             let month = d.getMonth() + 1;
             let date = d.getDate();
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let seconds = d.getSeconds();
+            let time = InitContract.web3.utils.fromAscii(hours+':'+minutes+':'+seconds);
             let Ascii_date =  InitContract.web3.utils.fromAscii(year+'.'+month+'.'+date); 
             let etherToWei = InitContract.web3.utils.toWei(String(etherNum), 'ether');
             let idx_hash = Sha256(d+"_"+person_id+"_Admin"+etherNum).substr(0,64);
@@ -157,7 +165,7 @@ const ConvertToEther = {
             .then(()=>{
                 $('.sub_msg2').text('조금만 기다려 주세요...70%');
                 InitContract.MainAccountTransferInstance.methods.setMainAccountTransfer(
-                    accountNum, Ascii_destination, Ascii_startingPoint, etherToWei, Ascii_date, Ascii_content, accountNum, '0x'+idx_hash
+                    accountNum, Ascii_destination, Ascii_startingPoint, etherToWei, Ascii_date, Ascii_content, accountNum, '0x'+idx_hash, time
                 ).send(
                     {
                         from: InitContract.myAccount[0], // 관리자 계좌
@@ -209,6 +217,7 @@ const ConvertToEther = {
                             let date =  InitContract.web3.utils.hexToUtf8(result[i][2]);  // 거래날짜
                             let content =  InitContract.web3.utils.hexToUtf8(result[i][3]);  // 거래 이유 
                             let etherNum = InitContract.web3.utils.fromWei(String(result[i][4]), 'ether');
+                            let time =  InitContract.web3.utils.hexToUtf8(result[i][6]); 
                             DBControl_txn.callSelectTxnInfo(result[i][5].substr(2)).then((res)=>{
                                 // console.log(res.data);
                                 if(res.data.length > 0){
@@ -218,6 +227,7 @@ const ConvertToEther = {
                                     sub_mainAccountTransfer.push({startingPoint:startingPoint});
                                     sub_mainAccountTransfer.push({etherNum:etherNum});
                                     sub_mainAccountTransfer.push({content:content});
+                                    sub_mainAccountTransfer.push({time:new Date(date+' '+time)});
                                     mainAccountTransfer.push(sub_mainAccountTransfer);
                                 }
                                 

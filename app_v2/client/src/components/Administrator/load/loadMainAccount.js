@@ -61,10 +61,12 @@ const loadMainAccount = {
                         let date =  InitContract.web3.utils.hexToUtf8(result[i][2]);  // 거래날짜
                         let content =  InitContract.web3.utils.hexToUtf8(result[i][3]);  // 거래 이유 
                         let etherNum = InitContract.web3.utils.fromWei(String(result[i][4]), 'ether');
+                        let time =  InitContract.web3.utils.hexToUtf8(result[i].time);  // 거래날짜
+                        
                         DBControl_txn.callSelectTxnInfo(result[i][5].substr(2)).then((res)=>{
                             // console.log(res.data);
                             if(res.data.length > 0){
-                                let _date = new Date(date+" 00:00:00");
+                                let _date = new Date(date+" "+time);
                                 sub_mainAccountTransfer.push(_date);
                                 sub_mainAccountTransfer.push('MainAccount');
                                 sub_mainAccountTransfer.push({date:date});

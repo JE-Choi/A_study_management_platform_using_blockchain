@@ -5,7 +5,7 @@ import Sha256 from 'sha256';
 import DBControl_txn from '../../utils/DBControl_txn';
 
 const SendTardinessTransfer = {
-    run : async function(_studyId, _attendance_date, _use_coin_value){
+    run : async function(_studyId, _attendance_date, _use_coin_value, _transaction_time){
         return new Promise(function (resolve, reject) {
             SendTardinessTransfer.set(_studyId, _attendance_date).then((_receiver_list)=>{
                 //  블록체인거래 내역이 없다면 거래 진행 허용
@@ -22,7 +22,7 @@ const SendTardinessTransfer = {
                      console.log(latecomer_coin);
                         
                      // DB에 미출석자 지각 처리
-                    SendTardinessTransfer.TardinessProcessing(_studyId, receiver_list, _attendance_date, _studyId, latecomer_coin).then((is_end)=>{
+                     SendTardinessTransfer.TardinessProcessing(_studyId, receiver_list, _attendance_date, _studyId, latecomer_coin, _transaction_time).then((is_end)=>{
                         if(is_end){
                             // 거래 진행 여부 저장
                             SendTardinessTransfer.inert_status_of_tardiness(_studyId, _attendance_date, true).then(()=>{
@@ -103,20 +103,20 @@ const SendTardinessTransfer = {
         });
     },
 
-    TardinessProcessing: async function(_studyId, receiver_list, _transaction_date, _study_id, _coin){
+    TardinessProcessing: async function(_studyId, receiver_list, _transaction_date, _study_id, _coin, _transaction_time){
         return new Promise(function (resolve, reject) {
             // 지각자의 계좌 index 얻어오기
             SendTardinessTransfer.getLatecomerAccount(_studyId, NotAttendHandler.notAttendInfo).then((latecomer_data)=>{
                 console.log(latecomer_data);
                 if(InitContract.web3 !== null) {
                     // 지각 거래 스마트 계약 함수 실행 부분 실행
-                    SendTardinessTransfer.setTardinessTransfer(latecomer_data, receiver_list, _coin, _transaction_date, _study_id).then((is_end)=>{
+                    SendTardinessTransfer.setTardinessTransfer(latecomer_data, receiver_list, _coin, _transaction_date, _study_id, _transaction_time).then((is_end)=>{
                         console.log('TardinessProcessing: ', is_end);
                         resolve(true);
                     });
                 } else {
                     // 지각 거래 스마트 계약 함수 실행 부분 실행
-                    SendTardinessTransfer.setTardinessTransfer(latecomer_data, receiver_list, _coin, _transaction_date, _study_id).then((is_end)=>{
+                    SendTardinessTransfer.setTardinessTransfer(latecomer_data, receiver_list, _coin, _transaction_date, _study_id, _transaction_time).then((is_end)=>{
                         console.log('TardinessProcessing: ', is_end);
                         resolve(true);
                     });
@@ -179,11 +179,12 @@ const SendTardinessTransfer = {
     }, 
 
    // 스마트 계약 지각 거래발생
-   setTardinessTransfer : async function(_latecomer_account_info_list, _receiver_account_info_list, _coin, _transaction_date, _study_id){
+   setTardinessTransfer : async function(_latecomer_account_info_list, _receiver_account_info_list, _coin, _transaction_date, _study_id, _transaction_time){
         console.log(_latecomer_account_info_list, _receiver_account_info_list, _coin, _transaction_date, _study_id);
         
         return new Promise(function (resolve, reject) {
             let transaction_date = InitContract.web3.utils.fromAscii(_transaction_date);
+            let transaction_time = InitContract.web3.utils.fromAscii(_transaction_time);
             _latecomer_account_info_list.forEach(function(late_element,i){
             let is_transaction = false;
             let senderId = InitContract.web3.utils.fromAscii(late_element.PERSON_ID); 
@@ -200,7 +201,7 @@ const SendTardinessTransfer = {
                 console.log(late_element.PERSON_ID+' unlock');
                 InitContract.TardinessTransferInstance.methods.setTardinessTransfer(
                     senderId, senderName, receiverNameId, receiverName, InitContract.web3.utils.toWei(String(_coin)),
-                    transaction_date, _study_id, receiverAddress, '0x'+idx_hash
+                    transaction_date, _study_id, receiverAddress, '0x'+idx_hash, transaction_time
                 ).send(
                     { 
                         from: senderAddress,

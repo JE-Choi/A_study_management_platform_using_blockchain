@@ -103,6 +103,10 @@ const SetStudyEndTransfer = {
             let year = d.getFullYear();
             let month = d.getMonth() + 1;
             let date = d.getDate();
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let seconds = d.getSeconds();
+            let time = InitContract.web3.utils.fromAscii(hours+':'+minutes+':'+seconds);
             let Ascii_date =  InitContract.web3.utils.fromAscii(year+'.'+month+'.'+date);
             console.log(Ascii_person_id);
             console.log(Ascii_destination);
@@ -116,7 +120,7 @@ const SetStudyEndTransfer = {
             .then(()=>{
                 console.log(person_id+" account_unlock");
                 InitContract.MainAccountTransferInstance.methods.setMainAccountTransfer(
-                    mainAccount, Ascii_destination, Ascii_startingPoint, etherNum, Ascii_date, Ascii_content, mainAccount, '0x'+idx_hash
+                    mainAccount, Ascii_destination, Ascii_startingPoint, etherNum, Ascii_date, Ascii_content, mainAccount, '0x'+idx_hash, time
                 ).send(
                     {
                         from: accountNum, // 각 스터디 개인 계좌
@@ -136,7 +140,7 @@ const SetStudyEndTransfer = {
                             let personName = _personData.PERSON_NAME;
                             let Ascii_personName = InitContract.web3.utils.fromAscii(personName); 
                             console.log(personName);
-                            SetStudyEndTransfer.AddMsgOfEndTheStudy(Ascii_person_id, Ascii_personName, etherNum, _study_id, Ascii_date, mainAccount).then((res_is_end)=>{
+                            SetStudyEndTransfer.AddMsgOfEndTheStudy(Ascii_person_id, Ascii_personName, etherNum, _study_id, Ascii_date, mainAccount, time).then((res_is_end)=>{
                                 if(res_is_end === true){
                                     resolve(true);
                                 }
@@ -148,7 +152,7 @@ const SetStudyEndTransfer = {
         });
     },
 
-    AddMsgOfEndTheStudy : async function(person_id,_personName, etherNum, _studyId, date, receiver_Account){
+    AddMsgOfEndTheStudy : async function(person_id,_personName, etherNum, _studyId, date, receiver_Account, _time){
         let is_end = false;
         return new Promise(function (resolve, reject) {
             let idx_hash = Sha256(date+"_"+person_id+"Main#"+person_id+etherNum+"_"+_studyId+"_"+_personName).substr(0,64);
@@ -156,7 +160,7 @@ const SetStudyEndTransfer = {
             InitContract.web3.eth.personal.unlockAccount(InitContract.myAccount[0], process.env.REACT_APP_GETH_MANAGER_PWD, 10000)
             .then(()=>{
                 InitContract.StudyEndTransferInstance.methods.endTheStudy(
-                    _studyId, person_id, _personName, etherNum, date, '0x'+idx_hash
+                    _studyId, person_id, _personName, etherNum, date, '0x'+idx_hash, _time
                 ).send(
                     {
                         from: InitContract.myAccount[0], // 관리자 계좌

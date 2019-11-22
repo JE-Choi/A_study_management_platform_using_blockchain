@@ -74,6 +74,7 @@ class QuizInputScore extends Component {
             quiz_date: '', // 퀴즈 날짜
             quiz_month: 0, // 퀴즈 날짜 월
             quiz_day: 0, // 퀴즈 날짜 일
+            quiz_time: '',
             is_quiz_message: 0, // 퀴즈 설명 화면 유무
             use_coin_value: 0, // 꼴등 기준 차감할 ether 값
             isQuizTransfer: false
@@ -250,8 +251,14 @@ class QuizInputScore extends Component {
                                             this.findPersonId(receiver_name).then((receiver)=>{
                                                 receiver_id = receiver.data[0].PERSON_ID;
                                                 console.log(sender_id, receiver_id, send_coin);
+                                                // this.state.quiz_time
+                                                let full_date = new Date();
+                                                let hours = full_date.getHours();
+                                                let minutes = full_date.getMinutes();
+                                                let seconds = full_date.getSeconds();
+                                                let time = hours + ':' + minutes + ":" + seconds;
                                                 // 스마트 계약 지각 거래발생
-                                                SetQuizTransfer.run(this.state.study_id, sender_id, receiver_id, send_coin, this.state.quiz_date)
+                                                SetQuizTransfer.run(this.state.study_id, sender_id, receiver_id, send_coin, this.state.quiz_date, time)
                                                 .then((is_end)=>{
                                                     if(is_end === true){
                                                         cnt_transaction = cnt_transaction + 1;

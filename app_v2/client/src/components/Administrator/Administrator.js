@@ -218,6 +218,7 @@ loadAll = async () =>{
                 all_transactions = all_transactions.concat(quiz_list);
                 all_transactions = all_transactions.concat(transactions_list);
                 all_transactions = all_transactions.concat(mainAccountTransfer);
+                console.log(all_transactions);
                 console.log('all_transactions: ',all_transactions.length);
                 all_transactions.sort((a,b) => b[0] - a[0]);
                 this.setState({

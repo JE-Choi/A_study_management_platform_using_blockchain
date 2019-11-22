@@ -53,8 +53,11 @@ class AccountInfoContent extends Component {
   getMainAccountTransfer = async (account_num) =>{
     ConvertToEther.getMainAccountTransfer(account_num).then((mainAccountTransfer)=>{
       if(mainAccountTransfer !== false){
+        let array = mainAccountTransfer.sort(function(a, b) {
+          return b[6].time - a[6].time;
+        })
         this.setState({
-          mainAccountTransfer: mainAccountTransfer
+          mainAccountTransfer: array
         });
       } else {
         this.getMainAccountTransfer(account_num);
@@ -152,7 +155,7 @@ class AccountInfoContent extends Component {
               <div className = "account_history">
               { this.state.mainAccountTransfer ? this.state.mainAccountTransfer.map(c => {
                 return (
-                  <AccountInfoContentItem date = {c[0].date} txn_hash = {c[1].txn_hash} destination = {c[2].destination} startingPoint = {c[3].startingPoint} etherNum = {c[4].etherNum}  content = {c[5].content} person_name = {this.state.person_name}/>
+                  <AccountInfoContentItem date = {c[0].date} txn_hash = {c[1].txn_hash} destination = {c[2].destination} startingPoint = {c[3].startingPoint} etherNum = {c[4].etherNum}  content = {c[5].content} time = {c[6].time} person_name = {this.state.person_name}/>
                 )
                 })
               :""}

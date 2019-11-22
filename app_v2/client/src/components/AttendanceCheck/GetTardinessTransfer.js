@@ -45,12 +45,14 @@ const GetTardinessTransfer = {
                 let transactions_web3_coin = InitContract.web3.utils.fromWei(String(transactions[i].coin), 'ether');
                 // 지각한 날짜
                 let transactions_web3_date = InitContract.web3.utils.hexToUtf8(transactions[i].date);
-                console.log(transactions[i].idx_hash);
+                let transactions_web3_time = InitContract.web3.utils.hexToUtf8(transactions[i].time);
+                console.log('time: ', new Date(transactions_web3_date+" "+transactions_web3_time));
+                let date = new Date(transactions_web3_date+" "+transactions_web3_time);
                 DBControl_txn.callSelectTxnInfo(transactions[i].idx_hash.substr(2)).then((res)=>{
                     console.log(res.data[0].txn_hash);
                     let txn_hash = '0x'+res.data[0].txn_hash;
                     transactions_list_sub.push(
-                        transactions_web3_date, 
+                        date,  
                         txn_hash, 
                         transactions_web3_senderId,
                         transactions_web3_sendName, 

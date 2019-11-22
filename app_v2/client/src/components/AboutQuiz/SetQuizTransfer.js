@@ -8,7 +8,7 @@ const SetQuizTransfer = {
   receiver_data: null,
   
   // 스마트 계약 지각 거래발생
-  run: async function(_study_id, _sender_id, _receiver_id, _coin, _quiz_date){
+  run: async function(_study_id, _sender_id, _receiver_id, _coin, _quiz_date, _time){
         return new Promise(function (resolve, reject) {
         let is_transaction = false;
         SetQuizTransfer.getAccountId(_study_id, _sender_id, _receiver_id).then((is_end)=>{
@@ -26,6 +26,7 @@ const SetQuizTransfer = {
             let receiverName = InitContract.web3.utils.fromAscii(receiver_data.PERSON_NAME);
             let receiverAddress = receiver_data.account_num;
             let transaction_date = InitContract.web3.utils.fromAscii(_quiz_date);
+            let transaction_time = InitContract.web3.utils.fromAscii(_time);
             console.log(
             {'senderId':senderId},
             {'senderName':senderName},
@@ -40,7 +41,7 @@ const SetQuizTransfer = {
               console.log(sender_data.PERSON_NAME+' unlock');
               InitContract.QuizTransferInstance.methods.setStudyQuizTransfer(
                 senderId, senderName, receiverId, receiverName,  InitContract.web3.utils.toWei(String(_coin)),
-                transaction_date, _study_id, receiverAddress, '0x'+idx_hash).send(
+                transaction_date, _study_id, receiverAddress, '0x'+idx_hash, transaction_time).send(
                     { 
                         from: senderAddress,
                         value: InitContract.web3.utils.toWei(String(_coin), 'ether'),

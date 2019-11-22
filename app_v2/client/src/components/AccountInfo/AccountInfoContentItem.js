@@ -31,7 +31,6 @@ class AccountInfoContentItem extends Component {
       });
     }
     let startingPoint= this.props.startingPoint.split('#');
-    console.log(startingPoint);
     if(startingPoint.length > 1){
       if(startingPoint[0] !== 'Main'){
         let person_name = this.props.person_name;

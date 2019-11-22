@@ -58,6 +58,8 @@ const loadAttendanceCheck = {
                     let transactions_web3_coin = InitContract.web3.utils.fromWei(String(transactions[i].coin), 'ether');
                     // 지각한 날짜
                     let transactions_web3_date = InitContract.web3.utils.hexToUtf8(transactions[i].date);
+                    let transactions_web3_time = InitContract.web3.utils.hexToUtf8(transactions[i].time);
+                    
                     console.log(
                         transactions_web3_date, 
                         transactions_web3_senderId,
@@ -67,7 +69,7 @@ const loadAttendanceCheck = {
                         transactions_web3_coin);
                     DBControl_txn.callSelectTxnInfo(transactions[i].idx_hash.substr(2)).then((res)=>{
                         let txn_hash = '0x'+res.data[0].txn_hash;
-                        let date = new Date(transactions_web3_date+" 00:00:00");
+                        let date = new Date(transactions_web3_date+" "+transactions_web3_time);
                         transactions_list_sub.push(
                             date,
                             'AttendanceCheck',
