@@ -362,7 +362,7 @@ main {
 }
 
 /*추가정의 - 반응형*/
-@media(max-width: 1200px) {
+@media(max-width: 600px) {
   .content_Attendance_check{
     margin-left: 5%;
     margin-right: 5%;

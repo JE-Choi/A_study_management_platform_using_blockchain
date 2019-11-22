@@ -37,3 +37,9 @@
   font-size: 0.9rem;
   line-height: 0.8rem;
 }
+
+@media(max-width: 800px) {
+  #map_searchResult{
+    margin-top: 0.3rem;
+  }
+}

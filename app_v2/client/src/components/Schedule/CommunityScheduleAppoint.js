@@ -110,11 +110,14 @@ class CommunityScheduleAppoint extends Component{
                 </span>
             </div>
             <br/>
-            <div className="input_place_div">
-                <label className="input_place_label">장소 </label>
+            <div className="input_meeting_day_div">
+            <label className="input_place_label">장소 </label>
                 <span className="dot">:</span>
-                <input type="text" className="form-control" id="input_location" value={this.state.next_meeting_location} readOnly/>
-                <div className="input_place_method">
+                <input type="text" className="form-control" id="input_location" value={this.state.next_meeting_location} readOnly/> 
+            </div>
+            <br/>
+            <div className="input_place_div">
+              <div className="input_place_method">
                     <input type="button" value="직접 선택" className="btn btn-outline-primary" id="btn_sel_direct" onClick = {this.clickSelDirect} />
                     <input type="button" value="중간역 찾기" className="btn btn-outline-primary" id="btn_sel_mid_station" onClick = {this.clickMidStation} />
                 </div>

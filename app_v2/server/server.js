@@ -854,7 +854,6 @@ app.post('/api/insert/txn', (req, res) => {
     const idx_hash = req.body.idx_hash;
     const txn_hash = req.body.txn_hash;
     const t_hash = req.body.t_hash;
-    console.log(idx_hash, txn_hash, t_hash);
     const params = [idx_hash, txn_hash, t_hash];
     connection.query(sql,params,
         (err, rows, fields) => {

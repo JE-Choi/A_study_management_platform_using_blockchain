@@ -35,7 +35,6 @@
 .progress_body{
     margin-top:20%;
     margin-left: 40%;
-    /* padding-top : 2rem; */
     width: 300px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -43,7 +42,21 @@
     color: #000000;
 }
 
-@media(max-width: 1200px) {
+@media(max-width: 800px) {
+    .progress_div>h5 {
+        font-size: 1.1rem;
+    }
+    
+    .sub_msg{
+        font-size: 0.8rem !important;
+    }
+    .progress_body {
+        margin-top: 28%;
+        margin-left: 31%;
+    }
+}
+
+@media(max-width: 600px) {
     .sub_msg1, .sub_msg2{
         font-size: 0.4rem;
     }

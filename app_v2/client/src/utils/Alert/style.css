@@ -19,7 +19,13 @@
     width: 6rem !important;
 }
 
-@media(max-width: 1200px){
+@media(max-width: 800px){
+    .react-confirm-alert-body{
+        width: 20rem !important;
+    }
+}
+
+@media(max-width: 600px){
     .react-confirm-alert-body {
         width:100% !important;
         font-size: 0.9rem;
