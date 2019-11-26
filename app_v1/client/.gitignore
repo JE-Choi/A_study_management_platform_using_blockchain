@@ -7,7 +7,9 @@
 
 # contracts
 /src/contracts
-
+/package-lock.json
+/yarn.lock
+/src/utils/getWeb3.js
 # testing
 /coverage
 
