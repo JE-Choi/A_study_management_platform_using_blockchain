@@ -127,7 +127,13 @@
     color: white;
 }
 
-@media(max-width: 1200px) {
+@media(max-width: 800px) {
+    .userP_container {
+        width: 60%;
+    }
+}
+
+@media(max-width: 600px) {
     .userP_container{
         width: 90%;
     }

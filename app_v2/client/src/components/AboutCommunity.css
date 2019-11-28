@@ -561,6 +561,7 @@
     }
 
     .coin_status_text {
+        font-size: 0.9rem;
         margin-right: 3rem;
     }
 
@@ -579,6 +580,97 @@
     }
 
     .random_number_desc div{
+        font-size: 0.7rem;
+    }
+
+    .member_list_header_lbl {
+        font-size: 0.8rem;
+    }
+
+    .attendance_header {
+        font-size: 1rem;
+    }
+
+    .quiz_header {
+        font-size: 1rem;
+    }
+
+    #quiz_result_label {
+        font-size: 0.9rem;
+        width: 100%;
+    }    
+
+    #quiz_date_selected {
+        width: 8.5rem !important;
+        font-size: 0.8rem;
+        height: 2rem !important;
+        margin-left: 10%;
+        margin-right: 13%;
+    }
+
+    #moveBtn_select_quiz_date {
+        width: 3.5rem !important;
+        font-size: 0.8rem;
+    }
+
+    .quiz_result_name_label {
+        padding-left: 15%;
+        font-size: 0.9rem;
+    }
+
+    #result_score {
+        width: 4rem !important;
+        height: 1.7rem !important;
+        font-size: 0.8rem;
+    }
+
+    .each_quiz_result_point span {
+        font-size: 0.9rem;
+    }
+
+    .div_account{
+        font-size: 0.9rem;
+    }
+
+    .div_account_number{
+        margin: 0 auto;
+        width: 14rem;
+        overflow: auto;
+        font-size: 0.8rem;
+    }
+
+    .date_of_use{
+        font-size: 0.7rem;
+        padding-top: 0.4rem;
+    }
+
+    .desc_of_transfer{
+        width: 40%;
+        font-size: 0.7rem;
+        padding-top: 0.05rem;
+        padding-bottom: 0.05rem;
+    }
+
+    .used_coin {
+        font-size: 0.8rem;
+        padding-top: 0.4rem;
+        text-align: right;
+        margin-right: 0.7rem;
+    }
+
+    .div_coin_usage {
+        margin-left: 0;
+        height: 3.5rem;
+        display: inline-block;
+    }
+
+    .out_frame_not_exist_quiz {
+        font-size: 0.8rem;
+        margin: 1rem 1rem;
+    }
+
+    .desc_of_end_transfer{
+        width: 40%;
         font-size: 0.7rem;
     }
 }
