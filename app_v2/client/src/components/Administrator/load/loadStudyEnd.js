@@ -75,7 +75,7 @@ const loadStudyEnd = {
                                         } 
                                     }
                                 } else {
-                                    let date = new Date(transactions_web3_date+" 00:00:00");
+                                    let date = new Date(transactions_web3_date + ' ' + transactions_web3_time);
                                     transactions_list_sub.push(date, 'StudyEnd',transactions_web3_date, txn_hash, transactions_web3_personId,transactions_web3_personName, transactions_web3_coin, _study_id);
                                     transactions_list.push(transactions_list_sub);
                                     
