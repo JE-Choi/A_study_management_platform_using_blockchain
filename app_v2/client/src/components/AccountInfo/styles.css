@@ -301,6 +301,31 @@
     }
 }
 
+@media(max-width: 800px) {
+    .accountInfo_SubContainer{
+        width: 60%;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    #btn_input_account_pw {
+        width: 15%;
+        font-size: 0.8rem;
+    }
+
+    .accountInfo_title_name{
+        font-size: 1rem;
+    }
+
+    .accountInfo_title_accountNum{
+        font-size: 0.7em;
+        width: 100%;
+        overflow: auto;
+    }
+}
+
 @media(max-width: 600px) {
     .AccountInfo_MainContainer{
         padding-top:1rem;
