@@ -410,14 +410,12 @@
 @media(max-width: 800px) {
     #input_location {
       width: 12rem !important;
-      /* font-size: 0.7rem; */
       float: left;
       margin-left: 1.3rem;
     }
 
     .calendarTop_name {
         font-size: 1rem;
-        /* font-weight: bold; */
     }
     .calendarTop_study_period, .calendarTop_study_cnt {
         font-size: 0.8rem;
@@ -425,24 +423,26 @@
 
     #btn_sel_direct, #btn_sel_mid_station {
         font-size: 0.7rem;
-        /* width: 7rem;
-        height: 2rem;
-        font-size: 0.8rem; */
     }
 
     .sel_direct_input {
-        /* display: inline-block; */
         width: 25rem;
         padding-left: 13%;
     }
 
     .add_schedule_div {
-        /* margin-top: 0; */
         margin-bottom: 2rem;
-        /* font-size: 0.7rem !important; */
     }
 
     #btn_add_schedule {
         margin-top: 1rem;
+    }
+}
+
+@media(max-width: 600px) {
+    .sel_direct_input {
+        display: inline-block;
+        width: 25rem !important;
+        padding-left: 0%;
     }
 }

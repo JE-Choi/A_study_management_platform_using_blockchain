@@ -46,7 +46,14 @@
     padding-top: 0.4rem;
 }
 
-@media(max-width: 1200px){
+@media(max-width: 800px){
+    .login_container{
+        width: 80% !important;
+        margin-top: 10% !important;
+    }
+}
+
+@media(max-width: 600px){
     .loginBackgroud{
         height: 25rem !important;
     }

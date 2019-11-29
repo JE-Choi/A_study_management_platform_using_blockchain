@@ -76,7 +76,42 @@
   }
 }
 
-@media(max-width: 1200px){
+@media(max-width: 800px){ 
+  .go_to_main_link_div {
+    margin-left: 42%;
+    font-size: 1.2rem;
+  }
+
+  .App_top {
+    width: 100%;
+    height: 5.7rem;
+  }
+
+  .search_txn_form{
+    width: 100%;
+  }
+
+  .search_txn_label  {
+    font-size: 0.7rem;
+    margin-left: 5rem;
+  }
+  
+  #search_txn_input {
+    width: 55%;
+  }
+  
+  #btn_search_txn {
+    width: 17%;
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+  }
+
+  .App-nav {
+    margin-top: 0;
+  }
+}
+
+@media(max-width: 600px){
   .go_to_main_link_div {
     margin-left: 35%;
     font-size: 1.2rem;
