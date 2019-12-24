@@ -115,19 +115,22 @@ const CreateStudyTransaction = {
         let date = _endDate.getDate();
         let day = year+'-'+month+'-'+date; 
         let Ascii_endDate =  initContract.web3.utils.fromAscii(day); 
-        initContract.AboutStudyInfoInstance.methods.setStudyInfo(_studyId, Ascii_endDate, study_cnt).send(
-        {
-                from: initContract.myAccount[0], // 관리자 계좌
-                gas: 6000000 
-        }
-        )
-        // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
-        .on('confirmation', (confirmationNumber, receipt) => {
-          console.log('setStudyInfo 완료');
-          if(is_setStudyInfo === true){
-            is_setStudyInfo = false;
-            resolve(true);
-          }
+        initContract.web3.eth.personal.unlockAccount(initContract.myAccount[0], process.env.REACT_APP_GETH_MANAGER_PWD, 10000)
+        .then(()=>{
+          initContract.AboutStudyInfoInstance.methods.setStudyInfo(_studyId, Ascii_endDate, study_cnt).send(
+            {
+                    from: initContract.myAccount[0], // 관리자 계좌
+                    gas: 6000000 
+            }
+            )
+            // receipt 값이 반환되면 트랜잭션의 채굴 완료 된 상태
+            .on('confirmation', (confirmationNumber, receipt) => {
+              console.log('setStudyInfo 완료');
+              if(is_setStudyInfo === true){
+                is_setStudyInfo = false;
+                resolve(true);
+              }
+            });
         });
       });
   },

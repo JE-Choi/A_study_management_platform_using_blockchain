@@ -43,9 +43,10 @@ class AccountInfoContent extends Component {
       if(InitContract.web3 !== null){
         clearInterval(time_m);
         this.getMainAccountTransfer(account_num);
+        this.getBalance(account_num);
       }
     },1000);
-    this.getBalance(account_num);
+    
       }
     });
   }
